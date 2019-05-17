@@ -1,0 +1,36 @@
+<h2>Login</h2>
+<form>
+    <div class="form-group">
+        <label for="name">Name</label>
+        <input type="name"  class="form-control" [ngClass]="{ 'is-invalid': submitted && f.name.errors }" />
+        
+    </div>
+    <div class="form-group">
+        <label for="username">Username</label>
+        <input type="text"  class="form-control" [ngClass]="{ 'is-invalid': submitted && f.username.errors }" />
+        
+    </div>
+    <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password"  class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+        
+    </div>
+    <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email"  class="form-control" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
+        
+    </div>
+    <div class="form-group">
+        <label for="address">Address</label>
+        <input type="address"  class="form-control" [ngClass]="{ 'is-invalid': submitted && f.address.errors }" />
+        
+    </div>
+    <div class="form-group">
+        <label for="phone">Phone</label>
+        <input type="phone"  class="form-control" [ngClass]="{ 'is-invalid': submitted && f.phone.errors }" />
+        
+    </div>
+    <div class="form-group">
+        <button  class="btn btn-primary">Register</button>
+    </div>
+</form>

@@ -1,0 +1,12 @@
+.has-errors {
+    box-shadow: 0px 0px 10px 1px #ff3333;
+}
+
+div[class*='invalid-feedback']{
+    font-size:100%;
+}
+.col-centered {
+    float: none;
+    margin: 0 auto;
+    margin-top: 1%;
+}

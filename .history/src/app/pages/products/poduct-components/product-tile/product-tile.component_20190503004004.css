@@ -1,0 +1,12 @@
+.container {
+    width: fit-content;
+    width: 100%;
+}
+
+.row {
+    width: fit-content;
+}
+
+.img {
+    width: 200px;
+}

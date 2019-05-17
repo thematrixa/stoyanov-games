@@ -1,0 +1,12 @@
+<table id = "card-list-table">
+  <tr class = "card-list-title">
+    <td>Card Type</td>
+    <td>Card Name</td>
+    <td>TCG Status</td>
+  </tr>
+  <tr *ngFor="let card of allCards" [ngClass]="{'card-list-spell': card.type=='Spell Card', 'card-list-trap':card.type=='Trap Card', 'card-list-xyz':card.type=='XYZ Monster', 'card-list-synchro':card.type.indexOf('Synchro') !== -1 }">
+    <td>{{card.type}}</td>
+    <td>{{card.name}}</td>
+    <td>{{card.ban_tcg}}</td>
+  </tr>
+</table>

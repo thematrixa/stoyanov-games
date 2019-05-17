@@ -1,0 +1,52 @@
+<div class="container">
+  <div class="row">
+    <div class="col-9 col-centered">
+      <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+        <!-- Links -->
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" href="#">Промоции</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Мълиган</a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link" href="#">Профил</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Влез</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Излез</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Регистрация</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/list" >Бан лист</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" id="navbardrop" >
+                Продукти
+            </a>
+            <div class="dropdown-menu">
+              <a class="dropdown-item" href="#">Структурни тестета</a>
+              <a class="dropdown-item" href="#">Буустери</a>
+              <a class="dropdown-item" href="#">Мега тинс</a>
+              <a class="dropdown-item" href="#">Аксесоари</a>
+              <a class="dropdown-item" href="#">Стартер пакети</a>
+              <a class="dropdown-item" href="#">Единични бройки</a>
+              <a class="dropdown-item" href="#">Специални издания</a>
+            </div>
+          </li>
+        </ul><div  class="dropdown" dropdown>
+          <a dropdownToggle class="pull-right text-center btn btn-setting dropdown-toggle"  data-toggle="dropdown" aria-haspopup="true" aria- expanded="true"><i class="fa fa-cog"></i></a>
+          <ul *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="menu1">
+              <li role="presentation">  <a role="menuitem" tabindex="-1" href="#" data-toggle="modal" data-target="#myModal"><i class="fa fa-cog"></i>Settings</a></li>
+          </ul>
+      </div>
+      </nav>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,8 @@
+.content-background {
+    background-color: #FFF;
+}
+.col-centered {
+    float: none;
+    margin: 0 auto;
+    margin-top: 1%;
+}

@@ -1,0 +1,10 @@
+img {
+    width:100%;
+    height:250px;background-size: cover;
+    background-repeat: no-repeat;
+}
+.col-centered {
+    float: none;
+    margin: 0 auto;
+    margin-top: 1%;
+}

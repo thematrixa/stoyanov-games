@@ -1,0 +1,18 @@
+<table>
+  <tr *ngFor="let card of allCards">
+    <td>Card Type</td>
+    <td>Card Name</td>
+    <td>Advanced Format</td>
+    <td>Traditional Format</td>
+    <td>Remarks</td>
+    Card Type	Card Name	Advanced Format	Traditional Format	Remarks
+  </tr>
+  <tr *ngFor="let card of allCards">
+    <td>{{card.type}}</td>
+    <td>{{card.name}}</td>
+    <td>{{card.ban_goat}}</td>
+    <td>{{card.ban_ocg}}</td>
+    <td>{{card.ban_tcg}}</td>
+    				
+  </tr>
+</table>

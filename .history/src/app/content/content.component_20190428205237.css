@@ -1,0 +1,13 @@
+.content-background {
+    width:100%;
+    background-color: #FFF;
+    position: relative;
+    z-index:4;
+    padding:20px;
+    min-height:30vh; 
+}
+.col-centered {
+    float: none;
+    margin: 0 auto;
+    margin-top: 1%;
+}

@@ -1,0 +1,23 @@
+img {
+    width:250px;
+    height:500px;
+    background-size: cover;
+}
+
+#left-image {
+    position: fixed;
+    left:0px;
+    float:left;
+}
+
+#right-image {
+    position: fixed;    
+    right:0px;
+    float:right;
+}
+
+#background-image {
+    position: fixed;    
+    right:0px;
+    float:right;
+}

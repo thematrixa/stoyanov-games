@@ -1,0 +1,43 @@
+#card-list-table {
+    width: 100%;
+    border-top-width: 1px;
+    border-right-width: 1px;
+    border-bottom-width: 1px;
+    border-left-width: 1px;
+    -webkit-border-horizontal-spacing: 0px;
+    -webkit-border-vertical-spacing: 0px;
+    border-top-color: rgb(51, 51, 51);
+    border-right-color: rgb(51, 51, 51);
+    border-bottom-color: rgb(51, 51, 51);
+    border-left-color: rgb(51, 51, 51);
+    display: table;
+    border-collapse: separate;
+}
+
+.card-list-title {
+    color: #CCCCCC;
+    background-color: #666666;
+}
+
+.card-list-effect {
+  background-color: #ff8b53;
+  color: #000000;
+}
+.card-list-fusion {
+  background-color: #ff8b53;
+  color: #000000;
+}
+.card-list-xyz {
+  background-color: #ff8b53;
+  color: #000000;
+}
+.card-list-synchro {
+  background-color: #ff8b53;
+  color: #000000;
+}
+
+tr {
+    display: table-row;
+    vertical-align: inherit;
+    border-color: inherit;
+}

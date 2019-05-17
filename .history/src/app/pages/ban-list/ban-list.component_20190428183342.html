@@ -1,0 +1,16 @@
+<table>
+  <tr>
+    <td>Card Type</td>
+    <td>Card Name</td>
+    <td>Advanced Format</td>
+    <td>Traditional Format</td>
+    <td>Remarks</td>
+  </tr>
+  <tr *ngFor="let card of allCards | banned-card:filterArgs">
+    <td>{{card.type}}</td>
+    <td>{{card.name}}</td>
+    <td>{{card.ban_ocg}}</td>
+    <td>{{card.ban_tcg}}</td>
+    <td>{{card.ban_goat}}</td>
+  </tr>
+</table>

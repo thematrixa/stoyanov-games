@@ -1,0 +1,14 @@
+.row{
+    position:relative;
+    z-index:5;
+}
+
+.col-centered {
+    float: none;
+    margin: 0 auto;
+    margin-top: 1%;
+}
+
+.m {
+    z-index: 4;
+}

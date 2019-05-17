@@ -1,0 +1,17 @@
+<h2>Login</h2>
+<form>
+    <div class="form-group">
+        <label for="username">Username</label>
+        <input type="text"  class="form-control" [ngClass]="{ 'is-invalid': submitted && f.username.errors }" />
+        
+    </div>
+    <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password"  class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+        
+    </div>
+    <div class="form-group">
+        <button  class="btn btn-primary">Register</button>
+    </div>
+</form>
+Username	Password	Email	Address	Phone	isEmailConfirmed	Name	IsAdmin

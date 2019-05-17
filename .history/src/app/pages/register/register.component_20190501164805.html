@@ -1,0 +1,59 @@
+<div class="container">
+  <div class="row">
+    <h2>Register</h2>
+  </div>
+  <div class="row">
+    <form (ngSubmit)="onSubmit()" class="col-6">
+      <div [formGroup]="registerForm" class="form-group">
+        <input placeholder="Three names" type="text" formControlName="names" class="form-control" [ngClass]="{ 'is-invalid has-errors': submitted && f.names.errors }"/>  
+      </div>
+      <div [formGroup]="registerForm" class="form-group">
+        <input placeholder="Username" type="text" formControlName="username" class="form-control" [ngClass]="{ 'is-invalid has-errors': submitted && f.username.errors }"/>
+      </div>
+      <div [formGroup]="registerForm" class="form-group">
+        <input placeholder="Password" type="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid has-errors': submitted && f.password.errors }" />
+      </div>
+      <div [formGroup]="registerForm" class="form-group">
+          <input placeholder="Confirm" type="password" formControlName="confirmPassword" class="form-control" [ngClass]="{ 'is-invalid has-errors': submitted && f.confirmPassword.errors }" pattern="{{ this.registerForm.controls.password.value}}"/>
+        </div>
+      <div [formGroup]="registerForm" class="form-group">
+        <input placeholder="Email" type="email" formControlName="email" class="form-control" [ngClass]="{ 'is-invalid has-errors': submitted && f.email.errors }" />
+      </div>
+      <div [formGroup]="registerForm" class="form-group">
+        <input placeholder="Address" type="text" formControlName="address" class="form-control" [ngClass]="{ 'is-invalid has-errors': submitted && f.address.errors }"/>
+      </div>
+      <div [formGroup]="registerForm" class="form-group">
+        <input placeholder="Phone" type="text" formControlName="phone" class="form-control" [ngClass]="{ 'is-invalid has-errors': submitted && f.phone.errors }" />
+      </div>
+      <div [formGroup]="registerForm" class="form-group">
+        <button class="btn btn-primary">Register</button>
+      </div>
+    </form>
+    <div class="col-6">
+        <div *ngIf="submitted && f.names.errors" class="alert alert-danger" role="alert">
+          <div *ngIf="f.names.errors.required">Names is required</div>
+        </div>
+        <div *ngIf="submitted && f.username.errors" class="alert alert-danger" role="alert">
+          <div *ngIf="f.username.errors.required">Username is required</div>
+        </div>
+        <div *ngIf="submitted && f.password.errors" class="alert alert-danger">
+          <div *ngIf="f.password.errors.required">Password is required</div>
+          <div *ngIf="f.password.errors.minlength">Password is required</div>
+        </div>
+        <div *ngIf="submitted && f.confirmPassword.errors" class="alert alert-danger">
+          <div *ngIf="f.confirmPassword.errors.required">Confirm password is required</div>
+          <div *ngIf="f.confirmPassword.errors.pattern">Passwords do not match!</div>
+        </div>
+        <div *ngIf="submitted && f.email.errors" class="alert alert-danger">
+          <div *ngIf="f.email.errors.required">Email is required</div>
+          <div *ngIf="f.email.errors.email">The provided email is not valid</div>
+        </div>
+        <div *ngIf="submitted && f.address.errors" class="alert alert-danger">
+          <div *ngIf="f.address.errors.required">Address is required</div>
+        </div>        
+        <div *ngIf="submitted && f.phone.errors" class="alert alert-danger">
+          <div *ngIf="f.phone.errors.required">Phone is required</div>
+        </div>
+    </div>
+  </div>
+</div>

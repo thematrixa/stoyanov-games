@@ -1,0 +1,11 @@
+.content-background {
+    width:100%;
+    background-color: #FFF;
+    position: relative;
+    z-index:4;
+}
+.col-centered {
+    float: none;
+    margin: 0 auto;
+    margin-top: 1%;
+}

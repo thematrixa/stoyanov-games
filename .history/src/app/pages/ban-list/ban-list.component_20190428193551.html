@@ -1,0 +1,12 @@
+<table>
+  <tr>
+    <td>Card Type</td>
+    <td>Card Name</td>
+    <td>TCG Status</td>
+  </tr>
+  <tr *ngFor="let card of allCards">
+    <td>{{card.type}}</td>
+    <td>{{card.name}}</td>
+    <td>{{card.ban_tcg}}</td>
+  </tr>
+</table>

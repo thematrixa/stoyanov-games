@@ -1,0 +1,19 @@
+<div class="container">
+    <div class="row">
+      <div class="col-2">
+        <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+          <!-- Links -->
+          <ul class="navbar-nav">
+            <li *ngFor="let option of sideMenuList" class="nav-item">
+              <a class="nav-link" [ngClass]="{'dropdown-content': option.dropdown.lenght>0}" routerLink="{{option.routerLink}}">{{option.name}}</a>
+              <div *ngIf="option.dropdown">
+                <div  class="dropdown-menu" *dropdownMenu>
+                    <a role="menuitem" *ngFor = "let dropOption of option.dropdown" class="dropdown-item" routerLink="{{dropOption.routerLink}}">{{dropOption.name}}</a>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </div>

@@ -1,0 +1,42 @@
+.row{
+    width:100vw;
+    height:100vh;
+}
+img {
+    width:250px;
+    height:500px;
+    background-size: cover;
+}
+
+#left-image {
+    position: fixed;
+    left:0px;
+    float:left;
+    z-index: 2;
+}
+
+#right-image {
+    position: fixed;    
+    right:0px;
+    float:right;
+    z-index: 2;
+}
+
+#background-image {   
+    background: url("/assets/Images/background-image.png");
+    width:100%;
+    height:100%;
+    background-size: cover;
+    background-repeat: repeat-y;
+    z-index: 1;
+    animation: slide 60s linear infinite;
+}
+
+@keyframes slide {
+    0%{
+      transform: translate3d(0, 0, 0);
+    }
+    100%{
+      transform: translate3d(-1692px, 0, 0);
+    }
+  }

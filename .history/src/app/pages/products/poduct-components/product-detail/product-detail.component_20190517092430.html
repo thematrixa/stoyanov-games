@@ -1,0 +1,73 @@
+<div class="container">
+  <div class="row">
+    <div class="col-6" style="overflow:hidden">
+      <ngx-gallery [options]="galleryOptions" [images]="galleryImages"></ngx-gallery>      
+    </div>
+    <div class="col-6">
+      <div class="row">
+          <div class="col-6">
+              <p>Name:</p>
+          </div>
+          <div class="col-6">
+            <h3>{{product.name}}</h3>
+          </div>
+      </div>
+      <div class="row">
+          <div class="col-6">
+              <p>Price:</p>
+          </div>
+          <div class="col-6">
+            <p>{{product.price}}</p>
+          </div>
+      </div>
+      <div class="row">
+          <div class="col-6">
+              <p>Short Description:</p>
+          </div>
+          <div class="col-6">
+             <p>{{product.shortDescription}}</p>
+          </div>
+      </div>
+      <div class="row">
+          <div class="col-6">
+              <p>Description:</p>
+          </div>
+          <div class="col-6">
+            <h3>{{product.description}}</h3>
+          </div>
+      </div>
+      <div class="row">
+          <div class="col-6">
+              <p>Cards per pack:</p>
+          </div>
+          <div class="col-6">
+            <h3>{{product.cardsPerPack}}</h3>
+          </div>
+      </div>
+      <div class="row">
+          <div class="col-6">
+              <p>In Stock:</p>
+          </div>
+          <div class="col-6">
+            <p>{{product.inStock === "1" ? "Yes" : "No"}}</p>
+          </div>
+      </div>
+      <div class="row">
+          <div class="col-6">
+              <p>Launch Date:</p>
+          </div>
+          <div class="col-6">
+            <p>{{product.launchDate}}</p>
+          </div>
+      </div>
+      <div class="row">
+          <div class="col-6">
+              <p>Tournament store launch date:</p>
+          </div>
+          <div class="col-6">
+            <p>{{product.tournamentStoreLaunchDate}}</p>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>
