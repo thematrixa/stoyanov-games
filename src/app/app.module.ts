@@ -34,6 +34,7 @@ import { ProductTileComponent } from './pages/products/poduct-components/product
 import { NgxGalleryModule } from 'ngx-gallery';
 import { ProductDetailsService } from './shared/services/product-details.service';
 import { AdminModuleComponent } from './pages/admin-module/admin-module.component';
+import { CategoriesComponent } from './pages/admin-module/admin-components/categories/categories.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -51,6 +52,7 @@ import { AdminModuleComponent } from './pages/admin-module/admin-module.componen
     ProductDetailComponent,
     ProductTileComponent,
     AdminModuleComponent,
+    CategoriesComponent,
   ],
   imports: [
     CommonModule,

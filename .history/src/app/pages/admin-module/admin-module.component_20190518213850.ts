@@ -21,7 +21,7 @@ export class AdminModuleComponent implements OnInit {
     this.productsDropdown.push({name: 'Единични бройки', routerLink: '/singles', dropdown: []});
     this.productsDropdown.push({name: 'Специални издания', routerLink: '/special-editions', dropdown: []});
 
-    this.sideMenuList.push({name: 'Категории', routerLink: '/admin-module/categories', dropdown: []});
+    this.sideMenuList.push({name: 'Категории', routerLink: '/register', dropdown: []});
     this.sideMenuList.push({name: 'Новини', routerLink: '/list', dropdown: []});
     this.sideMenuList.push({name: 'Изображения', routerLink: '/products', dropdown: this.productsDropdown});
     this.sideMenuList.push({name: 'Купони', routerLink: '/register', dropdown: []});
@@ -29,6 +29,7 @@ export class AdminModuleComponent implements OnInit {
     this.sideMenuList.push({name: 'История', routerLink: '/products', dropdown: this.productsDropdown});
     this.sideMenuList.push({name: 'Поръчки', routerLink: '/register', dropdown: []});
     this.sideMenuList.push({name: 'Продукти', routerLink: '/list', dropdown: []});
+    this.sideMenuList.push({name: 'Мълиган', routerLink: '/list', dropdown: []});
   }
 
 }

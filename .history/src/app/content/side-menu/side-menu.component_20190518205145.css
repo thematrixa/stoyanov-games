@@ -1,10 +1,12 @@
-
-.col-3{
-  padding-left: 0px;
+.container {
+  position: relative;
+  top:0;
+  left:0;
 }
 
 .navbar-nav {
     flex-direction: column;
+    columns:2;
 }
 
 .dropdown {

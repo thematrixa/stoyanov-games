@@ -7,7 +7,6 @@ import { ProfileComponent } from './pages/profile/profile.component';
 import { ProductsComponent } from './pages/products/products.component';
 import { ProductDetailComponent } from './pages/products/poduct-components/product-detail/product-detail.component';
 import { AdminModuleComponent } from './pages/admin-module/admin-module.component';
-import { CategoriesComponent } from './pages/admin-module/admin-components/categories/categories.component';
 
 const routes: Routes = [
   { path: 'list', component: BanListComponent },
@@ -17,7 +16,7 @@ const routes: Routes = [
   { path: 'products', component: ProductsComponent },
   { path: 'product-detail', component: ProductDetailComponent },
   { path: 'admin-module', component: AdminModuleComponent },
-  { path: 'admin-module/categories', component: CategoriesComponent}
+  { path: 'admin-module', component: AdminModuleComponent, outlet: 'admin-module'}
 ];
 
 @NgModule({

@@ -1,6 +1,6 @@
-<div class="container" style = "border-right: 1px solid rgba(0,0,0,0.15)">
+<div class="container">
     <div class="row">
-        <nav class="navbar navbar-expand-sm bg-light navbar-light">
+        <nav class="navbar navbar-expand-sm bg-light navbar-light" style = "border-right: 1px solid rgba(0,0,0,0.75)">
           <ul class="navbar-nav">
             <li *ngFor="let option of sideMenu" [ngClass]="{'dropdown': option.dropdown?.length != 0}">
               <a class="nav-link" routerLink="{{option.routerLink}}">{{option.name}}</a>

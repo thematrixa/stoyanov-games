@@ -22,7 +22,6 @@ export class ProfileComponent implements OnInit {
 
     this.sideMenuList.push({name: 'Моите адреси', routerLink: '/register', dropdown: []});
     this.sideMenuList.push({name: 'Моите поръчки', routerLink: '/list', dropdown: []});
-    this.sideMenuList.push({name: 'Моите купони', routerLink: '/list', dropdown: []});
     this.sideMenuList.push({name: 'Настройки', routerLink: '/products', dropdown: this.productsDropdown});
   }
 

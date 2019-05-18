@@ -2,11 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { SideMenuEntry } from 'src/app/shared/models/side-menu-entry';
 
 @Component({
-  selector: 'app-profile',
-  templateUrl: './profile.component.html',
-  styleUrls: ['./profile.component.css']
+  selector: 'app-admin-module',
+  templateUrl: './admin-module.component.html',
+  styleUrls: ['./admin-module.component.css']
 })
-export class ProfileComponent implements OnInit {
+export class AdminModuleComponent implements OnInit {
+
   sideMenuList: Array<SideMenuEntry> = [];
   productsDropdown: Array<SideMenuEntry> = [];
   constructor() { }
@@ -20,10 +21,14 @@ export class ProfileComponent implements OnInit {
     this.productsDropdown.push({name: 'Единични бройки', routerLink: '/singles', dropdown: []});
     this.productsDropdown.push({name: 'Специални издания', routerLink: '/special-editions', dropdown: []});
 
-    this.sideMenuList.push({name: 'Моите адреси', routerLink: '/register', dropdown: []});
-    this.sideMenuList.push({name: 'Моите поръчки', routerLink: '/list', dropdown: []});
-    this.sideMenuList.push({name: 'Моите купони', routerLink: '/list', dropdown: []});
-    this.sideMenuList.push({name: 'Настройки', routerLink: '/products', dropdown: this.productsDropdown});
+    this.sideMenuList.push({name: 'Категории', routerLink: '/register', dropdown: []});
+    this.sideMenuList.push({name: 'Новини', routerLink: '/list', dropdown: []});
+    this.sideMenuList.push({name: 'Изображения', routerLink: '/products', dropdown: this.productsDropdown});
+    this.sideMenuList.push({name: 'Купони', routerLink: '/register', dropdown: []});
+    this.sideMenuList.push({name: 'Промоции', routerLink: '/list', dropdown: []});
+    this.sideMenuList.push({name: 'История', routerLink: '/products', dropdown: this.productsDropdown});
+    this.sideMenuList.push({name: 'Поръчки', routerLink: '/register', dropdown: []});
+    this.sideMenuList.push({name: 'Продукти', routerLink: '/list', dropdown: []});
   }
 
 }
