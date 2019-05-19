@@ -1,0 +1,38 @@
+<div class="card">
+  <h3 class="card-header text-center font-weight-bold text-uppercase py-4">Новини</h3>
+  <div class="card-body">
+    <div id="table" class="table-editable">
+      <span class="table-add float-right mb-3 mr-2">
+        <a class="text-success" (click)="add()">
+         <img src="assets/Icons/add-button.svg"/>
+        </a>
+      </span>
+      <table class="table table-bordered table-responsive-md table-striped text-center">
+        <tr class="row">
+          <th class="text-center col-3">Заглавие</th>
+          <th class="text-center col-5">Съдържание</th>
+          <th class="text-center col-3">Дата</th>
+          <th class="text-center col-1">Премахване</th>
+        </tr>
+        <tr *ngFor="let news of newsList; let id = index">
+          <td class="col-3">
+            <span (keyup)="changeValue(id, 'name', $event)" (blur)="updateList(id, 'name', $event)" contenteditable="true">{{news.title}}</span>
+          </td>
+          <td class="col-5">
+            <span (keyup)="changeValue(id, 'name', $event)" (blur)="updateList(id, 'name', $event)" contenteditable="true">{{news.content}}</span>
+          </td>
+          <td class="col-3">
+            <span class="table-up">
+              {{news.date}}
+            </span>
+          </td>
+          <td class="col-1">
+            <span class="table-remove">
+              <button (click)="remove(id)" class="my-0 btn btn-danger btn-rounded">X</button>
+            </span>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>
