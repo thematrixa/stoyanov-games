@@ -13,7 +13,32 @@
           <th class="text-center">Напред</th>
         </tr>
         <tr *ngFor="let category of unconfirmedOrders; let id = index">
-          
+          <table *ngIf='category.products'>
+            <tr *ngFor="let product of category.products; let id = index">
+                <tr>  
+                  <th class="text-center">#Nо</th>
+                  <th class="text-center">Продукт</th>
+                  <th class="text-center">Брой</th>
+                  <th class="text-center">Цена</th>
+                  <th class="text-center">Общо</th>
+                </tr>
+              <td>
+                <span>{{product.id}}</span>
+              </td>
+              <td>
+                <span>{{product.name}}</span>
+              </td>
+              <td>
+                <span>{{product.quantity}}</span>
+              </td>
+              <td>
+                <span>{{product.price}}</span>
+              </td>
+              <td>
+                <span>parseInt(product.price)*parseInt(product.quantity)</span>
+              </td>
+            </tr>
+          </table>
           <td>
             <span>{{category.id}}</span>
           </td>
@@ -37,35 +62,6 @@
               <button (click)="confirmOrder(id)" class="my-0 btn btn-success btn-rounded">-></button>
             </span>
           </td>
-            <!-- <div>
-            <table *ngIf='category.products'>
-              <tr>  
-                <th class="text-center">#Nо</th>
-                <th class="text-center">Продукт</th>
-                <th class="text-center">Брой</th>
-                <th class="text-center">Цена</th>
-                <th class="text-center">Общо</th>
-              </tr>
-              <tr *ngFor="let product of category.products; let id = index">
-                  
-                <td>
-                  <span>{{product.id}}</span>
-                </td>
-                <td>
-                  <span>{{product.name}}</span>
-                </td>
-                <td>
-                  <span>{{product.quantity}}</span>
-                </td>
-                <td>
-                  <span>{{product.price}}</span>
-                </td>
-                <td>
-                  <span>parseInt(product.price)*parseInt(product.quantity)</span>
-                </td>
-              </tr>
-            </table>
-          </div> -->
         </tr>
       </table>
     </div>

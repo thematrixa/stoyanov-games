@@ -1,7 +1,6 @@
 <igx-tabs tabsType="fixed">
   <igx-tabs-group label="Непотвърдени">
     <div id="table" class="table-editable">
-      <!-- ТОДО one component for all orders  -->
       <table class="table table-bordered table-responsive-md table-striped text-center">
         <tr>  
           <th class="text-center">#Nо</th>
@@ -10,10 +9,8 @@
           <th class="text-center">Дата</th>
           <th class="text-center">Телефон</th>
           <th class="text-center">Общо</th>
-          <th class="text-center">Напред</th>
         </tr>
         <tr *ngFor="let category of unconfirmedOrders; let id = index">
-          
           <td>
             <span>{{category.id}}</span>
           </td>
@@ -30,42 +27,13 @@
             <span>{{category.phone}}</span>
           </td>
           <td>
-            <span>{{category.total}}</span>
+            <span>{{category.price}}</span>
           </td>
           <td>
             <span class="table-remove">
               <button (click)="confirmOrder(id)" class="my-0 btn btn-success btn-rounded">-></button>
             </span>
           </td>
-            <!-- <div>
-            <table *ngIf='category.products'>
-              <tr>  
-                <th class="text-center">#Nо</th>
-                <th class="text-center">Продукт</th>
-                <th class="text-center">Брой</th>
-                <th class="text-center">Цена</th>
-                <th class="text-center">Общо</th>
-              </tr>
-              <tr *ngFor="let product of category.products; let id = index">
-                  
-                <td>
-                  <span>{{product.id}}</span>
-                </td>
-                <td>
-                  <span>{{product.name}}</span>
-                </td>
-                <td>
-                  <span>{{product.quantity}}</span>
-                </td>
-                <td>
-                  <span>{{product.price}}</span>
-                </td>
-                <td>
-                  <span>parseInt(product.price)*parseInt(product.quantity)</span>
-                </td>
-              </tr>
-            </table>
-          </div> -->
         </tr>
       </table>
     </div>
@@ -79,8 +47,6 @@
           <th class="text-center">Адрес</th>
           <th class="text-center">Дата</th>
           <th class="text-center">Телефон</th>
-          <th class="text-center">Общо</th>
-          <th class="text-center">Напред</th>
         </tr>
         <tr *ngFor="let category of confirmedOrders; let id = index">
           <td>
@@ -97,9 +63,6 @@
           </td>
           <td>
             <span>{{category.phone}}</span>
-          </td>
-          <td>
-            <span>{{category.total}}</span>
           </td>
           <td>
             <span class="table-remove">
@@ -119,8 +82,6 @@
           <th class="text-center">Адрес</th>
           <th class="text-center">Дата</th>
           <th class="text-center">Телефон</th>
-          <th class="text-center">Общо</th>
-          <th class="text-center">Напред</th>
         </tr>
         <tr *ngFor="let category of shippedOrders; let id = index">
           <td>
@@ -137,9 +98,6 @@
           </td>
           <td>
             <span>{{category.phone}}</span>
-          </td>
-          <td>
-            <span>{{category.total}}</span>
           </td>
           <td>
             <span class="table-remove">

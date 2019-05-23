@@ -33,6 +33,7 @@ import { ProductsAdminComponent } from './pages/admin-module/admin-components/pr
 import { LogsComponent } from './pages/admin-module/admin-components/logs/logs.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { IgxTabsModule } from 'igniteui-angular';
+import {MdbTableDirective, MdbTablePaginationComponent} from '@angular/material';
 @NgModule({
   declarations: [
     AppComponent,
@@ -68,6 +69,8 @@ import { IgxTabsModule } from 'igniteui-angular';
     HttpClientModule,
     IgxTabsModule,
     BrowserAnimationsModule,
+    MdbTableDirective,
+    MdbTablePaginationComponent,
     AccordionModule.forRoot(),
     TooltipModule.forRoot(),
     AlertModule.forRoot(),
@@ -107,6 +110,8 @@ import { IgxTabsModule } from 'igniteui-angular';
     TypeaheadModule,
     BannedCardPipe,
     NgxGalleryModule,
+    MdbTableDirective,
+    MdbTablePaginationComponent,
   ],
   providers: [ProductDetailsService],
   bootstrap: [AppComponent]

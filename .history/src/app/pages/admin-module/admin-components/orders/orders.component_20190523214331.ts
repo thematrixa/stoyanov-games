@@ -2,11 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { Category } from 'src/app/shared/models/category';
 
 @Component({
-  selector: 'app-categories',
-  templateUrl: './categories.component.html',
-  styleUrls: ['./categories.component.scss']
+  selector: 'app-orders',
+  templateUrl: './orders.component.html',
+  styleUrls: ['./orders.component.css']
 })
-export class CategoriesAdminComponent implements OnInit {
+export class OrdersAdminComponent implements OnInit {
+
   elements: any = [];
   headElements = ['id', 'first', 'last', 'handle'];
   editField: string;

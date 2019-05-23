@@ -106,7 +106,7 @@ import { IgxTabsModule } from 'igniteui-angular';
     TooltipModule,
     TypeaheadModule,
     BannedCardPipe,
-    NgxGalleryModule,
+    NgxGalleryModule
   ],
   providers: [ProductDetailsService],
   bootstrap: [AppComponent]
