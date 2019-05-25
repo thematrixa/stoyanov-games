@@ -33,6 +33,7 @@ import { ProductsAdminComponent } from './pages/admin-module/admin-components/pr
 import { LogsComponent } from './pages/admin-module/admin-components/logs/logs.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { IgxTabsModule } from 'igniteui-angular';
+import { OrderTableComponent } from './pages/admin-module/admin-components/orders/order-table/order-table.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -58,6 +59,7 @@ import { IgxTabsModule } from 'igniteui-angular';
     OrdersAdminComponent,
     ProductsAdminComponent,
     LogsComponent,
+    OrderTableComponent,
   ],
   imports: [
     CommonModule,

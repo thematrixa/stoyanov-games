@@ -1,11 +1,11 @@
-<h3 class="card-header text-center font-weight-bold text-uppercase py-4">Промоции</h3>
+<h3 class="card-header text-center font-weight-bold text-uppercase py-4">Категории</h3>
 <div id="table" class="table-editable">
   <table class="table table-bordered table-responsive-md  table-striped  text-center">
     <tr>
-      <td class="text-center column-1" (click)="sortProducts('Id');">#</td>
-      <td class="text-center column-2" (click)="sortProducts('Name');">Продукт</td>
-      <td class="text-center column-3" (click)="sortProducts('Category');">Категория</td>
-      <td class="text-center column-4" (click)="sortProducts('Percent');">Процент</td>
+      <td class="text-center column-1">#</td>
+      <td class="text-center column-2">Продукт</td>
+      <td class="text-center column-3">Категория</td>
+      <td class="text-center column-4">Процент</td>
     </tr>
     <tr *ngFor="let product of products; let id = index">
       <td class="text-center column-1">
@@ -18,7 +18,7 @@
         <span>{{product.categoryId}}</span>
       </td>
       <td class="text-center column-4">
-        <span (keyup)="changeValue(id, 'onSalePercent', $event)" (blur)="updateList(id, 'onSalePercent', $event)"
+        <span (keyup)="changeValue(id, 'name', $event)" (blur)="updateList(id, 'name', $event)"
           contenteditable="true">{{product.onSalePercent}}</span>
       </td>
     </tr>

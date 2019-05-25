@@ -10,8 +10,7 @@
   word-break: break-all;
 }
 .column-3 {
-  width: 30%;
-  word-break: break-all;
+  width: 3)%;
 }
 .column-4 {
   width: 10%;
@@ -24,8 +23,4 @@ width: 10%;
 }
 .column-7 {
 width: 10%;
-}
-
-table {
-    margin:auto;
 }

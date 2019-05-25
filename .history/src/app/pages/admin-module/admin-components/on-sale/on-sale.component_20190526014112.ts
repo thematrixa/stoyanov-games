@@ -29,16 +29,16 @@ export class OnSaleAdminComponent implements OnInit {
   }
 
   sortProducts(fieldName: string) {
-    if (fieldName === 'Id') {
+    if (fieldName === 'Id'){
       this.products.sort((a, b) => a.id.localeCompare(b.id));
     }
-    if (fieldName === 'Name') {
+    if (fieldName === 'Name'){
       this.products.sort((a, b) => a.name.localeCompare(b.name));
     }
-    if (fieldName === 'Category') {
+    if (fieldName === 'Category'){
       this.products.sort((a, b) => a.categoryId.localeCompare(b.categoryId));
     }
-    if (fieldName === 'Percent') {
+    if (fieldName === 'Percent'){
       this.products.sort((a, b) => a.onSalePercent.localeCompare(b.onSalePercent));
     }
   }

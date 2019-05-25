@@ -1,0 +1,27 @@
+<div id="table" class="table-editable">
+    <table class="table table-bordered table-responsive-md text-center">
+      <tr>
+        <td class="text-center column-1">#</td>
+        <td class="text-center column-2">Имена</td>
+        <td class="text-center column-3">Адрес</td>
+        <td class="text-center column-4">Дата</td>
+        <td class="text-center column-5">Телефон</td>
+        <td class="text-center column-6">Общо</td>
+        <td class="text-center column-7">Напред</td>
+      </tr>
+      <tr *ngFor="let product of products; let id = index">
+        <td class="text-center column-1">
+          <span>{{product.id}}</span>
+        </td>
+        <td class="text-center column-2">
+          <span>{{product.name}}</span>
+        </td>
+        <td class="text-center column-3">
+          <span>{{product.categoryId}}</span>
+        </td>
+        <td class="text-center column-4">
+          <span>{{product.onSalePercent}}</span>
+        </td>
+      </tr>
+    </table>
+  </div>

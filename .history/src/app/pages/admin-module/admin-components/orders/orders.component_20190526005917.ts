@@ -18,7 +18,6 @@ export class OrdersAdminComponent implements OnInit {
     { id: '4', name: 'Structure Deck: SAGA of the Blue-eyes', photo1: 'assets/Images/tile-image-mock.jpg', quantity: '12', price: '12.50'},
   ];
 
-
   confirmedOrders: Array<UnconfirmedOrder> = [];
   shippedOrders: Array<UnconfirmedOrder> = [];
   unconfirmedOrders: Array<any> = [
@@ -59,7 +58,7 @@ export class OrdersAdminComponent implements OnInit {
     const shippedOrder = this.removeOrder(this.shippedOrders, id);
     this.confirmedOrders.push(shippedOrder);
   }
-  unconfirmOrder(id: any) {
+  uncofirmOrder(id: any){
     const confirmedOrder = this.removeOrder(this.confirmedOrders, id);
     this.unconfirmedOrders.push(confirmedOrder);
   }

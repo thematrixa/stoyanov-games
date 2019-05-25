@@ -2,16 +2,25 @@
   font-size: 12px;
 }
 
+.hide-element-but-occupy-space {
+  position: absolute;
+  left: -999em;
+}
+
+.h-0 * {
+  height: auto;
+  height: 0px;
+  overflow: hidden;
+}
+
 .column-1 {
-  width: 5%;
+  width: 10%;
 }
 .column-2 {
-  width: 15%;
-  word-break: break-all;
+  width: 30%;
 }
 .column-3 {
-  width: 30%;
-  word-break: break-all;
+  width: 10%;
 }
 .column-4 {
   width: 10%;
@@ -24,8 +33,4 @@ width: 10%;
 }
 .column-7 {
 width: 10%;
-}
-
-table {
-    margin:auto;
 }

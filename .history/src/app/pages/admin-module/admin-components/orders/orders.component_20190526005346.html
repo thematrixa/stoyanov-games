@@ -2,8 +2,7 @@
   <igx-tabs-group label="Непотвърдени">
     <div id="table" class="table-editable">
       <!-- ТОДО one component for all orders  -->
-      <table class="table table-bordered table-responsive-md text-center"
-        *ngFor="let category of unconfirmedOrders; let id = index">
+      <table class="table table-bordered text-center" *ngFor="let category of unconfirmedOrders; let id = index">
         <tr *ngIf="id === 0">
           <td class="text-center column-1">#</td>
           <td class="text-center column-2">Имена</td>
@@ -38,9 +37,9 @@
             </span>
           </td>
         </tr>
-        <tr *ngIf='category.products' [ngClass]="{'d-none': !category.showProducts}">
+        <tr [ngClass]="{'d-none': !category.showProducts}">
           <td colspan="7" style="background-color: #d6d6d63b">
-            <table style="margin-left: auto;margin-right: auto">
+            <table *ngIf='category.products' style="margin-left: auto;margin-right: auto">
               <tr>
                 <td class="text-center">#Nо</td>
                 <td class="text-center">Продукт</td>
@@ -73,7 +72,7 @@
   </igx-tabs-group>
   <igx-tabs-group label="Потвърдени">
     <div id="table" class="table-editable">
-      <table class="table table-bordered table-responsive-md text-center">
+      <table class="table table-bordered table-responsive-md table-striped text-center">
         <tr>
           <td class="text-center column-1">#</td>
           <td class="text-center column-2">Имена</td>
@@ -104,8 +103,8 @@
           </td>
           <td class="text-center column-7">
             <span class="table-removeOrder">
-              <button class="my-0 btn btn-danger btn-rounded" (click)="unconfirmOrder(id)">&lt;-</button>
-              <button (click)="shipOrder(id)" class="my-0 btn btn-success btn-rounded">-></button>
+                <button class="my-0 btn btn-danger btn-rounded" (click) = "unconfirmOrder(id)"> #&gt-</button>
+                <button (click)="shipOrder(id)" class="my-0 btn btn-success btn-rounded">-></button>
             </span>
           </td>
         </tr>
@@ -145,7 +144,7 @@
           </td>
           <td class="text-center column-7">
             <span class="table-removeOrder">
-              <button class="my-0 btn btn-danger btn-rounded" (click)="deshipOrder(id)"> &lt;-</button>
+              <button class="my-0 btn btn-danger btn-rounded" (click) = "deshipOrder(id)"> #&gt-</button>
               <button class="my-0 btn btn-success btn-rounded">-></button>
             </span>
           </td>
