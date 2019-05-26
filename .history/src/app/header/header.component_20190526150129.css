@@ -1,0 +1,13 @@
+img {
+    width:100%;
+    height:auto;
+    background-size: cover;
+    position: relative;
+    z-index:4;
+}
+
+.col-centered {
+    float: none;
+    margin: 0 auto;
+    margin-top: 1%;
+}

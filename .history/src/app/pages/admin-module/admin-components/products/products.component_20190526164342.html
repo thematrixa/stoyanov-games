@@ -1,0 +1,101 @@
+
+<igx-tabs tabsType="fixed">
+  <igx-tabs-group label="Добави">
+      <div class="container">
+          <div class="row">
+            <div class="col-6 col-centered">
+                <h2>Login</h2>
+            </div>
+          </div>
+          <div class="row">
+            <form (ngSubmit)="onSubmit()" class="col-6 col-centered">
+              <div [formGroup]="addProductForm" class="form-group">
+                <input placeholder="Product name" type="text" formControlName="name" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.name.errors }"/>
+                <div *ngIf="submitted && f.name.errors" class="invalid-feedback" role="alert">
+                  <div *ngIf="f.name.errors.required">name is required</div>
+                </div>
+              </div>
+              <div [formGroup]="addProductForm" class="form-group">
+                <input placeholder="Description" formControlName="description" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.description.errors }" />
+                <div *ngIf="submitted && f.description.errors" class="invalid-feedback">
+                  <div *ngIf="f.description.errors.required">Description is required</div>
+                  <div *ngIf="f.description.errors.minlength">Description must be more than 6 characters</div>
+                </div>
+              </div>
+              <div [formGroup]="addProductForm" class="form-group">
+                <input placeholder="Price" formControlName="price" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.price.errors }" />
+                <div *ngIf="submitted && f.price.errors" class="invalid-feedback">
+                  <div *ngIf="f.price.errors.required">Price is required</div>
+                </div>
+              </div>
+              <div [formGroup]="addProductForm" class="form-group">
+                <input placeholder="Launch" formControlName="launchDate" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.launchDate.errors }" />
+                <div *ngIf="submitted && f.launchDate.errors" class="invalid-feedback">
+                  <div *ngIf="f.launchDate.errors.required">Launch Date is required</div>
+                </div>
+              </div>
+              <div [formGroup]="addProductForm" class="form-group">
+                <input placeholder="Tournament Store Launch" formControlName="tournamentStoreLaunchDate" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.tournamentStoreLaunchDate.errors }" />
+                <div *ngIf="submitted && f.tournamentStoreLaunchDate.errors" class="invalid-feedback">
+                  <div *ngIf="f.tournamentStoreLaunchDate.errors.required">Tournament Store Launch Date is required</div>
+                </div>
+              </div>
+              <div [formGroup]="addProductForm" class="form-group">
+                <input placeholder="Konami Tournament Legal Date" formControlName="konamiTournamentLegalDate" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.konamiTournamentLegalDate.errors }" />
+                <div *ngIf="submitted && f.konamiTournamentLegalDate.errors" class="invalid-feedback">
+                  <div *ngIf="f.konamiTournamentLegalDate.errors.required">Konami Tournament Legal Date is required</div>
+                </div>
+              </div>
+              <div [formGroup]="addProductForm" class="form-group">
+                <input placeholder="Cards per pack" formControlName="cardsPerPack" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.cardsPerPack.errors }" />
+                <div *ngIf="submitted && f.cardsPerPack.errors" class="invalid-feedback">
+                  <div *ngIf="f.cardsPerPack.errors.required">Cards per pack is required</div>
+                </div>
+              </div>
+              <div [formGroup]="addProductForm" class="form-group">
+                <input placeholder="Size" formControlName="size" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.size.errors }" />
+                <div *ngIf="submitted && f.size.errors" class="invalid-feedback">
+                  <div *ngIf="f.size.errors.required">Size is required</div>
+                </div>
+              </div>
+              <div [formGroup]="addProductForm" class="form-group">
+                <input placeholder="Short description" formControlName="shortDescription" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.shortDescription.errors }" />
+                <div *ngIf="submitted && f.shortDescription.errors" class="invalid-feedback">
+                  <div *ngIf="f.shortDescription.errors.required">Size is required</div>
+                </div>
+              </div>
+              <div [formGroup]="addProductForm" class="form-group">
+                <input placeholder="Quantity" formControlName="quantity" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.quantity.errors }" />
+                <div *ngIf="submitted && f.quantity.errors" class="invalid-feedback">
+                  <div *ngIf="f.quantity.errors.required">Size is required</div>
+                </div>
+              </div>
+              <div [formGroup]="addProductForm" class="form-group">
+                <input placeholder="On sale percent" formControlName="onSalePercent" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.onSalePercent.errors }" />
+                <div *ngIf="submitted && f.onSalePercent.errors" class="invalid-feedback">
+                  <div *ngIf="f.onSalePercent.errors.required">Size is required</div>
+                </div>
+              </div>
+              <div [formGroup]="addProductForm" class="form-group">
+                  <input type="File" placeholder="Photo 1" formControlName="photo1" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.photo1.errors }" />
+                  <div *ngIf="submitted && f.photo1.errors" class="invalid-feedback">
+                    <div *ngIf="f.photo1.errors.required">Size is required</div>
+                  </div>
+                </div>
+              <div [formGroup]="addProductForm" class="form-group">
+                <button class="btn btn-success float-right">Add Product</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      categoryId: string;
+      photo1: string;
+      photo2: string;
+      inStock: string;
+
+  </igx-tabs-group>
+  <igx-tabs-group label="Изтрии">
+  </igx-tabs-group>
+  <igx-tabs-group label="Промени">
+  </igx-tabs-group>
+</igx-tabs>

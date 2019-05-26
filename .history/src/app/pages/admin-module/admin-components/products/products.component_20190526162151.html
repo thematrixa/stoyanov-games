@@ -1,0 +1,56 @@
+
+<igx-tabs tabsType="fixed">
+  <igx-tabs-group label="Добави">
+      <div class="container">
+          <div class="row">
+            <div class="col-6 col-centered">
+                <h2>Login</h2>
+            </div>
+          </div>
+          <div class="row">
+            <form (ngSubmit)="onSubmit()" class="col-6 col-centered">
+              <div [formGroup]="addProductForm" class="form-group">
+                <input placeholder="Username" type="text" formControlName="username" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.username.errors }"/>
+                <div *ngIf="submitted && f.username.errors" class="invalid-feedback" role="alert">
+                  <div *ngIf="f.username.errors.required">Username is required</div>
+                </div>
+              </div>
+              <div [formGroup]="addProductForm" class="form-group">
+                <input placeholder="Password" type="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+                <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                  <div *ngIf="f.password.errors.required">Password is required</div>
+                  <div *ngIf="f.password.errors.minlength">Password must be more than 6 characters</div>
+                </div>
+              </div>
+              <div [formGroup]="addProductForm" class="form-group">
+                <button class="btn btn-success float-right">Add Product</button>
+              </div>
+            </form>
+          </div>
+        </div>
+
+      id: string;
+      name: string;
+      description: string;
+      price: string;
+      type: string;
+      tournamentStoreLaunchDate: string;
+      launchDate: string;
+      konamiTournamentLegalDate: string;
+      cardsPerPack: string;
+      size: string;
+      isActive: string;
+      categoryId: string;
+      shortDescription: string;
+      photo1: string;
+      photo2: string;
+      inStock: string;
+      quantity: string;
+      onSalePercent: string;
+
+  </igx-tabs-group>
+  <igx-tabs-group label="Изтрии">
+  </igx-tabs-group>
+  <igx-tabs-group label="Промени">
+  </igx-tabs-group>
+</igx-tabs>
