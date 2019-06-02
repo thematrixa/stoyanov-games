@@ -89,7 +89,7 @@
           <div class="custom-file">
             <input type="File" placeholder="Photo 1" formControlName="photo1" class="form-control custom-file-input"
               [ngClass]="{ 'is-invalid': submitted && f.photo1.errors }" />
-            <label class="custom-file-label" for="customFile">Photo 1</label>
+            <label class="custom-file-label" for="customFile">Choose file</label>
             <div *ngIf="submitted && f.photo1.errors" class="invalid-feedback">
               <div *ngIf="f.photo1.errors.required">Photo 1 is required</div>
             </div>
@@ -99,7 +99,7 @@
           <div class="custom-file">
             <input type="File" placeholder="Photo 2" formControlName="photo2" class="custom-file-input form-control"
               [ngClass]="{ 'is-invalid': submitted && f.photo2.errors }" />
-            <label class="custom-file-label" for="customFile">Photo 2</label>
+            <label class="custom-file-label" for="customFile">Choose file</label>
             <div *ngIf="submitted && f.photo2.errors" class="invalid-feedback">
               <div *ngIf="f.photo2.errors.required">Photo 2 is required</div>
             </div>
