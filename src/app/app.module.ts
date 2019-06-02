@@ -34,6 +34,7 @@ import { LogsComponent } from './pages/admin-module/admin-components/logs/logs.c
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { IgxTabsModule } from 'igniteui-angular';
 import { OrderTableComponent } from './pages/admin-module/admin-components/orders/order-table/order-table.component';
+import { AddEditProductComponent } from './pages/admin-module/admin-components/products/add-edit-product/add-edit-product/add-edit-product.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -59,6 +60,7 @@ import { OrderTableComponent } from './pages/admin-module/admin-components/order
     ProductsAdminComponent,
     LogsComponent,
     OrderTableComponent,
+    AddEditProductComponent,
   ],
   imports: [
     CommonModule,

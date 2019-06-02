@@ -1,5 +1,15 @@
 /* You can add global styles to this file, and also import other style files */
-@import "~@angular/material/prebuilt-themes/indigo-pink.css";
 body {
     font-size: 12px;
+}
+table, th, td {
+    text-align:center
+  }
+
+th:hover{
+    background-color: #cedcd4;
+    cursor: pointer;
+}
+.form-control {
+    font-size: auto!important;
 }

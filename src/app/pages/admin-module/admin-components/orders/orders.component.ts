@@ -67,5 +67,21 @@ export class OrdersAdminComponent implements OnInit {
   toggleProducts(object: any) {
     object.showProducts = !object.showProducts;
   }
+
+  sort(fieldName: string) {
+    if (fieldName === 'Id') {
+      this.products.sort((a, b) => a.id.localeCompare(b.id));
+    }
+    if (fieldName === 'Name') {
+      this.products.sort((a, b) => a.name.localeCompare(b.name));
+    }
+    if (fieldName === 'Category') {
+      this.products.sort((a, b) => a.categoryId.localeCompare(b.categoryId));
+    }
+    if (fieldName === 'Percent') {
+      this.products.sort((a, b) => a.onSalePercent.localeCompare(b.onSalePercent));
+    }
+  }
+
 }
 

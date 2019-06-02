@@ -13,7 +13,7 @@ export class LogsComponent implements OnInit {
     { id: '3', name: 'Structure Deck: Rokket', photo1: 'assets/Images/tile-image-mock.jpg', quantity: '12', price: '12.50'},
     { id: '4', name: 'Structure Deck: SAGA of the Blue-eyes', photo1: 'assets/Images/tile-image-mock.jpg', quantity: '12', price: '12.50'},
   ];
-  unconfirmedOrders: Array<any> = [
+  completedOrders: Array<any> = [
     // tslint:disable-next-line:max-line-length
     { id: '1', name: 'Aurelia Vega', address: 'Mezdra,Bulgaria Stefan karadja 21', date: '12.12.2011', phone: '0879134481', total: '12.51', products: this.products, showProducts: false},
     // tslint:disable-next-line:max-line-length
@@ -36,4 +36,36 @@ export class LogsComponent implements OnInit {
   toggleProducts(object: any) {
     object.showProducts = !object.showProducts;
   }
+
+  sort(fieldName: string) {
+    if (fieldName === 'Id') {
+      this.completedOrders.sort((a, b) => a.id.localeCompare(b.id));
+      return;
+    }
+    if (fieldName === 'Name') {
+      this.completedOrders.sort((a, b) => a.name.localeCompare(b.name));
+      return;
+    }
+    if (fieldName === 'Address') {
+      this.completedOrders.sort((a, b) => a.address.localeCompare(b.address));
+      return;
+    }
+    if (fieldName === 'Category') {
+      this.completedOrders.sort((a, b) => a.categoryId.localeCompare(b.categoryId));
+      return;
+    }
+    if (fieldName === 'Date') {
+      this.completedOrders.sort((a, b) => a.date.localeCompare(b.date));
+      return;
+    }
+    if (fieldName === 'Phone') {
+      this.completedOrders.sort((a, b) => a.phone.localeCompare(b.phone));
+      return;
+    }
+    if (fieldName === 'Total') {
+      this.completedOrders.sort((a, b) => a.total.localeCompare(b.total));
+      return;
+    }
+  }
+
 }

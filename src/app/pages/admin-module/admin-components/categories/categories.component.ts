@@ -8,7 +8,6 @@ import { Category } from 'src/app/shared/models/category';
 })
 export class CategoriesAdminComponent implements OnInit {
   elements: any = [];
-  headElements = ['id', 'first', 'last', 'handle'];
   editField: string;
   categoryList: Array<any> = [
     { id: 1, name: 'Aurelia Vega', age: 30, companyName: 'Deepends', country: 'Spain', city: 'Madrid' },

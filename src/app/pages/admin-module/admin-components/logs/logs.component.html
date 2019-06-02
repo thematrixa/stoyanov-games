@@ -3,34 +3,34 @@
   <div class="card-body">
     <div id="table" class="table-editable">
       <table class="table table-bordered table-responsive-md table-striped text-center"
-        *ngFor="let category of unconfirmedOrders; let id = index">
+        *ngFor="let order of completedOrders; let id = index">
         <tr *ngIf="id === 0">
-          <td class="text-center column-1">#</td>
-          <td class="text-center column-2">Имена</td>
-          <td class="text-center column-3">Адрес</td>
-          <td class="text-center column-4">Дата</td>
-          <td class="text-center column-5">Телефон</td>
-          <td class="text-center column-6">Общо</td>
+          <td class="text-center column-1" (click)="sort('Id');">#</td>
+          <td class="text-center column-2" (click)="sort('Name');">Имена</td>
+          <td class="text-center column-3" (click)="sort('Address');">Адрес</td>
+          <td class="text-center column-4" (click)="sort('Date');">Дата</td>
+          <td class="text-center column-5" (click)="sort('Phone');">Телефон</td>
+          <td class="text-center column-6" (click)="sort('Total');">Общо</td>
           <td class="text-center column-7"></td>
         </tr>
-        <tr (click)="toggleProducts(category);">
+        <tr (click)="toggleProducts(order);">
           <td class="text-center column-1">
-            <span>{{category.id}}</span>
+            <span>{{order.id}}</span>
           </td>
           <td class="text-center column-2">
-            <span>{{category.name}}</span>
+            <span>{{order.name}}</span>
           </td>
           <td class="text-center column-3">
-            <span>{{category.address}}</span>
+            <span>{{order.address}}</span>
           </td>
           <td class="text-center column-4">
-            <span>{{category.date}}</span>
+            <span>{{order.date}}</span>
           </td>
           <td class="text-center column-5">
-            <span>{{category.phone}}</span>
+            <span>{{order.phone}}</span>
           </td>
           <td class="text-center column-6">
-            <span>{{category.total}}</span>
+            <span>{{order.total}}</span>
           </td>
           <td class="text-center column-7">
             <span class="table-removeOrder">
@@ -39,7 +39,7 @@
             </span>
           </td>
         </tr>
-        <tr *ngIf='category.products' [ngClass]="{'d-none': !category.showProducts}">
+        <tr *ngIf='order.products' [ngClass]="{'d-none': !order.showProducts}">
           <td colspan="7" style="background-color: #d6d6d63b">
             <table class="table-striped" style="margin-left: auto;margin-right: auto">
               <tr>
@@ -49,7 +49,7 @@
                 <td class="text-center">Цена</td>
                 <td class="text-center">Общо</td>
               </tr>
-              <tr *ngFor="let product of category.products; let id = index">
+              <tr *ngFor="let product of order.products; let id = index">
                 <td>
                   <span>{{product.id}}</span>
                 </td>
