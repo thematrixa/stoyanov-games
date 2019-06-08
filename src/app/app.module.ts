@@ -35,6 +35,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { IgxTabsModule } from 'igniteui-angular';
 import { OrderTableComponent } from './pages/admin-module/admin-components/orders/order-table/order-table.component';
 import { AddEditProductComponent } from './pages/admin-module/admin-components/products/add-edit-product/add-edit-product/add-edit-product.component';
+import { ProductService } from './shared/services/product-service';
+import { CategoriesService } from './shared/services/categories-service';
+import { OrderService } from './shared/services/orders-service';
+import { MulliganComponent } from './pages/mulligan/mulligan.component';
+import { OnSaleComponent } from './pages/on-sale/on-sale.component';
+import { NewsComponent } from './pages/news/news.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -61,6 +67,9 @@ import { AddEditProductComponent } from './pages/admin-module/admin-components/p
     LogsComponent,
     OrderTableComponent,
     AddEditProductComponent,
+    MulliganComponent,
+    OnSaleComponent,
+    NewsComponent,
   ],
   imports: [
     CommonModule,
@@ -113,7 +122,7 @@ import { AddEditProductComponent } from './pages/admin-module/admin-components/p
     BannedCardPipe,
     NgxGalleryModule,
   ],
-  providers: [ProductDetailsService],
+  providers: [ProductDetailsService, ProductService, CategoriesService, OrderService],
   bootstrap: [AppComponent]
 })
 export class AppModule {
