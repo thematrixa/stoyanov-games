@@ -19,14 +19,14 @@ export class ProductsAdminComponent implements OnInit {
   productList: Array<Product>;
   addProductForm: FormGroup;
   submitted = false;
-  categories: Array<Category>;
+  categores: Array<Category>;
 
   constructor(
     private formBuilder: FormBuilder,
     private categoriesService: CategoriesService,
     private productService: ProductService) {
       this.productList = this.productService.getProducts();
-      this.categories = this.categoriesService.getCategories();
+      this.categores = this.categoriesService.getCategories();
   }
 
 

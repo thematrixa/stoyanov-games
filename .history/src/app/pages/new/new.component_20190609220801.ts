@@ -3,11 +3,11 @@ import { Product } from 'src/app/shared/models/product';
 import { ProductService } from 'src/app/shared/services/product-service';
 
 @Component({
-  selector: 'app-on-sale',
-  templateUrl: './on-sale.component.html',
-  styleUrls: ['./on-sale.component.css']
+  selector: 'app-new',
+  templateUrl: './new.component.html',
+  styleUrls: ['./new.component.css']
 })
-export class OnSaleComponent implements OnInit {
+export class NewComponent implements OnInit {
 
   productList: Array<Product>;
 

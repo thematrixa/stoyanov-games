@@ -86,7 +86,7 @@ export class ProductService {
       inStock: "1",
       quantity: "450",
       onSalePercent: "10",
-      dateAdded: "08.06.2019"
+      dateAdded: "12.10.2001"
     }
   ];
 
@@ -104,9 +104,9 @@ export class ProductService {
 
   getNewProducts() {
     return this.products.filter(function(product) {
-      const d1 = new Date();
-      const d2 = new Date(product.dateAdded);
-      return (d1.getMonth() - d2.getMonth()) <= 1 && d1.getFullYear() === d2.getFullYear();
+      let d1 = new Date();
+      let d2 = new Date(product.dateAdded);
+      return d1 > d2 && (Math.abs(d1 - d2) < 30);
     });
   }
 }

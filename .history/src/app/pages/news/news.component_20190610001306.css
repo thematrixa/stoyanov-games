@@ -2,7 +2,7 @@
     position: relative;
     z-index: 4;
     padding-top: 20px;
-    margin-bottom: 20px;
+    padding-bottom: 20px;
     color: #fff;
     text-align: center;
     overflow:hidden;
@@ -15,6 +15,6 @@
 
 .news-content {
     width: 100%;
-    /* position:absolute;
-    top:50px; */
+    position:absolute;
+    top:50px;
 }

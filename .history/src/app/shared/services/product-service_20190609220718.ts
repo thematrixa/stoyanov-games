@@ -106,7 +106,7 @@ export class ProductService {
     return this.products.filter(function(product) {
       const d1 = new Date();
       const d2 = new Date(product.dateAdded);
-      return (d1.getMonth() - d2.getMonth()) <= 1 && d1.getFullYear() === d2.getFullYear();
+      return d1 > d2 && (Math.abs(d1.getTime() - d2.getTime()) < 30);
     });
   }
 }

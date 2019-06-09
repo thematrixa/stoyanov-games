@@ -1,20 +1,26 @@
 .news-entry {
     position: relative;
+    margin-right: 15%;
+    margin-bottom: 20px;
+    margin-left: 15%;
     z-index: 4;
     padding-top: 20px;
-    margin-bottom: 20px;
+    padding-bottom: 20px;
     color: #fff;
     text-align: center;
     overflow:hidden;
-    background-color: rgb(29, 172, 219);
 }
 .news-entry-background {
     overflow:hidden;
     width:100%;
 }
 
-.news-content {
+.news-title {
     width: 100%;
-    /* position:absolute;
-    top:50px; */
+    position:absolute;
+    top:50px;
+}
+.news-content {
+    position:absolute;
+    bottom:20px;
 }
