@@ -10,10 +10,6 @@ th:hover{
     background-color: #cedcd4;
     cursor: pointer;
 }
-tr:hover{
-    background-color: #cedcd4;
-    cursor: pointer;
-}
 .form-control {
     font-size: auto!important;
 }
