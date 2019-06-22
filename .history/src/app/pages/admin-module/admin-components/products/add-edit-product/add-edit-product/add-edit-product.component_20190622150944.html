@@ -1,0 +1,130 @@
+<div class="container p-4">
+  <form (ngSubmit)="onSubmit()">
+    <div class="row">
+      <div class="col-6 col-centered">
+        <div [formGroup]="addProductForm" class="form-group">
+          <input placeholder="Product name" type="text" formControlName="name" class="form-control"
+            [ngClass]="{ 'is-invalid': submitted && f.name.errors }" />
+          <div *ngIf="submitted && f.name.errors" class="invalid-feedback" role="alert">
+            <div *ngIf="f.name.errors.required">name is required</div>
+          </div>
+        </div>
+        <div [formGroup]="addProductForm" class="form-group">
+          <input placeholder="Description" formControlName="description" class="form-control"
+            [ngClass]="{ 'is-invalid': submitted && f.description.errors }" />
+          <div *ngIf="submitted && f.description.errors" class="invalid-feedback">
+            <div *ngIf="f.description.errors.required">Description is required</div>
+            <div *ngIf="f.description.errors.minlength">Description must be more than 6 characters</div>
+          </div>
+        </div>
+        <div [formGroup]="addProductForm" class="form-group">
+          <input placeholder="Price" formControlName="price" class="form-control"
+            [ngClass]="{ 'is-invalid': submitted && f.price.errors }" />
+          <div *ngIf="submitted && f.price.errors" class="invalid-feedback">
+            <div *ngIf="f.price.errors.required">Price is required</div>
+          </div>
+        </div>
+        <div [formGroup]="addProductForm" class="form-group">
+          <input bsDatepicker placement="right" placeholder="Launch" formControlName="launchDate" class="form-control"
+            [ngClass]="{ 'is-invalid': submitted && f.launchDate.errors }" />
+          <div *ngIf="submitted && f.launchDate.errors" class="invalid-feedback">
+            <div *ngIf="f.launchDate.errors.required">Launch Date is required</div>
+          </div>
+        </div>
+        <div [formGroup]="addProductForm" class="form-group">
+          <input bsDatepicker placement="right" placeholder="Tournament Store Launch"
+            formControlName="tournamentStoreLaunchDate" class="form-control"
+            [ngClass]="{ 'is-invalid': submitted && f.tournamentStoreLaunchDate.errors }" />
+          <div *ngIf="submitted && f.tournamentStoreLaunchDate.errors" class="invalid-feedback">
+            <div *ngIf="f.tournamentStoreLaunchDate.errors.required">Tournament Store Launch Date is required</div>
+          </div>
+        </div>
+        <div [formGroup]="addProductForm" class="form-group">
+          <input bsDatepicker placement="right" placeholder="Konami Tournament Legal Date"
+            formControlName="konamiTournamentLegalDate" class="form-control"
+            [ngClass]="{ 'is-invalid': submitted && f.konamiTournamentLegalDate.errors }" />
+          <div *ngIf="submitted && f.konamiTournamentLegalDate.errors" class="invalid-feedback">
+            <div *ngIf="f.konamiTournamentLegalDate.errors.required">Konami Tournament Legal Date is required</div>
+          </div>
+        </div>
+        <div [formGroup]="addProductForm" class="form-group">
+          <input placeholder="Cards per pack" formControlName="cardsPerPack" class="form-control"
+            [ngClass]="{ 'is-invalid': submitted && f.cardsPerPack.errors }" />
+          <div *ngIf="submitted && f.cardsPerPack.errors" class="invalid-feedback">
+            <div *ngIf="f.cardsPerPack.errors.required">Cards per pack is required</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-6 col-centered">
+        <div [formGroup]="addProductForm" class="form-group">
+          <input placeholder="Size" formControlName="size" class="form-control"
+            [ngClass]="{ 'is-invalid': submitted && f.size.errors }" />
+          <div *ngIf="submitted && f.size.errors" class="invalid-feedback">
+            <div *ngIf="f.size.errors.required">Size is required</div>
+          </div>
+        </div>
+        <div [formGroup]="addProductForm" class="form-group">
+          <input placeholder="Short description" formControlName="shortDescription" class="form-control"
+            [ngClass]="{ 'is-invalid': submitted && f.shortDescription.errors }" />
+          <div *ngIf="submitted && f.shortDescription.errors" class="invalid-feedback">
+            <div *ngIf="f.shortDescription.errors.required">Short description is required</div>
+          </div>
+        </div>
+        <div [formGroup]="addProductForm" class="form-group">
+          <input placeholder="Quantity" formControlName="quantity" class="form-control"
+            [ngClass]="{ 'is-invalid': submitted && f.quantity.errors }" />
+          <div *ngIf="submitted && f.quantity.errors" class="invalid-feedback">
+            <div *ngIf="f.quantity.errors.required">Quantity is required</div>
+          </div>
+        </div>
+        <div [formGroup]="addProductForm" class="form-group">
+          <input placeholder="On sale percent" formControlName="onSalePercent" class="form-control"
+            [ngClass]="{ 'is-invalid': submitted && f.onSalePercent.errors }" />
+          <div *ngIf="submitted && f.onSalePercent.errors" class="invalid-feedback">
+            <div *ngIf="f.onSalePercent.errors.required">On sale percent is required</div>
+          </div>
+        </div>
+        <div [formGroup]="addProductForm" class="form-group">
+            <add-image formControlName="image"></add-image>
+          <img formControlName="photo1" (click)="photo1File.click()" class='add-image-button form-control' width="200px" height="200px"
+            src="assets/Icons/no-image-icon.jpg">
+          <div *ngIf="submitted && f.photo1.errors" class="invalid-feedback">
+            <div *ngIf="f.photo1.errors.required">Photo 1 is required</div>
+          </div>
+          <input accept="image/*" #photo1File hidden id="photo1" (change)="handleFileInput($event);" type="File"
+            placeholder="Photo 1" class=""
+            [ngClass]="{ 'is-invalid': submitted && f.photo1.errors }" />
+        </div>
+
+        <div [formGroup]="addProductForm" class="form-group">
+          <div class="custom-file">
+            <input id="photo2" (change)="handleFileInput($event);" type="File" placeholder="Photo 2"
+              formControlName="photo2" class="custom-file-input form-control"
+              [ngClass]="{ 'is-invalid': submitted && f.photo2.errors }" />
+            <label id="forphoto2" class="custom-file-label" for="customFile">Photo 2</label>
+            <div *ngIf="submitted && f.photo2.errors" class="invalid-feedback">
+              <div *ngIf="f.photo2.errors.required">Photo 2 is required</div>
+            </div>
+          </div>
+        </div>
+        <div [formGroup]="addProductForm" class="form-group">
+          <select formControlName="categoryId" class="form-control"
+            [ngClass]="{ 'is-invalid': submitted && f.categoryId.errors }">
+            <option [selected]="category === product.categoryId" *ngFor="let category of categores"
+              [value]="category.id">{{category.name}}</option>
+          </select>
+          <div *ngIf="submitted && f.categoryId.errors" class="invalid-feedback">
+            <div *ngIf="f.categoryId.errors.required">Category is required</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12 col-centered">
+        <div [formGroup]="addProductForm" class="form-group">
+          <button type="submit" class="btn btn-block btn-success float-right">{{buttonLabel}}</button>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

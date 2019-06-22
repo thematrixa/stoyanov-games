@@ -1,0 +1,30 @@
+/* You can add global styles to this file, and also import other style files */
+body {
+    font-size: 12px;
+}
+table, th, td {
+    text-align:center
+  }
+
+th:hover{
+    background-color: #cedcd4;
+    cursor: pointer;
+}
+tr:hover{
+    background-color: #cedcd4;
+    cursor: pointer;
+}
+.form-control {
+    font-size: auto!important;
+}
+.icon { 
+    width:25px!important;
+    height:25px!important;
+}
+.add-image-button {
+    max-width: 20%;
+    max-height: 20%;
+}
+.add-image-button:hover {
+    opacity: 0.5;
+}

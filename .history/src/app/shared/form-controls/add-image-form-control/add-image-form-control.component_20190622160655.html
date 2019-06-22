@@ -1,0 +1,3 @@
+<img [ngClass]="{'hide': !isImageUploaded}" (change)="change($event)" (click)="file.click()"  class='add-image-button'src="assets/Icons/no-image-icon.jpg" #image>
+<img [ngClass]="{'hide': isImageUploaded}"  (change)="change($event)" (click)="file.click()"  class='add-image-button' src="assets/Icons/no-image-icon.jpg" #imageDefault>
+<input accept="image/*" hidden id="photo1" type="File" #file/>

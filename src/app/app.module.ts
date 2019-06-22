@@ -43,6 +43,7 @@ import { OnSaleComponent } from './pages/on-sale/on-sale.component';
 import { NewsComponent } from './pages/news/news.component';
 import { NewComponent } from './pages/new/new.component';
 import { NewsService } from './shared/services/news-service';
+import { AddImageFormControlComponent } from './shared/form-controls/add-image-form-control/add-image-form-control.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -73,6 +74,7 @@ import { NewsService } from './shared/services/news-service';
     OnSaleComponent,
     NewsComponent,
     NewComponent,
+    AddImageFormControlComponent,
   ],
   imports: [
     CommonModule,
