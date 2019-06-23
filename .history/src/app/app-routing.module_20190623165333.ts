@@ -14,23 +14,40 @@ import { OnSaleAdminComponent } from './pages/admin-module/admin-components/on-s
 import { ProductsAdminComponent } from './pages/admin-module/admin-components/products/products.component';
 import { OrdersAdminComponent } from './pages/admin-module/admin-components/orders/orders.component';
 import { LogsComponent } from './pages/admin-module/admin-components/logs/logs.component';
+import { MulliganComponent } from './pages/mulligan/mulligan.component';
+import { OnSaleComponent } from './pages/on-sale/on-sale.component';
+import { NewsComponent } from './pages/news/news.component';
+import { NewComponent } from './pages/new/new.component';
+import { AddressesComponent } from './pages/profile/profile-components/addresses/addresses.component';
+import { MyOrdersComponent } from './pages/profile/profile-components/my-orders/my-orders.component';
+import { UserSettingsComponent } from './pages/profile/profile-components/user-settings/user-settings.component';
 
 const routes: Routes = [
   { path: 'list', component: BanListComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'profile', component: ProfileComponent },
+  { path: 'profile', component: ProfileComponent,
+    children: [
+      { path: 'addresses', component: AddressesComponent },
+      { path: 'orders', component: MyOrdersComponent },
+      { path: 'settings', component: UserSettingsComponent }
+    ]
+  },
+  { path: 'mulligan', component: MulliganComponent },
   { path: 'products', component: ProductsComponent },
   { path: 'product-detail', component: ProductDetailComponent },
+  { path: 'sale', component: OnSaleComponent},
+  { path: 'new', component: NewComponent},
+  { path: 'news', component: NewsComponent},
   { path: 'admin-module', component: AdminModuleComponent,
   children: [
+      { path: 'logs', component: LogsComponent },
       { path: 'categories', component: CategoriesAdminComponent },
       { path: 'news', component: NewsAdminComponent },
       { path: 'images', component: ImagesAdminComponent },
       { path: 'on-sale', component: OnSaleAdminComponent },
       { path: 'products', component: ProductsAdminComponent },
       { path: 'orders', component: OrdersAdminComponent },
-      { path: 'logs', component: LogsComponent }
     ]
   }
 ];

@@ -44,6 +44,9 @@ import { NewsComponent } from './pages/news/news.component';
 import { NewComponent } from './pages/new/new.component';
 import { NewsService } from './shared/services/news-service';
 import { AddImageFormControlComponent } from './shared/form-controls/add-image-form-control/add-image-form-control.component';
+import { AddressesComponent } from './pages/profile/profile-components/addresses/addresses.component';
+import { MyOrdersComponent } from './pages/profile/profile-components/my-orders/my-orders.component';
+import { UserSettingsComponent } from './pages/profile/profile-components/user-settings/user-settings.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -75,6 +78,9 @@ import { AddImageFormControlComponent } from './shared/form-controls/add-image-f
     NewsComponent,
     NewComponent,
     AddImageFormControlComponent,
+    AddressesComponent,
+    MyOrdersComponent,
+    UserSettingsComponent,
   ],
   imports: [
     CommonModule,

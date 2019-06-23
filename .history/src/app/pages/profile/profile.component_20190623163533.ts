@@ -20,9 +20,9 @@ export class ProfileComponent implements OnInit {
     this.productsDropdown.push({name: 'Единични бройки', routerLink: '/singles', dropdown: []});
     this.productsDropdown.push({name: 'Специални издания', routerLink: '/special-editions', dropdown: []});
 
-    this.sideMenuList.push({name: 'Регистрация', routerLink: '/register', dropdown: []});
-    this.sideMenuList.push({name: 'Бан лист', routerLink: '/list', dropdown: []});
-    this.sideMenuList.push({name: 'Продукти', routerLink: '/products', dropdown: this.productsDropdown});
+    this.sideMenuList.push({name: 'Моите адреси', routerLink: '/register', dropdown: []});
+    this.sideMenuList.push({name: 'Моите поръчки', routerLink: '/list', dropdown: []});
+    this.sideMenuList.push({name: 'Настройки', routerLink: '/products', dropdown: []});
   }
 
 }
