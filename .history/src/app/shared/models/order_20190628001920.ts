@@ -11,5 +11,4 @@ export class Order {
     total: string;
     products: Array<Product>;
     showProducts: boolean;
-    status: string;
 }

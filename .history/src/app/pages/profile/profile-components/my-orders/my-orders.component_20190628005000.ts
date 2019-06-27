@@ -17,12 +17,11 @@ export class MyOrdersComponent implements OnInit {
   constructor(
     private orderService: OrderService,
     private userService: UserService) {
+    this.orders = orderService.getOrdersByUserId(this.user.Id);
    }
 
   ngOnInit() {
     this.user = this.userService.getUser();
-    this.orders = this.orderService.getOrdersByUserId(this.user.Id);
-    console.log(this.orders);
   }
 
   toggleProducts(object: any) {

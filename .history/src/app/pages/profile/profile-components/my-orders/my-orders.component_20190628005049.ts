@@ -22,7 +22,6 @@ export class MyOrdersComponent implements OnInit {
   ngOnInit() {
     this.user = this.userService.getUser();
     this.orders = this.orderService.getOrdersByUserId(this.user.Id);
-    console.log(this.orders);
   }
 
   toggleProducts(object: any) {

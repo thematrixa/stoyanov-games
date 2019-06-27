@@ -3,7 +3,7 @@ import { Product } from './product';
 
 export class Order {
     id: string;
-    userId: number;
+    userId: string;
     name: string;
     address: string;
     date: string;
@@ -11,5 +11,4 @@ export class Order {
     total: string;
     products: Array<Product>;
     showProducts: boolean;
-    status: string;
 }

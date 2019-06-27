@@ -20,9 +20,14 @@ export class AddressesComponent implements OnInit {
   ngOnInit() {
     this.user = this.userService.getUser();
     this.userSettingsForm = this.formBuilder.group({
-      address: ['', Validators.required]
+      name: ['', Validators.required],
+      surname: ['', Validators.required],
+      email: ['', Validators.required],
+      oPassword: ['', Validators.required],
+      nPassword: ['', Validators.required],
+      cPassword: ['', Validators.required]
   });
-  this.userSettingsForm.patchValue({ address: this.user.Address }, {});
+  this.userSettingsForm.patchValue({ name: this.user.Name }, {});
   }
 
 }

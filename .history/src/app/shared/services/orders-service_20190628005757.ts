@@ -1,10 +1,10 @@
-import { Injectable, OnInit } from "@angular/core";
+import { Injectable } from "@angular/core";
 import { Order } from "../models/order";
 import { Product } from "../models/product";
 import { ProductService } from './product-service';
 
 @Injectable()
-export class OrderService implements OnInit{
+export class OrderService {
   products: Array<Product>;
   orders: Array<Order> = [
     {
@@ -73,9 +73,6 @@ export class OrderService implements OnInit{
     this.products = this.productService.getProducts();
   }
 
-  ngOnInit(): void {
-    this.products = this.productService.getProducts();
-  }
   getOrders() {
     return this.orders;
   }

@@ -1,10 +1,10 @@
-import { Injectable, OnInit } from "@angular/core";
+import { Injectable } from "@angular/core";
 import { Order } from "../models/order";
 import { Product } from "../models/product";
 import { ProductService } from './product-service';
 
 @Injectable()
-export class OrderService implements OnInit{
+export class OrderService {
   products: Array<Product>;
   orders: Array<Order> = [
     {
@@ -16,8 +16,7 @@ export class OrderService implements OnInit{
       phone: "0879134481",
       total: "12.51",
       products: this.products,
-      showProducts: false,
-      status: "Completed"
+      showProducts: false
     },
     {
       id: "2",
@@ -28,8 +27,7 @@ export class OrderService implements OnInit{
       phone: "0879133331",
       total: "12.13",
       products: this.products,
-      showProducts: false,
-      status: "Completed"
+      showProducts: false
     },
     {
       id: "5",
@@ -40,8 +38,7 @@ export class OrderService implements OnInit{
       phone: "0879134481",
       total: "12.11",
       products: this.products,
-      showProducts: false,
-      status: "Completed"
+      showProducts: false
     },
     {
       id: "1",
@@ -52,8 +49,7 @@ export class OrderService implements OnInit{
       phone: "0879134488",
       total: "12.52",
       products: this.products,
-      showProducts: false,
-      status: "Completed"
+      showProducts: false
     },
     {
       id: "3",
@@ -64,8 +60,7 @@ export class OrderService implements OnInit{
       phone: "0879134481",
       total: "12.51",
       products: this.products,
-      showProducts: false,
-      status: "Completed"
+      showProducts: false
     },
   ];
 
@@ -73,16 +68,7 @@ export class OrderService implements OnInit{
     this.products = this.productService.getProducts();
   }
 
-  ngOnInit(): void {
-    this.products = this.productService.getProducts();
-  }
   getOrders() {
     return this.orders;
-  }
-//later it may be changed so that i get them from the DB
-  getOrdersByUserId(userId) {
-    return this.orders.filter(function(order) {
-      return userId === order.userId;
-    });
   }
 }

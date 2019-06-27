@@ -1,11 +1,9 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Product } from 'src/app/shared/models/product';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Category } from 'src/app/shared/models/category';
 import { CategoriesService } from 'src/app/shared/services/categories-service';
 import { ProductService } from 'src/app/shared/services/product-service';
-import { User } from 'src/app/shared/models/user';
-import { UserService } from 'src/app/shared/services/user-service';
 
 @Component({
   selector: 'app-user-settings',
@@ -14,19 +12,17 @@ import { UserService } from 'src/app/shared/services/user-service';
 })
 export class UserSettingsComponent implements OnInit {
 
-  user: User;
   elements: any = [];
   productList: Array<Product>;
   userSettingsForm: FormGroup;
   submitted = false;
 
   constructor(
-    private formBuilder: FormBuilder,
-    private userService: UserService) {
+    private formBuilder: FormBuilder) {
   }
 
+
   ngOnInit() {
-    this.user = this.userService.getUser();
     this.userSettingsForm = this.formBuilder.group({
       name: ['', Validators.required],
       surname: ['', Validators.required],
@@ -35,9 +31,6 @@ export class UserSettingsComponent implements OnInit {
       nPassword: ['', Validators.required],
       cPassword: ['', Validators.required]
   });
-  this.userSettingsForm.patchValue({ name: this.user.Name }, {});
-  this.userSettingsForm.patchValue({ surname: this.user.Name });
-  this.userSettingsForm.patchValue({ email: this.user.Email });
   }
   get f() { return this.userSettingsForm.controls; }
 

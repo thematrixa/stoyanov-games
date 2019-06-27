@@ -1,8 +1,5 @@
-<div class="card mb-3">
-  <h4 class="card-header text-center font-weight-bold text-uppercase py-4">Поръчки</h4>
-</div>
 <div id="table" class="table-editable">
-  <table class="table table-bordered table-responsive-md text-center"
+  <table class="table table-bordered table-responsive-md table-striped text-center"
     *ngFor="let order of orders; let id = index">
     <tr *ngIf="id === 0"> 
       <td class="text-center column-1">#</td>
@@ -10,7 +7,6 @@
       <td class="text-center column-3">Адрес</td>
       <td class="text-center column-4">Дата</td>
       <td class="text-center column-5">Общо</td>
-      <td class="text-center column-6">Статус</td>
     </tr>
     <tr (click)="toggleProducts(order);">
       <td class="text-center column-1">
@@ -28,11 +24,11 @@
       <td class="text-center column-5">
         <span>{{order.total}}</span>
       </td>
-      <td class="text-center column-6">
+      <td class="text-center column-5">
         <span>{{order.status}}</span>
       </td>
     </tr>
-    <tr *ngIf='order.products' [ngClass]="{'d-none': !order.showProducts}">
+    <tr *ngIf='order.products' [ngClass]="{'d-none': !category.showProducts}">
       <td colspan="7" style="background-color: #d6d6d63b">
         <table style="margin-left: auto;margin-right: auto">
           <tr>

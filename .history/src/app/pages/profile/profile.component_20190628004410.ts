@@ -15,6 +15,7 @@ export class ProfileComponent implements OnInit {
   constructor(private userService: UserService) { }
 
   ngOnInit() {
+    this.user = this.userService.getUser();
     this.productsDropdown.push({name: 'Структурни тестета', routerLink: '/structure-decks', dropdown: []});
     this.productsDropdown.push({name: 'Буустери', routerLink: '/boosters', dropdown: []});
     this.productsDropdown.push({name: 'Мега тинс', routerLink: '/mega-tins', dropdown: []});

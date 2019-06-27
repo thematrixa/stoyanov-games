@@ -1,8 +1,5 @@
-<div class="card mb-3">
-  <h4 class="card-header text-center font-weight-bold text-uppercase py-4">Поръчки</h4>
-</div>
 <div id="table" class="table-editable">
-  <table class="table table-bordered table-responsive-md text-center"
+  <table class="table table-bordered table-responsive-md table-striped text-center"
     *ngFor="let order of orders; let id = index">
     <tr *ngIf="id === 0"> 
       <td class="text-center column-1">#</td>

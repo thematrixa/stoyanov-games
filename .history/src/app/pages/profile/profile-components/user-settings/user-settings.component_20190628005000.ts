@@ -25,6 +25,7 @@ export class UserSettingsComponent implements OnInit {
     private userService: UserService) {
   }
 
+
   ngOnInit() {
     this.user = this.userService.getUser();
     this.userSettingsForm = this.formBuilder.group({
@@ -35,9 +36,6 @@ export class UserSettingsComponent implements OnInit {
       nPassword: ['', Validators.required],
       cPassword: ['', Validators.required]
   });
-  this.userSettingsForm.patchValue({ name: this.user.Name }, {});
-  this.userSettingsForm.patchValue({ surname: this.user.Name });
-  this.userSettingsForm.patchValue({ email: this.user.Email });
   }
   get f() { return this.userSettingsForm.controls; }
 

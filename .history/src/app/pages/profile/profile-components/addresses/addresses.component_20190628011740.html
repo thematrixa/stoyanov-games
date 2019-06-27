@@ -4,7 +4,7 @@
 <div class="container p-4">
   <form (ngSubmit)="onSubmit()">
     <div class="row">
-      <div class="col-12 col-centered">
+      <div class="col-6 col-centered">
         <div [formGroup]="userSettingsForm" class="form-group">
           <textarea placeholder="Address" type="text" formControlName="address" class="form-control"
             [ngClass]="{ 'is-invalid': submitted && f.address.errors }" ></textarea>
