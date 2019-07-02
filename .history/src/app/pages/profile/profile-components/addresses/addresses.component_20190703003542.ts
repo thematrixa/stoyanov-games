@@ -26,13 +26,4 @@ export class AddressesComponent implements OnInit {
   }
 
   get f() { return this.userSettingsForm.controls; }
-
-  onSubmit() {
-    //isActive should be set to 1;
-    this.submitted = true;
-    // stop here if form is invalid
-    if (this.userSettingsForm.invalid) {
-        return;
-    }
-  }
 }

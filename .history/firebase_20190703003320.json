@@ -1,0 +1,10 @@
+{
+  "hosting": {
+    "public": "dist"/stoyanovgames23,
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ]
+  }
+}
