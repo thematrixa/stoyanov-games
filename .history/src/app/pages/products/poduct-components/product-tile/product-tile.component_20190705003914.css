@@ -5,7 +5,6 @@
 
 .row {
     width: fit-content;
-    display:inline-block;
 }
 
 img {
@@ -14,15 +13,6 @@ img {
     max-width: 100%;
 }
 
-.cart-icon{
-    width:25%;
-    height: auto;
-}
 .cart-icon:hover{
-    filter:opacity(30%);
-}
-
-.product-name {
-    width: 75%;
-    font-size: 14px;
+    display:none;
 }

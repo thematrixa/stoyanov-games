@@ -1,0 +1,24 @@
+<div class="container" (click)="showDetails();">
+      <div>
+            <span class="row">
+                  <!-- <img src="product.photo1"/> -->
+                  <img class='product-image'  src="{{product.photo1Base64}}" />
+            </span>
+      </div>
+      <div>
+            <span class="row">
+                  <b>
+                        <p class='product-name' style="word-wrap:break-word;">{{product.name}}</p>
+                  </b>
+            </span>
+            <span class="row">
+                  <img class="cart-icon" src="assets/Icons/shopping-cart-icon.svg" />
+                  <img src="assets/Icons/shopping-cart-icon-hover.svg" />
+            </span>
+      </div>
+      <div>
+            <span class="row">
+                  <p class='product-price' >{{product.price}}</p>
+            </span>
+      </div>
+</div>

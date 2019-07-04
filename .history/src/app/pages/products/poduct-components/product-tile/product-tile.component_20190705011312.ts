@@ -23,8 +23,4 @@ export class ProductTileComponent implements OnInit {
     this.productDetails.setProduct(this.product);
   }
 
-  addToCart(event:any){
-    let cartComponent = this.cartService.generateCartItem(this.product,1);
-    this.cartService.addToCartItems(cartComponent);
-  }
 }

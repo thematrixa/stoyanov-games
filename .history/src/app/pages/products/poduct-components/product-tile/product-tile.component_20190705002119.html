@@ -1,0 +1,25 @@
+<div class="container" (click)="showDetails();">
+      <div>
+            <span class="row">
+                  <!-- <img src="product.photo1"/> -->
+                  <img src="{{product.photo1Base64}}" />
+            </span>
+      </div>
+      <div>
+            <span class="row">
+                  <b>
+                        <p style="word-wrap:break-word;">{{product.name}}</p>
+                  </b>
+            </span>
+            <span class="row">
+                  <b>
+                        <img src="..assets/Icons/shoping-cart-icon.png" />
+                  </b>
+            </span>
+      </div>
+      <div>
+            <span class="row">
+                  <p>{{product.price}}</p>
+            </span>
+      </div>
+</div>

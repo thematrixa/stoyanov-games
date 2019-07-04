@@ -16,7 +16,6 @@ img {
 
 .cart-icon{
     width:25%;
-    height: auto;
 }
 .cart-icon:hover{
     filter:opacity(30%);
@@ -24,5 +23,4 @@ img {
 
 .product-name {
     width: 75%;
-    font-size: 14px;
 }

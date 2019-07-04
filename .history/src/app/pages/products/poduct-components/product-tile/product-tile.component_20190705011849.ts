@@ -24,6 +24,7 @@ export class ProductTileComponent implements OnInit {
   }
 
   addToCart(event:any){
+    event.stopPropagation();
     let cartComponent = this.cartService.generateCartItem(this.product,1);
     this.cartService.addToCartItems(cartComponent);
   }
