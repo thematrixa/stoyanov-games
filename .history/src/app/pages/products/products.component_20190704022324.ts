@@ -27,12 +27,4 @@ export class ProductsComponent implements OnInit {
     });
 
   }
-  filterCategories(values: any){
-    console.log(values);
-    this.productList = this.originalProductsList;
-    this.productList = this.productList.filter(function(product) {
-      return parseFloat(product.price) >= parseFloat(values.value) && parseFloat(product.price) <= parseFloat(values.highValue);
-    });
-
-  }
 }

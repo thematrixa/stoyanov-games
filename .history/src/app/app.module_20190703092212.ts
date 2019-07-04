@@ -50,7 +50,6 @@ import { UserSettingsComponent } from './pages/profile/profile-components/user-s
 import { UserService } from './shared/services/user-service';
 import { FilterMenuComponent } from './pages/filter-menu/filter-menu.component';
 import { Ng5SliderModule } from 'ng5-slider';
-import {SelectModule} from 'ng2-select';
 @NgModule({
   declarations: [
     AppComponent,
@@ -116,8 +115,7 @@ import {SelectModule} from 'ng2-select';
     TypeaheadModule.forRoot(),
     NgxGalleryModule,
     BrowserAnimationsModule,
-    Ng5SliderModule,
-    SelectModule
+    Ng5SliderModule
   ],
   exports: [
     AccordionModule,
@@ -139,8 +137,7 @@ import {SelectModule} from 'ng2-select';
     TypeaheadModule,
     BannedCardPipe,
     NgxGalleryModule,
-    Ng5SliderModule,
-    SelectModule,
+    Ng5SliderModule
   ],
   providers: [ProductDetailsService, ProductService, CategoriesService, OrderService, NewsService, UserService],
   bootstrap: [AppComponent]

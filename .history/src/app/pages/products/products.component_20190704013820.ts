@@ -20,19 +20,28 @@ export class ProductsComponent implements OnInit {
   ngOnInit() {
   }
 
-  filterPrice(values: any){
+  filterMinPrice(minPrice: any){
+    
+    console.log("Original");
+    console.log(this.originalProductsList);
     this.productList = this.originalProductsList;
-    this.productList = this.productList.filter(function(product) {
-      return parseFloat(product.price) >= parseFloat(values.value) && parseFloat(product.price) <= parseFloat(values.highValue);
-    });
 
+    console.log("Entering with..");
+    console.log(this.productList);
+    this.productList = this.productList.filter(function(product) {
+      console.log(parseFloat(product.price) <= parseFloat(minPrice));
+      return parseFloat(product.price) >= parseFloat(minPrice);
+    });
+    
+    console.log("Transformed");
+    console.log(this.productList);
   }
-  filterCategories(values: any){
-    console.log(values);
+
+  filterMaxPrice(maxPrice: any){
+    console.log("TransformedTransformedTransformedTransformedTransformedTransformed");
     this.productList = this.originalProductsList;
     this.productList = this.productList.filter(function(product) {
-      return parseFloat(product.price) >= parseFloat(values.value) && parseFloat(product.price) <= parseFloat(values.highValue);
+      return parseFloat(product.price) <= parseFloat(maxPrice);
     });
-
   }
 }

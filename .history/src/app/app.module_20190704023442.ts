@@ -139,8 +139,7 @@ import {SelectModule} from 'ng2-select';
     TypeaheadModule,
     BannedCardPipe,
     NgxGalleryModule,
-    Ng5SliderModule,
-    SelectModule,
+    Ng5SliderModule
   ],
   providers: [ProductDetailsService, ProductService, CategoriesService, OrderService, NewsService, UserService],
   bootstrap: [AppComponent]

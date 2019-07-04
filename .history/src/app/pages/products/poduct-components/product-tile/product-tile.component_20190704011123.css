@@ -6,10 +6,10 @@
 
 .row {
     width: fit-content;
+    max-width: 200px;
 }
 
 img {
-    width: 200px;
-    height: 200px;
-    max-width: 100%;
+    width: 30%;
+    height: 30px;
 }

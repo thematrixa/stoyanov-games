@@ -1,15 +1,13 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-3">
-            <app-filter-menu (priceEmitter)="filterPrice($event);" (categoriesEmitter)="filterCategories($event);"></app-filter-menu>
+            <app-filter-menu (minValueEmitter)="filterMinPrice($event);" (maxValueEmitter)="filterMaxPrice($event);"></app-filter-menu>
         </div>
         <div class="col-9">
-            <div class="row"> 
-            <div class="col-4" *ngFor='let product of productList'>
+            <div class="col-3 col-centered" *ngFor='let product of productList'>
                 <app-product-tile  [product]="product" routerLink="/product-detail">
                 </app-product-tile>
             </div>
-        </div>
         </div>
     </div>
 </div>

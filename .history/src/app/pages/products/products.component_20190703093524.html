@@ -1,0 +1,13 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-3">
+            <app-filter-menu></app-filter-menu>
+        </div>
+        <div class="col-9">
+            <div class="col-3">
+                <app-product-tile *ngFor='let product of productList' [product]="product" routerLink="/product-detail">
+                </app-product-tile>
+            </div>
+        </div>
+    </div>
+</div>

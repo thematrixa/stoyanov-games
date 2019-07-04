@@ -29,6 +29,8 @@
     "jszip": "^3.1.5",
     "minireset.css": "~0.0.4",
     "ng-uikit": "^0.1.6",
+    "ng2-select": "^2.0.0",
+    "ng5-slider": "^1.2.4",
     "ngx-bootstrap": "^4.1.1",
     "ngx-gallery": "^5.10.0",
     "rxjs": "~6.3.3",

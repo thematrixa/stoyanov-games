@@ -10,29 +10,23 @@ import { Product } from 'src/app/shared/models/product';
 export class ProductsComponent implements OnInit {
 
   productList: Array<Product>;
-  originalProductsList: Array<Product>;
 
   constructor(private productService: ProductService) {
     this.productList = productService.getProducts();
-    this.originalProductsList = this.productList;
    }
 
   ngOnInit() {
   }
 
-  filterPrice(values: any){
-    this.productList = this.originalProductsList;
+  filterMinPrice(minPrice: any){
     this.productList = this.productList.filter(function(product) {
-      return parseFloat(product.price) >= parseFloat(values.value) && parseFloat(product.price) <= parseFloat(values.highValue);
+      return parseFloat(product.price) >= parseFloat(minPrice);
     });
-
   }
-  filterCategories(values: any){
-    console.log(values);
-    this.productList = this.originalProductsList;
-    this.productList = this.productList.filter(function(product) {
-      return parseFloat(product.price) >= parseFloat(values.value) && parseFloat(product.price) <= parseFloat(values.highValue);
-    });
 
+  filterMaxPrice(maxPrice: any){
+    this.productList = this.productList.filter(function(product) {
+      return parseFloat(product.price) <= parseFloat(maxPrice);
+    });
   }
 }

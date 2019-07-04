@@ -11,6 +11,12 @@ export class ProductsComponent implements OnInit {
 
   productList: Array<Product>;
   originalProductsList: Array<Product>;
+  private value:any = [];
+  private _disabledV:string = '0';
+  private disabled:boolean = false;
+  public multiple:boolean = false;
+  private items:Array<any> = [];
+
 
   constructor(private productService: ProductService) {
     this.productList = productService.getProducts();

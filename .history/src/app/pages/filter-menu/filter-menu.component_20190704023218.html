@@ -1,0 +1,15 @@
+<div class="container" style="border-right: 1px solid rgba(0,0,0,0.15)">
+
+  <p>Цена</p>
+  <ng5-slider (userChange)="emitValues($event);" [(value)]="minValue" [(highValue)]="maxValue" [options]="options">
+  </ng5-slider>
+  
+  <p>Категории</p>
+  <ng-select  [multiple]="true"
+              [items]="items"
+              [disabled]="disabled"
+              (data)="refreshValue($event)"
+              (selected)="selected($event)"
+              (removed)="removed($event)"
+              placeholder="No city selected"></ng-select>
+</div>
