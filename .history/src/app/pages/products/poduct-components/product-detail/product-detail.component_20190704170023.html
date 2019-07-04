@@ -1,0 +1,81 @@
+<div class="container">
+  <div class="row">
+    <div class="col-6" style="overflow:hidden">
+      <ngx-gallery [options]="galleryOptions" [images]="galleryImages"></ngx-gallery>      
+    </div>
+    <div class="col-6">
+      <div class="row">
+          <div class="col-6">
+              <p class='product-detail-key'>Name:</p>
+          </div>
+          <div class="col-6">
+            <p class='product-detail-value'>{{product.name}}</p>
+          </div>
+      </div>
+      <div class="row">
+          <div class="col-6">
+              <p class='product-detail-key'>Price:</p>
+          </div>
+          <div class="col-6">
+            <p class='product-detail-value'>{{product.price}}</p>
+          </div>
+      </div>
+      <div class="row">
+          <div class="col-6">
+              <p class='product-detail-key'>Short Description:</p>
+          </div>
+          <div class="col-6">
+             <p class='product-detail-value'>{{product.shortDescription}}</p>
+          </div>
+      </div>
+      <div class="row">
+          <div class="col-6">
+              <p class='product-detail-key'>Description:</p>
+          </div>
+          <div class="col-6">
+            <p class='product-detail-value'>{{product.description}}</p>
+          </div>
+      </div>
+      <div class="row">
+          <div class="col-6">
+              <p class='product-detail-key'>Cards per pack:</p>
+          </div>
+          <div class="col-6">
+            <p class='product-detail-value'>{{product.cardsPerPack}}</p>
+          </div>
+      </div>
+      <div class="row">
+          <div class="col-6">
+              <p class='product-detail-key'>In Stock:</p>
+          </div>
+          <div class="col-6">
+            <p class='product-detail-value'>{{product.inStock == "1" ? "Yes" : "No"}}</p>
+          </div>
+      </div>
+      <div class="row">
+          <div class="col-6">
+              <p class='product-detail-key'>Launch Date:</p>
+          </div>
+          <div class="col-6">
+            <p class='product-detail-value'>{{product.launchDate}}</p>
+          </div>
+      </div>
+      <div class="row">
+          <div class="col-6">
+              <p class='product-detail-key'>Tournament store launch date:</p>
+          </div>
+          <div class="col-6">
+            <p class='product-detail-value'>{{product.tournamentStoreLaunchDate}}</p>
+          </div>
+      </div>
+      <div class="row">
+        <div class="col-6">
+          <ng-number-picker [(value)]="quantity" [size]='sm'></ng-number-picker>
+        </div>
+        <div class="col-6">
+            <button type="submit" class="btn btn-block btn-success float-right">Add to Cart</button>
+        </div>
+    </div>
+    </div>
+  </div>
+</div>

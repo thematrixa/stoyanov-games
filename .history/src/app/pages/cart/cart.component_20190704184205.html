@@ -1,0 +1,36 @@
+<div class="card mb-3">
+  <h4 class="card-header text-center font-weight-bold text-uppercase py-4">Количка</h4>
+</div>
+<div id="table" class="table-editable">
+  <table class="table table-bordered table-responsive-md text-center" *ngFor="let item of cartItems; let id = index">
+    <tr *ngIf="id === 0">
+      <td class="text-center column-1">Продукт</td>
+      <td class="text-center column-2">Ед.цена</td>
+      <td class="text-center column-3">Брой</td>
+      <td class="text-center column-4">Сума</td>
+      <td class="text-center column-5"></td>
+    </tr>
+    <tr>
+      <td class="text-center column-1">
+        <span><img class="cart-image" src="{{item.product.photo1Base64}}"/></span>
+        <span>{{item.product.name}}</span>
+      </td>
+      <td class="text-center column-2">
+        <span>{{item.product.price}}</span>
+      </td>
+      <td class="text-center column-3">
+        <span>
+          <ng-number-picker [(value)]="item.quantity" [size]='sm'></ng-number-picker>
+        </span>
+      </td>
+      <td class="text-center column-4">
+        <span>{{item.product.price * item.quantity}}</span>
+      </td>
+      <td class="text-center column-5">
+        <span>
+          <img class="icon" (click)="removeFromCart(item);" src="assets/Icons/delete-icon.svg">
+        </span>
+      </td>
+    </tr>
+  </table>
+</div>
