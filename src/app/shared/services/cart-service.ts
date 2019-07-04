@@ -13,6 +13,7 @@ export class CartService {
     return this.cartItems;
   }
   addToCartItems(cartItem: CartItem) {
+    debugger;
     if (this.isCartItemAdded(cartItem)) {
         let alreadyAddedItem = this.getItem(cartItem);
         this.addQuantity(alreadyAddedItem,cartItem.quantity);
