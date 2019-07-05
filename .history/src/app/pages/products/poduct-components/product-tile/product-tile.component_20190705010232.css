@@ -5,7 +5,7 @@
 
 .row {
     width: fit-content;
-    display: inline-block;
+    display:inline-block;
 }
 
 img {
@@ -14,16 +14,13 @@ img {
     max-width: 100%;
 }
 
-.cart-icon {
-    width: 25%;
-    height: auto;
+.cart-icon{
+    width:25%;
 }
-
-.cart-icon:hover {
-    filter: opacity(30%);
+.cart-icon:hover{
+    filter:opacity(30%);
 }
 
 .product-name {
-    width: 75%;
-    font-size: 14px;
+    width: 75%
 }

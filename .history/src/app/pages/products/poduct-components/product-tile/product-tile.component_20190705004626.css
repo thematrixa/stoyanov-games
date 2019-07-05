@@ -5,25 +5,19 @@
 
 .row {
     width: fit-content;
-    display: inline-block;
 }
 
 img {
     width: fit-content;
-    height: 200px;
+    /* height: 200px; */
+    padding-top: 100%;
     max-width: 100%;
 }
 
-.cart-icon {
+.cart-icon{
     width: 25%;
     height: auto;
 }
-
-.cart-icon:hover {
-    filter: opacity(30%);
-}
-
-.product-name {
-    width: 75%;
-    font-size: 14px;
+.cart-icon:hover{
+    display:none;
 }
