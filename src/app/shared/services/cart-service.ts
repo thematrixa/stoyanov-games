@@ -2,23 +2,24 @@ import { Injectable } from "@angular/core";
 import { Category } from "../models/category";
 import { CartItem } from "../models/cart-item";
 import { Product } from "../models/product";
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable()
 export class CartService {
   cartItems: Array<CartItem> = [];
+  cartTotal = new BehaviorSubject<string>('');
 
-  constructor() {}
+  constructor() { }
 
   getCartItems() {
     return this.cartItems;
   }
   addToCartItems(cartItem: CartItem) {
-    debugger;
     if (this.isCartItemAdded(cartItem)) {
-        let alreadyAddedItem = this.getItem(cartItem);
-        this.addQuantity(alreadyAddedItem,cartItem.quantity);
-    }else{
-        this.cartItems.push(cartItem);
+      let alreadyAddedItem = this.getItem(cartItem);
+      this.addQuantity(alreadyAddedItem, cartItem.quantity);
+    } else {
+      this.cartItems.push(cartItem);
     }
   }
 
@@ -61,5 +62,16 @@ export class CartService {
         this.cartItems[i].quantity += quantity;
       }
     }
+  }
+
+  calculateTotalPrice() {
+    let total = 0;
+    for (var i = 0; i < this.cartItems.length; i++) {
+      total += +this.cartItems[i].product.price;
+    }
+    if(total==0){
+      return '0.00';
+    }
+    return total;
   }
 }

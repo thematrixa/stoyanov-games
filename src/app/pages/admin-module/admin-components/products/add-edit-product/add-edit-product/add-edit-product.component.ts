@@ -100,7 +100,6 @@ export class AddEditProductComponent implements OnInit {
     // isActive should be set to 1;
     this.submitted = true;
     // stop here if form is invalid
-    debugger;
     if (this.addProductForm.invalid) {
       return;
     }
@@ -109,7 +108,6 @@ export class AddEditProductComponent implements OnInit {
   }
 
   getImage(event, number) {
-    debugger;
     this.product["photo" + number + "Base64"] = event;
     console.log(event);
   }

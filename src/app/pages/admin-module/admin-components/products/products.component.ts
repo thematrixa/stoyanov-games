@@ -17,6 +17,7 @@ export class ProductsAdminComponent implements OnInit {
   isSelectedProduct = false;
   editField: string;
   productList: Array<Product>;
+  originalProductsList: Array<Product>;
   addProductForm: FormGroup;
   submitted = false;
   categories: Array<Category>;
@@ -27,6 +28,7 @@ export class ProductsAdminComponent implements OnInit {
     private productService: ProductService) {
       this.productList = this.productService.getProducts();
       this.categories = this.categoriesService.getCategories();
+      this.originalProductsList = this.productList;
   }
 
 
@@ -105,5 +107,12 @@ export class ProductsAdminComponent implements OnInit {
   deselectProduct(event: any) {
     this.selectedProduct = null;
     this.isSelectedProduct = false;
+  }
+  filterProductsByName(values: any){
+    let name = values.target.value;
+    this.productList = this.originalProductsList;
+    this.productList = this.productList.filter(function(product) {
+      return product.name.toLowerCase().indexOf(name.toLowerCase()) > -1;
+    });
   }
 }

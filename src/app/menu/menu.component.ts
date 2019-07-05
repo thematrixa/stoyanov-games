@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { CartService } from '../shared/services/cart-service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-menu',
@@ -6,8 +8,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./menu.component.css']
 })
 export class MenuComponent implements OnInit {
-
-  constructor() { }
+  @Input() cartTotal: string;
+  constructor(private cartService: CartService) { }
 
   ngOnInit() {
   }

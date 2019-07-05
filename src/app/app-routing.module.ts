@@ -13,7 +13,6 @@ import { ImagesAdminComponent } from './pages/admin-module/admin-components/imag
 import { OnSaleAdminComponent } from './pages/admin-module/admin-components/on-sale/on-sale.component';
 import { ProductsAdminComponent } from './pages/admin-module/admin-components/products/products.component';
 import { OrdersAdminComponent } from './pages/admin-module/admin-components/orders/orders.component';
-import { LogsComponent } from './pages/admin-module/admin-components/logs/logs.component';
 import { MulliganComponent } from './pages/mulligan/mulligan.component';
 import { OnSaleComponent } from './pages/on-sale/on-sale.component';
 import { NewsComponent } from './pages/news/news.component';
@@ -28,7 +27,8 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
   { path: 'cart', component: CartComponent },
-  { path: 'profile', component: ProfileComponent,
+  {
+    path: 'profile', component: ProfileComponent,
     children: [
       { path: '', component: AddressesComponent },
       { path: 'addresses', component: AddressesComponent },
@@ -39,13 +39,13 @@ const routes: Routes = [
   { path: 'mulligan', component: MulliganComponent },
   { path: 'products', component: ProductsComponent },
   { path: 'product-detail', component: ProductDetailComponent },
-  { path: 'sale', component: OnSaleComponent},
-  { path: 'new', component: NewComponent},
-  { path: 'news', component: NewsComponent},
-  { path: 'admin-module', component: AdminModuleComponent,
-  children: [
-    { path: '', component: CategoriesAdminComponent },
-    { path: 'logs', component: LogsComponent },
+  { path: 'sale', component: OnSaleComponent },
+  { path: 'new', component: NewComponent },
+  { path: 'news', component: NewsComponent },
+  {
+    path: 'admin-module', component: AdminModuleComponent,
+    children: [
+      { path: '', component: CategoriesAdminComponent },
       { path: 'categories', component: CategoriesAdminComponent },
       { path: 'news', component: NewsAdminComponent },
       { path: 'images', component: ImagesAdminComponent },

@@ -10,6 +10,7 @@ import { CartService } from 'src/app/shared/services/cart-service';
 })
 export class ProductTileComponent implements OnInit {
   @Input() product: Product;
+  @Output() cartUpdate = new EventEmitter<boolean>();
 
   constructor(
     private productDetails: ProductDetailsService,
@@ -26,5 +27,6 @@ export class ProductTileComponent implements OnInit {
   addToCart(event:any){
     let cartComponent = this.cartService.generateCartItem(this.product,1);
     this.cartService.addToCartItems(cartComponent);
+    this.cartUpdate.emit(true);
   }
 }

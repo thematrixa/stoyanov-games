@@ -13,7 +13,6 @@ export class CartComponent implements OnInit {
   }
 
   ngOnInit() {
-    debugger;
     this.cartItems = this.cartService.getCartItems();
   }
 
