@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { CartService } from '../shared/services/cart-service';
-import { Observable } from 'rxjs';
+import { TaskTimer } from 'tasktimer';
 
 @Component({
   selector: 'app-menu',
@@ -8,10 +8,22 @@ import { Observable } from 'rxjs';
   styleUrls: ['./menu.component.css']
 })
 export class MenuComponent implements OnInit {
-  @Input() cartTotal: string;
-  constructor(private cartService: CartService) { }
+  cartTotal: string;
+
 
   ngOnInit() {
+    this.cartTotal = "0.00";
+  }
+
+  constructor(private cartService: CartService) {
+    const timer = new TaskTimer(500);
+    
+    timer.on('tick', () => this.updateCartSum(this.cartService.getCartTotal()));
+    timer.start();
+  }
+
+  updateCartSum(newPrice: string) {
+    this.cartTotal = newPrice;
   }
 
 }

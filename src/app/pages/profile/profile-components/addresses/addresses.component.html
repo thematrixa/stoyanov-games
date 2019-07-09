@@ -1,28 +1,27 @@
 <div class="card mb-3">
-  <h4 class="card-header text-center font-weight-bold text-uppercase py-4">Адреси</h4>
+    <h4 class="card-header text-center font-weight-bold text-uppercase py-4">Адреси</h4>
 </div>
 <div class="container p-4">
-  <span class="table-add float-right mb-3 mr-2">
-    <a class="text-success">
-     <img src="assets/Icons/add-button.svg"/>
+    <span class="table-add float-right mb-3 mr-2">
+    <a class="text-success add-button">
+     <img class="add-button" src="assets/Icons/add-button.png"/>
     </a>
   </span>
-  <form (ngSubmit)="onSubmit()">
-    <div class="row">
-      <div class="col-12 col-centered">
-        <div [formGroup]="userSettingsForm" class="form-group">
-          <textarea placeholder="Address" type="text" formControlName="address" class="form-control"
-            [ngClass]="{ 'is-invalid': submitted && f.address.errors }" ></textarea>
-          <div *ngIf="submitted && f.address.errors" class="invalid-feedback" role="alert">
-            <div *ngIf="f.address.errors.required">Address is required</div>
-          </div>
+    <form (ngSubmit)="onSubmit()">
+        <div class="row">
+            <div class="col-12 col-centered">
+                <div [formGroup]="userSettingsForm" class="form-group">
+                    <textarea placeholder="Address" type="text" formControlName="address" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.address.errors }"></textarea>
+                    <div *ngIf="submitted && f.address.errors" class="invalid-feedback" role="alert">
+                        <div *ngIf="f.address.errors.required">Address is required</div>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-12 col-centered">
-          <button type="submit" class="btn btn-block btn-success float-right">Save</button>
-      </div>
-    </div>
-  </form>
+        <div class="row">
+            <div class="col-12 col-centered">
+                <button type="submit" class="btn btn-block btn-success float-right">Save</button>
+            </div>
+        </div>
+    </form>
 </div>

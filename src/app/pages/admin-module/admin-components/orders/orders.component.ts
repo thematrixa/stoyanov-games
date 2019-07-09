@@ -17,6 +17,7 @@ export class OrdersAdminComponent implements OnInit {
 
   constructor(private productService: ProductService, private orderService: OrderService) {
     this.unconfirmedOrders = orderService.getOrders();
+    console.log(this.unconfirmedOrders);
    }
 
 

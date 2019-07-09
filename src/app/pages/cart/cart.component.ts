@@ -20,4 +20,19 @@ export class CartComponent implements OnInit {
     this.cartService.removeFromCartItems(item);
   }
 
+  sort(fieldName: string) {
+    if (fieldName === 'Id') {
+      this.cartItems.sort((a, b) => a.product.id.
+      localeCompare(a.product.id));
+    }
+    if (fieldName === 'Name') {
+      this.cartItems.sort((a, b) => a.product.name.localeCompare(a.product.name));
+    }
+    if (fieldName === 'Category') {
+      this.cartItems.sort((a, b) => a.product.categoryId.localeCompare(a.product.categoryId));
+    }
+    if (fieldName === 'DateAdded') {
+      this.cartItems.sort((a, b) => a.product.dateAdded.localeCompare(a.product.dateAdded));
+    }
+  }
 }

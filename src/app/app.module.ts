@@ -53,6 +53,7 @@ import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { CartComponent } from './pages/cart/cart.component';
 import { CartService } from './shared/services/cart-service';
 import {NumberPickerModule} from 'ng-number-picker';
+import { StickyNavModule } from 'ng2-sticky-nav';
 @NgModule({
   declarations: [
     AppComponent,
@@ -121,6 +122,7 @@ import {NumberPickerModule} from 'ng-number-picker';
     Ng5SliderModule,
     NgMultiSelectDropDownModule.forRoot(),
     NumberPickerModule,
+    StickyNavModule,
   ],
   exports: [
     AccordionModule,

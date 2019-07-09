@@ -7,12 +7,15 @@ import { BehaviorSubject, Observable } from 'rxjs';
 @Injectable()
 export class CartService {
   cartItems: Array<CartItem> = [];
-  cartTotal = new BehaviorSubject<string>('');
+  cartTotal = "0.00";
 
   constructor() { }
 
   getCartItems() {
     return this.cartItems;
+  }
+  getCartTotal() {
+    return this.cartTotal;
   }
   addToCartItems(cartItem: CartItem) {
     if (this.isCartItemAdded(cartItem)) {
@@ -21,6 +24,7 @@ export class CartService {
     } else {
       this.cartItems.push(cartItem);
     }
+    this.cartTotal = this.calculateTotalPrice();
   }
 
   removeFromCartItems(cartItem: CartItem) {
@@ -67,11 +71,11 @@ export class CartService {
   calculateTotalPrice() {
     let total = 0;
     for (var i = 0; i < this.cartItems.length; i++) {
-      total += +this.cartItems[i].product.price;
+      total += +this.cartItems[i].product.price * this.cartItems[i].quantity;
     }
     if(total==0){
       return '0.00';
     }
-    return total;
+    return total.toFixed(2).toString();
   }
 }

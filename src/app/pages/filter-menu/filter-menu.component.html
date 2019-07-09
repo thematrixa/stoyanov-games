@@ -1,13 +1,15 @@
 <div class="container" style="border-right: 1px solid rgba(0,0,0,0.15)">
-
-  <p>Цена</p>
-  <ng5-slider (userChange)="emitPrice($event);" [(value)]="minValue" [(highValue)]="maxValue" [options]="options">
-  </ng5-slider>
-  <br>
-  <p>Категории</p>
-  <!-- <ng-select [multiple]="true" [items]="categories" (data)="emitCategories($event)" placeholder="Избери категории">
+    <div stickyClass="sticky-margin-filter" ngStickyNav>
+        <div>
+            <p>Цена</p>
+            <ng5-slider (userChange)="emitPrice($event);" [(value)]="minValue" [(highValue)]="maxValue" [options]="options">
+            </ng5-slider>
+            <br>
+            <p>Категории</p>
+            <!-- <ng-select [multiple]="true" [items]="categories" (data)="emitCategories($event)" placeholder="Избери категории">
   </ng-select> -->
-  <ng-multiselect-dropdown  [placeholder]="'Избери категории'" [data]="categories" [(ngModel)]="selectedItems"
-    [settings]="dropdownSettings"(onDeSelect)="emitCategories($event)" (onSelect)="emitCategories($event)"(onSelectAll)="emitCategories($event)">
-  </ng-multiselect-dropdown>
+            <ng-multiselect-dropdown [placeholder]="'Избери категории'" [data]="categories" [(ngModel)]="selectedItems" [settings]="dropdownSettings" (onDeSelect)="emitCategories($event)" (onSelect)="emitCategories($event)" (onSelectAll)="emitCategories($event)">
+            </ng-multiselect-dropdown>
+        </div>
+    </div>
 </div>

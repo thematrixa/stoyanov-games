@@ -342,7 +342,7 @@ export class ProductService {
       id: "7",
       name: "Starter Deck: Joey the passion",
       description: "Contains 40 spellcasters",
-      price: "25.00",
+      price: "25.01",
       type: "Starter Deck",
       tournamentStoreLaunchDate: "15.05.2012",
       launchDate: "15.05.2012",

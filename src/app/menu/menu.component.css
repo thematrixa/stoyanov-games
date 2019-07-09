@@ -1,26 +1,28 @@
 .row {
-  position: relative;
+    position: relative;
 }
 
 .col-centered {
-  float: none;
-  margin: 0 auto;
-  /* margin-top: 1%; */
+    float: none;
+    margin: 0 auto;
+    /* margin-top: 1%; */
 }
 
 .navbar {
-  position: fixed;
-  top: 0;
-  width: 100%;
-  z-index: 5;
-  color: rgba(0, 0, 0, 0.9);
-  height: 4vh;
-  border-radius: 0px;
+    /*position: fixed;
+  top: 0;*/
+    width: 100%;
+    z-index: 5;
+    color: rgba(0, 0, 0, 0.9);
+    /*height: 4vh;*/
+    border-radius: 0px;
 }
+
 .admin-content {
-  width:100%;
+    width: 100%;
 }
-.right-position{
-  position: absolute;
-  right:0px;
+
+.right-position {
+    position: absolute;
+    right: 0px;
 }
