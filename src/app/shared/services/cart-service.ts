@@ -2,23 +2,29 @@ import { Injectable } from "@angular/core";
 import { Category } from "../models/category";
 import { CartItem } from "../models/cart-item";
 import { Product } from "../models/product";
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable()
 export class CartService {
   cartItems: Array<CartItem> = [];
+  cartTotal = "0.00";
 
-  constructor() {}
+  constructor() { }
 
   getCartItems() {
     return this.cartItems;
   }
+  getCartTotal() {
+    return this.cartTotal;
+  }
   addToCartItems(cartItem: CartItem) {
     if (this.isCartItemAdded(cartItem)) {
-        let alreadyAddedItem = this.getItem(cartItem);
-        this.addQuantity(alreadyAddedItem,cartItem.quantity);
-    }else{
-        this.cartItems.push(cartItem);
+      let alreadyAddedItem = this.getItem(cartItem);
+      this.addQuantity(alreadyAddedItem, cartItem.quantity);
+    } else {
+      this.cartItems.push(cartItem);
     }
+    this.cartTotal = this.calculateTotalPrice();
   }
 
   removeFromCartItems(cartItem: CartItem) {
@@ -37,11 +43,13 @@ export class CartService {
   }
 
   isCartItemAdded(item: CartItem) {
-    if (this.cartItems.includes(item)) {
-      return true;
-    } else {
-      return false;
+    let searchResult = false;
+    for (var i = 0; i < this.cartItems.length; i++) {
+      if (this.cartItems[i].product.name === item.product.name) {
+        searchResult = true;
+      }
     }
+    return searchResult;
   }
 
   getItem(item: CartItem) {
@@ -58,5 +66,16 @@ export class CartService {
         this.cartItems[i].quantity += quantity;
       }
     }
+  }
+
+  calculateTotalPrice() {
+    let total = 0;
+    for (var i = 0; i < this.cartItems.length; i++) {
+      total += +this.cartItems[i].product.price * this.cartItems[i].quantity;
+    }
+    if(total==0){
+      return '0.00';
+    }
+    return total.toFixed(2).toString();
   }
 }

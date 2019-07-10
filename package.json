@@ -31,10 +31,12 @@
     "ng-multiselect-dropdown": "^0.2.3",
     "ng-number-picker": "^1.1.9",
     "ng-uikit": "^0.1.6",
+    "ng2-sticky-nav": "^6.0.0",
     "ng5-slider": "^1.2.4",
     "ngx-bootstrap": "^4.1.1",
     "ngx-gallery": "^5.10.0",
     "rxjs": "~6.3.3",
+    "tasktimer": "^2.0.1",
     "tslib": "^1.9.0",
     "web-animations-js": "^2.3.1",
     "zone.js": "~0.8.26"

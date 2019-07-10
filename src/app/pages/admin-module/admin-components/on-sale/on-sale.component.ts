@@ -11,9 +11,11 @@ export class OnSaleAdminComponent implements OnInit {
 
   editField: string;
   products: Array<Product>;
+  originalProductsList: Array<Product>;
 
   constructor(private productService: ProductService) {
     this.products = productService.getProducts();
+    this.originalProductsList = this.products;
    }
 
   ngOnInit() {
@@ -43,4 +45,11 @@ export class OnSaleAdminComponent implements OnInit {
     }
   }
 
+  filterProductsByName(values: any){
+    let name = values.target.value;
+    this.products = this.originalProductsList;
+    this.products = this.products.filter(function(product) {
+      return product.name.toLowerCase().indexOf(name.toLowerCase()) > -1;
+    });
+  }
 }

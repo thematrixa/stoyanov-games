@@ -1,16 +1,16 @@
-<div class="container" style = "border-right: 1px solid rgba(0,0,0,0.15)">
+<div class="container" style="border-right: 1px solid rgba(0,0,0,0.15)">
     <div class="row">
         <nav class="navbar navbar-expand-sm bg-light navbar-light">
-          <ul class="navbar-nav">
-            <li *ngFor="let option of sideMenu" [ngClass]="{'dropdown': option.dropdown?.length != 0}">
-              <a class="nav-link" [routerLink]="option.routerLink">{{option.name}}</a>
-              <ng-container *ngIf="option.dropdown.length != 0">
-                <div class="dropdown-content">
-                    <a role="menuitem" *ngFor = "let dropOption of option.dropdown" routerLink="{{dropOption.routerLink}}">{{dropOption.name}}</a>
-                </div>
-              </ng-container>
-            </li>
-          </ul>
+            <ul class="navbar-nav">
+                <li *ngFor="let option of sideMenu" [ngClass]="{'dropdown': option.dropdown?.length != 0}">
+                    <a class="nav-link" [routerLink]="option.routerLink">{{option.name}}</a>
+                    <ng-container *ngIf="option.dropdown.length != 0">
+                        <div class="dropdown-content">
+                            <a role="menuitem" *ngFor="let dropOption of option.dropdown" routerLink="{{dropOption.routerLink}}">{{dropOption.name}}</a>
+                        </div>
+                    </ng-container>
+                </li>
+            </ul>
         </nav>
     </div>
-  </div>
+</div>

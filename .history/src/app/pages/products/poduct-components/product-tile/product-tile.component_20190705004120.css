@@ -1,0 +1,22 @@
+.container {
+    width: fit-content;
+    width: 100%;
+}
+
+.row {
+    width: fit-content;
+}
+
+img {
+    width: fit-content;
+    height: 200px;
+    max-width: 100%;
+}
+
+.cart-icon:hover{
+    width: 20%;
+    height: auto;
+}
+.cart-icon:hover{
+    display:none;
+}

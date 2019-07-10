@@ -1,0 +1,40 @@
+.container {
+    width: fit-content;
+    width: 100%;
+}
+
+.row {
+    width: fit-content;
+}
+
+img {
+    width: fit-content;
+    /* height: 200px; */
+    padding-top: 100%;
+    max-width: 100%;
+}
+
+.cart-icon{
+    width: 25%;
+    height: auto;
+}
+.cart-icon-hover{
+    display:none;
+}
+.cart-icon:hover{
+    display:none;
+}
+
+.cart-icon:hover .cart-icon-hover{
+    display:block;
+}
+
+.product-image {
+    
+}
+.product-name {
+    
+}
+.product-price {
+    
+}

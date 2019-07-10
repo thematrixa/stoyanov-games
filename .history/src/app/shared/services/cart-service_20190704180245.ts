@@ -32,4 +32,10 @@ export class CartService {
     return cartItem;
   }
 
+  getTotalPrice(){
+    let total = 0;
+    for (var i = 0; i < this.cartItems.length; i++) {
+      total += this.cartItems[i].product.price;
+    }
+  }
 }

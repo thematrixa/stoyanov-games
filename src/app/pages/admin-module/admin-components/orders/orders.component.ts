@@ -13,9 +13,11 @@ export class OrdersAdminComponent implements OnInit {
   confirmedOrders: Array<Order> = [];
   shippedOrders: Array<Order> = [];
   unconfirmedOrders: Array<Order> = [];
+  completedOrders: Array<Order> = [];
 
   constructor(private productService: ProductService, private orderService: OrderService) {
     this.unconfirmedOrders = orderService.getOrders();
+    console.log(this.unconfirmedOrders);
    }
 
 
@@ -36,10 +38,19 @@ export class OrdersAdminComponent implements OnInit {
     const shippedOrder = this.removeOrder(this.confirmedOrders, id);
     this.shippedOrders.push(shippedOrder);
   }
+  
+  completeOrder(id: any) {
+    const completedOrder = this.removeOrder(this.shippedOrders, id);
+    this.completedOrders.push(completedOrder);
+  }
 
   deshipOrder(id: any) {
     const shippedOrder = this.removeOrder(this.shippedOrders, id);
     this.confirmedOrders.push(shippedOrder);
+  }
+  decompleteOrder(id: any) {
+    const completedOrder = this.removeOrder(this.completedOrders, id);
+    this.shippedOrders.push(completedOrder);
   }
   unconfirmOrder(id: any) {
     const confirmedOrder = this.removeOrder(this.confirmedOrders, id);
@@ -50,20 +61,37 @@ export class OrdersAdminComponent implements OnInit {
     object.showProducts = !object.showProducts;
   }
 
-  /*sort(fieldName: string) {
+ 
+  sort(fieldName: string,array: Array<any>) {
     if (fieldName === 'Id') {
-      this.products.sort((a, b) => a.id.localeCompare(b.id));
+      array.sort((a, b) => a.id.localeCompare(b.id));
+      return;
     }
     if (fieldName === 'Name') {
-      this.products.sort((a, b) => a.name.localeCompare(b.name));
+      array.sort((a, b) => a.name.localeCompare(b.name));
+      return;
+    }
+    if (fieldName === 'Address') {
+      array.sort((a, b) => a.address.localeCompare(b.address));
+      return;
     }
     if (fieldName === 'Category') {
-      this.products.sort((a, b) => a.categoryId.localeCompare(b.categoryId));
+      array.sort((a, b) => a.categoryId.localeCompare(b.categoryId));
+      return;
     }
-    if (fieldName === 'Percent') {
-      this.products.sort((a, b) => a.onSalePercent.localeCompare(b.onSalePercent));
+    if (fieldName === 'Date') {
+      array.sort((a, b) => a.date.localeCompare(b.date));
+      return;
     }
-  }*/
+    if (fieldName === 'Phone') {
+      array.sort((a, b) => a.phone.localeCompare(b.phone));
+      return;
+    }
+    if (fieldName === 'Total') {
+      this.completedOrders.sort((a, b) => a.total.localeCompare(b.total));
+      return;
+    }
+  }
 
 }
 

@@ -1,1 +1,5 @@
-<app-product-tile *ngFor='let product of productList' [product]="product" routerLink="/product-detail"></app-product-tile>
+<div class="row">
+    <div class="col-3" *ngFor='let product of productList'>
+        <app-product-tile [product]="product" routerLink="/product-detail"></app-product-tile>
+    </div>
+</div>

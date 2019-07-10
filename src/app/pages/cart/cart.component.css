@@ -1,4 +1,42 @@
 .cart-image {
-    width:75px;
-    height:auto;
+    width: 75px;
+    height: auto;
+}
+
+.igx-tabs__item-label {
+    font-size: 12px;
+}
+
+.column-1 {
+    width: 45%;
+}
+
+.column-2 {
+    width: 10%;
+    word-break: break-all;
+}
+
+.column-3 {
+    width: 20%;
+    word-break: break-all;
+}
+
+.column-4 {
+    width: 10%;
+}
+
+.column-5 {
+    width: 10%;
+}
+
+.column-6 {
+    width: 10%;
+}
+
+.column-7 {
+    width: 10%;
+}
+
+table {
+    margin: auto;
 }

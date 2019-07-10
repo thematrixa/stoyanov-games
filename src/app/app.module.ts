@@ -30,7 +30,6 @@ import { ImagesAdminComponent } from './pages/admin-module/admin-components/imag
 import { OnSaleAdminComponent } from './pages/admin-module/admin-components/on-sale/on-sale.component';
 import { OrdersAdminComponent } from './pages/admin-module/admin-components/orders/orders.component';
 import { ProductsAdminComponent } from './pages/admin-module/admin-components/products/products.component';
-import { LogsComponent } from './pages/admin-module/admin-components/logs/logs.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { IgxTabsModule } from 'igniteui-angular';
 import { OrderTableComponent } from './pages/admin-module/admin-components/orders/order-table/order-table.component';
@@ -54,6 +53,7 @@ import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { CartComponent } from './pages/cart/cart.component';
 import { CartService } from './shared/services/cart-service';
 import {NumberPickerModule} from 'ng-number-picker';
+import { StickyNavModule } from 'ng2-sticky-nav';
 @NgModule({
   declarations: [
     AppComponent,
@@ -77,7 +77,6 @@ import {NumberPickerModule} from 'ng-number-picker';
     OnSaleAdminComponent,
     OrdersAdminComponent,
     ProductsAdminComponent,
-    LogsComponent,
     OrderTableComponent,
     AddEditProductComponent,
     MulliganComponent,
@@ -123,6 +122,7 @@ import {NumberPickerModule} from 'ng-number-picker';
     Ng5SliderModule,
     NgMultiSelectDropDownModule.forRoot(),
     NumberPickerModule,
+    StickyNavModule,
   ],
   exports: [
     AccordionModule,
