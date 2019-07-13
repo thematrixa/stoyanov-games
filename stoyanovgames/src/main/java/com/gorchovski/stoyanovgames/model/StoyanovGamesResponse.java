@@ -4,14 +4,14 @@ public class StoyanovGamesResponse<T> {
     private T response;
 
     public StoyanovGamesResponse(T response) {
-        setData(response);
+    	setResponse(response);
     }
 
-    public T getData() {
+    public T getResponse() {
         return response;
     }
 
-    public void setData(T response) {
+    public void setResponse(T response) {
         this.response = response;
     }
 

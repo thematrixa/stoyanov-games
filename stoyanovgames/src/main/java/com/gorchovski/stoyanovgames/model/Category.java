@@ -1,7 +1,16 @@
 package com.gorchovski.stoyanovgames.model;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "categories")
 public class Category {
 
+    @Id
+    @GeneratedValue
 	private Integer id;
 	private String name;
 
