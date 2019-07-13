@@ -14,8 +14,12 @@ public class CategoryService {
 	@Autowired
     private CategoryRepository categoryRepository;
  
-    public List<Category> list() {
+    public List<Category> selectAll() {
         return categoryRepository.findAll();
+    }
+    
+    public void batchInsertUpdate(List<Category> list) {
+        categoryRepository.saveAll(list);
     }
 
     //@Value(/*ANY NAME GOES HERE FROM APP PROPERTIES"${fb.keystore.etlog.name}"*/)
