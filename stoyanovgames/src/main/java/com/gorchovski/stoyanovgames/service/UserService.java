@@ -20,4 +20,12 @@ public class UserService {
         return userRepository.findAll();
     }
 
+	public void batchInsertUpdate(List<User> list) {
+		this.userRepository.saveAll(list);
+	}
+
+	public void truncate() {
+		this.userRepository.deleteAll();
+	}
+
 }

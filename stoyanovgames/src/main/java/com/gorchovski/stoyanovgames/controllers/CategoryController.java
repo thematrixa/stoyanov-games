@@ -48,7 +48,6 @@ public class CategoryController {
 		return new StoyanovGamesResponse<>(this.categoryService.selectAll());
 	}
 	
-	//@CrossOrigin(origins="http://localhost:4200", allowedHeaders="*")
 	@RequestMapping(method = RequestMethod.POST, value = "/update", consumes="application/json")
 	public ResponseEntity<?> uploadCategories(
 			@RequestBody List<Category> list) {

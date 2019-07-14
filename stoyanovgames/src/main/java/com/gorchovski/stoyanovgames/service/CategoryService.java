@@ -23,7 +23,7 @@ public class CategoryService {
     }
 
     public void truncate() {
-        categoryRepository.deleteAll();;
+        categoryRepository.deleteAll();
     }
     //@Value(/*ANY NAME GOES HERE FROM APP PROPERTIES"${fb.keystore.etlog.name}"*/)
     //private String eTlogKeystoreName;

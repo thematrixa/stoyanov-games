@@ -20,4 +20,12 @@ public class ProductService {
         return productRepository.findAll();
     }
 
+	public void batchInsertUpdate(List<Product> list) {
+		this.productRepository.saveAll(list);
+	}
+
+	public void truncate() {
+		this.productRepository.deleteAll();
+	}
+
 }

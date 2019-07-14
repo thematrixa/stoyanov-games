@@ -17,8 +17,14 @@ public class NewsService {
     private NewsRepository newsRepository;
  
     public List<News> list() {
-        return newsRepository.findAll();
+        return this.newsRepository.findAll();
     }
 
-	
+    public void batchInsertUpdate(List<News> list) {
+    	this.newsRepository.saveAll(list);
+    }
+
+    public void truncate() {
+    	this.newsRepository.deleteAll();
+    }
 }
