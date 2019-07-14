@@ -1,22 +1,34 @@
-import { Component, OnInit } from '@angular/core';
-import { Category } from 'src/app/shared/models/category';
-import { CategoriesService } from 'src/app/shared/services/categories-service';
+import { Component, OnInit } from "@angular/core";
+import { Category } from "src/app/shared/models/category";
+import { CategoriesService } from "src/app/shared/services/categories-service";
+import { BackEndService } from "src/app/shared/services/back-end-service";
+import { HttpErrorResponse } from "@angular/common/http";
+import { forkJoin } from 'rxjs';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
-  selector: 'app-categories',
-  templateUrl: './categories.component.html',
-  styleUrls: ['./categories.component.scss']
+  selector: "app-categories",
+  templateUrl: "./categories.component.html",
+  styleUrls: ["./categories.component.scss"]
 })
 export class CategoriesAdminComponent implements OnInit {
   elements: any = [];
   editField: string;
   categoryList: Array<Category>;
 
-  constructor(private categoriesService: CategoriesService) {
-    this.categoryList = this.categoriesService.getCategories();
+  constructor(
+    private categoriesService: CategoriesService,
+    private backEndService: BackEndService,
+    private toastr: ToastrService
+  ) {
+    //this.categoryList = this.categoriesService.getCategories();
   }
 
   ngOnInit() {
+    let categories = this.backEndService.getCategories();
+    forkJoin(categories).subscribe(results => {
+      this.categoryList = results[0].response;
+    });
   }
 
   updateList(id: number, property: string, event: any) {
@@ -29,8 +41,8 @@ export class CategoriesAdminComponent implements OnInit {
   }
 
   add() {
-      const category = new Category();
-      this.categoryList.push(category);
+    const category = new Category();
+    this.categoryList.push(category);
   }
 
   changeValue(id: number, property: string, event: any) {
@@ -41,17 +53,28 @@ export class CategoriesAdminComponent implements OnInit {
     if (id === 0) {
       return;
     }
-    const temp = this.categoryList[id];
-    this.categoryList[id] = this.categoryList[id - 1];
-    this.categoryList[id - 1] = temp;
+    const temp = this.categoryList[id].name;
+    this.categoryList[id].name = this.categoryList[id - 1].name;
+    this.categoryList[id - 1].name = temp;
   }
 
   shiftDown(id) {
     if (id === this.categoryList.length - 1) {
       return;
     }
-    const temp = this.categoryList[id];
-    this.categoryList[id] = this.categoryList[id + 1];
-    this.categoryList[id + 1] = temp;
+    const temp = this.categoryList[id].name;
+    this.categoryList[id].name = this.categoryList[id + 1].name;
+    this.categoryList[id + 1].name = temp;
+  }
+
+  saveCategories() {
+    this.backEndService.setCategories(this.categoryList).subscribe(
+      (res) => {
+        this.toastr.success('Great', 'Upload successfull!');},
+      (err: HttpErrorResponse) => {
+        console.log(err);
+        this.toastr.success('Error', 'Upload failed.Check logs or call administrator!');
+      }
+    );
   }
 }

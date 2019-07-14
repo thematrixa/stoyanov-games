@@ -2,7 +2,15 @@ package com.gorchovski.stoyanovgames.model;
 
 import java.util.ArrayList;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
+@Entity
 public class Order {
+
+    @Id
+    @GeneratedValue
 	private String id;
 	private String userId;
 	private String name;

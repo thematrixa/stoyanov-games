@@ -1,59 +1,78 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { BackgroundComponent } from './background/background.component';
-import { HeaderComponent } from './header/header.component';
-import { MenuComponent } from './menu/menu.component';
-import { ContentComponent } from './content/content.component';
-import { TooltipModule } from 'ngx-bootstrap/tooltip';
-import { CommonModule } from '@angular/common';
+import { BrowserModule } from "@angular/platform-browser";
+import { NgModule } from "@angular/core";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { AppRoutingModule } from "./app-routing.module";
+import { AppComponent } from "./app.component";
+import { BackgroundComponent } from "./background/background.component";
+import { HeaderComponent } from "./header/header.component";
+import { MenuComponent } from "./menu/menu.component";
+import { ContentComponent } from "./content/content.component";
+import { TooltipModule } from "ngx-bootstrap/tooltip";
+import { CommonModule } from "@angular/common";
+import { ToastrModule } from 'ngx-toastr';
 // tslint:disable-next-line:max-line-length
-import { AccordionModule, AlertModule, ButtonsModule, CarouselModule, CollapseModule, BsDropdownModule, ModalModule, PaginationModule, PopoverModule, ProgressbarModule, RatingModule, SortableModule, TabsModule, TimepickerModule, TypeaheadModule, BsDatepickerModule } from 'ngx-bootstrap';
-import { BanListComponent } from './pages/ban-list/ban-list.component';
-import { HttpClientModule } from '@angular/common/http';
-import { BannedCardPipe } from './shared/pipes/banned-card';
-import { RegisterComponent } from './pages/register/register.component';
-import { LoginComponent } from './pages/login/login.component';
-import { ProfileComponent } from './pages/profile/profile.component';
-import { ProductsComponent } from './pages/products/products.component';
-import { SideMenuComponent } from './content/side-menu/side-menu.component';
-import { ProductDetailComponent } from './pages/products/poduct-components/product-detail/product-detail.component';
-import { ProductTileComponent } from './pages/products/poduct-components/product-tile/product-tile.component';
-import { NgxGalleryModule } from 'ngx-gallery';
-import { ProductDetailsService } from './shared/services/product-details.service';
-import { AdminModuleComponent } from './pages/admin-module/admin-module.component';
-import { CategoriesAdminComponent } from './pages/admin-module/admin-components/categories/categories.component';
-import { NewsAdminComponent } from './pages/admin-module/admin-components/news/news.component';
-import { ImagesAdminComponent } from './pages/admin-module/admin-components/images/images.component';
-import { OnSaleAdminComponent } from './pages/admin-module/admin-components/on-sale/on-sale.component';
-import { OrdersAdminComponent } from './pages/admin-module/admin-components/orders/orders.component';
-import { ProductsAdminComponent } from './pages/admin-module/admin-components/products/products.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { IgxTabsModule } from 'igniteui-angular';
-import { OrderTableComponent } from './pages/admin-module/admin-components/orders/order-table/order-table.component';
-import { AddEditProductComponent } from './pages/admin-module/admin-components/products/add-edit-product/add-edit-product/add-edit-product.component';
-import { ProductService } from './shared/services/product-service';
-import { CategoriesService } from './shared/services/categories-service';
-import { OrderService } from './shared/services/orders-service';
-import { MulliganComponent } from './pages/mulligan/mulligan.component';
-import { OnSaleComponent } from './pages/on-sale/on-sale.component';
-import { NewsComponent } from './pages/news/news.component';
-import { NewComponent } from './pages/new/new.component';
-import { NewsService } from './shared/services/news-service';
-import { AddImageFormControlComponent } from './shared/form-controls/add-image-form-control/add-image-form-control.component';
-import { AddressesComponent } from './pages/profile/profile-components/addresses/addresses.component';
-import { MyOrdersComponent } from './pages/profile/profile-components/my-orders/my-orders.component';
-import { UserSettingsComponent } from './pages/profile/profile-components/user-settings/user-settings.component';
-import { UserService } from './shared/services/user-service';
-import { FilterMenuComponent } from './pages/filter-menu/filter-menu.component';
-import { Ng5SliderModule } from 'ng5-slider';
-import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
-import { CartComponent } from './pages/cart/cart.component';
-import { CartService } from './shared/services/cart-service';
-import {NumberPickerModule} from 'ng-number-picker';
-import { StickyNavModule } from 'ng2-sticky-nav';
+import {
+  AccordionModule,
+  AlertModule,
+  ButtonsModule,
+  CarouselModule,
+  CollapseModule,
+  BsDropdownModule,
+  ModalModule,
+  PaginationModule,
+  PopoverModule,
+  ProgressbarModule,
+  RatingModule,
+  SortableModule,
+  TabsModule,
+  TimepickerModule,
+  TypeaheadModule,
+  BsDatepickerModule
+} from "ngx-bootstrap";
+import { BanListComponent } from "./pages/ban-list/ban-list.component";
+import { HttpClientModule } from "@angular/common/http";
+import { BannedCardPipe } from "./shared/pipes/banned-card";
+import { RegisterComponent } from "./pages/register/register.component";
+import { LoginComponent } from "./pages/login/login.component";
+import { ProfileComponent } from "./pages/profile/profile.component";
+import { ProductsComponent } from "./pages/products/products.component";
+import { SideMenuComponent } from "./content/side-menu/side-menu.component";
+import { ProductDetailComponent } from "./pages/products/poduct-components/product-detail/product-detail.component";
+import { ProductTileComponent } from "./pages/products/poduct-components/product-tile/product-tile.component";
+import { NgxGalleryModule } from "ngx-gallery";
+import { ProductDetailsService } from "./shared/services/product-details.service";
+import { AdminModuleComponent } from "./pages/admin-module/admin-module.component";
+import { CategoriesAdminComponent } from "./pages/admin-module/admin-components/categories/categories.component";
+import { NewsAdminComponent } from "./pages/admin-module/admin-components/news/news.component";
+import { ImagesAdminComponent } from "./pages/admin-module/admin-components/images/images.component";
+import { OnSaleAdminComponent } from "./pages/admin-module/admin-components/on-sale/on-sale.component";
+import { OrdersAdminComponent } from "./pages/admin-module/admin-components/orders/orders.component";
+import { ProductsAdminComponent } from "./pages/admin-module/admin-components/products/products.component";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { IgxTabsModule } from "igniteui-angular";
+import { OrderTableComponent } from "./pages/admin-module/admin-components/orders/order-table/order-table.component";
+import { AddEditProductComponent } from "./pages/admin-module/admin-components/products/add-edit-product/add-edit-product/add-edit-product.component";
+import { ProductService } from "./shared/services/product-service";
+import { CategoriesService } from "./shared/services/categories-service";
+import { OrderService } from "./shared/services/orders-service";
+import { MulliganComponent } from "./pages/mulligan/mulligan.component";
+import { OnSaleComponent } from "./pages/on-sale/on-sale.component";
+import { NewsComponent } from "./pages/news/news.component";
+import { NewComponent } from "./pages/new/new.component";
+import { NewsService } from "./shared/services/news-service";
+import { AddImageFormControlComponent } from "./shared/form-controls/add-image-form-control/add-image-form-control.component";
+import { AddressesComponent } from "./pages/profile/profile-components/addresses/addresses.component";
+import { MyOrdersComponent } from "./pages/profile/profile-components/my-orders/my-orders.component";
+import { UserSettingsComponent } from "./pages/profile/profile-components/user-settings/user-settings.component";
+import { UserService } from "./shared/services/user-service";
+import { FilterMenuComponent } from "./pages/filter-menu/filter-menu.component";
+import { Ng5SliderModule } from "ng5-slider";
+import { NgMultiSelectDropDownModule } from "ng-multiselect-dropdown";
+import { CartComponent } from "./pages/cart/cart.component";
+import { CartService } from "./shared/services/cart-service";
+import { NumberPickerModule } from "ng-number-picker";
+import { StickyNavModule } from "ng2-sticky-nav";
+import { BackEndService } from './shared/services/back-end-service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -88,7 +107,7 @@ import { StickyNavModule } from 'ng2-sticky-nav';
     MyOrdersComponent,
     UserSettingsComponent,
     FilterMenuComponent,
-    CartComponent,
+    CartComponent
   ],
   imports: [
     CommonModule,
@@ -98,7 +117,12 @@ import { StickyNavModule } from 'ng2-sticky-nav';
     AppRoutingModule,
     HttpClientModule,
     IgxTabsModule,
-    BrowserAnimationsModule,
+    BrowserAnimationsModule, // required animations module
+    ToastrModule.forRoot({
+      timeOut: 5000,
+      positionClass: 'toast-bottom-left',
+      preventDuplicates: true,
+    }),
     AccordionModule.forRoot(),
     TooltipModule.forRoot(),
     AlertModule.forRoot(),
@@ -122,7 +146,7 @@ import { StickyNavModule } from 'ng2-sticky-nav';
     Ng5SliderModule,
     NgMultiSelectDropDownModule.forRoot(),
     NumberPickerModule,
-    StickyNavModule,
+    StickyNavModule
   ],
   exports: [
     AccordionModule,
@@ -145,10 +169,18 @@ import { StickyNavModule } from 'ng2-sticky-nav';
     BannedCardPipe,
     NgxGalleryModule,
     Ng5SliderModule,
-    NgMultiSelectDropDownModule,
+    NgMultiSelectDropDownModule
   ],
-  providers: [ProductDetailsService, ProductService, CategoriesService, OrderService, NewsService, UserService, CartService],
+  providers: [
+    ProductDetailsService,
+    ProductService,
+    CategoriesService,
+    OrderService,
+    NewsService,
+    UserService,
+    CartService,
+    BackEndService,
+  ],
   bootstrap: [AppComponent]
 })
-export class AppModule {
-}
+export class AppModule {}

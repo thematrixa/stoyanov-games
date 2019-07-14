@@ -2,8 +2,15 @@ package com.gorchovski.stoyanovgames.model;
 
 import java.sql.Date;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
+@Entity
 public class News {
 
+    @Id
+    @GeneratedValue
 	private Integer id;
 	private String title;
 	private String content;
