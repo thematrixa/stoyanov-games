@@ -5,6 +5,7 @@ import { BackEndService } from 'src/app/shared/services/back-end-service';
 import { ToastrService } from 'ngx-toastr';
 import { forkJoin } from 'rxjs';
 import { HttpErrorResponse } from '@angular/common/http';
+import { Category } from 'src/app/shared/models/category';
 
 @Component({
   selector: 'app-on-sale',
@@ -15,21 +16,24 @@ export class OnSaleAdminComponent implements OnInit {
 
   editField: string;
   products: Array<Product>;
+  categories: Array<Category>;
   originalProductsList: Array<Product>;
 
   constructor(private productService: ProductService,
     private backEndService: BackEndService,
     private toastr: ToastrService,) {
-    this.products = productService.getProducts();
-    this.originalProductsList = this.products;
+   // this.products = productService.getProducts();
+   // this.originalProductsList = this.products;
    }
 
   ngOnInit() {
-    /*let onSale = this.backEndService.getOnSales();
-    forkJoin(onSale).subscribe(results => {
+    let onSale = this.backEndService.getProducts();
+    let categories = this.backEndService.getCategories();
+    forkJoin(onSale, categories).subscribe(results => {
       this.products = results[0].response;
+      this.categories = results[1].response;
       this.originalProductsList = this.products;
-    });*/
+    });
   }
 
   updateList(id: number, property: string, event: any) {
@@ -43,16 +47,16 @@ export class OnSaleAdminComponent implements OnInit {
 
   sortProducts(fieldName: string) {
     if (fieldName === 'Id') {
-      this.products.sort((a, b) => a.id.localeCompare(b.id));
+      this.products.sort((a, b) => a.id - b.id);
     }
     if (fieldName === 'Name') {
       this.products.sort((a, b) => a.name.localeCompare(b.name));
     }
     if (fieldName === 'Category') {
-      this.products.sort((a, b) => a.categoryId.localeCompare(b.categoryId));
+      this.products.sort((a, b) => a.categoryId - b.categoryId);
     }
     if (fieldName === 'Percent') {
-      this.products.sort((a, b) => a.onSalePercent.localeCompare(b.onSalePercent));
+      this.products.sort((a, b) => a.onSalePercent - b.onSalePercent);
     }
   }
 
@@ -64,7 +68,7 @@ export class OnSaleAdminComponent implements OnInit {
     });
   }
   saveOnSale() {
-    this.backEndService.setOnSales(this.products).subscribe(
+    this.backEndService.setProducts(this.products).subscribe(
       (res) => {
         this.toastr.success('Great', 'Upload successfull!');},
       (err: HttpErrorResponse) => {

@@ -35,4 +35,8 @@ public class ProductService {
 		this.productRepository.deleteAll();
 	}
 
+	public void delete(Product product) {
+		this.productRepository.delete(product);
+	}
+
 }

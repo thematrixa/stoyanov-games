@@ -22,17 +22,16 @@ export class CartComponent implements OnInit {
 
   sort(fieldName: string) {
     if (fieldName === 'Id') {
-      this.cartItems.sort((a, b) => a.product.id.
-      localeCompare(a.product.id));
+      this.cartItems.sort((a, b) => a.product.id-b.product.id);
     }
     if (fieldName === 'Name') {
-      this.cartItems.sort((a, b) => a.product.name.localeCompare(a.product.name));
+      this.cartItems.sort((a, b) => a.product.name.localeCompare(b.product.name));
     }
     if (fieldName === 'Category') {
-      this.cartItems.sort((a, b) => a.product.categoryId.localeCompare(a.product.categoryId));
+      this.cartItems.sort((a, b) => a.product.categoryId - b.product.categoryId);
     }
     if (fieldName === 'DateAdded') {
-      this.cartItems.sort((a, b) => a.product.dateAdded.localeCompare(a.product.dateAdded));
+      this.cartItems.sort((a, b) =>a.product.dateAdded>b.product.dateAdded ? -1 : a.product.dateAdded<b.product.dateAdded ? 1 : 0);
     }
   }
 }

@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -39,10 +40,15 @@ public class Product {
 	private Integer onSalePercent;
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd.MM.yyyy")
 	private Date dateAdded;
+	@Lob
 	private String photo1Base64;
+	@Lob
 	private String photo2Base64;
+	@Lob
 	private String photo3Base64;
+	@Lob
 	private String photo4Base64;
+	@Lob
 	private String photo5Base64;
 	public Integer getId() {
 		return id;

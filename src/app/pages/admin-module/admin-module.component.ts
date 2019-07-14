@@ -24,7 +24,6 @@ export class AdminModuleComponent implements OnInit {
     this.sideMenuList.push({name: 'Новини', routerLink: 'news', dropdown: []});
     this.sideMenuList.push({name: 'Изображения', routerLink: 'images', dropdown: []});
     this.sideMenuList.push({name: 'Промоции', routerLink: 'on-sale', dropdown: []});
-    this.sideMenuList.push({name: 'История', routerLink: 'logs', dropdown: []});
     this.sideMenuList.push({name: 'Поръчки', routerLink: 'orders', dropdown: []});
     this.sideMenuList.push({name: 'Продукти', routerLink: 'products', dropdown: []});
   }

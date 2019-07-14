@@ -25,6 +25,10 @@ public class OrderService {
 	public void batchInsertUpdate(List<Order> list) {
 		this.orderRepository.saveAll(list);
 	}
+	
+	public void update(Order order) {
+		this.orderRepository.save(order);
+	}
 
 	public void truncate() {
 		this.orderRepository.deleteAll();

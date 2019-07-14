@@ -1,105 +1,94 @@
 package com.gorchovski.stoyanovgames.model;
 
-import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
+@Table(name = "orders")
 public class Order {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-	private String id;
-	private String userId;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer id;
+	private Integer userId;
 	private String name;
 	private String address;
-	private String date;
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd.MM.yyyy")
+	private Date date;
 	private String phone;
-	private String total;
-	private ArrayList<Product> products;
+	private Float total;
+	@ManyToMany
+	private List<Product> products;
 	private Boolean showProducts;
-	private String status;
-
-	public String getId() {
+	private OrdersEnum status;
+	public Integer getId() {
 		return id;
 	}
-
-	public void setId(String id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
-
-	public String getUserId() {
+	public Integer getUserId() {
 		return userId;
 	}
-
-	public void setUserId(String userId) {
+	public void setUserId(Integer userId) {
 		this.userId = userId;
 	}
-
 	public String getName() {
 		return name;
 	}
-
 	public void setName(String name) {
 		this.name = name;
 	}
-
 	public String getAddress() {
 		return address;
 	}
-
 	public void setAddress(String address) {
 		this.address = address;
 	}
-
-	public String getDate() {
+	public Date getDate() {
 		return date;
 	}
-
-	public void setDate(String date) {
+	public void setDate(Date date) {
 		this.date = date;
 	}
-
 	public String getPhone() {
 		return phone;
 	}
-
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
-
-	public String getTotal() {
+	public Float getTotal() {
 		return total;
 	}
-
-	public void setTotal(String total) {
+	public void setTotal(Float total) {
 		this.total = total;
 	}
-
-	public ArrayList<Product> getProducts() {
+	public List<Product> getProducts() {
 		return products;
 	}
-
-	public void setProducts(ArrayList<Product> products) {
+	public void setProducts(List<Product> products) {
 		this.products = products;
 	}
-
 	public Boolean getShowProducts() {
 		return showProducts;
 	}
-
 	public void setShowProducts(Boolean showProducts) {
 		this.showProducts = showProducts;
 	}
-
-	public String getStatus() {
+	public OrdersEnum getStatus() {
 		return status;
 	}
-
-	public void setStatus(String status) {
+	public void setStatus(OrdersEnum status) {
 		this.status = status;
 	}
+
 }

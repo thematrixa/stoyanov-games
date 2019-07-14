@@ -3,8 +3,8 @@ import { Product } from "../models/product";
 
 @Injectable()
 export class ProductService {
-  products: Array<Product> = [
-    {
+  products: Array<Product> = [];
+   /* {
       id: "1",
       name: "Structure Deck: Order Of the Spellcasters",
       description: "Contains 40 spellcasters",
@@ -18,7 +18,7 @@ export class ProductService {
       isActive: "123",
       categoryId: "1",
       shortDescription: "spellcaster deck",
-      inStock: "1",
+      inStock: 1,
       quantity: "450",
       onSalePercent: "0",
       dateAdded: "11.05.2011",
@@ -42,7 +42,7 @@ export class ProductService {
       isActive: "1",
       categoryId: "1",
       shortDescription: "spellcaster deck",
-      inStock: "1",
+      inStock: 1,
       quantity: "450",
       onSalePercent: "10",
       dateAdded: "14.05.2011",
@@ -66,7 +66,7 @@ export class ProductService {
       isActive: "1",
       categoryId: "2",
       shortDescription: "spellcaster deck",
-      inStock: "1",
+      inStock: 1,
       quantity: "450",
       onSalePercent: "0",
       dateAdded: "11.01.2012",
@@ -90,7 +90,7 @@ export class ProductService {
       isActive: "1",
       categoryId: "2",
       shortDescription: "zombie deck",
-      inStock: "1",
+      inStock: 1,
       quantity: "450",
       onSalePercent: "10",
       dateAdded: "03.05.2012",
@@ -113,7 +113,7 @@ export class ProductService {
       isActive: "123",
       categoryId: "1",
       shortDescription: "spellcaster deck",
-      inStock: "1",
+      inStock: 1,
       quantity: "450",
       onSalePercent: "0",
       dateAdded: "11.05.2011",
@@ -137,7 +137,7 @@ export class ProductService {
       isActive: "1",
       categoryId: "1",
       shortDescription: "spellcaster deck",
-      inStock: "1",
+      inStock: 1,
       quantity: "450",
       onSalePercent: "10",
       dateAdded: "14.05.2011",
@@ -161,7 +161,7 @@ export class ProductService {
       isActive: "1",
       categoryId: "2",
       shortDescription: "spellcaster deck",
-      inStock: "1",
+      inStock: 1,
       quantity: "450",
       onSalePercent: "0",
       dateAdded: "11.01.2012",
@@ -185,7 +185,7 @@ export class ProductService {
       isActive: "1",
       categoryId: "2",
       shortDescription: "zombie deck",
-      inStock: "1",
+      inStock: 1,
       quantity: "450",
       onSalePercent: "10",
       dateAdded: "03.05.2012",
@@ -209,7 +209,7 @@ export class ProductService {
       isActive: "123",
       categoryId: "1",
       shortDescription: "spellcaster deck",
-      inStock: "1",
+      inStock: 1,
       quantity: "450",
       onSalePercent: "0",
       dateAdded: "11.05.2011",
@@ -233,7 +233,7 @@ export class ProductService {
       isActive: "1",
       categoryId: "1",
       shortDescription: "spellcaster deck",
-      inStock: "1",
+      inStock: 1,
       quantity: "450",
       onSalePercent: "10",
       dateAdded: "14.05.2011",
@@ -257,7 +257,7 @@ export class ProductService {
       isActive: "1",
       categoryId: "2",
       shortDescription: "spellcaster deck",
-      inStock: "1",
+      inStock: 1,
       quantity: "450",
       onSalePercent: "0",
       dateAdded: "11.01.2012",
@@ -281,7 +281,7 @@ export class ProductService {
       isActive: "1",
       categoryId: "2",
       shortDescription: "zombie deck",
-      inStock: "1",
+      inStock: 1,
       quantity: "450",
       onSalePercent: "10",
       dateAdded: "03.05.2012",
@@ -304,7 +304,7 @@ export class ProductService {
       isActive: "123",
       categoryId: "1",
       shortDescription: "spellcaster deck",
-      inStock: "1",
+      inStock: 1,
       quantity: "450",
       onSalePercent: "0",
       dateAdded: "11.05.2011",
@@ -328,7 +328,7 @@ export class ProductService {
       isActive: "1",
       categoryId: "1",
       shortDescription: "spellcaster deck",
-      inStock: "1",
+      inStock: 1,
       quantity: "450",
       onSalePercent: "10",
       dateAdded: "14.05.2011",
@@ -352,7 +352,7 @@ export class ProductService {
       isActive: "1",
       categoryId: "2",
       shortDescription: "spellcaster deck",
-      inStock: "1",
+      inStock: 1,
       quantity: "450",
       onSalePercent: "0",
       dateAdded: "11.01.2012",
@@ -376,7 +376,7 @@ export class ProductService {
       isActive: "1",
       categoryId: "2",
       shortDescription: "zombie deck",
-      inStock: "1",
+      inStock: 1,
       quantity: "450",
       onSalePercent: "10",
       dateAdded: "03.05.2012",
@@ -387,7 +387,7 @@ export class ProductService {
       photo5Base64: ''
     }
   ];
-
+*/
   constructor() {}
 
   getProducts() {

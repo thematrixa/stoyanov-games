@@ -33,10 +33,16 @@ public class OrderController {
 	}
 
 	@RequestMapping(method = RequestMethod.POST, value = "/update", consumes="application/json")
-	public ResponseEntity<?> uploadCategories(
-			@RequestBody List<Order> list) {
-		this.orderService.truncate();
-		this.orderService.batchInsertUpdate(list);
+	public ResponseEntity<?> uploadOrder(
+			@RequestBody Order order) {
+		this.orderService.update(order);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+	}
+	
+	@RequestMapping(method = RequestMethod.POST, value = "/batch-update", consumes="application/json")
+	public ResponseEntity<?> uploadOrders(
+			@RequestBody List<Order> orders) {
+		this.orderService.batchInsertUpdate(orders);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 	}
 }

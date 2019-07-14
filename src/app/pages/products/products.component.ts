@@ -37,7 +37,7 @@ export class ProductsComponent implements OnInit {
     this.productList = this.productList.filter(function (product) {
       let exists = false;
       if (values.selectedItems.length == 0) {
-        return parseFloat(product.price) >= parseFloat(values.prices.value) && parseFloat(product.price) <= parseFloat(values.prices.highValue);
+        return product.price >= values.prices.value && product.price <= values.prices.highValue;
       }
       for (let i = 0; i < values.selectedItems.length; i++) {
         if (product.categoryId == values.selectedItems[i].id) {
@@ -45,7 +45,7 @@ export class ProductsComponent implements OnInit {
         }
       }
       if (exists) {
-        return parseFloat(product.price) >= parseFloat(values.prices.value) && parseFloat(product.price) <= parseFloat(values.prices.highValue);;
+        return product.price >= values.prices.value && product.price <= values.prices.highValue;
       } else {
         return false;
       }

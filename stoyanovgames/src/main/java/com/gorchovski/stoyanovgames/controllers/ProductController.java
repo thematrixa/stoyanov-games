@@ -43,10 +43,17 @@ public class ProductController {
 	}
 	
 	@RequestMapping(method = RequestMethod.POST, value = "/update", consumes="application/json")
-	public ResponseEntity<?> uploadCategories(
+	public ResponseEntity<?> uploadProducts(
 			@RequestBody List<Product> list) {
 		this.productService.truncate();
 		this.productService.batchInsertUpdate(list);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+	}
+	
+	@RequestMapping(method = RequestMethod.POST, value = "/delete", consumes="application/json")
+	public ResponseEntity<?> delete(
+			@RequestBody Product product) {
+		this.productService.delete(product);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 	}
 	
