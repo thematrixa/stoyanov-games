@@ -5,6 +5,7 @@ import { BackEndService } from "src/app/shared/services/back-end-service";
 import { HttpErrorResponse } from "@angular/common/http";
 import { forkJoin } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
+import { BsModalService } from 'ngx-bootstrap';
 
 @Component({
   selector: "app-categories",
@@ -19,7 +20,7 @@ export class CategoriesAdminComponent implements OnInit {
   constructor(
     private categoriesService: CategoriesService,
     private backEndService: BackEndService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
   ) {
     //this.categoryList = this.categoriesService.getCategories();
   }
@@ -73,7 +74,7 @@ export class CategoriesAdminComponent implements OnInit {
         this.toastr.success('Great', 'Upload successfull!');},
       (err: HttpErrorResponse) => {
         console.log(err);
-        this.toastr.success('Error', 'Upload failed.Check logs or call administrator!');
+        this.toastr.error('Error', 'Upload failed.Check logs or call administrator!');
       }
     );
   }

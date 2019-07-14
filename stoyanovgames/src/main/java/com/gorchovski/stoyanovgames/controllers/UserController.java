@@ -31,6 +31,7 @@ public class UserController {
 	@RequestMapping(method = RequestMethod.POST, value = "/update", consumes="application/json")
 	public ResponseEntity<?> uploadCategories(
 			@RequestBody List<User> list) {
+		//ALL OF THE UPDATE METHODS NEED TO BE REWRITTEN
 		this.userService.truncate();
 		this.userService.batchInsertUpdate(list);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);

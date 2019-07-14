@@ -1,7 +1,10 @@
 import { Component, OnInit } from "@angular/core";
 import { News } from "src/app/shared/models/news";
-import { formatDate } from "@angular/common";
 import { NewsService } from "src/app/shared/services/news-service";
+import { BackEndService } from 'src/app/shared/services/back-end-service';
+import { ToastrService } from 'ngx-toastr';
+import { forkJoin } from 'rxjs';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: "app-news",
@@ -12,11 +15,20 @@ export class NewsAdminComponent implements OnInit {
   editField: string;
   newsList: Array<News>;
 
-  constructor(private newsService: NewsService) {
-    this.newsList = this.newsService.getNews();
+  constructor(
+    private newsService: NewsService,
+    private backEndService: BackEndService,
+    private toastr: ToastrService
+  ) {
+    //this.newsList = this.newsService.getNews();
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    let news = this.backEndService.getNews();
+    forkJoin(news).subscribe(results => {
+      this.newsList = results[0].response;
+    });
+  }
 
   updateList(id: number, property: string, event: any) {
     const editField = event.target.textContent;
@@ -28,11 +40,26 @@ export class NewsAdminComponent implements OnInit {
   }
 
   add() {
-    const category = new News();
-    this.newsList.unshift(category);
+    const news = new News();
+    this.newsList.unshift(news);
   }
 
   changeValue(id: number, property: string, event: any) {
     this.editField = event.target.textContent;
+  }
+
+  saveNews() {
+    this.backEndService.setNews(this.newsList).subscribe(
+      res => {
+        this.toastr.success("Great", "Upload successfull!");
+      },
+      (err: HttpErrorResponse) => {
+        console.log(err);
+        this.toastr.error(
+          "Error",
+          "Upload failed.Check logs or call administrator!"
+        );
+      }
+    );
   }
 }
