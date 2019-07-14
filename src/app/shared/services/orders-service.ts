@@ -21,7 +21,7 @@ export class OrderService implements OnInit {
         total: 12.51,
         products: this.products,
         showProducts: false,
-        status: "Completed"
+        status: "COMPLETED"
       }
     ];
 

@@ -3,7 +3,6 @@ package com.gorchovski.stoyanovgames.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -21,10 +20,6 @@ public class ProductService {
 
 	public List<Product> list() {
 		return productRepository.findAll();
-	}
-
-	public List<Product> getOnSaleProducts() {
-		return productRepository.findAllOnSaleProducts();
 	}
 	
 	public void batchInsertUpdate(List<Product> list) {

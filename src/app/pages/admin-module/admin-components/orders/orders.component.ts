@@ -29,21 +29,10 @@ export class OrdersAdminComponent implements OnInit {
   }
 
   ngOnInit() {
-    /*let categories = this.backEndService.getOrders();
-    forkJoin(categories, categories, categories, categories).subscribe(results => {
+    let categories = this.backEndService.getOrders();
+    forkJoin(categories).subscribe(results => {
       this.unconfirmedOrders = results[0].response;
-      this.shippedOrders = results[1].response;
-      this.confirmedOrders = results[2].response;
-      this.completedOrders = results[3].response;
-    });*/
-    this.unconfirmedOrders = this.orderService.getOrders();
-    this.backEndService.setOrders(this.unconfirmedOrders).subscribe(
-      (res) => {
-        this.toastr.success('Great', 'Upload successfull!');},
-      (err: HttpErrorResponse) => {
-        console.log(err);
-        this.toastr.error('Error', 'Upload failed.Check logs or call administrator!');
-      });
+    });
   }
 
   removeOrder(array: Array<any>, id: any) {
@@ -52,36 +41,42 @@ export class OrdersAdminComponent implements OnInit {
 
   confirmOrder(id: any) {
     const confirmedOrder = this.removeOrder(this.unconfirmedOrders, id);
+    confirmedOrder.status = "CONFIRMED";
     this.updateOrder(confirmedOrder);
     this.confirmedOrders.push(confirmedOrder);
   }
 
   shipOrder(id: any) {
     const shippedOrder = this.removeOrder(this.confirmedOrders, id);
+    shippedOrder.status = "SHIPPED";
     this.updateOrder(shippedOrder);
     this.shippedOrders.push(shippedOrder);
   }
 
   completeOrder(id: any) {
     const completedOrder = this.removeOrder(this.shippedOrders, id);
+    completedOrder.status = "COMPLETED";
     this.updateOrder(completedOrder);
     this.completedOrders.push(completedOrder);
   }
 
   deshipOrder(id: any) {
-    const shippedOrder = this.removeOrder(this.shippedOrders, id);
-    this.updateOrder(shippedOrder);
-    this.confirmedOrders.push(shippedOrder);
+    const deshippedOrder = this.removeOrder(this.shippedOrders, id);
+    deshippedOrder.status = "CONFIRMED";
+    this.updateOrder(deshippedOrder);
+    this.confirmedOrders.push(deshippedOrder);
   }
   decompleteOrder(id: any) {
     const completedOrder = this.removeOrder(this.completedOrders, id);
+    completedOrder.status = "SHIPPED";
     this.updateOrder(completedOrder);
     this.shippedOrders.push(completedOrder);
   }
   unconfirmOrder(id: any) {
-    const confirmedOrder = this.removeOrder(this.confirmedOrders, id);
-    this.updateOrder(confirmedOrder);
-    this.unconfirmedOrders.push(confirmedOrder);
+    const unconfirmedOrder = this.removeOrder(this.confirmedOrders, id);
+    unconfirmedOrder.status = "UNCONFIRMED";
+    this.updateOrder(unconfirmedOrder);
+    this.unconfirmedOrders.push(unconfirmedOrder);
   }
 
   toggleProducts(object: any) {
@@ -120,6 +115,13 @@ export class OrdersAdminComponent implements OnInit {
   }
 
   updateOrder(order: Order) {
-    this.backEndService.setOrder(order);
+    this.backEndService.setOrder(order).subscribe(
+      (res) => {
+        this.toastr.success('Great', 'Upload successfull!');},
+      (err: HttpErrorResponse) => {
+        console.log(err);
+        this.toastr.error('Error', 'Upload failed.Check logs or call administrator!');
+      }
+    );
   }
 }
