@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.gorchovski.stoyanovgames.model.Category;
+import com.gorchovski.stoyanovgames.model.News;
 import com.gorchovski.stoyanovgames.model.StoyanovGamesResponse;
 import com.gorchovski.stoyanovgames.service.NewsService;
 
@@ -35,7 +35,7 @@ public class NewsController {
 	
 	@RequestMapping(method = RequestMethod.POST, value = "/update", consumes="application/json")
 	public ResponseEntity<?> uploadCategories(
-			@RequestBody List<Category> list) {
+			@RequestBody List<News> list) {
 		this.newsService.truncate();
 		this.newsService.batchInsertUpdate(list);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
