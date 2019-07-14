@@ -7,7 +7,7 @@ export class Product {
     tournamentStoreLaunchDate: string;
     launchDate: string;
     konamiTournamentLegalDate: string;
-    cardsPerPack: string;
+    cardsPerPack: number;
     size: string;
     isActive: string;
     categoryId: string;

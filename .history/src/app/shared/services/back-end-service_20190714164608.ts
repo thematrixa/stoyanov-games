@@ -57,7 +57,7 @@ export class BackEndService {
   }
 
   setOnSales(onSales): Observable<any> {
-    let url = environment._BACKEND + "/products/update";
+    let url = environment._BACKEND + "/news/update";
     // const data = new FormData();
     // data.append("list", categories);
     console.log(onSales);

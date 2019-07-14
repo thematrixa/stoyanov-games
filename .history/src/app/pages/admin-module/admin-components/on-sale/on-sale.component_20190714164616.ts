@@ -25,11 +25,11 @@ export class OnSaleAdminComponent implements OnInit {
    }
 
   ngOnInit() {
-    /*let onSale = this.backEndService.getOnSales();
+    let onSale = this.backEndService.getOnSales();
     forkJoin(onSale).subscribe(results => {
       this.products = results[0].response;
       this.originalProductsList = this.products;
-    });*/
+    });
   }
 
   updateList(id: number, property: string, event: any) {
@@ -64,7 +64,7 @@ export class OnSaleAdminComponent implements OnInit {
     });
   }
   saveOnSale() {
-    this.backEndService.setOnSales(this.products).subscribe(
+    this.backEndService.setCategories(this.categoryList).subscribe(
       (res) => {
         this.toastr.success('Great', 'Upload successfull!');},
       (err: HttpErrorResponse) => {

@@ -7,15 +7,18 @@ export class Product {
     tournamentStoreLaunchDate: string;
     launchDate: string;
     konamiTournamentLegalDate: string;
-    cardsPerPack: string;
+    cardsPerPack: number;
     size: string;
     isActive: string;
     categoryId: string;
     shortDescription: string;
-    photo1: string;
-    photo2: string;
     inStock: string;
     quantity: string;
     onSalePercent: string;
     dateAdded: string;
+    photo1Base64: string;
+    photo2Base64: string;
+    photo3Base64: string;
+    photo4Base64: string;
+    photo5Base64: string;
 }

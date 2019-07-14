@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Product } from 'src/app/shared/models/product';
 import { ProductService } from 'src/app/shared/services/product-service';
+import { BackEndService } from 'src/app/shared/services/back-end-service';
+import { ToastrService } from 'ngx-toastr';
+import { forkJoin } from 'rxjs';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-on-sale',
@@ -11,12 +15,21 @@ export class OnSaleAdminComponent implements OnInit {
 
   editField: string;
   products: Array<Product>;
+  originalProductsList: Array<Product>;
 
-  constructor(private productService: ProductService) {
+  constructor(private productService: ProductService,
+    private backEndService: BackEndService,
+    private toastr: ToastrService,) {
     this.products = productService.getProducts();
+    this.originalProductsList = this.products;
    }
 
   ngOnInit() {
+    let onSale = this.backEndService.getOnSales();
+    forkJoin(onSale).subscribe(results => {
+      this.products = results[0].response;
+      this.originalProductsList = this.products;
+    });
   }
 
   updateList(id: number, property: string, event: any) {
@@ -43,4 +56,21 @@ export class OnSaleAdminComponent implements OnInit {
     }
   }
 
+  filterProductsByName(values: any){
+    let name = values.target.value;
+    this.products = this.originalProductsList;
+    this.products = this.products.filter(function(product) {
+      return product.name.toLowerCase().indexOf(name.toLowerCase()) > -1;
+    });
+  }
+  saveOnSale() {
+    this.backEndService.setOnSales(this.products).subscribe(
+      (res) => {
+        this.toastr.success('Great', 'Upload successfull!');},
+      (err: HttpErrorResponse) => {
+        console.log(err);
+        this.toastr.error('Error', 'Upload failed.Check logs or call administrator!');
+      }
+    );
+  }
 }
