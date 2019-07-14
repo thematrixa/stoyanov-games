@@ -109,7 +109,6 @@ export class AddEditProductComponent implements OnInit {
       return;
     }
     this.deselectProductEmitter.emit(false);
-    this.updateProduct(this.product);
     // have to do an update product table here
   }
 

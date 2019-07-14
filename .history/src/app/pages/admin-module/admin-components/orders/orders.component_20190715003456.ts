@@ -29,15 +29,15 @@ export class OrdersAdminComponent implements OnInit {
   }
 
   ngOnInit() {
-    let unconfirmed = this.backEndService.getUnconfirmedOrders();
-    let confirmed = this.backEndService.getConfirmedOrders();
-    let shipped = this.backEndService.getShippedOrders();
-    let completed = this.backEndService.getCompletedOrders();
+    let unconfirmed = this.backEndService.getOrders();
+    let confirmed = this.backEndService.getOrders();
+    let shipped = this.backEndService.getOrders();
+    let completed = this.backEndService.getOrders();
     forkJoin(unconfirmed, confirmed, shipped, completed).subscribe(results => {
       this.unconfirmedOrders = results[0].response;
-      this.confirmedOrders = results[1].response;
-      this.shippedOrders = results[2].response;
-      this.completedOrders = results[3].response;
+      this.confirmedOrders = results[0].response;
+      this.shippedOrders = results[0].response;
+      this.completedOrders = results[0].response;
     });
   }
 

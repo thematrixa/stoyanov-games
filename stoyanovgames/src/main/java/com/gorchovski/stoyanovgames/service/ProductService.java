@@ -33,5 +33,10 @@ public class ProductService {
 	public void delete(Product product) {
 		this.productRepository.delete(product);
 	}
+	
+	public void update(Product product) {
+		this.productRepository.save(product);
+	}
+	
 
 }

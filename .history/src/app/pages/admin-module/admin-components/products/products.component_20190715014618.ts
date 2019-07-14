@@ -135,4 +135,16 @@ export class ProductsAdminComponent implements OnInit {
       return product.name.toLowerCase().indexOf(name.toLowerCase()) > -1;
     });
   }
+
+  updateProduct(product: Product){
+    
+    this.backEndService.updateProduct(product).subscribe(
+      (res) => {
+        this.toastr.success('Great', 'Upload successfull!');},
+      (err: HttpErrorResponse) => {
+        console.log(err);
+        this.toastr.error('Error', 'Upload failed.Check logs or call administrator!');
+      }
+    );
+  }
 }

@@ -6,8 +6,6 @@ import { CategoriesService } from 'src/app/shared/services/categories-service';
 import { ProductService } from 'src/app/shared/services/product-service';
 import { BackEndService } from 'src/app/shared/services/back-end-service';
 import { forkJoin } from 'rxjs';
-import { ToastrService } from 'ngx-toastr';
-import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-products',

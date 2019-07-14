@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.gorchovski.stoyanovgames.model.Order;
+import com.gorchovski.stoyanovgames.model.OrdersEnum;
 import com.gorchovski.stoyanovgames.repository.OrderRepository;
 
 @Transactional
@@ -20,6 +21,22 @@ public class OrderService {
 
 	public List<Order> list() {
 		return orderRepository.findAll();
+	}
+	
+	public List<Order> listUnconfirmed() {
+		return orderRepository.getOrderByStatus(OrdersEnum.UNCONFIRMED);
+	}
+	
+	public List<Order> listConfirmed() {
+		return orderRepository.getOrderByStatus(OrdersEnum.CONFIRMED);
+	}
+	
+	public List<Order> listShipped() {
+		return orderRepository.getOrderByStatus(OrdersEnum.SHIPPED);
+	}
+	
+	public List<Order> listCompleted() {
+		return orderRepository.getOrderByStatus(OrdersEnum.COMPLETED);
 	}
 
 	public void batchInsertUpdate(List<Order> list) {

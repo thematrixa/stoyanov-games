@@ -4,6 +4,8 @@ import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -29,6 +31,7 @@ public class Order {
 	@ManyToMany
 	private List<Product> products;
 	private Boolean showProducts;
+	@Enumerated(EnumType.ORDINAL)
 	private OrdersEnum status;
 	public Integer getId() {
 		return id;

@@ -42,11 +42,18 @@ public class ProductController {
 		return new StoyanovGamesResponse<>(this.productService.list());
 	}
 	
-	@RequestMapping(method = RequestMethod.POST, value = "/update", consumes="application/json")
+	@RequestMapping(method = RequestMethod.POST, value = "/batch-update", consumes="application/json")
 	public ResponseEntity<?> uploadProducts(
 			@RequestBody List<Product> list) {
 		this.productService.truncate();
 		this.productService.batchInsertUpdate(list);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+	}
+	
+	@RequestMapping(method = RequestMethod.POST, value = "/update", consumes="application/json")
+	public ResponseEntity<?> updateProduct(
+			@RequestBody Product product) {
+		this.productService.update(product);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 	}
 	

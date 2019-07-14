@@ -31,6 +31,26 @@ public class OrderController {
 	public StoyanovGamesResponse<?> getOrders() {
 		return new StoyanovGamesResponse<>(this.orderService.list());
 	}
+	
+	@RequestMapping(produces = "application/json", method = RequestMethod.GET, value = "/unconfirmed")
+	public StoyanovGamesResponse<?> getUnconfirmed() {
+		return new StoyanovGamesResponse<>(this.orderService.listUnconfirmed());
+	}
+	
+	@RequestMapping(produces = "application/json", method = RequestMethod.GET, value = "/confirmed")
+	public StoyanovGamesResponse<?> getConfirmed() {
+		return new StoyanovGamesResponse<>(this.orderService.listConfirmed());
+	}
+	
+	@RequestMapping(produces = "application/json", method = RequestMethod.GET, value = "/shipped")
+	public StoyanovGamesResponse<?> getShipped() {
+		return new StoyanovGamesResponse<>(this.orderService.listShipped());
+	}
+	
+	@RequestMapping(produces = "application/json", method = RequestMethod.GET, value = "/completed")
+	public StoyanovGamesResponse<?> getCompleted() {
+		return new StoyanovGamesResponse<>(this.orderService.listCompleted());
+	}
 
 	@RequestMapping(method = RequestMethod.POST, value = "/update", consumes="application/json")
 	public ResponseEntity<?> uploadOrder(

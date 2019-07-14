@@ -46,21 +46,12 @@ export class BackEndService {
   }
   
   setProducts(products): Observable<any> {
-    let url = environment._BACKEND + "/products/batch-update";
+    let url = environment._BACKEND + "/products/update";
     console.log(products);
     return this.backEnd.post<any>(url, products, {
       headers: new HttpHeaders().set("Content-Type", "application/json")
     });
   }
-
-  updateProduct(product): Observable<any> {
-    let url = environment._BACKEND + "/products/update";
-    console.log(product);
-    return this.backEnd.post<any>(url, product, {
-      headers: new HttpHeaders().set("Content-Type", "application/json")
-    });
-  }
-  
   getProducts() {
     const url = environment._BACKEND + "/products/get";
     const headers = new HttpHeaders().set("Content-Type", "application/json");

@@ -35,9 +35,9 @@ export class OrdersAdminComponent implements OnInit {
     let completed = this.backEndService.getCompletedOrders();
     forkJoin(unconfirmed, confirmed, shipped, completed).subscribe(results => {
       this.unconfirmedOrders = results[0].response;
-      this.confirmedOrders = results[1].response;
-      this.shippedOrders = results[2].response;
-      this.completedOrders = results[3].response;
+      this.confirmedOrders = results[0].response;
+      this.shippedOrders = results[0].response;
+      this.completedOrders = results[0].response;
     });
   }
 
