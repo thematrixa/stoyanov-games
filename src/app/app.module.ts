@@ -73,6 +73,7 @@ import { CartService } from "./shared/services/cart-service";
 import { NumberPickerModule } from "ng-number-picker";
 import { StickyNavModule } from "ng2-sticky-nav";
 import { BackEndService } from './shared/services/back-end-service';
+import { DateFormatPipe } from './shared/pipes/date-format-pipe';
 @NgModule({
   declarations: [
     AppComponent,
@@ -107,7 +108,8 @@ import { BackEndService } from './shared/services/back-end-service';
     MyOrdersComponent,
     UserSettingsComponent,
     FilterMenuComponent,
-    CartComponent
+    CartComponent,
+    DateFormatPipe
   ],
   imports: [
     CommonModule,
@@ -167,6 +169,7 @@ import { BackEndService } from './shared/services/back-end-service';
     TooltipModule,
     TypeaheadModule,
     BannedCardPipe,
+    DateFormatPipe,
     NgxGalleryModule,
     Ng5SliderModule,
     NgMultiSelectDropDownModule
@@ -179,8 +182,9 @@ import { BackEndService } from './shared/services/back-end-service';
     NewsService,
     UserService,
     CartService,
-    BackEndService,
+    BackEndService, 
+    DateFormatPipe,
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule { }
