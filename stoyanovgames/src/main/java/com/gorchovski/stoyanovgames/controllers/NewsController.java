@@ -25,7 +25,7 @@ public class NewsController {
 
 	@Autowired
 	public NewsController(NewsService newsService) {
-		this.newsService = newsService;
+		this.newsService = newsService; 
 	}
 
 	@RequestMapping(produces = "application/json", method = RequestMethod.GET, value = "/get")

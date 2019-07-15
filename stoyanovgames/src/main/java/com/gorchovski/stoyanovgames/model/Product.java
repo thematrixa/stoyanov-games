@@ -22,7 +22,6 @@ public class Product {
 	private String name;
 	private String description;
 	private String price;
-	private String type;
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd.MM.yyyy")
 	private Date tournamentStoreLaunchDate;
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd.MM.yyyy")
@@ -32,10 +31,10 @@ public class Product {
 	@JsonProperty("cardsPerPack")
 	private Integer cardsPerPack;
 	private String size;
-	private Integer isActive;
+	private Boolean isActive;
 	private Integer categoryId;
 	private String shortDescription;
-	private Integer inStock;
+	private Boolean inStock;
 	private Integer quantity;
 	private Integer onSalePercent;
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd.MM.yyyy")
@@ -74,12 +73,6 @@ public class Product {
 	public void setPrice(String price) {
 		this.price = price;
 	}
-	public String getType() {
-		return type;
-	}
-	public void setType(String type) {
-		this.type = type;
-	}
 	public Date getTournamentStoreLaunchDate() {
 		return tournamentStoreLaunchDate;
 	}
@@ -110,10 +103,10 @@ public class Product {
 	public void setSize(String size) {
 		this.size = size;
 	}
-	public Integer getIsActive() {
+	public Boolean getIsActive() {
 		return isActive;
 	}
-	public void setIsActive(Integer isActive) {
+	public void setIsActive(Boolean isActive) {
 		this.isActive = isActive;
 	}
 	public Integer getCategoryId() {
@@ -128,10 +121,10 @@ public class Product {
 	public void setShortDescription(String shortDescription) {
 		this.shortDescription = shortDescription;
 	}
-	public Integer getInStock() {
+	public Boolean getInStock() {
 		return inStock;
 	}
-	public void setInStock(Integer inStock) {
+	public void setInStock(Boolean inStock) {
 		this.inStock = inStock;
 	}
 	public Integer getQuantity() {
