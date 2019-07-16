@@ -1,3 +1,4 @@
+import { UserService } from './../../shared/services/user-service';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
@@ -11,7 +12,8 @@ export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
   submitted = false;
 
-  constructor(private formBuilder: FormBuilder ) { }
+  constructor(private formBuilder: FormBuilder,
+    private userService: UserService) { }
 
   ngOnInit() {
     this.registerForm = this.formBuilder.group({
@@ -22,7 +24,7 @@ export class RegisterComponent implements OnInit {
       address: ['', Validators.required],
       email: ['', [Validators.required, Validators.email, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]],
       phone: ['', Validators.required],
-  });
+    });
   }
 
   get f() { return this.registerForm.controls; }
@@ -31,7 +33,9 @@ export class RegisterComponent implements OnInit {
     this.submitted = true;
     // stop here if form is invalid
     if (this.registerForm.invalid) {
-        return;
+      return;
     }
+    let user = this.userService.generateUserFromForm(this.registerForm);
+    this.userService.updateUser(user).subscribe(res => {console.log(res)}, error =>{console.log(error);});
   }
 }

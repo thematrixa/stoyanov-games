@@ -1,3 +1,4 @@
+
 import {
   ChangeDetectorRef,
   Component,
@@ -13,6 +14,8 @@ import { CategoriesService } from "src/app/shared/services/categories-service";
 import { BackEndService } from 'src/app/shared/services/back-end-service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { ToastrService } from 'ngx-toastr';
+import { ProductService } from 'src/app/shared/services/product-service';
+import { DateFormatPipe } from 'src/app/shared/pipes/date-format-pipe';
 
 @Component({
   selector: "app-add-edit-product",
@@ -33,9 +36,15 @@ export class AddEditProductComponent implements OnInit {
     private categoriesService: CategoriesService,
     private cd: ChangeDetectorRef,
     private backEndService: BackEndService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private productService: ProductService,
+    private dateFormatter:DateFormatPipe
   ) {
-    this.categores = this.categoriesService.getCategories();
+    this.backEndService.getCategories().subscribe(res => {
+      this.categores = res.response;
+    },error =>{
+      console.log(error);
+    });
   }
 
   ngOnInit() {
@@ -43,7 +52,6 @@ export class AddEditProductComponent implements OnInit {
       name: ["", Validators.required],
       description: ["", Validators.required],
       price: ["", Validators.required],
-      type: ["", Validators.required],
       tournamentStoreLaunchDate: ["", Validators.required],
       launchDate: ["", Validators.required],
       konamiTournamentLegalDate: ["", Validators.required],
@@ -61,39 +69,39 @@ export class AddEditProductComponent implements OnInit {
       onSalePercent: ["", Validators.required],
       quantity: ["", Validators.required]
     });
-    this.addProductForm.patchValue({ name: this.product.name }, {});
-    this.addProductForm.patchValue({ description: this.product.description });
-    this.addProductForm.patchValue({ type: this.product.type });
-    this.addProductForm.patchValue({
-      tournamentStoreLaunchDate: this.product.tournamentStoreLaunchDate
-    });
-    this.addProductForm.patchValue({ launchDate: this.product.launchDate });
-    this.addProductForm.patchValue({
-      konamiTournamentLegalDate: this.product.konamiTournamentLegalDate
-    });
-    this.addProductForm.patchValue({ cardsPerPack: this.product.cardsPerPack });
-    this.addProductForm.patchValue({ size: this.product.size });
-    this.addProductForm.patchValue({ isActive: this.product.isActive });
-    this.addProductForm.patchValue({ categoryId: this.product.categoryId });
-    this.addProductForm.patchValue({ isActive: this.product.isActive });
-    this.addProductForm.patchValue({
-      shortDescription: this.product.shortDescription
-    });
-    this.addProductForm.patchValue({ photo1: this.product.photo1Base64 });
-    this.addProductForm.patchValue({ photo2: this.product.photo2Base64 });
-    this.addProductForm.patchValue({ photo3: this.product.photo3Base64 });
-    this.addProductForm.patchValue({ photo4: this.product.photo4Base64 });
-    this.addProductForm.patchValue({ photo5: this.product.photo5Base64 });
-    //this.addProductForm.patchValue({ photo2: this.product.photo1Base64 });
-    this.addProductForm.patchValue({ inStock: this.product.inStock });
-    this.addProductForm.patchValue({
-      onSalePercent: this.product.onSalePercent
-    });
-    this.addProductForm.patchValue({ quantity: this.product.quantity });
-    this.addProductForm.patchValue({ price: this.product.price });
-
-    if (this.product && this.product.name && this.product.name.length > 0) {
-      this.buttonLabel = "Update product";
+    if(this.product.name){
+      this.addProductForm.patchValue({ name: this.product.name }, {});
+      this.addProductForm.patchValue({ description: this.product.description });
+      this.addProductForm.patchValue({
+        tournamentStoreLaunchDate: this.product.tournamentStoreLaunchDate
+      });
+      this.addProductForm.patchValue({ launchDate: this.product.launchDate});
+      this.addProductForm.patchValue({
+        konamiTournamentLegalDate: this.product.konamiTournamentLegalDate
+      });
+      this.addProductForm.patchValue({ cardsPerPack: this.product.cardsPerPack });
+      this.addProductForm.patchValue({ size: this.product.size });
+      this.addProductForm.patchValue({ isActive: this.product.isActive });
+      this.addProductForm.patchValue({ categoryId: this.product.categoryId });
+      this.addProductForm.patchValue({ isActive: this.product.isActive });
+      this.addProductForm.patchValue({
+        shortDescription: this.product.shortDescription
+      });
+      this.addProductForm.patchValue({ photo1: this.product.photo1Base64 });
+      this.addProductForm.patchValue({ photo2: this.product.photo2Base64 });
+      this.addProductForm.patchValue({ photo3: this.product.photo3Base64 });
+      this.addProductForm.patchValue({ photo4: this.product.photo4Base64 });
+      this.addProductForm.patchValue({ photo5: this.product.photo5Base64 });
+      this.addProductForm.patchValue({ inStock: this.product.inStock });
+      this.addProductForm.patchValue({
+        onSalePercent: this.product.onSalePercent
+      });
+      this.addProductForm.patchValue({ quantity: this.product.quantity });
+      this.addProductForm.patchValue({ price: this.product.price });
+  
+      if (this.product && this.product.name && this.product.name.length > 0) {
+        this.buttonLabel = "Update product";
+      }
     }
   }
 
@@ -108,8 +116,9 @@ export class AddEditProductComponent implements OnInit {
     if (this.addProductForm.invalid) {
       return;
     }
+    let product= this.productService.generateProductFromForm(this.addProductForm);
     this.deselectProductEmitter.emit(false);
-    this.updateProduct(this.product);
+    this.updateProduct(product);
     // have to do an update product table here
   }
 
@@ -128,4 +137,14 @@ export class AddEditProductComponent implements OnInit {
       }
     );
   }
+  public findInvalidControls() {
+    const invalid = [];
+    const controls = this.addProductForm.controls;
+    for (const name in controls) {
+        if (controls[name].invalid) {
+            invalid.push(name);
+        }
+    }
+    return invalid;
+}
 }
