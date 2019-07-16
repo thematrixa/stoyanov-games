@@ -16,13 +16,22 @@ export class RegisterComponent implements OnInit {
     private userService: UserService) { }
 
   ngOnInit() {
-    this.registerForm = this.formBuilder.group({
+    /*this.registerForm = this.formBuilder.group({
       names: ['', Validators.required],
       username: ['', Validators.required],
       password: ['', [Validators.required, Validators.minLength(6)]],
       confirmPassword: ['', [Validators.required, Validators.minLength(6)]],
       address: ['', Validators.required],
       email: ['', [Validators.required, Validators.email, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]],
+      phone: ['', Validators.required],
+    });*/
+    this.registerForm = this.formBuilder.group({
+      names: ['', Validators.required],
+      username: ['', Validators.required],
+      password: ['', Validators.required],
+      confirmPassword: ['', Validators.required],
+      address: ['', Validators.required],
+      email:  ['', Validators.required],
       phone: ['', Validators.required],
     });
   }
@@ -36,6 +45,6 @@ export class RegisterComponent implements OnInit {
       return;
     }
     let user = this.userService.generateUserFromForm(this.registerForm);
-    this.userService.updateUser(user).subscribe(res => {console.log(res)}, error =>{console.log(error);});
+    this.userService.registerUser(user).subscribe(res => {console.log(res)}, error =>{console.log(error);});
   }
 }

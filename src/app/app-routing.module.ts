@@ -21,37 +21,38 @@ import { AddressesComponent } from './pages/profile/profile-components/addresses
 import { MyOrdersComponent } from './pages/profile/profile-components/my-orders/my-orders.component';
 import { UserSettingsComponent } from './pages/profile/profile-components/user-settings/user-settings.component';
 import { CartComponent } from './pages/cart/cart.component';
+import { AuthGuard } from './guards/auth-guard';
 
 const routes: Routes = [
-  { path: 'list', component: BanListComponent },
+  { path: 'list', component: BanListComponent, canActivate: [AuthGuard]  },
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'cart', component: CartComponent },
+  { path: 'cart', component: CartComponent, canActivate: [AuthGuard]  },
   {
     path: 'profile', component: ProfileComponent,
     children: [
-      { path: '', component: AddressesComponent },
-      { path: 'addresses', component: AddressesComponent },
-      { path: 'orders', component: MyOrdersComponent },
-      { path: 'settings', component: UserSettingsComponent }
+      { path: '', component: AddressesComponent, canActivate: [AuthGuard]  },
+      { path: 'addresses', component: AddressesComponent, canActivate: [AuthGuard]  },
+      { path: 'orders', component: MyOrdersComponent, canActivate: [AuthGuard]  },
+      { path: 'settings', component: UserSettingsComponent, canActivate: [AuthGuard]  }
     ]
   },
-  { path: 'mulligan', component: MulliganComponent },
-  { path: 'products', component: ProductsComponent },
-  { path: 'product-detail', component: ProductDetailComponent },
-  { path: 'sale', component: OnSaleComponent },
-  { path: 'new', component: NewComponent },
-  { path: 'news', component: NewsComponent },
+  { path: 'mulligan', component: MulliganComponent},
+  { path: 'products', component: ProductsComponent},
+  { path: 'product-detail', component: ProductDetailComponent},
+  { path: 'sale', component: OnSaleComponent, canActivate: [AuthGuard]  },
+  { path: 'new', component: NewComponent, canActivate: [AuthGuard]  },
+  { path: 'news', component: NewsComponent},
   {
     path: 'admin-module', component: AdminModuleComponent,
     children: [
-      { path: '', component: CategoriesAdminComponent },
-      { path: 'categories', component: CategoriesAdminComponent },
-      { path: 'news', component: NewsAdminComponent },
-      { path: 'images', component: ImagesAdminComponent },
-      { path: 'on-sale', component: OnSaleAdminComponent },
-      { path: 'products', component: ProductsAdminComponent },
-      { path: 'orders', component: OrdersAdminComponent },
+      { path: '', component: CategoriesAdminComponent, canActivate: [AuthGuard] },
+      { path: 'categories', component: CategoriesAdminComponent, canActivate: [AuthGuard]  },
+      { path: 'news', component: NewsAdminComponent, canActivate: [AuthGuard]  },
+      { path: 'images', component: ImagesAdminComponent, canActivate: [AuthGuard]  },
+      { path: 'on-sale', component: OnSaleAdminComponent, canActivate: [AuthGuard]  },
+      { path: 'products', component: ProductsAdminComponent, canActivate: [AuthGuard]  },
+      { path: 'orders', component: OrdersAdminComponent, canActivate: [AuthGuard]  },
     ]
   }
 ];

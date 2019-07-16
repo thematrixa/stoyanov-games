@@ -6,32 +6,32 @@
         <li class="nav-item">
             <a class="nav-link" routerLink="/new">Нови</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" *ngIf="isLoggedIn">
             <a class="nav-link" routerLink="/news">Новини</a>
         </li>
         <li class="nav-item">
             <a class="nav-link" routerLink="/mulligan">Мълиган</a>
         </li>
-        <li class="nav-item">
-            <a class="nav-link" routerLink="/login">Влез</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="#">Излез</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" routerLink="/register">Регистрация</a>
-        </li>
-        <li class="nav-item">
+        <li class="nav-item" *ngIf="isLoggedIn">
             <a class="nav-link" routerLink="/list">Бан лист</a>
         </li>
         <li class="nav-item">
             <a class="nav-link" routerLink="/products">Продукти</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" *ngIf="!isLoggedIn">
+            <a class="nav-link" routerLink="/login">Влез</a>
+        </li>
+        <li class="nav-item" *ngIf="isLoggedIn">
+            <a class="nav-link" href="#">Излез</a>
+        </li>
+        <li class="nav-item" *ngIf="!isLoggedIn">
+            <a class="nav-link" routerLink="/register">Регистрация</a>
+        </li>
+        <li class="nav-item" *ngIf="isLoggedIn && isAdmin">
             <a class="nav-link" routerLink="/admin-module" [routerLinkActive]="'admin-content'">Admin Module</a>
         </li>
     </ul>
-    <ul class="navbar-nav right-position">
+    <ul class="navbar-nav right-position" *ngIf="isLoggedIn">
         <li class="nav-item">
             <a class="nav-link">{{cartTotal}}</a>
         </li>

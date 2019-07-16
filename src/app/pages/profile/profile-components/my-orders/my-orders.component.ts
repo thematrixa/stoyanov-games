@@ -20,7 +20,7 @@ export class MyOrdersComponent implements OnInit {
    }
 
   ngOnInit() {
-    this.user = this.userService.getUser();
+    this.user = this.userService.getLoggedUser();
     this.orders = this.orderService.getOrdersByUserId(this.user.id);
     console.log(this.orders);
   }

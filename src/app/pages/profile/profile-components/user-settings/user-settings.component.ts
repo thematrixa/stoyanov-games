@@ -26,7 +26,7 @@ export class UserSettingsComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.user = this.userService.getUser();
+    this.user = this.userService.getLoggedUser();
     this.userSettingsForm = this.formBuilder.group({
       name: ['', Validators.required],
       surname: ['', Validators.required],

@@ -18,7 +18,7 @@ export class AddressesComponent implements OnInit {
     private userService: UserService) { }
 
   ngOnInit() {
-    this.user = this.userService.getUser();
+    this.user = this.userService.getLoggedUser();
     this.userSettingsForm = this.formBuilder.group({
       address: ['', Validators.required]
   });

@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { User } from '../models/user';
 import { FormGroup } from '@angular/forms';
@@ -9,26 +9,20 @@ import { Observable } from 'rxjs';
 
 @Injectable()
 export class UserService {
-
+  private TOKEN_NAME: string = 'token';
   private options = {
     headers: new HttpHeaders().set("Content-Type", "application/json")
   };
+  private user: User;
 
-  private user: User ;/*= {
-      Id: 1,
-      Username: "Alexa",
-      Password: "12345",
-      Email: "alexa@abv.bg",
-      Address: "St Petersburg Pensylvania",
-      Phone: "0879134444",
-      isEmailConfirmed: true,
-      Name: " Ivelin Ivanov Gorchovski",
-      IsAdmin: true
-  }*/
   constructor(private backEndService: HttpClient) {
   }
 
-  getUser() {
+  getLoggedUser() {
+    return this.user;
+  }
+
+  setLoggedUser(user: User) {
     return this.user;
   }
 
@@ -52,10 +46,37 @@ export class UserService {
     return this.backEndService.get<StoyanovGamesResponse<User[]>>(url, this.options);
   }
 
-  updateUser(user): Observable<any> {
-    let url = environment._BACKEND + "/users/update";
+  registerUser(user): Observable<any> {
+    let url = environment._BACKEND + "/users/register";
     console.log(user);
     return this.backEndService.post<any>(url, user, this.options);
+  }
+
+  login(auth) {
+    let url = environment._BACKEND + "/users/login?username=" + auth.username;
+    return this.backEndService.get<StoyanovGamesResponse<User>>(url, this.options);
+  }
+
+  logout(){
+    this.deleteToken();
+  }
+
+  generateAuthentication(form: FormGroup) {
+    let formData = form.getRawValue();
+    let authToken = window.btoa(formData.username + ':' + formData.password);
+    return authToken;
+  }
+
+  setToken(authToken) {
+    localStorage.setItem(this.TOKEN_NAME, authToken);
+  }
+
+  getToken() {
+    return localStorage.getItem(this.TOKEN_NAME);
+  }
+
+  deleteToken() {
+    return localStorage.removeItem(this.TOKEN_NAME);
   }
 
 }

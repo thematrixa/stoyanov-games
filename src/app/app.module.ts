@@ -1,79 +1,64 @@
-import { BrowserModule } from "@angular/platform-browser";
+import { CommonModule } from "@angular/common";
+import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { NgModule } from "@angular/core";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { BrowserModule } from "@angular/platform-browser";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { IgxTabsModule } from "igniteui-angular";
+import { NgMultiSelectDropDownModule } from "ng-multiselect-dropdown";
+import { NumberPickerModule } from "ng-number-picker";
+import { StickyNavModule } from "ng2-sticky-nav";
+import { Ng5SliderModule } from "ng5-slider";
+// tslint:disable-next-line:max-line-length
+import { AccordionModule, AlertModule, BsDatepickerModule, BsDropdownModule, ButtonsModule, CarouselModule, CollapseModule, ModalModule, PaginationModule, PopoverModule, ProgressbarModule, RatingModule, SortableModule, TabsModule, TimepickerModule, TypeaheadModule } from "ngx-bootstrap";
+import { TooltipModule } from "ngx-bootstrap/tooltip";
+import { NgxGalleryModule } from "ngx-gallery";
+import { ToastrModule } from 'ngx-toastr';
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { BackgroundComponent } from "./background/background.component";
+import { ContentComponent } from "./content/content.component";
+import { SideMenuComponent } from "./content/side-menu/side-menu.component";
 import { HeaderComponent } from "./header/header.component";
 import { MenuComponent } from "./menu/menu.component";
-import { ContentComponent } from "./content/content.component";
-import { TooltipModule } from "ngx-bootstrap/tooltip";
-import { CommonModule } from "@angular/common";
-import { ToastrModule } from 'ngx-toastr';
-// tslint:disable-next-line:max-line-length
-import {
-  AccordionModule,
-  AlertModule,
-  ButtonsModule,
-  CarouselModule,
-  CollapseModule,
-  BsDropdownModule,
-  ModalModule,
-  PaginationModule,
-  PopoverModule,
-  ProgressbarModule,
-  RatingModule,
-  SortableModule,
-  TabsModule,
-  TimepickerModule,
-  TypeaheadModule,
-  BsDatepickerModule
-} from "ngx-bootstrap";
+import { CategoriesAdminComponent } from "./pages/admin-module/admin-components/categories/categories.component";
+import { ImagesAdminComponent } from "./pages/admin-module/admin-components/images/images.component";
+import { NewsAdminComponent } from "./pages/admin-module/admin-components/news/news.component";
+import { OnSaleAdminComponent } from "./pages/admin-module/admin-components/on-sale/on-sale.component";
+import { OrderTableComponent } from "./pages/admin-module/admin-components/orders/order-table/order-table.component";
+import { OrdersAdminComponent } from "./pages/admin-module/admin-components/orders/orders.component";
+import { AddEditProductComponent } from "./pages/admin-module/admin-components/products/add-edit-product/add-edit-product/add-edit-product.component";
+import { ProductsAdminComponent } from "./pages/admin-module/admin-components/products/products.component";
+import { AdminModuleComponent } from "./pages/admin-module/admin-module.component";
 import { BanListComponent } from "./pages/ban-list/ban-list.component";
-import { HttpClientModule } from "@angular/common/http";
-import { BannedCardPipe } from "./shared/pipes/banned-card";
-import { RegisterComponent } from "./pages/register/register.component";
+import { CartComponent } from "./pages/cart/cart.component";
+import { FilterMenuComponent } from "./pages/filter-menu/filter-menu.component";
 import { LoginComponent } from "./pages/login/login.component";
-import { ProfileComponent } from "./pages/profile/profile.component";
-import { ProductsComponent } from "./pages/products/products.component";
-import { SideMenuComponent } from "./content/side-menu/side-menu.component";
+import { MulliganComponent } from "./pages/mulligan/mulligan.component";
+import { NewComponent } from "./pages/new/new.component";
+import { NewsComponent } from "./pages/news/news.component";
+import { OnSaleComponent } from "./pages/on-sale/on-sale.component";
 import { ProductDetailComponent } from "./pages/products/poduct-components/product-detail/product-detail.component";
 import { ProductTileComponent } from "./pages/products/poduct-components/product-tile/product-tile.component";
-import { NgxGalleryModule } from "ngx-gallery";
-import { ProductDetailsService } from "./shared/services/product-details.service";
-import { AdminModuleComponent } from "./pages/admin-module/admin-module.component";
-import { CategoriesAdminComponent } from "./pages/admin-module/admin-components/categories/categories.component";
-import { NewsAdminComponent } from "./pages/admin-module/admin-components/news/news.component";
-import { ImagesAdminComponent } from "./pages/admin-module/admin-components/images/images.component";
-import { OnSaleAdminComponent } from "./pages/admin-module/admin-components/on-sale/on-sale.component";
-import { OrdersAdminComponent } from "./pages/admin-module/admin-components/orders/orders.component";
-import { ProductsAdminComponent } from "./pages/admin-module/admin-components/products/products.component";
-import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-import { IgxTabsModule } from "igniteui-angular";
-import { OrderTableComponent } from "./pages/admin-module/admin-components/orders/order-table/order-table.component";
-import { AddEditProductComponent } from "./pages/admin-module/admin-components/products/add-edit-product/add-edit-product/add-edit-product.component";
-import { ProductService } from "./shared/services/product-service";
-import { CategoriesService } from "./shared/services/categories-service";
-import { OrderService } from "./shared/services/orders-service";
-import { MulliganComponent } from "./pages/mulligan/mulligan.component";
-import { OnSaleComponent } from "./pages/on-sale/on-sale.component";
-import { NewsComponent } from "./pages/news/news.component";
-import { NewComponent } from "./pages/new/new.component";
-import { NewsService } from "./shared/services/news-service";
-import { AddImageFormControlComponent } from "./shared/form-controls/add-image-form-control/add-image-form-control.component";
+import { ProductsComponent } from "./pages/products/products.component";
 import { AddressesComponent } from "./pages/profile/profile-components/addresses/addresses.component";
 import { MyOrdersComponent } from "./pages/profile/profile-components/my-orders/my-orders.component";
 import { UserSettingsComponent } from "./pages/profile/profile-components/user-settings/user-settings.component";
-import { UserService } from "./shared/services/user-service";
-import { FilterMenuComponent } from "./pages/filter-menu/filter-menu.component";
-import { Ng5SliderModule } from "ng5-slider";
-import { NgMultiSelectDropDownModule } from "ng-multiselect-dropdown";
-import { CartComponent } from "./pages/cart/cart.component";
-import { CartService } from "./shared/services/cart-service";
-import { NumberPickerModule } from "ng-number-picker";
-import { StickyNavModule } from "ng2-sticky-nav";
-import { BackEndService } from './shared/services/back-end-service';
+import { ProfileComponent } from "./pages/profile/profile.component";
+import { RegisterComponent } from "./pages/register/register.component";
+import { AddImageFormControlComponent } from "./shared/form-controls/add-image-form-control/add-image-form-control.component";
+import { BannedCardPipe } from "./shared/pipes/banned-card";
 import { DateFormatPipe } from './shared/pipes/date-format-pipe';
+import { BackEndService } from './shared/services/back-end-service';
+import { CartService } from "./shared/services/cart-service";
+import { CategoriesService } from "./shared/services/categories-service";
+import { NewsService } from "./shared/services/news-service";
+import { OrderService } from "./shared/services/orders-service";
+import { ProductDetailsService } from "./shared/services/product-details.service";
+import { ProductService } from "./shared/services/product-service";
+import { UserService } from "./shared/services/user-service";
+import { BasicAuthInterceptor } from './basic-auth.interceptor';
+import { ErrorInterceptor } from './error.interceptor';
 @NgModule({
   declarations: [
     AppComponent,
@@ -184,6 +169,8 @@ import { DateFormatPipe } from './shared/pipes/date-format-pipe';
     CartService,
     BackEndService, 
     DateFormatPipe,
+    { provide: HTTP_INTERCEPTORS, useClass: BasicAuthInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
   ],
   bootstrap: [AppComponent]
 })
