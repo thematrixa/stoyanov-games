@@ -61,7 +61,8 @@ public class CustomWebSecurityConfigurerAdapter extends WebSecurityConfigurerAda
         .logout()
             .permitAll();*/
     	
-    	http
+    	http.csrf()
+        .disable()
           .authorizeRequests()
           .antMatchers("/securityNone","/users/**")
           .permitAll()
