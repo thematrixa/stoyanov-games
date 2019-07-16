@@ -117,11 +117,6 @@ export class AddEditProductComponent implements OnInit {
       return;
     }
     let product= this.productService.generateProductFromForm(this.addProductForm);
-    product.photo1Base64 = this.product.photo1Base64;
-    product.photo2Base64 = this.product.photo2Base64;
-    product.photo3Base64 = this.product.photo3Base64;
-    product.photo4Base64 = this.product.photo4Base64;
-    product.photo5Base64 = this.product.photo5Base64;
     this.deselectProductEmitter.emit(false);
     this.updateProduct(product);
     // have to do an update product table here

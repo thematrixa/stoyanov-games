@@ -21,7 +21,7 @@ export class MyOrdersComponent implements OnInit {
 
   ngOnInit() {
     this.user = this.userService.getUser();
-    this.orders = this.orderService.getOrdersByUserId(this.user.Id);
+    this.orders = this.orderService.getOrdersByUserId(this.user.id);
     console.log(this.orders);
   }
 

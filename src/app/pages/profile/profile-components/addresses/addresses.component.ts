@@ -22,7 +22,7 @@ export class AddressesComponent implements OnInit {
     this.userSettingsForm = this.formBuilder.group({
       address: ['', Validators.required]
   });
-  this.userSettingsForm.patchValue({ address: this.user.Address }, {});
+  this.userSettingsForm.patchValue({ address: this.user.address }, {});
   }
 
   get f() { return this.userSettingsForm.controls; }

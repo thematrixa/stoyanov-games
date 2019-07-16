@@ -21,7 +21,7 @@ export class AddImageFormControlComponent implements OnInit, ControlValueAccesso
   isImageUploaded: boolean = false;
   private file: File | null = null;
   fileWaitingToBeLoaded: string;
-  _val: string;
+  value: string;
   ngOnInit() {
     if(this.fileWaitingToBeLoaded){
       this.writeValue(this.fileWaitingToBeLoaded);
@@ -33,17 +33,13 @@ export class AddImageFormControlComponent implements OnInit, ControlValueAccesso
       this.writeValue(this.fileWaitingToBeLoaded);
     }
   }
-  get value(){
-    debugger
-    return this._val;
-  }
   writeValue(value: any): void {
     if(!value){
       this.isImageUploaded = false;
       return;
     }
     const image = this.image.nativeElement;
-    this._val = value;
+    this.value = value;
     this.renderer.setProperty(image, 'src', value);
     this.isImageUploaded = true;
     console.log('ok');

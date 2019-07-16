@@ -35,9 +35,9 @@ export class UserSettingsComponent implements OnInit {
       nPassword: ['', Validators.required],
       cPassword: ['', Validators.required]
   });
-  this.userSettingsForm.patchValue({ name: this.user.Name }, {});
-  this.userSettingsForm.patchValue({ surname: this.user.Name });
-  this.userSettingsForm.patchValue({ email: this.user.Email });
+  this.userSettingsForm.patchValue({ name: this.user.name }, {});
+  this.userSettingsForm.patchValue({ surname: this.user.name });
+  this.userSettingsForm.patchValue({ email: this.user.email });
   }
   get f() { return this.userSettingsForm.controls; }
 

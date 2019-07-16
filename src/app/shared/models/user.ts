@@ -1,13 +1,12 @@
 export class User {
-    Id: number;
-    Username: string;
-    Password: string;
-    Email: string;
-    Address: string;
-    Phone: string;
-    isEmailConfirmed: number;
-    Name: string;
-    IsAdmin: number;
-    RoleId: number;
+    id: number;
+    username: string;
+    password: string;
+    email: string;
+    address: string;
+    phone: string;
+    isEmailConfirmed: Boolean;
+    name: string;
+    isAdmin: boolean;
 }
       
