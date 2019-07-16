@@ -20,6 +20,8 @@ public class UserService {
 	private UserRepository userRepository;
 	@Autowired
 	private BCryptPasswordEncoder bCryptPasswordEncoder;
+	@Autowired
+	private SecurityService securityService;
 
 	public List<User> list() {
 		return userRepository.findAll();
@@ -34,9 +36,16 @@ public class UserService {
 	}
 
 	public void save(User user) {
+		String deCryptedPassword = user.getPassword();
 		user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
-		System.out.println(bCryptPasswordEncoder.encode(user.getPassword()));
 		this.userRepository.save(user);
+		securityService.autoLogin(user.getUsername(), deCryptedPassword);
+
+	}
+
+	public User getUser() {
+		securityService.findLoggedInUsername();
+		return this.userRepository.findByUsername(username);
 	}
 
 }
