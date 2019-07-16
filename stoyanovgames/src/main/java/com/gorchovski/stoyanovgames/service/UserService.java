@@ -43,8 +43,7 @@ public class UserService {
 
 	}
 
-	public User getUser() {
-		securityService.findLoggedInUsername();
+	public User getUser(String username) {
 		return this.userRepository.findByUsername(username);
 	}
 

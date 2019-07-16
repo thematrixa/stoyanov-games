@@ -16,6 +16,8 @@ export class MenuComponent implements OnInit {
 
   ngOnInit() {
     this.cartTotal = "0.00";
+    this.isLoggedIn = false;
+    this.isAdmin = false;
   }
 
   constructor(
@@ -24,11 +26,13 @@ export class MenuComponent implements OnInit {
   ) {
     const timer = new TaskTimer(500);
 
-    timer.on('tick', () => this.updateMenu(this.cartService.getCartTotal(), this.userService.getLoggedUser()));
+    timer.on('tick', () => this.updateMenu(this.cartService.getCartTotal()));
     timer.start();
   }
 
-  updateMenu(newPrice: string, loggedUser: User) {
+  updateMenu(newPrice: string) {
+    console.log(1);
+    let loggedUser: User = this.userService.getLoggedUser();
     if (loggedUser) {
       this.isLoggedIn = true;
       this.isAdmin = loggedUser.isAdmin;

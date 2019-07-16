@@ -32,8 +32,10 @@ export class LoginComponent implements OnInit {
     if (this.loginForm.invalid) {
       return;
     }
-    let auth = this.userService.generateAuthentication(this.loginForm); 
+    let auth = this.userService.generateAuthentication(this.loginForm);
     this.userService.setToken(auth);
-    this.userService.login(this.loginForm.controls["username"].value).subscribe(res => {console.log(res.response);this.userService.setLoggedUser(res.response);this.userService.deleteToken(); this.userService.setToken(auth)}, error => { this.toastr.error("Error",error) });
+    console.log(this.loginForm.value);
+    console.log(this.loginForm.value.username);
+    this.userService.login(this.loginForm.value.username + "").subscribe(res => {console.log(res.response);this.userService.setLoggedUser(res.response);this.userService.deleteToken(); this.userService.setToken(auth)}, error => { this.toastr.error("Error",error) });
   }
 }

@@ -52,8 +52,8 @@ export class UserService {
     return this.backEndService.post<any>(url, user, this.options);
   }
 
-  login(auth) {
-    let url = environment._BACKEND + "/users/login?username=" + auth.username;
+  login(username) {
+    let url = environment._BACKEND + "/users/login?username=" + username;
     return this.backEndService.get<StoyanovGamesResponse<User>>(url, this.options);
   }
 

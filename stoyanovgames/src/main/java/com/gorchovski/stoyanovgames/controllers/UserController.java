@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.gorchovski.stoyanovgames.model.StoyanovGamesResponse;
@@ -37,7 +38,7 @@ public class UserController {
 	}
 
 	@RequestMapping(produces = "application/json", method = RequestMethod.GET, value = "/login")
-	public StoyanovGamesResponse<?> loginUser() {
-		return new StoyanovGamesResponse<>(this.userService.getUser());
+	public StoyanovGamesResponse<?> loginUser(@RequestParam String username) {
+		return new StoyanovGamesResponse<>(this.userService.getUser(username));
 	}
 }
