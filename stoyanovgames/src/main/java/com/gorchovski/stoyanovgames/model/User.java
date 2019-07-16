@@ -6,100 +6,103 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 @Entity
 @Table(name = "users")
 public class User {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer Id;
-	private String Username;
-	private String Password;
-	private String Email;
-	private String Address;
-	private String Phone;
-	private Integer isEmailConfirmed;
-	private String Name;
-	private Integer IsAdmin;
-	private Integer RoleId;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@JsonProperty("id")
+	private Integer id;
+	@JsonProperty("username")
+	private String username;
+	@JsonProperty("password")
+	private String password;
+	@JsonProperty("email")
+	private String email;
+	@JsonProperty("address")
+	private String address;
+	@JsonProperty("phone")
+	private String phone;
+	@JsonProperty("isEmailConfirmed")
+	private Boolean isEmailConfirmed;
+	@JsonProperty("name")
+	private String name;
+	@JsonProperty("isAdmin")
+	private Boolean isAdmin;
 
 	public Integer getId() {
-		return Id;
+		return id;
 	}
 
 	public void setId(Integer id) {
-		Id = id;
+		this.id = id;
 	}
 
 	public String getUsername() {
-		return Username;
+		return username;
 	}
 
 	public void setUsername(String username) {
-		Username = username;
+		this.username = username;
 	}
 
 	public String getPassword() {
-		return Password;
+		return password;
 	}
 
 	public void setPassword(String password) {
-		Password = password;
+		this.password = password;
 	}
 
 	public String getEmail() {
-		return Email;
+		return email;
 	}
 
 	public void setEmail(String email) {
-		Email = email;
+		this.email = email;
 	}
 
 	public String getAddress() {
-		return Address;
+		return address;
 	}
 
 	public void setAddress(String address) {
-		Address = address;
+		this.address = address;
 	}
 
 	public String getPhone() {
-		return Phone;
+		return phone;
 	}
 
 	public void setPhone(String phone) {
-		Phone = phone;
+		this.phone = phone;
 	}
 
-	public Integer getIsEmailConfirmed() {
+	public Boolean getIsEmailConfirmed() {
 		return isEmailConfirmed;
 	}
 
-	public void setIsEmailConfirmed(Integer isEmailConfirmed) {
+	public void setIsEmailConfirmed(Boolean isEmailConfirmed) {
 		this.isEmailConfirmed = isEmailConfirmed;
 	}
 
 	public String getName() {
-		return Name;
+		return name;
 	}
 
 	public void setName(String name) {
-		Name = name;
+		this.name = name;
 	}
 
-	public Integer getIsAdmin() {
-		return IsAdmin;
+	public Boolean getIsAdmin() {
+		return isAdmin;
 	}
 
-	public void setIsAdmin(Integer isAdmin) {
-		IsAdmin = isAdmin;
+	public void setIsAdmin(Boolean isAdmin) {
+		this.isAdmin = isAdmin;
 	}
 
-	public Integer getRoleId() {
-		return RoleId;
-	}
-
-	public void setRoleId(Integer roleId) {
-		RoleId = roleId;
-	}
 }
