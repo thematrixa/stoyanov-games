@@ -23,7 +23,7 @@ export class UserService {
   }
 
   setLoggedUser(user: User) {
-    return this.user;
+    this.user = user;
   }
 
   generateUserFromForm(form: FormGroup): User {

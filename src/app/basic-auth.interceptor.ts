@@ -8,6 +8,7 @@ export class BasicAuthInterceptor implements HttpInterceptor {
     constructor(private userService: UserService) { }
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         let token = this.userService.getToken();
+        debugger;
         if (token) {
             request = request.clone({
                 setHeaders: {

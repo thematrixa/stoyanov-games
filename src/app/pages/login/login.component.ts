@@ -1,30 +1,33 @@
-import { ToastrModule, ToastrService } from 'ngx-toastr';
-import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { UserService } from 'src/app/shared/services/user-service';
+import { ToastrModule, ToastrService } from "ngx-toastr";
+import { Component, OnInit } from "@angular/core";
+import { FormGroup, FormBuilder, Validators } from "@angular/forms";
+import { UserService } from "src/app/shared/services/user-service";
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  selector: "app-login",
+  templateUrl: "./login.component.html",
+  styleUrls: ["./login.component.css"]
 })
 export class LoginComponent implements OnInit {
-
   loginForm: FormGroup;
   submitted = false;
 
-  constructor(private formBuilder: FormBuilder,
+  constructor(
+    private formBuilder: FormBuilder,
     private userService: UserService,
-    private toastr: ToastrService) { }
+    private toastr: ToastrService
+  ) {}
 
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
-      username: ['', Validators.required],
-      password: ['', Validators.required]
+      username: ["", Validators.required],
+      password: ["", Validators.required]
     });
   }
 
-  get f() { return this.loginForm.controls; }
+  get f() {
+    return this.loginForm.controls;
+  }
 
   onSubmit() {
     this.submitted = true;
@@ -34,8 +37,15 @@ export class LoginComponent implements OnInit {
     }
     let auth = this.userService.generateAuthentication(this.loginForm);
     this.userService.setToken(auth);
-    console.log(this.loginForm.value);
-    console.log(this.loginForm.value.username);
-    this.userService.login(this.loginForm.value.username + "").subscribe(res => {console.log(res.response);this.userService.setLoggedUser(res.response);this.userService.deleteToken(); this.userService.setToken(auth)}, error => { this.toastr.error("Error",error) });
+    this.userService.login(this.loginForm.value.username + "").subscribe(
+      res => {
+        this.userService.setLoggedUser(res.response);
+        this.userService.setToken(auth);
+      },
+      error => {
+        this.userService.deleteToken();
+        this.toastr.error("Error", error);
+      }
+    );
   }
 }

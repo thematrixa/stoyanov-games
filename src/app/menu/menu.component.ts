@@ -31,7 +31,6 @@ export class MenuComponent implements OnInit {
   }
 
   updateMenu(newPrice: string) {
-    console.log(1);
     let loggedUser: User = this.userService.getLoggedUser();
     if (loggedUser) {
       this.isLoggedIn = true;
