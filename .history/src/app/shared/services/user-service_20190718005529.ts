@@ -86,10 +86,10 @@ export class UserService {
     return localStorage.removeItem(this.TOKEN_NAME);
   }
   redirectToHome() {
-    this.router.navigate(["/home"]);
+    this.router.navigate(["/home"], { queryParams: { returnUrl: state.url } });
   }
 
   redirectToLogin() {
-    this.router.navigate(["/login"]);
+    this.router.navigate(["/login"], { queryParams: { returnUrl: state.url } });
   }
 }

@@ -15,14 +15,13 @@ export class ProductsComponent implements OnInit {
     private productService: ProductService,
     private cartService: CartService
   ) {
-  }
-
-  ngOnInit() {
     this.productService.getProducts().subscribe(res => {
       this.productList = res.response;
       this.originalProductsList = this.productList;
     });
   }
+
+  ngOnInit() {}
 
   filterProductsByName(values: any) {
     let name = values.target.value;

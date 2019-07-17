@@ -22,10 +22,11 @@ export class CategoriesAdminComponent implements OnInit {
     private backEndService: BackEndService,
     private toastr: ToastrService,
   ) {
+    this.categoryList = this.categoriesService.getCategories();
   }
 
   ngOnInit() {
-    let categories = this.categoriesService.getCategories();
+    let categories = this.backEndService.getCategories();
     forkJoin(categories).subscribe(results => {
       this.categoryList = results[0].response;
     });
@@ -68,7 +69,7 @@ export class CategoriesAdminComponent implements OnInit {
   }
 
   saveCategories() {
-    this.categoriesService.setCategories(this.categoryList).subscribe(
+    this.backEndService.setCategories(this.categoryList).subscribe(
       (res) => {
         this.toastr.success('Great', 'Upload successfull!');},
       (err: HttpErrorResponse) => {

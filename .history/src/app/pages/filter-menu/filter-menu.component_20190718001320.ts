@@ -10,7 +10,7 @@ import { CategoriesService } from "src/app/shared/services/categories-service";
 export class FilterMenuComponent implements OnInit {
   categories: Array<Category>;
   constructor(private categoryService: CategoriesService) {}
-  hasLoaded = false;
+  private hasLoaded = false;
   private value: any = [];
   private _disabledV: string = "0";
   private disabled: boolean = false;
@@ -18,6 +18,27 @@ export class FilterMenuComponent implements OnInit {
   private items: Array<any> = [];
   selectedItems = [];
   dropdownSettings = {};
+
+  @Output() priceEmitter = new EventEmitter<any>();
+  @Output() categoriesEmitter = new EventEmitter<any>();
+
+  ngOnInit() {
+    this.categoryService.getCategories().subscribe(res => {
+      this.categories = res.response;
+    });
+    this.dropdownSettings = {
+      singleSelection: false,
+      idField: "id",
+      textField: "name",
+      selectAllText: "Select All",
+      unSelectAllText: "UnSelect All",
+      itemsShowLimit: 10,
+      allowSearchFilter: false,
+      defaultOpen: true,
+      enableCheckAll: false,
+      maxHeight: "300px"
+    };
+  }
   minValue: number = 0;
   maxValue: number = 100;
   options: Options = {
@@ -34,30 +55,6 @@ export class FilterMenuComponent implements OnInit {
       }
     }
   };
-
-  @Output() priceEmitter = new EventEmitter<any>();
-  @Output() categoriesEmitter = new EventEmitter<any>();
-
-  ngOnInit() {
-    this.categoryService.getCategories().subscribe(res => {
-      this.categories = res.response;
-      this.hasLoaded = true;
-    
-      this.dropdownSettings = {
-        singleSelection: false,
-        idField: "id",
-        textField: "name",
-        selectAllText: "Select All",
-        unSelectAllText: "UnSelect All",
-        itemsShowLimit: 10,
-        allowSearchFilter: false,
-        defaultOpen: true,
-        enableCheckAll: false,
-        maxHeight: "300px"
-      };
-
-    });
-  }
 
   emitPrice(values: any) {
     this.priceEmitter.emit({

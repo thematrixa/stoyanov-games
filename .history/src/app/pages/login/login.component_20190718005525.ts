@@ -45,7 +45,6 @@ export class LoginComponent implements OnInit {
       },
       error => {
         this.userService.deleteToken();
-        //fix error inlogin
         this.toastr.error("Error", error);
       }
     );
