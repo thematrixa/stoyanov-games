@@ -42,4 +42,7 @@ export class MenuComponent implements OnInit {
     this.cartTotal = newPrice;
   }
 
+  logout(){
+    this.userService.logout();
+  }
 }

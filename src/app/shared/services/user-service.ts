@@ -10,7 +10,8 @@ import { Router } from "@angular/router";
 
 @Injectable()
 export class UserService {
-  private TOKEN_NAME: string = "token";
+  private TOKEN: string = "token";
+  private USERNAME: string = "username";
   private options = {
     headers: new HttpHeaders().set("Content-Type", "application/json")
   };
@@ -66,6 +67,8 @@ export class UserService {
   logout() {
     this.redirectToLogin();
     this.deleteToken();
+    this.deleteUsername();
+    this.setLoggedUser(null);
   }
 
   generateAuthentication(form: FormGroup) {
@@ -75,21 +78,60 @@ export class UserService {
   }
 
   setToken(authToken) {
-    localStorage.setItem(this.TOKEN_NAME, authToken);
+    localStorage.setItem(this.TOKEN, authToken);
   }
 
   getToken() {
-    return localStorage.getItem(this.TOKEN_NAME);
+    return localStorage.getItem(this.TOKEN);
   }
 
   deleteToken() {
-    return localStorage.removeItem(this.TOKEN_NAME);
+    return localStorage.removeItem(this.TOKEN);
   }
+
+  setUsername(username) {
+    localStorage.setItem(this.USERNAME, username);
+  }
+
+  getUsername() {
+    return localStorage.getItem(this.USERNAME);
+  }
+
+  deleteUsername() {
+    return localStorage.removeItem(this.USERNAME);
+  }
+
   redirectToHome() {
     this.router.navigate(["/home"]);
   }
 
   redirectToLogin() {
     this.router.navigate(["/login"]);
+  }
+  isLoginPage() {
+    if (this.router.url === "/login") {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  resumeLogin() {
+    if (this.getToken() && this.getUsername() && !this.user) {
+      this.login(this.getUsername()).subscribe(
+        res => {
+          this.setLoggedUser(res.response);
+          if (this.isLoginPage()) {
+            this.redirectToHome();
+          }
+        },
+        error => {
+          this.deleteToken();
+          this.deleteUsername();
+          //fix error inlogin
+          console.log("resumeLoginError");
+        }
+      );
+    }
   }
 }

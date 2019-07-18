@@ -7,15 +7,26 @@ import { UserService } from './shared/services/user-service';
 export class BasicAuthInterceptor implements HttpInterceptor {
     constructor(private userService: UserService) { }
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+        
         let token = this.userService.getToken();
         if (token) {
-            request = request.clone({
-                setHeaders: {
-                    Authorization: 'Basic ' + token
-                }
-            });
+            if(!this.isBanListUrl(request.url)){    
+                request = request.clone({
+                    setHeaders: {
+                        Authorization: 'Basic ' + token
+                    }
+                }); 
+            }
         }
 
         return next.handle(request);
+    }
+
+    isBanListUrl(url){
+        if(url==="https://db.ygoprodeck.com/api/v4/cardinfo.php?banlist=TCG"){
+            return true;
+        }else{
+            return false;
+        }
     }
 }

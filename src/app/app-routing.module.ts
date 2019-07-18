@@ -41,8 +41,8 @@ const routes: Routes = [
   { path: 'mulligan', component: MulliganComponent},
   { path: 'products', component: ProductsComponent},
   { path: 'product-detail', component: ProductDetailComponent},
-  { path: 'sale', component: OnSaleComponent, canActivate: [AuthGuard]  },
-  { path: 'new', component: NewComponent, canActivate: [AuthGuard]  },
+  { path: 'sale', component: OnSaleComponent},
+  { path: 'new', component: NewComponent},
   { path: 'news', component: NewsComponent},
   {
     path: 'admin-module', component: AdminModuleComponent,
@@ -52,7 +52,7 @@ const routes: Routes = [
       { path: 'news', component: NewsAdminComponent, canActivate: [AuthGuard]  },
       { path: 'images', component: ImagesAdminComponent, canActivate: [AuthGuard]  },
       { path: 'on-sale', component: OnSaleAdminComponent, canActivate: [AuthGuard]  },
-      { path: 'products', component: ProductsAdminComponent, canActivate: [AuthGuard]  },
+      { path: 'products', component: ProductsAdminComponent, canActivate: [AuthGuard] },
       { path: 'orders', component: OrdersAdminComponent, canActivate: [AuthGuard]  },
     ]
   }

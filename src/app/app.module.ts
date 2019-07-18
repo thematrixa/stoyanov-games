@@ -59,6 +59,7 @@ import { ProductService } from "./shared/services/product-service";
 import { UserService } from "./shared/services/user-service";
 import { BasicAuthInterceptor } from './basic-auth.interceptor';
 import { ErrorInterceptor } from './error.interceptor';
+import { HomeComponent } from './pages/home/home.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -94,7 +95,8 @@ import { ErrorInterceptor } from './error.interceptor';
     UserSettingsComponent,
     FilterMenuComponent,
     CartComponent,
-    DateFormatPipe
+    DateFormatPipe,
+    HomeComponent
   ],
   imports: [
     CommonModule,

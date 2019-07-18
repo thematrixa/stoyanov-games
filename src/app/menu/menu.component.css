@@ -9,8 +9,8 @@
 }
 
 .navbar {
-    /*position: fixed;
-  top: 0;*/
+    position: relative!important;
+  top: 0;
     width: 100%;
     z-index: 5;
     color: rgba(0, 0, 0, 0.9);
@@ -25,4 +25,8 @@
 .right-position {
     position: absolute;
     right: 0px;
+}
+
+.sticky-margin-navbar {
+    position: fixed!important;
 }

@@ -37,6 +37,7 @@ export class LoginComponent implements OnInit {
     }
     let auth = this.userService.generateAuthentication(this.loginForm);
     this.userService.setToken(auth);
+    this.userService.setUsername(this.loginForm.value.username + "");
     this.userService.login(this.loginForm.value.username + "").subscribe(
       res => {
         this.userService.setLoggedUser(res.response);
@@ -45,6 +46,7 @@ export class LoginComponent implements OnInit {
       },
       error => {
         this.userService.deleteToken();
+        this.userService.deleteUsername();
         //fix error inlogin
         this.toastr.error("Error", error);
       }

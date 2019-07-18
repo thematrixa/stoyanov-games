@@ -46,7 +46,7 @@ public class CustomWebSecurityConfigurerAdapter extends WebSecurityConfigurerAda
 	protected void configure(HttpSecurity http) throws Exception {
 
 		http.csrf().disable().cors().and().sessionManagement().disable().authorizeRequests()
-				.antMatchers("/securityNone", "/users/**").permitAll().anyRequest().authenticated().and().httpBasic()
+				.antMatchers("/securityNone", "/users/**", "/products/get", "/categories/get").permitAll().anyRequest().authenticated().and().httpBasic()
 				//.authenticationEntryPoint(authenticationEntryPoint).and()
 				//.addFilterBefore(new SimpleCORSFilter(), BasicAuthenticationFilter.class);
 		;
