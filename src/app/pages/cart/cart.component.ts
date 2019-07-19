@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { CartItem } from 'src/app/shared/models/cart-item';
 import { CartService } from 'src/app/shared/services/cart-service';
 
@@ -8,6 +8,7 @@ import { CartService } from 'src/app/shared/services/cart-service';
   styleUrls: ['./cart.component.css']
 })
 export class CartComponent implements OnInit {
+  @ViewChild('customerInfo') customerInfo: ElementRef<HTMLElement>;
   cartItems: Array<CartItem>
     constructor(private cartService: CartService) {
   }
@@ -33,5 +34,14 @@ export class CartComponent implements OnInit {
     if (fieldName === 'DateAdded') {
       this.cartItems.sort((a, b) =>a.product.dateAdded>b.product.dateAdded ? -1 : a.product.dateAdded<b.product.dateAdded ? 1 : 0);
     }
+  }
+
+  backward(){
+
+  }
+  forward(){
+    let customerInfo: HTMLElement = this.customerInfo.nativeElement;
+    customerInfo.click();
+    //this.customerInfo.nativeElement.click();
   }
 }

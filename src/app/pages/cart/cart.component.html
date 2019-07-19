@@ -3,7 +3,7 @@
 </div>
 
 <igx-tabs tabsType="fixed">
-    <igx-tabs-group label="Преглед" #show>
+    <igx-tabs-group label="Преглед">
         <div id="table" class="table-editable">
             <table class="table table-bordered table-responsive-md text-center"
                 *ngFor="let item of cartItems; let id = index">
@@ -40,18 +40,16 @@
         </div>
         <div class="container">
             <div class="row">
-                    <div class="form-group col-6">
-                        <button type="submit" class="btn btn-block btn-success float-right">Продължи с пазаруването</button>
-                    </div>
-                    <div class="form-group col-6">
-                        <button class="btn btn-block btn-success float-right">Напред</button>
-                    </div>
+                <div class="form-group col-6">
+                    <button type="submit" class="btn btn-block btn-success float-right">Продължи с пазаруването</button>
+                </div>
+                <div class="form-group col-6">
+                    <button (click)="forward()" class="btn btn-block btn-success float-right">Напред</button>
+                </div>
             </div>
         </div>
     </igx-tabs-group>
     <igx-tabs-group label="Данни" #customerInfo>
-            <igx-tab-item>
-                Hello
-            </igx-tab-item>
+        Данни
     </igx-tabs-group>
 </igx-tabs>
