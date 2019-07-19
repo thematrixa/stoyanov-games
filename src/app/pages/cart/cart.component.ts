@@ -35,13 +35,4 @@ export class CartComponent implements OnInit {
       this.cartItems.sort((a, b) =>a.product.dateAdded>b.product.dateAdded ? -1 : a.product.dateAdded<b.product.dateAdded ? 1 : 0);
     }
   }
-
-  backward(){
-
-  }
-  forward(){
-    let customerInfo: HTMLElement = this.customerInfo.nativeElement;
-    customerInfo.click();
-    //this.customerInfo.nativeElement.click();
-  }
 }
