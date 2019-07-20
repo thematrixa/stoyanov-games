@@ -15,7 +15,4 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  @HostListener('cartUpdate') onCartUpdated() {
-    this.cartTotal = "555";
-  }
 }

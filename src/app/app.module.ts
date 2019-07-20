@@ -60,6 +60,7 @@ import { UserService } from "./shared/services/user-service";
 import { BasicAuthInterceptor } from './basic-auth.interceptor';
 import { ErrorInterceptor } from './error.interceptor';
 import { HomeComponent } from './pages/home/home.component';
+import { ChooseAddressFormControlComponent } from './shared/form-controls/choose-address-form-control/choose-address-form-control.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -90,6 +91,7 @@ import { HomeComponent } from './pages/home/home.component';
     NewsComponent,
     NewComponent,
     AddImageFormControlComponent,
+    ChooseAddressFormControlComponent,
     AddressesComponent,
     MyOrdersComponent,
     UserSettingsComponent,

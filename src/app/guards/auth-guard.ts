@@ -10,6 +10,7 @@ export class AuthGuard implements CanActivate {
         private userService: UserService) { }
 
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
+        this.userService.resumeLogin();
         if (this.userService.getToken()) {
             return true;
         }
