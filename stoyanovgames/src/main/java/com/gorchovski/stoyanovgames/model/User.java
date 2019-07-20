@@ -1,9 +1,16 @@
 package com.gorchovski.stoyanovgames.model;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -16,14 +23,16 @@ public class User {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@JsonProperty("id")
 	private Integer id;
+	@Column(unique = true)
 	@JsonProperty("username")
 	private String username;
 	@JsonProperty("password")
 	private String password;
 	@JsonProperty("email")
 	private String email;
-	@JsonProperty("address")
-	private String address;
+	@JsonProperty("addresses")
+	@ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE })
+	private List<Address> addresses;
 	@JsonProperty("phone")
 	private String phone;
 	@JsonProperty("isEmailConfirmed")
@@ -65,12 +74,12 @@ public class User {
 		this.email = email;
 	}
 
-	public String getAddress() {
-		return address;
+	public List<Address> getAddresses() {
+		return addresses;
 	}
 
-	public void setAddress(String address) {
-		this.address = address;
+	public void setAddresses(List<Address> addresses) {
+		this.addresses = addresses;
 	}
 
 	public String getPhone() {

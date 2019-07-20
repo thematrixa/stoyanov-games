@@ -42,6 +42,10 @@ public class UserService {
 		securityService.autoLogin(user.getUsername(), deCryptedPassword);
 
 	}
+	
+	public void update(User user) {
+		this.userRepository.save(user);
+	}
 
 	public User getUser(String username) {
 		return this.userRepository.findByUsername(username);

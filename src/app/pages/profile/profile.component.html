@@ -4,7 +4,7 @@
             <app-side-menu [sideMenu]="sideMenuList"></app-side-menu>
         </div>
         <div class="col-9">
-            <router-outlet></router-outlet>
+            <router-outlet (activate)="resumeLogin()" ></router-outlet>
         </div>
     </div>
 </div>

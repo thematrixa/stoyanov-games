@@ -27,5 +27,8 @@ export class ProfileComponent implements OnInit {
     this.sideMenuList.push({name: 'Моите поръчки', routerLink: 'orders', dropdown: []});
     this.sideMenuList.push({name: 'Настройки', routerLink: 'settings', dropdown: []});
   }
+  resumeLogin(){
+    this.userService.resumeLogin();
+  }
 
 }

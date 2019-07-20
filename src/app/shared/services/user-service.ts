@@ -7,6 +7,7 @@ import { StoyanovGamesResponse } from "../models/stoyanov-games-response";
 import { Order } from "../models/order";
 import { Observable } from "rxjs";
 import { Router } from "@angular/router";
+import { Address } from '../models/address';
 
 @Injectable()
 export class UserService {
@@ -30,12 +31,13 @@ export class UserService {
   generateUserFromForm(form: FormGroup): User {
     let formData = form.getRawValue();
     let user = new User();
+    let address = new Address(formData.address ? formData.address : "");
 
     user.username = formData.username;
     user.password = formData.password;
     user.email = formData.email;
-    user.address = formData.address;
-    user.phone = formData.phone;
+    user.addresses.push(address);
+    user.phone = formData.phone ? formData.phone : "";
     user.isEmailConfirmed = false;
     user.name = formData.names;
     user.isAdmin = false;
@@ -52,6 +54,12 @@ export class UserService {
 
   registerUser(user): Observable<any> {
     let url = environment._BACKEND + "/users/register";
+    console.log(user);
+    return this.backEndService.post<any>(url, user, this.options);
+  }
+
+  updateUser(user): Observable<any> {
+    let url = environment._BACKEND + "/users/update";
     console.log(user);
     return this.backEndService.post<any>(url, user, this.options);
   }

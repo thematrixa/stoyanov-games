@@ -38,6 +38,10 @@ tr:hover {
     opacity: 0.5;
 }
 
+.delete-image-button:hover {
+    opacity: 0.5;
+}
+
 .add-button:hover {
     filter: opacity(80%);
 }

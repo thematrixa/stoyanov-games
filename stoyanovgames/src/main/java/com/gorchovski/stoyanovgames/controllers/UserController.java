@@ -36,8 +36,14 @@ public class UserController {
 		this.userService.save(user);
 		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 	}
+	
+	@RequestMapping(method = RequestMethod.POST, value = "/update", consumes = "application/json")
+	public ResponseEntity<?> updateUser(@RequestBody User user) {
+		this.userService.update(user);
+		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+	}
 
-	@RequestMapping(produces = "application/json", method = RequestMethod.GET, value = "/login")
+	@RequestMapping(produces = "application/json", method = RequestMethod.GET, value = "/login" )
 	public StoyanovGamesResponse<?> loginUser(@RequestParam String username) {
 		return new StoyanovGamesResponse<>(this.userService.getUser(username));
 	}

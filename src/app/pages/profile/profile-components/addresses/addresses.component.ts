@@ -1,38 +1,66 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { User } from 'src/app/shared/models/user';
-import { UserService } from 'src/app/shared/services/user-service';
-import { FormGroup, Validators, FormBuilder } from '@angular/forms';
+import { Component, OnInit, Input } from "@angular/core";
+import { User } from "src/app/shared/models/user";
+import { UserService } from "src/app/shared/services/user-service";
+import { FormGroup, Validators, FormBuilder } from "@angular/forms";
+import { Address } from "src/app/shared/models/address";
 
 @Component({
-  selector: 'app-addresses',
-  templateUrl: './addresses.component.html',
-  styleUrls: ['./addresses.component.css']
+  selector: "app-addresses",
+  templateUrl: "./addresses.component.html",
+  styleUrls: ["./addresses.component.css"]
 })
 export class AddressesComponent implements OnInit {
-
   user: User;
-  userSettingsForm: FormGroup;
+  addresses: Array<Address>;
   submitted = false;
-  constructor(
-    private formBuilder: FormBuilder,
-    private userService: UserService) { }
+  constructor(private userService: UserService) {}
 
   ngOnInit() {
     this.user = this.userService.getLoggedUser();
-    this.userSettingsForm = this.formBuilder.group({
-      address: ['', Validators.required]
-  });
-  this.userSettingsForm.patchValue({ address: this.user.address }, {});
-  }
-
-  get f() { return this.userSettingsForm.controls; }
-
-  onSubmit() {
-    //isActive should be set to 1;
-    this.submitted = true;
-    // stop here if form is invalid
-    if (this.userSettingsForm.invalid) {
-        return;
+    console.log(this.user);
+    this.addresses = [];
+    for (var i = 0; i < this.user.addresses.length; i++) {
+      this.user.addresses[i].isValid=true;
+      this.addresses.push(this.user.addresses[i]);
     }
   }
+
+  addAddress() {
+    let address = new Address("");
+    address.name = "";
+    this.addresses.push(address);
+  }
+
+  isAdressesValid() {
+    for (var i = 0; i < this.addresses.length; i++) {
+      console.log(this.addresses[i].name.length);
+      if (this.addresses[i].name.length == 0) {
+        this.triggerErrorClass(i);
+        return false;
+      }
+    }
+    return true;
+  }
+
+  saveAddresses(){
+    if(!this.isAdressesValid()){
+      return;
+    }
+    this.user.addresses = this.addresses;
+    this.userService.updateUser(this.user).subscribe(res=>{console.log(res);console.log("ivelin")},error=>{console.log(error)});
+    //save adresses
+  }
+  
+  triggerErrorClass(id:number){
+    this.addresses[id].isValid = false;
+  }
+
+  clearErrorClass(id:number){
+    this.addresses[id].isValid = true;
+  }
+
+  remove(id: any) {
+    this.addresses.splice(id, 1);
+  }
+
 }
