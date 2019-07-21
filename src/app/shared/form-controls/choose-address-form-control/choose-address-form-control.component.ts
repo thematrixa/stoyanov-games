@@ -4,7 +4,8 @@ import {
   Input,
   OnInit,
   Renderer2,
-  ViewChildren
+  ViewChildren,
+  AfterViewInit
 } from "@angular/core";
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
 
@@ -25,7 +26,10 @@ export class ChooseAddressFormControlComponent
   @Input("addresses") addresses;
   @ViewChildren("radio") radioButtons;
   value: string;
-  ngOnInit() {}
+  customAddress: string;
+
+  ngOnInit() {
+  }
 
   writeValue(value: any): void {}
   registerOnTouched(fn: any): void {}
@@ -53,4 +57,5 @@ export class ChooseAddressFormControlComponent
     private renderer: Renderer2,
     private host: ElementRef<HTMLInputElement>
   ) {}
+
 }

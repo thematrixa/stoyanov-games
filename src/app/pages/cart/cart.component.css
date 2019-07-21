@@ -40,3 +40,37 @@
 table {
     margin: auto;
 }
+
+.section-number {
+    float: left;
+    width: 52px;
+    height: 52px;
+    line-height: 52px;
+    margin: 0px 20px 0px 0px;
+    background: #e7e7e7;
+    text-align: center;
+    font-size: 24px;
+    color: #444;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.section-name{
+    float: left;
+    width: auto;
+    height: auto;
+    padding: 15px 0px 15px 0px;
+    font-size: 18px;
+    line-height: 22px;
+    color: #444;
+}
+
+.section {
+    float: left;
+    width: 100%;
+    height: auto;
+    padding: 0px;
+    margin: 10px 10px 20px 0px;
+    border-top: 1px solid #f1f1f1;
+    border-bottom: 1px solid #f1f1f1;
+}
