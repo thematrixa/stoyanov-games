@@ -11,7 +11,7 @@ import { CartService } from 'src/app/shared/services/cart-service';
 export class ProductTileComponent implements OnInit {
   @Input() product: Product;
   @Output() cartUpdate = new EventEmitter<boolean>();
-
+  starsCount = 5;
   constructor(
     private productDetails: ProductDetailsService,
     private cartService: CartService) { }

@@ -127,4 +127,8 @@ export class CartComponent implements OnInit, AfterViewInit {
   submit(){
 
   }
+
+  cartTotal(){
+    return this.cartService.getCartTotal();
+  }
 }

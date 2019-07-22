@@ -99,7 +99,6 @@ import { ChooseAddressFormControlComponent } from './shared/form-controls/choose
     CartComponent,
     DateFormatPipe,
     HomeComponent,
-    RatingModule
   ],
   imports: [
     CommonModule,
@@ -138,7 +137,8 @@ import { ChooseAddressFormControlComponent } from './shared/form-controls/choose
     Ng5SliderModule,
     NgMultiSelectDropDownModule.forRoot(),
     NumberPickerModule,
-    StickyNavModule
+    StickyNavModule,
+    RatingModule
   ],
   exports: [
     AccordionModule,

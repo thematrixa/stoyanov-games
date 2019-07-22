@@ -13,7 +13,9 @@
       </div>
       <div>
             <span class="row">
-                  <b><p class='product-price'>{{product.price}}</p></b>
+                  <b><span class='product-price'>{{product.price}}</span></b>
+                  <span><rating (click)="addToCart($event);$event.stopPropagation()" [(ngModel)]="starsCount" [max]="5">
+                  </rating></span>
             </span>
       </div>
 </div>

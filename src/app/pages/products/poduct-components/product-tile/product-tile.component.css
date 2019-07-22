@@ -27,3 +27,14 @@ img {
     width: 75%;
     font-size: 14px;
 }
+
+.product-price{
+
+    width: 20%;
+    font-size: 14px;
+}
+
+.product-rating{
+    width:80%;
+    float:right;
+}

@@ -4,7 +4,7 @@
 <div class="container">
     <div class="row">
         <div class="col-8">
-            <tabset>
+            <tabset #t>
                 <tab heading="Преглед">
                     <div id="table" class="table-editable">
                         <table class="table table-bordered table-responsive-md text-center"
@@ -47,90 +47,100 @@
                                 <button (click)="navigateToProducts()" type="submit"
                                     class="btn btn-block btn-success float-right">Продължи с пазаруването</button>
                             </div>
-                            <div class="form-group col-6">
+                            <!-- <div class="form-group col-6">
                                 <button (click)="forward()"
                                     class="btn btn-block btn-success float-right">Напред</button>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                 </tab>
                 <tab heading="Данни" #customerInfo>
                     <div class="container p-4">
-                            <div class="row">
-                                <div class="section col-10 col-centered">
-                                    <span class="section-number">
-                                        1
-                                    </span>
-                                    <span class="section-name">
-                                        Данни за клиента
-                                    </span>
-                                </div>
+                        <div class="row">
+                            <div class="section col-10 col-centered">
+                                <span class="section-number">
+                                    1
+                                </span>
+                                <span class="section-name">
+                                    Данни за клиента
+                                </span>
                             </div>
-                            <div class="row">
-                                <div class="section col-10 col-centered">
-                                    <input placeholder="Names" [(ngModel)]="names" type="text" class="form-control" />
-                                </div>
+                        </div>
+                        <div class="row">
+                            <div class="section col-10 col-centered">
+                                <input placeholder="Names" [(ngModel)]="names" type="text" class="form-control" />
                             </div>
-                            <div class="row">
-                                <div class="section col-10 col-centered">
-                                    <choose-address (address)="setAddress($event)" [addresses]="addresses"></choose-address>
-                                </div>
+                        </div>
+                        <div class="row">
+                            <div class="section col-10 col-centered">
+                                <choose-address (address)="setAddress($event)" [addresses]="addresses"></choose-address>
                             </div>
-                            <div class="row">
-                                <div class="section col-10 col-centered">
-                                    <span class="section-number">
-                                        2
-                                    </span>
-                                    <span class="section-name">
-                                        Начин на доставка
-                                    </span>
-                                </div>
+                        </div>
+                        <div class="row">
+                            <div class="section col-10 col-centered">
+                                <span class="section-number">
+                                    2
+                                </span>
+                                <span class="section-name">
+                                    Начин на доставка
+                                </span>
                             </div>
-                            <div class="row">
-                                <div class="section col-10 col-centered">
-                                    <input type="radio" checked="checked" />Econt
-                                </div>
+                        </div>
+                        <div class="row">
+                            <div class="section col-10 col-centered">
+                                <input type="radio" checked="checked" />Econt
                             </div>
-                            <div class="row">
-                                <div class="section col-10 col-centered">
-                                    <span class="section-number">
-                                        3
-                                    </span>
-                                    <span class="section-name">
-                                        Начин на плащане
-                                    </span>
-                                </div>
+                        </div>
+                        <div class="row">
+                            <div class="section col-10 col-centered">
+                                <span class="section-number">
+                                    3
+                                </span>
+                                <span class="section-name">
+                                    Начин на плащане
+                                </span>
                             </div>
-                            <div class="row">
-                                <div class="section col-10 col-centered">
-                                    <input type="radio" checked="checked" />Наложен платеж
-                                </div>
+                        </div>
+                        <div class="row">
+                            <div class="section col-10 col-centered">
+                                <input type="radio" checked="checked" />Наложен платеж
                             </div>
-                            <div class="row">
-                                <div class="section col-10 col-centered">
-                                    <span class="section-number">
-                                        4
-                                    </span>
-                                    <span class="section-name">
-                                        Коментар
-                                    </span>
-                                </div>
+                        </div>
+                        <div class="row">
+                            <div class="section col-10 col-centered">
+                                <span class="section-number">
+                                    4
+                                </span>
+                                <span class="section-name">
+                                    Коментар
+                                </span>
                             </div>
-                            <div class="row">
-                                <div class="section col-10 col-centered">
-                                    <textarea placeholder="Comment" type="text" class="form-control"></textarea>
-                                </div>
+                        </div>
+                        <div class="row">
+                            <div class="section col-10 col-centered">
+                                <textarea placeholder="Comment" type="text" class="form-control"></textarea>
                             </div>
+                        </div>
 
-                            <div class="row">
-                                <div class="section col-10 col-centered">
-                                    <button class="btn btn-block btn-success float-right"
-                                        (click)="pay();">Плати</button>
-                                </div>
+                        <div class="row">
+                            <div class="section col-10 col-centered">
+                                <button class="btn btn-block btn-success float-right" (click)="pay();">Плати</button>
                             </div>
+                        </div>
                     </div>
                 </tab>
             </tabset>
+        </div>
+        <div class="col-4">
+            <span class="total-section-text">
+                Обща сума:
+            </span>
+            <span class="total-section-price">
+                {{cartTotal()}}
+            </span>
+            <div class="col-12">
+                <button (click)="t.select('Данни')" class="btn btn-block btn-success float-right">Напред</button>
+            </div>
         </div>
     </div>
 </div>
