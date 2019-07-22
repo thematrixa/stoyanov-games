@@ -18,14 +18,14 @@ export class ProductService {
   constructor(private dateFormatter: DateFormatPipe,
     private backEnd: HttpClient) { }
 
-  getOnSaleProducts() {
-    return this.products.filter(function (product) {
+  getOnSaleProducts(products: any) {
+    return products.filter(function (product) {
       return Number(product.onSalePercent) > 0;
     });
   }
 
-  getNewProducts() {
-    return this.products.filter(function (product) {
+  getNewProducts(products:any) {
+    return products.filter(function (product) {
       const d1 = new Date();
       const d2 = new Date(product.dateAdded);
       return (d1.getMonth() - d2.getMonth()) <= 1 && d1.getFullYear() === d2.getFullYear();

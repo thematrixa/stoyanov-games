@@ -73,7 +73,7 @@
                             </div>
                             <div class="row">
                                 <div class="section col-10 col-centered">
-                                    <choose-address [addresses]="addresses"></choose-address>
+                                    <choose-address (address)="setAddress($event)" [addresses]="addresses"></choose-address>
                                 </div>
                             </div>
                             <div class="row">

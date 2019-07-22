@@ -22,11 +22,8 @@ export class OnSaleAdminComponent implements OnInit {
   constructor(
     private productService: ProductService,
     private categoriesService: CategoriesService,
-    private backEndService: BackEndService,
     private toastr: ToastrService
   ) {
-    // this.products = productService.getProducts();
-    // this.originalProductsList = this.products;
   }
 
   ngOnInit() {

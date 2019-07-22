@@ -9,7 +9,9 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Order } from 'src/app/shared/models/order';
 import { Product } from 'src/app/shared/models/product';
 import { formatDate } from '@angular/common';
+import { OrderService } from 'src/app/shared/services/orders-service';
 import { OrderStatusEnum } from 'src/app/shared/enums/order-status-enum';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-cart',
@@ -21,7 +23,6 @@ export class CartComponent implements OnInit, AfterViewInit {
   dataColWidth: number = 10;
   
   @ViewChild('customerInfo') customerInfo: ElementRef<HTMLElement>;
-  orderStatus: OrderStatusEnum;
   cartItems: Array<CartItem>;
   addresses: Array<Address> = [];
   names: string;
@@ -30,7 +31,9 @@ export class CartComponent implements OnInit, AfterViewInit {
 
     constructor(private cartService: CartService,
       private router:Router,
-      private userService:UserService) {
+      private userService:UserService,
+      private orderService: OrderService,
+      private toastrService: ToastrService) {
       this.addresses.push(new Address(""));
   }
 
@@ -78,10 +81,12 @@ export class CartComponent implements OnInit, AfterViewInit {
   }
 
   isPayFormValid(){
-    if(this.names.length>0 && this.address.length > 0){
+    if(this.names.length>0 && this.address.length > 0 && this.cartItems.length > 0){
+      this.toastrService.success("Поръчката се обработва");
       return true;
     }
     else{
+      this.toastrService.success("Невалидна поръчка");
       return false;
     }
   }
@@ -90,6 +95,12 @@ export class CartComponent implements OnInit, AfterViewInit {
     if(!this.isPayFormValid()){
       return;
     }
+    let order = this.generateOrder();
+    this.orderService.setOrder(order).subscribe(re=>{console.log(re);console.log("Iveeln")},error=>{console.log(error)});
+  }
+
+  setAddress(event: any){
+    this.address = event;
   }
 
   generateOrder(){
@@ -100,14 +111,14 @@ export class CartComponent implements OnInit, AfterViewInit {
     order.userId = this.user.id;
     order.total = parseFloat(this.cartService.getCartTotal());
     order.phone = this.user.phone;
-    order.products = this.extractProducts();
-    order.status = this.orderStatus.UNCONFIRMED;
+    order.cartItems = this.cartItems;
+    order.status = OrderStatusEnum.UNCONFIRMED;
     return order;
   }
 
   extractProducts(){  
     let products: Array<Product> = [];
-    for(let i = 0; i < products.length; i++){
+    for(let i = 0; i < this.cartItems.length; i++){
       products.push(this.cartItems[i].product);
     }
     return products;

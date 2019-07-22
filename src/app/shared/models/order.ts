@@ -1,5 +1,6 @@
 import { formatDate } from '@angular/common';
 import { Product } from './product';
+import { CartItem } from './cart-item';
 
 export class Order {
     id: number;
@@ -9,7 +10,7 @@ export class Order {
     date: string;
     phone: string;
     total: number;
-    products: Array<Product>;
+    cartItems: Array<CartItem>;
     showProducts: boolean;
     status: string;
 }

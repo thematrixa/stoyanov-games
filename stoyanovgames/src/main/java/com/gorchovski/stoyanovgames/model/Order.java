@@ -3,6 +3,7 @@ package com.gorchovski.stoyanovgames.model;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -11,6 +12,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
@@ -24,12 +26,13 @@ public class Order {
 	private Integer userId;
 	private String name;
 	private String address;
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd.MM.yyyy")
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd.MM.yyyy HH:mm:ss")
 	private Date date;
 	private String phone;
 	private Float total;
-	@ManyToMany
-	private List<Product> products;
+	@ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE })
+	private List<CartItem> cartItems;
+	@Transient
 	private Boolean showProducts;
 	@Enumerated(EnumType.ORDINAL)
 	private OrdersEnum status;
@@ -75,11 +78,11 @@ public class Order {
 	public void setTotal(Float total) {
 		this.total = total;
 	}
-	public List<Product> getProducts() {
-		return products;
+	public List<CartItem> getCartItems() {
+		return cartItems;
 	}
-	public void setProducts(List<Product> products) {
-		this.products = products;
+	public void setProducts(List<CartItem> cartItems) {
+		this.cartItems = cartItems;
 	}
 	public Boolean getShowProducts() {
 		return showProducts;

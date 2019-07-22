@@ -98,7 +98,8 @@ import { ChooseAddressFormControlComponent } from './shared/form-controls/choose
     FilterMenuComponent,
     CartComponent,
     DateFormatPipe,
-    HomeComponent
+    HomeComponent,
+    RatingModule
   ],
   imports: [
     CommonModule,

@@ -6,6 +6,7 @@ import { BackEndService } from 'src/app/shared/services/back-end-service';
 import { forkJoin } from 'rxjs';
 import { HttpErrorResponse } from '@angular/common/http';
 import { ToastrService } from 'ngx-toastr';
+import { OrderStatusEnum } from 'src/app/shared/enums/order-status-enum';
 
 @Component({
   selector: "app-orders",
@@ -20,9 +21,7 @@ export class OrdersAdminComponent implements OnInit {
   completedOrders: Array<Order> = [];
 
   constructor(
-    private productService: ProductService,
     private orderService: OrderService,
-    private backEndService: BackEndService,
     private toastr: ToastrService,
   ) {
   }
@@ -46,46 +45,48 @@ export class OrdersAdminComponent implements OnInit {
 
   confirmOrder(id: any) {
     const confirmedOrder = this.removeOrder(this.unconfirmedOrders, id);
-    confirmedOrder.status = "CONFIRMED";
+    confirmedOrder.status = OrderStatusEnum.CONFIRMED;
     this.updateOrder(confirmedOrder);
     this.confirmedOrders.push(confirmedOrder);
   }
 
   shipOrder(id: any) {
     const shippedOrder = this.removeOrder(this.confirmedOrders, id);
-    shippedOrder.status = "SHIPPED";
+    shippedOrder.status = OrderStatusEnum.SHIPPED;
     this.updateOrder(shippedOrder);
     this.shippedOrders.push(shippedOrder);
   }
 
   completeOrder(id: any) {
     const completedOrder = this.removeOrder(this.shippedOrders, id);
-    completedOrder.status = "COMPLETED";
+    completedOrder.status = OrderStatusEnum.COMPLETED;
     this.updateOrder(completedOrder);
     this.completedOrders.push(completedOrder);
   }
 
   deshipOrder(id: any) {
     const deshippedOrder = this.removeOrder(this.shippedOrders, id);
-    deshippedOrder.status = "CONFIRMED";
+    deshippedOrder.status = OrderStatusEnum.CONFIRMED;
     this.updateOrder(deshippedOrder);
     this.confirmedOrders.push(deshippedOrder);
   }
   decompleteOrder(id: any) {
     const completedOrder = this.removeOrder(this.completedOrders, id);
-    completedOrder.status = "SHIPPED";
+    completedOrder.status = OrderStatusEnum.SHIPPED;
     this.updateOrder(completedOrder);
     this.shippedOrders.push(completedOrder);
   }
   unconfirmOrder(id: any) {
     const unconfirmedOrder = this.removeOrder(this.confirmedOrders, id);
-    unconfirmedOrder.status = "UNCONFIRMED";
+    unconfirmedOrder.status = OrderStatusEnum.UNCONFIRMED;
     this.updateOrder(unconfirmedOrder);
     this.unconfirmedOrders.push(unconfirmedOrder);
   }
 
   toggleProducts(object: any) {
     object.showProducts = !object.showProducts;
+    console.log(object.showProducts);
+    console.log(object);
   }
 
   sort(fieldName: string, array: Array<any>) {

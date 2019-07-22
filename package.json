@@ -35,6 +35,7 @@
     "ng5-slider": "^1.2.4",
     "ngx-bootstrap": "^4.1.1",
     "ngx-gallery": "^5.10.0",
+    "ngx-rating": "0.0.9",
     "ngx-toastr": "^10.0.4",
     "rxjs": "~6.3.3",
     "tasktimer": "^2.0.1",

@@ -5,7 +5,9 @@ import {
   OnInit,
   Renderer2,
   ViewChildren,
-  AfterViewInit
+  AfterViewInit,
+  EventEmitter,
+  Output
 } from "@angular/core";
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
 
@@ -25,8 +27,10 @@ export class ChooseAddressFormControlComponent
   implements OnInit, ControlValueAccessor {
   @Input("addresses") addresses;
   @ViewChildren("radio") radioButtons;
+  @Output() address = new EventEmitter<string>();
   value: string;
   customAddress: string;
+
 
   ngOnInit() {
   }
@@ -52,6 +56,7 @@ export class ChooseAddressFormControlComponent
     console.log(event.target.value);
     event.target.checked = true;
     this.value = event.target.value;
+    this.address.emit(this.value);
   }
   constructor(
     private renderer: Renderer2,
