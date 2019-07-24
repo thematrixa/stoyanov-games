@@ -7,7 +7,7 @@ import { UserService } from './shared/services/user-service';
 export class BasicAuthInterceptor implements HttpInterceptor {
     constructor(private userService: UserService) { }
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-        
+        console.log(request.url);
         let token = this.userService.getToken();
         if (token) {
             if(!this.isBanListUrl(request.url)){    

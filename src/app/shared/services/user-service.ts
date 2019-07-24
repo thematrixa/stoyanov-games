@@ -71,6 +71,13 @@ export class UserService {
       this.options
     );
   }
+  forgottenPassword(username) {
+    let url = environment._BACKEND + "/users/forgot-password?username=" + username;
+    return this.backEndService.get<StoyanovGamesResponse<User>>(
+      url,
+      this.options
+    );
+  }
 
   logout() {
     this.redirectToLogin();

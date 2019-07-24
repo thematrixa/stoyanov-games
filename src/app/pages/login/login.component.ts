@@ -29,6 +29,21 @@ export class LoginComponent implements OnInit {
     return this.loginForm.controls;
   }
 
+  forgottenPassword() {
+    if (this.loginForm.controls["username"].value.length > 0) {
+      this.userService
+        .forgottenPassword(this.loginForm.controls["username"].value)
+        .subscribe(
+          res => {this.toastr.success("Изпратено е съобщение на съответния мейл.");},
+          error => {
+            console.log(error);
+          }
+        );
+    } else {
+      this.toastr.error("Моля, попълнете потребителско име");
+    }
+  }
+
   onSubmit() {
     this.submitted = true;
     // stop here if form is invalid
@@ -38,6 +53,8 @@ export class LoginComponent implements OnInit {
     let auth = this.userService.generateAuthentication(this.loginForm);
     this.userService.setToken(auth);
     this.userService.setUsername(this.loginForm.value.username + "");
+    console.log(auth);
+    console.log(this.loginForm.value.username + "");
     this.userService.login(this.loginForm.value.username + "").subscribe(
       res => {
         this.userService.setLoggedUser(res.response);

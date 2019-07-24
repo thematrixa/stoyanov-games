@@ -4,8 +4,8 @@
 <div class="container">
     <div class="row">
         <div class="col-8">
-            <tabset #t>
-                <tab heading="Преглед">
+            <tabset #tabset>
+                <tab heading="Преглед" [active]="isCartPreviewActive">
                     <div id="table" class="table-editable">
                         <table class="table table-bordered table-responsive-md text-center"
                             *ngFor="let item of cartItems; let id = index">
@@ -54,7 +54,7 @@
                         </div>
                     </div>
                 </tab>
-                <tab heading="Данни" #customerInfo>
+                <tab heading="Данни" #customerInfo [active]="isDataActive">
                     <div class="container p-4">
                         <div class="row">
                             <div class="section col-10 col-centered">
@@ -139,7 +139,7 @@
                 {{cartTotal()}}
             </span>
             <div class="col-12">
-                <button (click)="t.select('Данни')" class="btn btn-block btn-success float-right">Напред</button>
+                <button (click)="proceed()" class="btn btn-block btn-success float-right">Напред</button>
             </div>
         </div>
     </div>

@@ -41,6 +41,7 @@ public class User {
 	private String name;
 	@JsonProperty("isAdmin")
 	private Boolean isAdmin;
+	private String resetLink;
 
 	public Integer getId() {
 		return id;
@@ -112,6 +113,14 @@ public class User {
 
 	public void setIsAdmin(Boolean isAdmin) {
 		this.isAdmin = isAdmin;
+	}
+
+	public String getResetLink() {
+		return resetLink;
+	}
+
+	public void setResetLink(String resetLink) {
+		this.resetLink = resetLink;
 	}
 
 }
