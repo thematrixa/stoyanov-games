@@ -82,7 +82,7 @@ public class UserService {
 			user.setResetLink("");
 			user.setPassword(bCryptPasswordEncoder.encode(newPassword));
 			this.userRepository.save(user);
-			//this.deleteResetLink(link);
+			this.deleteResetLink(link);
 			this.emailService.sendSimpleMessage(user.getEmail(), "StoyanovGames Reset Password",
 					"Hello,\n If this mail is sent to you by mistake.Please forgive us and ignore this email.This is your new temporary password.\n" + newPassword + "\nIt will expire in 10 minutes.");
 		} else {// TODO finish the emailing service.
@@ -104,14 +104,14 @@ public class UserService {
 		return generatedString;
 	};
 	
-	//@Async
+	@Async
 	public void deleteResetLink(String link) {
-		/*try {
+		try {
 			Thread.sleep(40000);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}*/
+		}
 		User user = this.userRepository.findByResetLink(link);
 		user.setResetLink(null);
 		this.userRepository.save(user);
