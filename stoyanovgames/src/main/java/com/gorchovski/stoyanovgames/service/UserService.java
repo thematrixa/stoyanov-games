@@ -79,7 +79,6 @@ public class UserService {
 		User user = this.userRepository.findByResetLink(link);
 		if (user.getIsEmailConfirmed()) {
 			String newPassword = this.generateRandomString();
-			user.setResetLink("");
 			user.setPassword(bCryptPasswordEncoder.encode(newPassword));
 			this.userRepository.save(user);
 			this.deleteResetLink(link);
@@ -107,7 +106,7 @@ public class UserService {
 	@Async
 	public void deleteResetLink(String link) {
 		try {
-			Thread.sleep(40000);
+			Thread.sleep(20000);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
