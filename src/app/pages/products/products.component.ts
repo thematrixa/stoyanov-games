@@ -43,7 +43,7 @@ export class ProductsComponent implements OnInit {
         );
       }
       for (let i = 0; i < values.selectedItems.length; i++) {
-        if (product.categoryId == values.selectedItems[i].id) {
+        if (product.category.id == values.selectedItems[i].id) {
           exists = true;
         }
       }

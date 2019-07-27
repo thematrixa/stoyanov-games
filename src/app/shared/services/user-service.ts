@@ -1,13 +1,12 @@
-import { HttpClient, HttpHeaders, HttpParams } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { User } from "../models/user";
 import { FormGroup } from "@angular/forms";
-import { environment } from "src/environments/environment";
-import { StoyanovGamesResponse } from "../models/stoyanov-games-response";
-import { Order } from "../models/order";
-import { Observable } from "rxjs";
 import { Router } from "@angular/router";
+import { Observable } from "rxjs";
+import { environment } from "src/environments/environment";
 import { Address } from '../models/address';
+import { StoyanovGamesResponse } from "../models/stoyanov-games-response";
+import { User } from "../models/user";
 
 @Injectable()
 export class UserService {
@@ -44,6 +43,20 @@ export class UserService {
     return user;
   }
 
+  generateUserSettingsFromForm(form: FormGroup): any {
+    let formData = form.getRawValue();
+    let user:any = {};
+    debugger;
+    user.email = formData.email;
+    user.phone = formData.phone ? formData.phone : "";
+    user.name = formData.name;
+    user.oPassword = formData.oPassword;
+    user.cPassword = formData.cPassword;
+    user.nPassword = formData.nPassword;
+    return user;
+  }
+
+
   getUsers() {
     const url = environment._BACKEND + "/users/get";
     return this.backEndService.get<StoyanovGamesResponse<User[]>>(
@@ -58,6 +71,20 @@ export class UserService {
     return this.backEndService.post<any>(url, user, this.options);
   }
 
+  changePassword(user, nPassword): Observable<any> {
+    let data = {
+      "user": user,
+      "nPassword": nPassword,
+    }
+    let url = environment._BACKEND + "/users/change-password";
+    console.log(user);
+    return this.backEndService.post<any>(url, JSON.stringify(data), this.options);
+  }
+  saveUserSettings(user): Observable<any> {
+    let url = environment._BACKEND + "/users/user-settings/save";
+    console.log(user);
+    return this.backEndService.post<any>(url, JSON.stringify(user), this.options);
+  }
   updateUser(user): Observable<any> {
     let url = environment._BACKEND + "/users/update";
     console.log(user);
@@ -130,7 +157,16 @@ export class UserService {
       return false;
     }
   }
+  
+  confirmUserMail(username) {
+    let url = environment._BACKEND + "/users/confirm?username=" + username;
+    return this.backEndService.get<StoyanovGamesResponse<User>>(
+      url,
+      this.options
+    );
+  }
 
+  
   resumeLogin() {
     if (this.getToken() && this.getUsername() && !this.user) {
       this.login(this.getUsername()).subscribe(

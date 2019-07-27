@@ -48,7 +48,7 @@ export class ProductsAdminComponent implements OnInit {
       cardsPerPack: ['', Validators.required],
       size: ['', Validators.required],
       isActive: ['', Validators.required],
-      categoryId: ['', Validators.required],
+      category: ['', Validators.required],
       shortDescription: ['', Validators.required],
       photo1: ['', Validators.required],
       photo2: ['', Validators.required],
@@ -110,7 +110,7 @@ export class ProductsAdminComponent implements OnInit {
       this.productList.sort((a, b) => a.name.localeCompare(b.name));
     }
     if (fieldName === 'Category') {
-      this.productList.sort((a, b) => a.categoryId - b.categoryId);
+      this.productList.sort((a, b) => a.category.id - b.category.id);
     }
     if (fieldName === 'DateAdded') {
       this.productList.sort((a, b) =>a.dateAdded>b.dateAdded ? -1 : a.dateAdded<b.dateAdded ? 1 : 0);

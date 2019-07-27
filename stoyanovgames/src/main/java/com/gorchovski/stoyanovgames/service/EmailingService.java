@@ -1,14 +1,12 @@
 package com.gorchovski.stoyanovgames.service;
 
 import java.io.File;
-import java.io.UnsupportedEncodingException;
 
 import javax.mail.MessagingException;
-import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
-import org.assertj.core.util.Lists;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.mail.MailException;
 import org.springframework.mail.SimpleMailMessage;
@@ -18,70 +16,69 @@ import org.springframework.stereotype.Component;
 
 import com.gorchovski.stoyanovgames.model.User;
 
-import it.ozimov.springboot.mail.model.Email;
-import it.ozimov.springboot.mail.model.defaultimpl.DefaultEmail;
-
 @Component
 public class EmailingService {
 
+	@Autowired
+	public JavaMailSender emailSender;
+	@Autowired
+	it.ozimov.springboot.mail.service.EmailService emailService;
+	@Value("${server.port}")
+	private String serverPort;
+	@Value("${server.serverPath}")
 
-    @Autowired
-    public JavaMailSender emailSender;
-    @Autowired 
-    it.ozimov.springboot.mail.service.EmailService emailService;
-    public void testSendEmail() throws UnsupportedEncodingException { 
-        User user = new User(); 
-        user.setEmail("magical_dragon@abv.bg");
-        final Email email = DefaultEmail.builder() 
-            .from(new InternetAddress("ivanov960806@gmail.com", "From Spring forgotten password?"))
-            .to(Lists.newArrayList(new InternetAddress(
-                user.getEmail(), "Ivelin"))) 
-            .subject("Testing email")
-            .body("Testing body ...")
-            .encoding("UTF-8").build();
-        emailService.send(email); 
-    }
-    
-    public void sendSimpleMessage(String to, String subject, String text) {
-        try {
-            SimpleMailMessage message = new SimpleMailMessage();
-            message.setTo(to);
-            message.setSubject(subject);
-            message.setText(text);
+	private String contextPath;
 
-            emailSender.send(message);
-        } catch (MailException exception) {
-            exception.printStackTrace();
-        }
-    }
+	public void sendSimpleMessage(String to, String subject, String text) {
+		try {
+			SimpleMailMessage message = new SimpleMailMessage();
+			message.setTo(to);
+			message.setSubject(subject);
+			message.setText(text);
 
-    public void sendSimpleMessageUsingTemplate(String to,
-                                               String subject,
-                                               SimpleMailMessage template,
-                                               String ...templateArgs) {
-        String text = String.format(template.getText(), templateArgs);  
-        sendSimpleMessage(to, subject, text);
-    }
+			emailSender.send(message);
+		} catch (MailException exception) {
+			exception.printStackTrace();
+		}
+	}
 
-    public void sendMessageWithAttachment(String to,
-                                          String subject,
-                                          String text,
-                                          String pathToAttachment) {
-        try {
-            MimeMessage message = emailSender.createMimeMessage();
-            // pass 'true' to the constructor to create a multipart message
-            MimeMessageHelper helper = new MimeMessageHelper(message, true);
+	public void sendConfirmationEmail(User user) {
+		this.sendSimpleMessage(user.getEmail(), "StoyanovGames Account Confirm",
+				"Hello, If this mail is sent to you by mistake.Please forgive us and ignore this email.Use to following link "
+						+ contextPath + serverPort + "/users/confirm/" + user.getUsername()
+						+ "\n to activate your account");
+	}
 
-            helper.setTo(to);
-            helper.setSubject(subject);
-            helper.setText(text);
+	public void sendResetPasswordEmail(User user, String link) {
+		this.sendSimpleMessage(user.getEmail(), "StoyanovGames Forgotten Password",
+				"Hello, If this mail is sent to you by mistake.Please forgive us and ignore this email.Use to following link "
+						+ contextPath + serverPort + "/users/reset-password/" + link
+						+ "\n to get new email containing a temporary password");
+	}
 
-            FileSystemResource file = new FileSystemResource(new File(pathToAttachment));
-            helper.addAttachment("Invoice", file);
+	public void sendTemporaryPasswordEmail(User user, String newPassword) {
+		this.sendSimpleMessage(user.getEmail(), "StoyanovGames Reset Password",
+				"Hello,\n If this mail is sent to you by mistake.Please forgive us and ignore this email.This is your new temporary password.\n"
+						+ newPassword + "\nIt will expire in 10 minutes.");
 
-            emailSender.send(message);
-        } catch (MessagingException e) {
-            e.printStackTrace();
-        }
-    }
+	}
+
+	public void sendMessageWithAttachment(String to, String subject, String text, String pathToAttachment) {
+		try {
+			MimeMessage message = emailSender.createMimeMessage();
+			// pass 'true' to the constructor to create a multipart message
+			MimeMessageHelper helper = new MimeMessageHelper(message, true);
+
+			helper.setTo(to);
+			helper.setSubject(subject);
+			helper.setText(text);
+
+			FileSystemResource file = new FileSystemResource(new File(pathToAttachment));
+			helper.addAttachment("Invoice", file);
+
+			emailSender.send(message);
+		} catch (MessagingException e) {
+			e.printStackTrace();
+		}
+	}
 }

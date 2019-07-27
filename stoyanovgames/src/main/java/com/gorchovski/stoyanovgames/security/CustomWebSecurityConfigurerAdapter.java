@@ -42,9 +42,10 @@ public class CustomWebSecurityConfigurerAdapter extends WebSecurityConfigurerAda
 	protected void configure(HttpSecurity http) throws Exception {
 
 		http.csrf().disable().cors().and().sessionManagement().disable().authorizeRequests()
-				.antMatchers("/securityNone", "/users/**", "/products/get", "/categories/get").permitAll().anyRequest().authenticated().and().httpBasic()
-				//.authenticationEntryPoint(authenticationEntryPoint).and()
-				//.addFilterBefore(new SimpleCORSFilter(), BasicAuthenticationFilter.class);
+				.antMatchers("/securityNone", "/users/**", "/products/get", "/categories/get").permitAll().anyRequest()
+				.authenticated().and().httpBasic()
+		// .authenticationEntryPoint(authenticationEntryPoint).and()
+		// .addFilterBefore(new SimpleCORSFilter(), BasicAuthenticationFilter.class);
 		;
 
 	}
@@ -53,7 +54,7 @@ public class CustomWebSecurityConfigurerAdapter extends WebSecurityConfigurerAda
 	public CorsConfigurationSource corsConfigurationSource() {
 		final CorsConfiguration configuration = new CorsConfiguration();
 		configuration.setAllowedOrigins(ImmutableList.of("*"));// TODO: filter on allowed domains only domains
-		configuration.setAllowedMethods(ImmutableList.of("HEAD", "GET", "POST", "PUT", "DELETE", "PATCH","OPTIONS"));
+		configuration.setAllowedMethods(ImmutableList.of("HEAD", "GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"));
 		configuration.setAllowCredentials(true);
 		configuration.setAllowedHeaders(ImmutableList.of("Authorization", "Cache-Control", "Content-Type"));
 		final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();

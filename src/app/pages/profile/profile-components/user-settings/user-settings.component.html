@@ -13,18 +13,17 @@
           </div>
         </div>
         <div [formGroup]="userSettingsForm" class="form-group">
-          <input placeholder="Surname" formControlName="surname" class="form-control"
-            [ngClass]="{ 'is-invalid': submitted && f.surname.errors }" />
-          <div *ngIf="submitted && f.surname.errors" class="invalid-feedback">
-            <div *ngIf="f.surname.errors.required">Surname is required</div>
-            <div *ngIf="f.surname.errors.minlength">Surname must be more than 6 characters</div>
-          </div>
-        </div>
-        <div [formGroup]="userSettingsForm" class="form-group">
           <input placeholder="Email" formControlName="email" class="form-control"
             [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
           <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
             <div *ngIf="f.email.errors.required">Email is required</div>
+          </div>
+        </div>
+        <div [formGroup]="userSettingsForm" class="form-group">
+          <input placeholder="Phone" formControlName="phone" class="form-control"
+            [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
+          <div *ngIf="submitted && f.phone.errors" class="invalid-feedback">
+            <div *ngIf="f.phone.errors.required">Phone is required</div>
           </div>
         </div>
       </div>
@@ -44,10 +43,10 @@
           </div>
         </div>
         <div [formGroup]="userSettingsForm" class="form-group">
-          <input type="password" placeholder="Confirm Password" formControlName="cPassword" class="form-control"
+          <input type="password" placeholder="Confirm new password" formControlName="cPassword" class="form-control"
             [ngClass]="{ 'is-invalid': submitted && f.cPassword.errors }" />
           <div *ngIf="submitted && f.cPassword.errors" class="invalid-feedback">
-            <div *ngIf="f.cPassword.errors.required">Confirm password is required</div>
+            <div *ngIf="f.cPassword.errors.required">Confirm new password is required</div>
           </div>
         </div>
       </div>
@@ -55,7 +54,7 @@
     <div class="row">
       <div class="col-12 col-centered">
         <div [formGroup]="userSettingsForm" class="form-group">
-          <button type="submit" class="btn btn-block btn-success float-right">Save</button>
+          <button type="submit" class="btn btn-block btn-success float-left">Save</button>
         </div>
       </div>
     </div>

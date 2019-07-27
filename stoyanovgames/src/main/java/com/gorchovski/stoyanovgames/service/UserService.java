@@ -32,7 +32,7 @@ public class UserService {
 	private String serverPort;
 	@Value("${server.serverPath}")
 	private String contextPath;
-	
+
 	public List<User> list() {
 		return userRepository.findAll();
 	}
@@ -45,10 +45,11 @@ public class UserService {
 		this.userRepository.deleteAll();
 	}
 
-	public void save(User user) {
+	public void register(User user) throws UnsupportedEncodingException {
 		String deCryptedPassword = user.getPassword();
 		user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
 		this.userRepository.save(user);
+		this.emailService.sendConfirmationEmail(user);
 		securityService.autoLogin(user.getUsername(), deCryptedPassword);
 
 	}
@@ -68,26 +69,44 @@ public class UserService {
 			String link = this.generateRandomString();
 			user.setResetLink(link);
 			this.userRepository.save(user);
-			this.emailService.sendSimpleMessage(user.getEmail(), "StoyanovGames Forgotten Password",
-					"Hello, If this mail is sent to you by mistake.Please forgive us and ignore this email.Use to folowing link "
-							+ contextPath+ serverPort +"/users/reset-password/"+link + "\n to get new email containing a temporary password");
+			this.emailService.sendResetPasswordEmail(user, link);
 		} else {// TODO finish the emailing service.
 		}
 	}
+
 	public void resetPassword(String link) throws UnsupportedEncodingException {
-		System.out.println(link);
 		User user = this.userRepository.findByResetLink(link);
 		if (user.getIsEmailConfirmed()) {
 			String newPassword = this.generateRandomString();
 			user.setPassword(bCryptPasswordEncoder.encode(newPassword));
 			this.userRepository.save(user);
 			this.deleteResetLink(link);
-			this.emailService.sendSimpleMessage(user.getEmail(), "StoyanovGames Reset Password",
-					"Hello,\n If this mail is sent to you by mistake.Please forgive us and ignore this email.This is your new temporary password.\n" + newPassword + "\nIt will expire in 10 minutes.");
 		} else {// TODO finish the emailing service.
 		}
 	}
 
+	public void changePassword(User feUser, String newPassword) throws UnsupportedEncodingException {
+		User dbUser = this.userRepository.findByUsername(feUser.getUsername());
+		if (bCryptPasswordEncoder.matches(feUser.getPassword(), dbUser.getPassword())) {
+			newPassword = bCryptPasswordEncoder.encode(newPassword);
+			dbUser.setPassword(newPassword);
+			this.userRepository.save(dbUser);
+		} else {// TODO finish the change password
+		}
+	}
+
+	public void saveUserSettings(User feUser) throws UnsupportedEncodingException {
+		User dbUser = this.userRepository.findByUsername(feUser.getUsername());
+		dbUser.setName(feUser.getName());
+		dbUser.setPhone(feUser.getPhone());
+		this.userRepository.save(dbUser);
+	}
+
+	public void confirmUserMail(String username) throws UnsupportedEncodingException {
+		User user = this.userRepository.findByUsername(username);
+		user.setIsEmailConfirmed(true);
+		this.userRepository.save(user);
+	}
 
 	public String generateRandomString() {
 		int leftLimit = 97; // letter 'a'
@@ -102,7 +121,7 @@ public class UserService {
 		String generatedString = buffer.toString();
 		return generatedString;
 	};
-	
+
 	@Async
 	public void deleteResetLink(String link) {
 		try {

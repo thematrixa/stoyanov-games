@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.gorchovski.stoyanovgames.model.ChangePasswordRequest;
 import com.gorchovski.stoyanovgames.model.StoyanovGamesResponse;
 import com.gorchovski.stoyanovgames.model.User;
 import com.gorchovski.stoyanovgames.service.UserService;
@@ -35,31 +36,53 @@ public class UserController {
 	}
 
 	@RequestMapping(method = RequestMethod.POST, value = "/register", consumes = "application/json")
-	public ResponseEntity<?> registerUser(@RequestBody User user) {
-		this.userService.save(user);
+	public ResponseEntity<?> registerUser(@RequestBody User user) throws UnsupportedEncodingException {
+		this.userService.register(user);
 		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 	}
-	
+
 	@RequestMapping(method = RequestMethod.POST, value = "/update", consumes = "application/json")
 	public ResponseEntity<?> updateUser(@RequestBody User user) {
 		this.userService.update(user);
 		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 	}
 
-	@RequestMapping(produces = "application/json", method = RequestMethod.GET, value = "/login" )
+	@RequestMapping(produces = "application/json", method = RequestMethod.GET, value = "/login")
 	public StoyanovGamesResponse<?> loginUser(@RequestParam String username) {
 		return new StoyanovGamesResponse<>(this.userService.getUser(username));
 	}
 
-	@RequestMapping(produces = "application/json", method = RequestMethod.GET, value = "/forgot-password" )
-	public void forgottenPasswrd(@RequestParam String username) throws UnsupportedEncodingException {
-		//return new StoyanovGamesResponse<>(
-				this.userService.forgottenPassword(username);//);
+	@RequestMapping(produces = "application/json", method = RequestMethod.GET, value = "/forgot-password")
+	public ResponseEntity<?> forgottenPasswrd(@RequestParam String username) throws UnsupportedEncodingException {
+		this.userService.forgottenPassword(username);// );
+		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 	}
+
 	@CrossOrigin(origins = "*", allowedHeaders = "*")
-	@RequestMapping(produces = "application/json", method = RequestMethod.GET, value = "/reset-password/{link}" )
-	public void resetPasswrd(@PathVariable(value = "link") String link) throws UnsupportedEncodingException {
-		//return new StoyanovGamesResponse<>(
-				this.userService.resetPassword(link);//);
+	@RequestMapping(produces = "application/json", method = RequestMethod.GET, value = "/reset-password/{link}")
+	public ResponseEntity<?> resetPasswrd(@PathVariable(value = "link") String link) throws UnsupportedEncodingException {
+		this.userService.resetPassword(link);
+		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+	}
+
+	@CrossOrigin(origins = "*", allowedHeaders = "*")
+	@RequestMapping(produces = "application/json", method = RequestMethod.GET, value = "/confirm/{username}")
+	public ResponseEntity<?> confirmEmail(@PathVariable(value = "username") String username) throws UnsupportedEncodingException {
+		this.userService.confirmUserMail(username);
+		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+	}
+
+	@RequestMapping(method = RequestMethod.POST, value = "/change-password", consumes = "application/json")
+	public ResponseEntity<?> changePassword(@RequestBody ChangePasswordRequest data)
+			throws UnsupportedEncodingException {
+
+		this.userService.changePassword(data.getUser(), data.getnPassword());
+		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+	}
+
+	@RequestMapping(method = RequestMethod.POST, value = "/user-settings/save", consumes = "application/json")
+	public ResponseEntity<?> userSettingsSave(@RequestBody User user) throws UnsupportedEncodingException {
+		this.userService.saveUserSettings(user);
+		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 	}
 }

@@ -53,7 +53,7 @@ export class OnSaleAdminComponent implements OnInit {
       this.products.sort((a, b) => a.name.localeCompare(b.name));
     }
     if (fieldName === "Category") {
-      this.products.sort((a, b) => a.categoryId - b.categoryId);
+      this.products.sort((a, b) => a.category.id - b.category.id);
     }
     if (fieldName === "Percent") {
       this.products.sort((a, b) => a.onSalePercent - b.onSalePercent);

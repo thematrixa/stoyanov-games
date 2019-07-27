@@ -82,7 +82,7 @@ export class CartComponent implements OnInit, AfterViewInit {
     }
     if (fieldName === "Category") {
       this.cartItems.sort(
-        (a, b) => a.product.categoryId - b.product.categoryId
+        (a, b) => a.product.category.id - b.product.category.id
       );
     }
     if (fieldName === "DateAdded") {

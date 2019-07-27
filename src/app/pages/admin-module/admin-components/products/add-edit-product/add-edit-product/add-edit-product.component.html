@@ -74,12 +74,12 @@
                     </div>
                 </div>
                 <div [formGroup]="addProductForm" class="form-group">
-                    <select formControlName="categoryId" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.categoryId.errors }">
-            <option [selected]="category === product.categoryId" *ngFor="let category of categores"
+                    <select formControlName="category" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.category.errors }">
+            <option [selected]="category === product.category" *ngFor="let category of categores"
               [value]="category.id">{{category.name}}</option>
           </select>
-                    <div *ngIf="submitted && f.categoryId.errors" class="invalid-feedback">
-                        <div *ngIf="f.categoryId.errors.required">Category is required</div>
+                    <div *ngIf="submitted && f.category.errors" class="invalid-feedback">
+                        <div *ngIf="f.category.errors.required">Category is required</div>
                     </div>
                 </div>
                 <div [formGroup]="addProductForm" class="form-group">

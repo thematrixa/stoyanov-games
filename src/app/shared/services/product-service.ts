@@ -36,7 +36,7 @@ export class ProductService {
     let formData = form.getRawValue();
     let product = new Product();
     product.cardsPerPack = parseInt(formData.cardsPerPack);
-    product.categoryId = parseInt(formData.categoryId);
+    product.category = {id: formData.category, name: ""};
     product.onSalePercent = parseInt(formData.onSalePercent);
     product.price = parseFloat(formData.price);
     product.quantity = parseInt(formData.quantity);

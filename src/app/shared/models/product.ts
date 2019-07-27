@@ -1,3 +1,5 @@
+import { Category } from './category';
+
 export class Product {
     id: number;
     name: string;
@@ -9,7 +11,7 @@ export class Product {
     cardsPerPack: number;
     size: string;
     isActive: number;
-    categoryId: number;
+    category: Category;
     shortDescription: string;
     inStock: number;
     quantity: number;

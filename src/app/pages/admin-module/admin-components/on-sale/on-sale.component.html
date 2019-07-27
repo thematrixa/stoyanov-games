@@ -24,7 +24,7 @@
                         <span>{{product.name}}</span>
                     </td>
                     <td class="text-center column-3">
-                        <span *ngFor="let category of categories;">{{product.categoryId == category.id ? category.name:""}}</span>
+                        <span *ngFor="let category of categories;">{{product.category.id == category.id ? category.name:""}}</span>
                     </td>
                     <td class="text-center column-4">
                         <span (keyup)="changeValue(id, 'onSalePercent', $event)" (blur)="updateList(id, 'onSalePercent', $event)" contenteditable="true">{{product.onSalePercent}}</span>

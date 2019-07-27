@@ -13,6 +13,7 @@ export class MenuComponent implements OnInit {
   cartTotal: string;
   isLoggedIn: Boolean;
   isAdmin: Boolean;
+  username: string;
 
   ngOnInit() {
     this.cartTotal = "0.00";
@@ -35,6 +36,7 @@ export class MenuComponent implements OnInit {
     if (loggedUser) {
       this.isLoggedIn = true;
       this.isAdmin = loggedUser.isAdmin;
+      this.username = loggedUser.username;
     } else {
       this.isLoggedIn = false;
       this.isAdmin = false;

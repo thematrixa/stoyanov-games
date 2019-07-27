@@ -57,7 +57,7 @@ export class AddEditProductComponent implements OnInit {
       cardsPerPack: ["", Validators.required],
       size: ["", Validators.required],
       isActive: ["", Validators.required],
-      categoryId: ["", Validators.required],
+      category: ["", Validators.required],
       shortDescription: ["", Validators.required],
       photo1: [""],
       photo2: [""],
@@ -81,7 +81,7 @@ export class AddEditProductComponent implements OnInit {
       this.addProductForm.patchValue({ cardsPerPack: this.product.cardsPerPack });
       this.addProductForm.patchValue({ size: this.product.size });
       this.addProductForm.patchValue({ isActive: this.product.isActive });
-      this.addProductForm.patchValue({ categoryId: this.product.categoryId });
+      this.addProductForm.patchValue({ category: this.product.category.id });
       this.addProductForm.patchValue({ isActive: this.product.isActive });
       this.addProductForm.patchValue({
         shortDescription: this.product.shortDescription

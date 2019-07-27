@@ -25,10 +25,24 @@ public class GlobalExceptionHandler {
     @ResponseBody
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ErrorResponse handleException(MethodArgumentNotValidException exception) {
-        logger.error("[handleException]", exception);
+        logger.error("[handleBADRequestException]", exception);
         return ErrorResponse.buildFromException(exception);
     }
 
+    @ExceptionHandler(org.springframework.security.access.AccessDeniedException.class)
+    @ResponseBody
+    @ResponseStatus(HttpStatus.FORBIDDEN)
+    public ErrorResponse handleRightsException(Exception exception) {
+        logger.error("[handleRightsException]", exception);
+        return ErrorResponse.buildFromException(exception);
+    }
+    @ExceptionHandler(org.springframework.orm.jpa.JpaObjectRetrievalFailureException.class)
+    @ResponseBody
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    public ErrorResponse handleJPANotFoundException(Exception exception) {
+        logger.error("[handleRightsException]", exception);
+        return ErrorResponse.buildFromException(exception);
+    }
     @ExceptionHandler({DataAccessException.class, SQLException.class, Exception.class})
     @ResponseBody
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)

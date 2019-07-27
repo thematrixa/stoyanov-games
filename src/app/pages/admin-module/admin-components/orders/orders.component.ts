@@ -103,7 +103,7 @@ export class OrdersAdminComponent implements OnInit {
       return;
     }
     if (fieldName === "Category") {
-      array.sort((a, b) => a.categoryId.localeCompare(b.categoryId));
+      array.sort((a, b) => a.category.localeCompare(b.category));
       return;
     }
     if (fieldName === "Date") {

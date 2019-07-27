@@ -7,6 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -32,7 +33,8 @@ public class Product {
 	private Integer cardsPerPack;
 	private String size;
 	private Boolean isActive;
-	private Integer categoryId;
+	@ManyToOne
+	private Category category;
 	private String shortDescription;
 	private Boolean inStock;
 	private Integer quantity;
@@ -109,12 +111,6 @@ public class Product {
 	public void setIsActive(Boolean isActive) {
 		this.isActive = isActive;
 	}
-	public Integer getCategoryId() {
-		return categoryId;
-	}
-	public void setCategoryId(Integer categoryId) {
-		this.categoryId = categoryId;
-	}
 	public String getShortDescription() {
 		return shortDescription;
 	}
@@ -150,6 +146,12 @@ public class Product {
 	}
 	public void setPhoto1Base64(String photo1Base64) {
 		this.photo1Base64 = photo1Base64;
+	}
+	public Category getCategory() {
+		return category;
+	}
+	public void setCategory(Category category) {
+		this.category = category;
 	}
 	public String getPhoto2Base64() {
 		return photo2Base64;
