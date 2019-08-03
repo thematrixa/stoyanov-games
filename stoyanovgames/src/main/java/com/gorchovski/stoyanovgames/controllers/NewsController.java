@@ -34,11 +34,10 @@ public class NewsController {
 		return new StoyanovGamesResponse<>(this.newsService.list());
 	}
 
-    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
+    @PreAuthorize("hasAuthority('ADMIN')")
 	@RequestMapping(method = RequestMethod.POST, value = "/update", consumes="application/json")
-	public ResponseEntity<?> uploadCategories(
+	public ResponseEntity<?> uploadNews(
 			@RequestBody List<News> list) {
-		this.newsService.truncate();
 		this.newsService.batchInsertUpdate(list);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 	}

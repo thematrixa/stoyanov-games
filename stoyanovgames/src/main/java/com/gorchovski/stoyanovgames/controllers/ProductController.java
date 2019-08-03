@@ -47,7 +47,6 @@ public class ProductController {
 	@RequestMapping(method = RequestMethod.POST, value = "/batch-update", consumes="application/json")
 	public ResponseEntity<?> uploadProducts(
 			@RequestBody List<Product> list) {
-		this.productService.truncate();
 		this.productService.batchInsertUpdate(list);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 	}

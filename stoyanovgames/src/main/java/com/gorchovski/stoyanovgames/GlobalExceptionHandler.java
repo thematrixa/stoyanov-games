@@ -40,7 +40,14 @@ public class GlobalExceptionHandler {
     @ResponseBody
     @ResponseStatus(HttpStatus.NOT_FOUND)
     public ErrorResponse handleJPANotFoundException(Exception exception) {
-        logger.error("[handleRightsException]", exception);
+        logger.error("[handleNotFoundException]", exception);
+        return ErrorResponse.buildFromException(exception);
+    }
+    @ExceptionHandler(org.springframework.dao.DataIntegrityViolationException.class)
+    @ResponseBody
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public ErrorResponse handleJPAContraintException(Exception exception) {
+        logger.error("[handleConstraintException]", exception);
         return ErrorResponse.buildFromException(exception);
     }
     @ExceptionHandler({DataAccessException.class, SQLException.class, Exception.class})

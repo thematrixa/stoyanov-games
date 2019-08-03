@@ -65,7 +65,7 @@ export class LoginComponent implements OnInit {
         this.userService.deleteToken();
         this.userService.deleteUsername();
         //fix error inlogin
-        this.toastr.error("Error", error);
+        this.toastr.error("Login unsuccessful");
       }
     );
   }

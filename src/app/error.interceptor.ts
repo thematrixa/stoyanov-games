@@ -15,12 +15,7 @@ export class ErrorInterceptor implements HttpInterceptor {
             if (err.status === 403) {
                 this.userService.logout();
             }
-            if (err.status === 403) {
-                this.userService.logout();
-            }
-
-            const error = err.error.message || err.statusText;
-            return throwError(error);
+            return throwError(err.status);
         }))
     }
 }

@@ -1,11 +1,13 @@
 package com.gorchovski.stoyanovgames.service;
 
+import java.util.Iterator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.gorchovski.stoyanovgames.model.News;
 import com.gorchovski.stoyanovgames.model.Product;
 import com.gorchovski.stoyanovgames.repository.ProductRepository;
 
@@ -22,8 +24,23 @@ public class ProductService {
 		return productRepository.findAll();
 	}
 	
-	public void batchInsertUpdate(List<Product> list) {
-		this.productRepository.saveAll(list);
+	public void batchInsertUpdate(List<Product> feProducts) {
+		List<Product> dbProducts = productRepository.findAll();
+		boolean productExists = false;
+		for (Iterator<Product> db = dbProducts.iterator(); db.hasNext();) {
+			Product dbProduct = db.next();
+			for (Iterator<Product> fe = feProducts.iterator(); fe.hasNext();) {
+				Product feProduct = fe.next();
+				if (dbProduct.getId().equals(feProduct.getId())) {
+					productExists = true;
+				}
+			}
+			if (!productExists) {
+				productRepository.delete(dbProduct);
+			}
+			productExists = false;
+		}
+		productRepository.saveAll(feProducts);
 	}
 
 	public void truncate() {
