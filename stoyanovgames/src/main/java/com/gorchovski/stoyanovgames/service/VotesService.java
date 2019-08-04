@@ -28,4 +28,11 @@ public class VotesService {
 	public void insertVote(Votes vote) {
 		this.votesRepository.save(vote);
 	}
+
+	public void deleteVotes(String username) {
+		this.votesRepository.deleteByUsername(username);
+	}
+	public void deleteVotes(Integer productId) {
+		this.votesRepository.deleteByProductId(productId);
+	}
 }

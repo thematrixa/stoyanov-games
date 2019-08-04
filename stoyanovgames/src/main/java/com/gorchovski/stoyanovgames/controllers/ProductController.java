@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.gorchovski.stoyanovgames.model.ChangePasswordRequest;
+import com.gorchovski.stoyanovgames.model.Comment;
 import com.gorchovski.stoyanovgames.model.Product;
 import com.gorchovski.stoyanovgames.model.StoyanovGamesResponse;
 import com.gorchovski.stoyanovgames.model.UpdateRatingRequest;
@@ -76,5 +76,16 @@ public class ProductController {
 
 		Float rate = this.productService.updateRating(data.getNumberOfStars(), data.getUsername(), data.getProductId());
 		return new StoyanovGamesResponse<>(rate);
+	}
+	@RequestMapping(method = RequestMethod.POST, value = "/comment/insert", consumes = "application/json")
+	public ResponseEntity<?> insertComment(@RequestBody Comment comment)
+			throws UnsupportedEncodingException {
+		this.productService.insertComment(comment);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+	}
+	@RequestMapping(method = RequestMethod.POST, value = "/comment/get", consumes = "application/json")
+	public StoyanovGamesResponse<?> getComments(@RequestBody Product product)
+			throws UnsupportedEncodingException {
+		return new StoyanovGamesResponse<>(this.productService.getComments(product));
 	}
 }

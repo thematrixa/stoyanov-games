@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.gorchovski.stoyanovgames.model.Comment;
 import com.gorchovski.stoyanovgames.model.Product;
 import com.gorchovski.stoyanovgames.model.Votes;
 import com.gorchovski.stoyanovgames.repository.ProductRepository;
@@ -22,6 +23,9 @@ public class ProductService {
 
 	@Autowired
 	private VotesService votesService;
+	
+	@Autowired
+	private CommentService commentService;
 
 	public List<Product> list() {
 		return productRepository.findAll();
@@ -51,6 +55,8 @@ public class ProductService {
 	}
 
 	public void delete(Product product) {
+		this.deleteComments(product.getId());
+		this.votesService.deleteVotes(product.getId());
 		this.productRepository.delete(product);
 	}
 
@@ -97,5 +103,15 @@ public class ProductService {
 		Integer one = product.getOne_stars();
 
 		return (float) ((5 * five + 4 * four + 3 * three + 2 * two + 1 * one) / (five + four + three + two + one));
+	}
+	
+	public void insertComment(Comment comment) {
+		this.commentService.insertComment(comment);
+	}
+	public void deleteComments(Integer productId) {
+		this.commentService.deleteCommentsByProductId(productId);
+	}
+	public List<Comment> getComments(Product product) {
+		return this.commentService.selectAllByProductId(product.getId());
 	}
 }

@@ -6,9 +6,9 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
+
 import com.gorchovski.stoyanovgames.model.Order;
 import com.gorchovski.stoyanovgames.model.OrdersEnum;
-import com.gorchovski.stoyanovgames.model.Product;
 
 @Repository
 public interface OrderRepository extends JpaRepository<Order, Long>   {
