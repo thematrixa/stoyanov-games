@@ -8,7 +8,6 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.gorchovski.stoyanovgames.model.Category;
 import com.gorchovski.stoyanovgames.model.News;
 import com.gorchovski.stoyanovgames.repository.NewsRepository;
 

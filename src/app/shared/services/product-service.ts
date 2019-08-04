@@ -46,6 +46,11 @@ export class ProductService {
     product.konamiTournamentLegalDate = formData.konamiTournamentLegalDate;
     product.launchDate = formData.launchDate;
     product.name = formData.name;
+    product.five_stars = 0;
+    product.four_stars = 0;
+    product.three_stars = 0;
+    product.two_stars = 0;
+    product.one_stars = 0;
     product.photo1Base64 = formData.photo1;
     product.photo2Base64 = formData.photo2;
     product.photo3Base64 = formData.photo3;
@@ -79,5 +84,16 @@ export class ProductService {
     deleteProduct(product: Product) {
       const url = environment._BACKEND + "/products/delete";
       return this.backEnd.post<any>(url, product, this.options);
+    }
+
+    updateRating(numberOfStars: number, username, product: Product){
+      let data = {
+        "numberOfStars": numberOfStars,
+        "username": username,
+        "productId": product.id,
+      }
+      let url = environment._BACKEND + "/products/rating/update";
+      console.log(data);
+      return this.backEnd.post<any>(url, JSON.stringify(data), this.options);
     }
 }

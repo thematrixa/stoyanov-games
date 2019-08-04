@@ -1,5 +1,6 @@
 package com.gorchovski.stoyanovgames.controllers;
 
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,8 +13,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.gorchovski.stoyanovgames.model.ChangePasswordRequest;
 import com.gorchovski.stoyanovgames.model.Product;
 import com.gorchovski.stoyanovgames.model.StoyanovGamesResponse;
+import com.gorchovski.stoyanovgames.model.UpdateRatingRequest;
 import com.gorchovski.stoyanovgames.service.ProductService;
 
 @CrossOrigin(origins = "http://localhost:4200", allowedHeaders = "*")
@@ -66,5 +69,12 @@ public class ProductController {
 		this.productService.delete(product);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 	}
-	
+
+	@RequestMapping(method = RequestMethod.POST, value = "/rating/update", consumes = "application/json")
+	public StoyanovGamesResponse<?> changeRating(@RequestBody UpdateRatingRequest data)
+			throws UnsupportedEncodingException {
+
+		Float rate = this.productService.updateRating(data.getNumberOfStars(), data.getUsername(), data.getProductId());
+		return new StoyanovGamesResponse<>(rate);
+	}
 }

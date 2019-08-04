@@ -1,4 +1,4 @@
-<div class="container" (click)="showDetails();">
+<div class="container-fluid" (click)="showDetails();">
       <div>
             <span class="row">
                   <!-- <img src="product.photo1"/> -->
@@ -8,14 +8,16 @@
       <div>
             <span class="row d-flex">
                   <p class='product-name' style="word-wrap:break-word;">{{product.name}}</p>
-                  <img (click)="addToCart($event);$event.stopPropagation()" class="cart-icon" src="assets/Icons/shopping-cart-icon.svg" />
+                  <img (click)="addToCart($event);$event.stopPropagation()" class="cart-icon"
+                        src="assets/Icons/shopping-cart-icon.svg" />
             </span>
       </div>
       <div>
             <span class="row">
                   <b><span class='product-price'>{{product.price}}</span></b>
-                  <span><rating (click)="addToCart($event);$event.stopPropagation()" [(ngModel)]="starsCount" [max]="5">
-                  </rating></span>
+                  <span class='product-rating'>
+                        <bar-rating [(rate)]="rate" (rateChange)="updateRating($event);" disabled [max]="5"></bar-rating>
+                  </span>
             </span>
       </div>
 </div>

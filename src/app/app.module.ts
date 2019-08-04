@@ -61,6 +61,7 @@ import { BasicAuthInterceptor } from './basic-auth.interceptor';
 import { ErrorInterceptor } from './error.interceptor';
 import { HomeComponent } from './pages/home/home.component';
 import { ChooseAddressFormControlComponent } from './shared/form-controls/choose-address-form-control/choose-address-form-control.component';
+import { BarRatingModule } from "ngx-bar-rating";
 @NgModule({
   declarations: [
     AppComponent,
@@ -138,7 +139,7 @@ import { ChooseAddressFormControlComponent } from './shared/form-controls/choose
     NgMultiSelectDropDownModule.forRoot(),
     NumberPickerModule,
     StickyNavModule,
-    RatingModule
+    BarRatingModule
   ],
   exports: [
     AccordionModule,

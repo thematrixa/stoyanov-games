@@ -2,6 +2,9 @@ import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { Product } from 'src/app/shared/models/product';
 import { ProductDetailsService } from 'src/app/shared/services/product-details.service';
 import { CartService } from 'src/app/shared/services/cart-service';
+import { ProductService } from 'src/app/shared/services/product-service';
+import { UserService } from 'src/app/shared/services/user-service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-product-tile',
@@ -12,11 +15,16 @@ export class ProductTileComponent implements OnInit {
   @Input() product: Product;
   @Output() cartUpdate = new EventEmitter<boolean>();
   starsCount = 5;
+  rate: number;
   constructor(
     private productDetails: ProductDetailsService,
-    private cartService: CartService) { }
+    private userService: UserService,
+    private productService: ProductService,
+    private cartService: CartService,
+    private toastr: ToastrService) { }
 
   ngOnInit() {
+    this.rate = this.product.rating;
   }
 
 
@@ -28,5 +36,10 @@ export class ProductTileComponent implements OnInit {
     let cartComponent = this.cartService.generateCartItem(this.product,1);
     this.cartService.addToCartItems(cartComponent);
     this.cartUpdate.emit(true);
+  }
+
+  updateRating(newValue){
+    let loggedUser = this.userService.getLoggedUser();
+    this.productService.updateRating(newValue, loggedUser.username, this.product).subscribe(res=>{this.rate=res.response},error=>{this.toastr.error(error);});
   }
 }

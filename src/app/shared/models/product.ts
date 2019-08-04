@@ -17,6 +17,12 @@ export class Product {
     quantity: number;
     onSalePercent: number;
     dateAdded: Date;
+    five_stars: number;
+    four_stars: number;
+    three_stars: number;
+    two_stars: number;
+    one_stars: number;
+    rating: number;
     photo1Base64: string;
     photo2Base64: string;
     photo3Base64: string;

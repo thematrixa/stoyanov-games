@@ -56,7 +56,7 @@ export class RegisterComponent implements OnInit {
       },
       error => {
         if(error==400){
-          this.toastr.success("Registration failed");
+          this.toastr.error("Registration failed");
         }
       }
     );
