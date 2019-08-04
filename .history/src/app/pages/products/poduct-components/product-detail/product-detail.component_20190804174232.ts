@@ -4,6 +4,9 @@ import { NgxGalleryOptions, NgxGalleryImage, NgxGalleryAnimation } from 'ngx-gal
 import { ProductDetailsService } from 'src/app/shared/services/product-details.service';
 import { CartService } from 'src/app/shared/services/cart-service';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
+import { ProductService } from 'src/app/shared/services/product-service';
+import { UserService } from 'src/app/shared/services/user-service';
 
 @Component({
   selector: 'app-product-detail',
@@ -15,15 +18,20 @@ export class ProductDetailComponent implements OnInit {
   galleryOptions: NgxGalleryOptions[];
   galleryImages: NgxGalleryImage[];
   quantity:number = 1;
+  starsCount = 5;
+  rate: number;
   constructor(private productDetails: ProductDetailsService,
-      private cartService: CartService, 
+    private productService: ProductService,
+    private cartService: CartService,
+    private toastr: ToastrService,
+    private userService: UserService,
       private router: Router) {
   }
 
   ngOnInit() {
     this.product = this.productDetails.getProduct();
     if(!this.product){
-      this.router.navigate("/cart");
+      this.router.navigate(['/products']);
     }
     this.galleryOptions = [
       {
@@ -85,5 +93,10 @@ export class ProductDetailComponent implements OnInit {
   addToCart(){
     let cartComponent = this.cartService.generateCartItem(this.product,this.quantity);
     this.cartService.addToCartItems(cartComponent);
+  }
+
+  updateRating(newValue){
+    let loggedUser = this.userService.getLoggedUser();
+    this.productService.updateRating(newValue, loggedUser.username, this.product).subscribe(res=>{this.rate=res.response},error=>{this.toastr.error(error);});
   }
 }

@@ -2,6 +2,11 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Product } from 'src/app/shared/models/product';
 import { NgxGalleryOptions, NgxGalleryImage, NgxGalleryAnimation } from 'ngx-gallery';
 import { ProductDetailsService } from 'src/app/shared/services/product-details.service';
+import { CartService } from 'src/app/shared/services/cart-service';
+import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
+import { ProductService } from 'src/app/shared/services/product-service';
+import { UserService } from 'src/app/shared/services/user-service';
 
 @Component({
   selector: 'app-product-detail',
@@ -9,15 +14,26 @@ import { ProductDetailsService } from 'src/app/shared/services/product-details.s
   styleUrls: ['./product-detail.component.css']
 })
 export class ProductDetailComponent implements OnInit {
-
   product: Product;
   galleryOptions: NgxGalleryOptions[];
   galleryImages: NgxGalleryImage[];
-  constructor(private productDetails: ProductDetailsService) {
+  quantity:number = 1;
+  starsCount = 5;
+  rate: number;
+  comment: string;
+  constructor(private productDetails: ProductDetailsService,
+    private productService: ProductService,
+    private cartService: CartService,
+    private toastr: ToastrService,
+    private userService: UserService,
+      private router: Router) {
   }
 
   ngOnInit() {
     this.product = this.productDetails.getProduct();
+    if(!this.product){
+      this.router.navigate(['/products']);
+    }
     this.galleryOptions = [
       {
           width: '400px',
@@ -75,4 +91,13 @@ export class ProductDetailComponent implements OnInit {
   ];
   }
 
+  addToCart(){
+    let cartComponent = this.cartService.generateCartItem(this.product,this.quantity);
+    this.cartService.addToCartItems(cartComponent);
+  }
+
+  updateRating(newValue){
+    let loggedUser = this.userService.getLoggedUser();
+    this.productService.updateRating(newValue, loggedUser.username, this.product).subscribe(res=>{this.rate=res.response},error=>{this.toastr.error(error);});
+  }
 }

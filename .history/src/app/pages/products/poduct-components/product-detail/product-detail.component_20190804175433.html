@@ -1,4 +1,4 @@
-<div class="container-fluid">
+<div class="container">
   <div class="row">
     <div class="col-6" style="overflow:hidden">
       <ngx-gallery [options]="galleryOptions" [images]="galleryImages"></ngx-gallery>
@@ -81,9 +81,7 @@
   <div class="row">
     <div class="col-8">
       <div class="row">
-        <div class="col-12">
-          <h4>Добави коментар</h4>
-        </div>
+        <h4>Добави коментар</h4>
       </div>
       <div class="row">
         <bar-rating [(rate)]="rate" (rateChange)="updateRating($event);" disabled [max]="5"></bar-rating>
@@ -94,8 +92,10 @@
           [ngClass]="{ 'is-invalid': true }"></textarea>
 
       </div>
-      <div>
-        <button (click)="addToCart();" class="btn btn-block btn-success">Add Comment</button>
+      <div class="col-1">
+        <div>
+          <button (click)="addToCart();" class="btn btn-block btn-success float-right">Add Comment</button>
+        </div>
       </div>
     </div>
   </div>

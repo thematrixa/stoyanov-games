@@ -62,6 +62,7 @@ import { ErrorInterceptor } from './error.interceptor';
 import { HomeComponent } from './pages/home/home.component';
 import { ChooseAddressFormControlComponent } from './shared/form-controls/choose-address-form-control/choose-address-form-control.component';
 import { BarRatingModule } from "ngx-bar-rating";
+import { CommentComponent } from './pages/products/poduct-components/comment/comment.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -100,6 +101,7 @@ import { BarRatingModule } from "ngx-bar-rating";
     CartComponent,
     DateFormatPipe,
     HomeComponent,
+    CommentComponent,
   ],
   imports: [
     CommonModule,
