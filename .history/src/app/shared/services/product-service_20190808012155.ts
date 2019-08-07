@@ -97,7 +97,7 @@ export class ProductService {
       return this.backEnd.post<any>(url, JSON.stringify(data), this.options);
     }
 
-    insertComment(content,username ,productId , userVote){
+    insertComment(content, productId, username, userVote){
       let comment = {
         "content": content,
         "productId": productId,
@@ -113,16 +113,5 @@ export class ProductService {
       const url = environment._BACKEND + "/products/comments/get";
       return this.backEnd.post<any>(url, JSON.stringify(product), this.options);
     }
-
-    hasUserVoted(username, productId) {
-    let data = {
-      "username": username,
-      "productId": productId
-    }
-      const url = environment._BACKEND + "/products/rating/has-voted";
-      return this.backEnd.post<any>(url, JSON.stringify(data), this.options);
-    }
     
-    
-
 }

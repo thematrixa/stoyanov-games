@@ -151,15 +151,5 @@ export class ProductDetailComponent implements OnInit {
       this.toastr.error(error);
     });
   }
-  hasUserVote(){
-    let loggedUser = this.userService.getLoggedUser();
-    this.productService.hasUserVoted(loggedUser.username, this.product.id).subscribe(res => {
-      this.hasUserVoted = res.response;
-      console.log(res);
-    },
-    error => {
-      this.toastr.error(error);
-    });
-  }
 
 }

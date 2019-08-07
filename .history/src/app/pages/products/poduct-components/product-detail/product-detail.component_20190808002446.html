@@ -78,24 +78,6 @@
       </div>
     </div>
   </div>
-  <div class="row" *ngFor='let comment of comments'>
-      <div class="col-2">
-          <div class="row">
-            {{comment.username}}
-          </div>
-          <div class="row">
-            {{comment.date}}
-          </div>
-      </div>
-      <div class="col-6">
-        <div class="row">
-            <bar-rating [(rate)]="comment.rating" disabled [max]="5"></bar-rating>
-        </div>
-        <div class="row">
-          {{comment.content}}
-        </div>
-      </div>
-  </div>
   <div class="row">
     <div class="col-8">
       <br>

@@ -26,8 +26,7 @@ export class ProductDetailComponent implements OnInit {
   rate: number;
   content: string;
   hasUserVoted: boolean = false;
-  comments: Array<any> = [];
-  userVote: number;
+  comments: Array<any>;
   constructor(
     private productDetails: ProductDetailsService,
     private productService: ProductService,
@@ -109,7 +108,6 @@ export class ProductDetailComponent implements OnInit {
   }
 
   updateRating(newValue) {
-    this.userVote = newValue;
     let loggedUser = this.userService.getLoggedUser();
     this.productService
       .updateRating(newValue, loggedUser.username, this.product)
@@ -125,16 +123,17 @@ export class ProductDetailComponent implements OnInit {
   }
 
   postComment(){
-    if(!this.hasUserVoted){
+    if(this.hasUserVoted){
       this.toastr.warning("Рейтването на продукт е задължително!");
       return;
     }
     let loggedUser = this.userService.getLoggedUser();
     this.productService
-      .insertComment(this.content, loggedUser.username, this.product.id, this.userVote)
+      .insertComment(this.content, loggedUser.username, this.product.id)
       .subscribe(
         res => {
-          this.toastr.success("Коментарът е добавен.");
+          this.rate = res.response;
+          this.hasUserVoted = true;
         },
         error => {
           this.toastr.error(error);
@@ -145,17 +144,6 @@ export class ProductDetailComponent implements OnInit {
   getComments(){
     this.productService.getComments(this.product).subscribe(res => {
       this.comments = res.response;
-      console.log(res);
-    },
-    error => {
-      this.toastr.error(error);
-    });
-  }
-  hasUserVote(){
-    let loggedUser = this.userService.getLoggedUser();
-    this.productService.hasUserVoted(loggedUser.username, this.product.id).subscribe(res => {
-      this.hasUserVoted = res.response;
-      console.log(res);
     },
     error => {
       this.toastr.error(error);

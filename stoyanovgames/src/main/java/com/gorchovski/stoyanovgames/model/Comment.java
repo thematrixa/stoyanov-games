@@ -21,6 +21,7 @@ public class Comment {
 	private String content;
 	private Integer productId;
 	private String username;
+	private Integer rating;
 	
 	public Integer getId() {
 		return id;
@@ -51,6 +52,12 @@ public class Comment {
 	}
 	public void setUsername(String username) {
 		this.username = username;
+	}
+	public Integer getRating() {
+		return rating;
+	}
+	public void setRating(Integer rating) {
+		this.rating = rating;
 	}
 	
 }

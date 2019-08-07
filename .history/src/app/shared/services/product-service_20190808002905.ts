@@ -97,32 +97,20 @@ export class ProductService {
       return this.backEnd.post<any>(url, JSON.stringify(data), this.options);
     }
 
-    insertComment(content,username ,productId , userVote){
+    insertComment(content, productId, username){
       let comment = {
         "content": content,
         "productId": productId,
         "username": username,
-        "rating": userVote
       }
-      let url = environment._BACKEND + "/products/comment/insert";
+      let url = environment._BACKEND + "/comment/insert";
       console.log(comment);
       return this.backEnd.post<any>(url, JSON.stringify(comment), this.options);
     }
 
     getComments(product: Product) {
-      const url = environment._BACKEND + "/products/comments/get";
-      return this.backEnd.post<any>(url, JSON.stringify(product), this.options);
-    }
-
-    hasUserVoted(username, productId) {
-    let data = {
-      "username": username,
-      "productId": productId
-    }
-      const url = environment._BACKEND + "/products/rating/has-voted";
-      return this.backEnd.post<any>(url, JSON.stringify(data), this.options);
+      const url = environment._BACKEND + "/comment/get";
+      return this.backEnd.post<any>(url, product, this.options);
     }
     
-    
-
 }

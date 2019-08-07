@@ -1,5 +1,6 @@
 package com.gorchovski.stoyanovgames.service;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +30,7 @@ public class CommentService {
 	}
 	
 	public void insertComment(Comment comment) {
+		comment.setDate(new Date());
 		this.commentRepository.save(comment);
 	}
 	public void deleteCommentsByProductId(Integer productId) {

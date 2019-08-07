@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.gorchovski.stoyanovgames.model.Comment;
+import com.gorchovski.stoyanovgames.model.HasUserVotedRequest;
 import com.gorchovski.stoyanovgames.model.Product;
 import com.gorchovski.stoyanovgames.model.StoyanovGamesResponse;
 import com.gorchovski.stoyanovgames.model.UpdateRatingRequest;
@@ -83,9 +84,15 @@ public class ProductController {
 		this.productService.insertComment(comment);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 	}
-	@RequestMapping(method = RequestMethod.POST, value = "/comment/get", consumes = "application/json")
+	@RequestMapping(method = RequestMethod.POST, value = "/comments/get", consumes = "application/json")
 	public StoyanovGamesResponse<?> getComments(@RequestBody Product product)
 			throws UnsupportedEncodingException {
 		return new StoyanovGamesResponse<>(this.productService.getComments(product));
+	}
+
+	@RequestMapping(method = RequestMethod.POST, value = "/rating/has-voted", consumes = "application/json")
+	public StoyanovGamesResponse<?> getHasUserVoted(@RequestBody HasUserVotedRequest data)
+			throws UnsupportedEncodingException {
+		return new StoyanovGamesResponse<>(this.productService.hasUserVoted(data.getUsername(), data.getProductId()));
 	}
 }

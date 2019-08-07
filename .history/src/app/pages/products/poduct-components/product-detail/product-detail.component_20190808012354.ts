@@ -26,7 +26,7 @@ export class ProductDetailComponent implements OnInit {
   rate: number;
   content: string;
   hasUserVoted: boolean = false;
-  comments: Array<any> = [];
+  comments: Array<any>;
   userVote: number;
   constructor(
     private productDetails: ProductDetailsService,
@@ -134,7 +134,8 @@ export class ProductDetailComponent implements OnInit {
       .insertComment(this.content, loggedUser.username, this.product.id, this.userVote)
       .subscribe(
         res => {
-          this.toastr.success("Коментарът е добавен.");
+          this.rate = res;
+          this.hasUserVoted = true;
         },
         error => {
           this.toastr.error(error);
@@ -145,17 +146,6 @@ export class ProductDetailComponent implements OnInit {
   getComments(){
     this.productService.getComments(this.product).subscribe(res => {
       this.comments = res.response;
-      console.log(res);
-    },
-    error => {
-      this.toastr.error(error);
-    });
-  }
-  hasUserVote(){
-    let loggedUser = this.userService.getLoggedUser();
-    this.productService.hasUserVoted(loggedUser.username, this.product.id).subscribe(res => {
-      this.hasUserVoted = res.response;
-      console.log(res);
     },
     error => {
       this.toastr.error(error);

@@ -80,6 +80,10 @@ public class ProductService {
 		}
 
 	}
+	
+	public Boolean hasUserVoted(String username, Integer productId) {
+		return this.votesService.hasUserVoted(username, productId);
+	}
 
 	public void updateStars(Product product, Integer numberOfStars) {
 		if (numberOfStars == 1) {
