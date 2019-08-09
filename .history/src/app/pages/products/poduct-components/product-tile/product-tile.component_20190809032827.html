@@ -14,11 +14,10 @@
       </div>
       <div>
             <span class="row">
-
-                  <b><span *ngIf="product.onSalePercent>0" class='product-price'>{{product.price * product.onSalePercent / 100}}</span><span class='product-price'>{{product.price}}</span></b>
+                  <b><span class='product-price'>{{product.price}}</span></b>
                   <span class='product-rating'>
                         <form>
-                              <bar-rating [rate]="rate" name="rating" disabled [max]="5">
+                              <bar-rating [(rate)]="rate" (rateChange)="updateRating($event);" [disabled]="true" [max]="5">
                               </bar-rating>
                         </form>
                   </span>

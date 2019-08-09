@@ -26,6 +26,9 @@ public class ProductService {
 	
 	@Autowired
 	private CommentService commentService;
+	
+	@Autowired
+	private SecurityService securityService;
 
 	public List<Product> list() {
 		return productRepository.findAll();
@@ -110,10 +113,18 @@ public class ProductService {
 	}
 	
 	public void insertComment(Comment comment) {
-		this.commentService.insertComment(comment);
+		String username = this.securityService.findLoggedInUsername();
+		if(this.votesService.hasUserVoted(username, comment.getProductId()) && !this.commentService.hasUserCommented(comment.getProductId())) {
+			this.commentService.insertComment(comment);
+		}else {
+			
+		}
 	}
 	public void deleteComments(Integer productId) {
 		this.commentService.deleteCommentsByProductId(productId);
+	}
+	public void deleteComment(Comment comment) {
+		this.commentService.deleteComment(comment);
 	}
 	public List<Comment> getComments(Product product) {
 		return this.commentService.selectAllByProductId(product.getId());

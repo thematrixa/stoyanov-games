@@ -41,34 +41,31 @@ public class ProductController {
 	public StoyanovGamesResponse<?> getOnSaleProducts() {
 		return new StoyanovGamesResponse<>(this.productService.list());
 	}
-	
+
 	@RequestMapping(produces = "application/json", method = RequestMethod.GET, value = "/on-sale/update")
 	public StoyanovGamesResponse<?> updateProducts() {
 		return new StoyanovGamesResponse<>(this.productService.list());
 	}
 
-    @PreAuthorize("hasAuthority('ADMIN')")
-	@RequestMapping(method = RequestMethod.POST, value = "/batch-update", consumes="application/json")
-	public ResponseEntity<?> uploadProducts(
-			@RequestBody List<Product> list) {
+	@PreAuthorize("hasAuthority('ADMIN')")
+	@RequestMapping(method = RequestMethod.POST, value = "/batch-update", consumes = "application/json")
+	public ResponseEntity<?> uploadProducts(@RequestBody List<Product> list) {
 		this.productService.batchInsertUpdate(list);
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 	}
 
-    @PreAuthorize("hasAuthority('ADMIN')")
-	@RequestMapping(method = RequestMethod.POST, value = "/update", consumes="application/json")
-	public ResponseEntity<?> updateProduct(
-			@RequestBody Product product) {
+	@PreAuthorize("hasAuthority('ADMIN')")
+	@RequestMapping(method = RequestMethod.POST, value = "/update", consumes = "application/json")
+	public ResponseEntity<?> updateProduct(@RequestBody Product product) {
 		this.productService.update(product);
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 	}
 
-    @PreAuthorize("hasAuthority('ADMIN')")
-	@RequestMapping(method = RequestMethod.POST, value = "/delete", consumes="application/json")
-	public ResponseEntity<?> delete(
-			@RequestBody Product product) {
+	@PreAuthorize("hasAuthority('ADMIN')")
+	@RequestMapping(method = RequestMethod.POST, value = "/delete", consumes = "application/json")
+	public ResponseEntity<?> delete(@RequestBody Product product) {
 		this.productService.delete(product);
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 	}
 
 	@RequestMapping(method = RequestMethod.POST, value = "/rating/update", consumes = "application/json")
@@ -78,15 +75,21 @@ public class ProductController {
 		Float rate = this.productService.updateRating(data.getNumberOfStars(), data.getUsername(), data.getProductId());
 		return new StoyanovGamesResponse<>(rate);
 	}
+
 	@RequestMapping(method = RequestMethod.POST, value = "/comment/insert", consumes = "application/json")
-	public ResponseEntity<?> insertComment(@RequestBody Comment comment)
-			throws UnsupportedEncodingException {
+	public ResponseEntity<?> insertComment(@RequestBody Comment comment) throws UnsupportedEncodingException {
 		this.productService.insertComment(comment);
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 	}
+
+	@RequestMapping(method = RequestMethod.POST, value = "/comment/delete", consumes = "application/json")
+	public ResponseEntity<?> deleteComment(@RequestBody Comment comment) throws UnsupportedEncodingException {
+		this.productService.deleteComment(comment);
+		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+	}
+
 	@RequestMapping(method = RequestMethod.POST, value = "/comments/get", consumes = "application/json")
-	public StoyanovGamesResponse<?> getComments(@RequestBody Product product)
-			throws UnsupportedEncodingException {
+	public StoyanovGamesResponse<?> getComments(@RequestBody Product product) throws UnsupportedEncodingException {
 		return new StoyanovGamesResponse<>(this.productService.getComments(product));
 	}
 
