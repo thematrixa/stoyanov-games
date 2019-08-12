@@ -2,6 +2,7 @@ package com.gorchovski.stoyanovgames.model;
 
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -9,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -20,9 +22,12 @@ public class Product {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
+	@NotNull
 	private String name;
+	@NotNull
 	private String description;
-	private String price;
+	@NotNull
+	private Float price;
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd.MM.yyyy")
 	private Date tournamentStoreLaunchDate;
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd.MM.yyyy")
@@ -34,11 +39,16 @@ public class Product {
 	private String size;
 	private Boolean isActive;
 	@ManyToOne
+	@NotNull
 	private Category category;
 	private String shortDescription;
+	@NotNull
 	private Boolean inStock;
+	@NotNull
 	private Integer quantity;
 	private Float rating;
+	@NotNull
+    @Column(columnDefinition = "integer default 0")
 	private Integer onSalePercent;
 	private Integer five_stars;
 	private Integer four_stars;
@@ -82,11 +92,11 @@ public class Product {
 		this.description = description;
 	}
 
-	public String getPrice() {
+	public Float getPrice() {
 		return price;
 	}
 
-	public void setPrice(String price) {
+	public void setPrice(Float price) {
 		this.price = price;
 	}
 

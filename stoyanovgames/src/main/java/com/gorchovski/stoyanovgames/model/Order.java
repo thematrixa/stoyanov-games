@@ -13,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
+import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
@@ -23,18 +24,24 @@ public class Order {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
+	@NotNull
 	private Integer userId;
+	@NotNull
 	private String name;
+	@NotNull
 	private String address;
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd.MM.yyyy HH:mm:ss")
 	private Date date;
+	@NotNull
 	private String phone;
+	@NotNull
 	private Float total;
 	@ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE })
 	private List<CartItem> cartItems;
 	@Transient
 	private Boolean showProducts;
 	@Enumerated(EnumType.ORDINAL)
+	@NotNull
 	private OrdersEnum status;
 	public Integer getId() {
 		return id;

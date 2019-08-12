@@ -6,6 +6,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "cart_items")
@@ -14,7 +15,9 @@ public class CartItem {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	@OneToOne
+	@NotNull
 	private Product product;
+	@NotNull
 	private Integer quantity;
 	
 	public Integer getId() {

@@ -6,9 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.gorchovski.stoyanovgames.model.CartItem;
 import com.gorchovski.stoyanovgames.model.Order;
 import com.gorchovski.stoyanovgames.model.OrdersEnum;
+import com.gorchovski.stoyanovgames.model.Product;
 import com.gorchovski.stoyanovgames.repository.OrderRepository;
+import com.gorchovski.stoyanovgames.repository.ProductRepository;
 
 @Transactional
 @Service
@@ -18,6 +21,9 @@ public class OrderService {
 	// private String eTlogKeystoreName;
 	@Autowired
 	private OrderRepository orderRepository;
+	
+	@Autowired
+	private ProductRepository productRepository;
 
 	public List<Order> list() {
 		return orderRepository.findAll();
@@ -44,10 +50,19 @@ public class OrderService {
 	}
 	
 	public void update(Order order) {
+		this.refreshProductQuantities(order.getCartItems());
 		this.orderRepository.save(order);
 	}
 
 	public void truncate() {
 		this.orderRepository.deleteAll();
+	}
+	
+	public void refreshProductQuantities(List<CartItem> cartItems) {
+		for(CartItem ci : cartItems) {
+			Product product = ci.getProduct();
+			product.setQuantity(product.getQuantity()-ci.getQuantity());
+			this.productRepository.save(product);
+		}
 	}
 }

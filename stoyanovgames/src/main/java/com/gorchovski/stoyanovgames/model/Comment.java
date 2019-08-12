@@ -7,6 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
@@ -18,9 +19,13 @@ public class Comment {
 	private Integer id;
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd.MM.yyyy")
 	private Date date;
+	@NotNull
 	private String content;
+	@NotNull
 	private Integer productId;
+	@NotNull
 	private String username;
+	@NotNull
 	private Integer rating;
 	
 	public Integer getId() {

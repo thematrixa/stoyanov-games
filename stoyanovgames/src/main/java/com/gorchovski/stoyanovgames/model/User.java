@@ -10,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -22,11 +23,14 @@ public class User {
 	@JsonProperty("id")
 	private Integer id;
 	@Column(unique = true)
+	@NotNull
 	@JsonProperty("username")
 	private String username;
 	@JsonProperty("password")
+	@NotNull
 	private String password;
 	@JsonProperty("email")
+	@NotNull
 	private String email;
 	@JsonProperty("addresses")
 	@ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE })
