@@ -13,11 +13,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.gorchovski.stoyanovgames.excetion.StoyanovGamesValidationException;
 import com.gorchovski.stoyanovgames.model.Comment;
-import com.gorchovski.stoyanovgames.model.HasUserVotedRequest;
 import com.gorchovski.stoyanovgames.model.Product;
-import com.gorchovski.stoyanovgames.model.StoyanovGamesResponse;
-import com.gorchovski.stoyanovgames.model.UpdateRatingRequest;
+import com.gorchovski.stoyanovgames.model.requests.HasUserVotedRequest;
+import com.gorchovski.stoyanovgames.model.requests.UpdateRatingRequest;
+import com.gorchovski.stoyanovgames.model.response.StoyanovGamesResponse;
 import com.gorchovski.stoyanovgames.service.ProductService;
 
 @CrossOrigin(origins = "http://localhost:4200", allowedHeaders = "*")
@@ -49,21 +50,21 @@ public class ProductController {
 
 	@PreAuthorize("hasAuthority('ADMIN')")
 	@RequestMapping(method = RequestMethod.POST, value = "/batch-update", consumes = "application/json")
-	public ResponseEntity<?> uploadProducts(@RequestBody List<Product> list) {
+	public ResponseEntity<?> uploadProducts(@RequestBody List<Product> list) throws StoyanovGamesValidationException {
 		this.productService.batchInsertUpdate(list);
 		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 	}
 
 	@PreAuthorize("hasAuthority('ADMIN')")
 	@RequestMapping(method = RequestMethod.POST, value = "/update", consumes = "application/json")
-	public ResponseEntity<?> updateProduct(@RequestBody Product product) {
+	public ResponseEntity<?> updateProduct(@RequestBody Product product) throws StoyanovGamesValidationException {
 		this.productService.update(product);
 		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 	}
 
 	@PreAuthorize("hasAuthority('ADMIN')")
 	@RequestMapping(method = RequestMethod.POST, value = "/delete", consumes = "application/json")
-	public ResponseEntity<?> delete(@RequestBody Product product) {
+	public ResponseEntity<?> delete(@RequestBody Product product) throws StoyanovGamesValidationException {
 		this.productService.delete(product);
 		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 	}
@@ -77,13 +78,13 @@ public class ProductController {
 	}
 
 	@RequestMapping(method = RequestMethod.POST, value = "/comment/insert", consumes = "application/json")
-	public ResponseEntity<?> insertComment(@RequestBody Comment comment) throws UnsupportedEncodingException {
+	public ResponseEntity<?> insertComment(@RequestBody Comment comment) throws UnsupportedEncodingException, StoyanovGamesValidationException {
 		this.productService.insertComment(comment);
 		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 	}
 
 	@RequestMapping(method = RequestMethod.POST, value = "/comment/delete", consumes = "application/json")
-	public ResponseEntity<?> deleteComment(@RequestBody Comment comment) throws UnsupportedEncodingException {
+	public ResponseEntity<?> deleteComment(@RequestBody Comment comment) throws UnsupportedEncodingException, StoyanovGamesValidationException {
 		this.productService.deleteComment(comment);
 		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 	}

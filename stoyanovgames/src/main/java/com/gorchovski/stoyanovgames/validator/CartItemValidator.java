@@ -1,7 +1,5 @@
 package com.gorchovski.stoyanovgames.validator;
 
-import javax.validation.constraints.NotNull;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,15 +19,15 @@ public class CartItemValidator extends BasicValidator {
 
 	@Autowired
 	private ProductValidator productValidator;
-	private Errors errors;
 
 	public CartItemValidator() {
 
 	}
 
-	public void validateAddress(Object target, Errors errors) throws StoyanovGamesValidationException {
+	public void validateCartItem(Object target) throws StoyanovGamesValidationException {
 
 		CartItem cartItem = (CartItem) target;
+		Errors errors = new BeanPropertyBindingResult(cartItem, "cartItem");
 		if (!this.isCartItemQuantityValid(cartItem.getQuantity())) {
 			errors.rejectValue("", "cartItemQuantity" + DELIMITER + cartItem.getId(),
 					"Quantity, трябва да е над " + QUANTITY_MIN_VALUE);
@@ -37,7 +35,7 @@ public class CartItemValidator extends BasicValidator {
 
 		if (!this.isCartItemProductValid(cartItem.getProduct())) {
 			errors.rejectValue("", "cartItemProduct" + DELIMITER + cartItem.getId(),
-					"ддддддддддддд " + QUANTITY_MIN_VALUE);
+					"Продукта е невалиден ");
 		}
 
 		String validationMsg = "cartItem exception";
@@ -52,9 +50,8 @@ public class CartItemValidator extends BasicValidator {
 	}
 
 	public Boolean isCartItemProductValid(Product product) {
-		Errors errors = new BeanPropertyBindingResult(product, "cartItem");
 		try {
-			this.productValidator.validateProduct(product, errors);
+			this.productValidator.validateProduct(product);
 		} catch (StoyanovGamesValidationException ex) {
 			return false;
 		}

@@ -1,4 +1,4 @@
-package com.gorchovski.stoyanovgames.model;
+package com.gorchovski.stoyanovgames.model.response;
 
 public class StoyanovGamesResponse<T> {
     private T response;

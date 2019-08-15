@@ -12,8 +12,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.gorchovski.stoyanovgames.excetion.StoyanovGamesValidationException;
 import com.gorchovski.stoyanovgames.model.News;
-import com.gorchovski.stoyanovgames.model.StoyanovGamesResponse;
+import com.gorchovski.stoyanovgames.model.response.StoyanovGamesResponse;
 import com.gorchovski.stoyanovgames.service.NewsService;
 
 
@@ -37,7 +38,7 @@ public class NewsController {
     @PreAuthorize("hasAuthority('ADMIN')")
 	@RequestMapping(method = RequestMethod.POST, value = "/update", consumes="application/json")
 	public ResponseEntity<?> uploadNews(
-			@RequestBody List<News> list) {
+			@RequestBody List<News> list) throws StoyanovGamesValidationException {
 		this.newsService.batchInsertUpdate(list);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 	}

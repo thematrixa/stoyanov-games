@@ -11,8 +11,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.gorchovski.stoyanovgames.excetion.StoyanovGamesValidationException;
 import com.gorchovski.stoyanovgames.model.Order;
-import com.gorchovski.stoyanovgames.model.StoyanovGamesResponse;
+import com.gorchovski.stoyanovgames.model.response.StoyanovGamesResponse;
 import com.gorchovski.stoyanovgames.service.OrderService;
 
 @CrossOrigin(origins = "http://localhost:4200", allowedHeaders = "*")
@@ -54,14 +55,14 @@ public class OrderController {
 
 	@RequestMapping(method = RequestMethod.POST, value = "/update", consumes="application/json")
 	public ResponseEntity<?> uploadOrder(
-			@RequestBody Order order) {
+			@RequestBody Order order) throws StoyanovGamesValidationException {
 		this.orderService.update(order);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 	}
 	
 	@RequestMapping(method = RequestMethod.POST, value = "/batch-update", consumes="application/json")
 	public ResponseEntity<?> uploadOrders(
-			@RequestBody List<Order> orders) {
+			@RequestBody List<Order> orders) throws StoyanovGamesValidationException {
 		this.orderService.batchInsertUpdate(orders);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 	}

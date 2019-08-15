@@ -18,7 +18,9 @@ public class ValidationErrorField implements Serializable {
         this.errorCode = errorCode;
         this.defaultMessage = defaultMessage;
     }
-
+    public ValidationErrorField() {
+        super();
+    }
     public String getObjectName() {
         return objectName;
     }

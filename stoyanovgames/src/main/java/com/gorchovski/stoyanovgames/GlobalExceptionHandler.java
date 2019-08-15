@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
-import com.gorchovski.stoyanovgames.model.ErrorResponse;
+import com.gorchovski.stoyanovgames.model.response.ErrorResponse;
 
 
 @ControllerAdvice
@@ -25,22 +25,22 @@ public class GlobalExceptionHandler {
     @ResponseBody
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ErrorResponse handleException(MethodArgumentNotValidException exception) {
-        logger.error("[handleBADRequestException]", exception);
+        logger.error("[handleArgumentException]", exception.getMessage());
         return ErrorResponse.buildFromException(exception);
     }
 
     @ExceptionHandler(org.springframework.security.access.AccessDeniedException.class)
     @ResponseBody
-    @ResponseStatus(HttpStatus.FORBIDDEN)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ErrorResponse handleRightsException(Exception exception) {
-        logger.error("[handleRightsException]", exception);
+        logger.error("[handleRightsException]", exception.getMessage());
         return ErrorResponse.buildFromException(exception);
     }
     @ExceptionHandler(org.springframework.orm.jpa.JpaObjectRetrievalFailureException.class)
     @ResponseBody
-    @ResponseStatus(HttpStatus.NOT_FOUND)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ErrorResponse handleJPANotFoundException(Exception exception) {
-        logger.error("[handleNotFoundException]", exception);
+        logger.error("[handleNotFoundException]", exception.getMessage());
         return ErrorResponse.buildFromException(exception);
     }
     @ExceptionHandler(org.springframework.dao.DataIntegrityViolationException.class)
@@ -50,11 +50,18 @@ public class GlobalExceptionHandler {
         logger.error("[handleConstraintException]", exception);
         return ErrorResponse.buildFromException(exception);
     }
+    @ExceptionHandler(com.gorchovski.stoyanovgames.excetion.StoyanovGamesValidationException.class)
+    @ResponseBody
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public ErrorResponse handleValidationException(com.gorchovski.stoyanovgames.excetion.StoyanovGamesValidationException exception) {
+        logger.error("[handleValidationException]", exception.getMessage());
+        return ErrorResponse.buildFromStoyanovGamesValidationException(exception);
+    }
     @ExceptionHandler({DataAccessException.class, SQLException.class, Exception.class})
     @ResponseBody
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     public ErrorResponse handleGeneralException(Exception exception) {
-        logger.error("[handleGeneralException]", exception);
+        logger.error("[handleGeneralException]", exception.getMessage());
         return ErrorResponse.buildFromException(exception);
     }
 }

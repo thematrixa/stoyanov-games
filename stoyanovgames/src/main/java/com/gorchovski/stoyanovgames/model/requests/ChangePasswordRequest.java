@@ -1,6 +1,7 @@
-package com.gorchovski.stoyanovgames.model;
+package com.gorchovski.stoyanovgames.model.requests;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.gorchovski.stoyanovgames.model.User;
 
 public class ChangePasswordRequest {
 	@JsonProperty("user")

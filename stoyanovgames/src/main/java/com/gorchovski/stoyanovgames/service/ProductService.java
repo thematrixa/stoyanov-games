@@ -7,10 +7,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.gorchovski.stoyanovgames.excetion.StoyanovGamesValidationException;
 import com.gorchovski.stoyanovgames.model.Comment;
 import com.gorchovski.stoyanovgames.model.Product;
 import com.gorchovski.stoyanovgames.model.Votes;
 import com.gorchovski.stoyanovgames.repository.ProductRepository;
+import com.gorchovski.stoyanovgames.validator.ProductValidator;
 
 @Transactional
 @Service
@@ -29,18 +31,22 @@ public class ProductService {
 	
 	@Autowired
 	private SecurityService securityService;
+	
+	@Autowired
+	private ProductValidator productValidator;
 
 	public List<Product> list() {
 		return productRepository.findAll();
 	}
 
-	public void batchInsertUpdate(List<Product> feProducts) {
+	public void batchInsertUpdate(List<Product> feProducts) throws StoyanovGamesValidationException {
 		List<Product> dbProducts = productRepository.findAll();
 		boolean productExists = false;
 		for (Iterator<Product> db = dbProducts.iterator(); db.hasNext();) {
 			Product dbProduct = db.next();
 			for (Iterator<Product> fe = feProducts.iterator(); fe.hasNext();) {
 				Product feProduct = fe.next();
+				this.productValidator.validateProduct(feProduct);
 				if (dbProduct.getId().equals(feProduct.getId())) {
 					productExists = true;
 				}
@@ -57,13 +63,15 @@ public class ProductService {
 		this.productRepository.deleteAll();
 	}
 
-	public void delete(Product product) {
+	public void delete(Product product) throws StoyanovGamesValidationException {
+		this.productValidator.validateProduct(product);
 		this.deleteComments(product.getId());
 		this.votesService.deleteVotes(product.getId());
 		this.productRepository.delete(product);
 	}
 
-	public void update(Product product) {
+	public void update(Product product) throws StoyanovGamesValidationException {
+		this.productValidator.validateProduct(product);
 		this.productRepository.save(product);
 	}
 
@@ -112,7 +120,7 @@ public class ProductService {
 		return (float) ((5 * five + 4 * four + 3 * three + 2 * two + 1 * one) / (five + four + three + two + one));
 	}
 	
-	public void insertComment(Comment comment) {
+	public void insertComment(Comment comment) throws StoyanovGamesValidationException {
 		String username = this.securityService.findLoggedInUsername();
 		if(this.votesService.hasUserVoted(username, comment.getProductId()) && !this.commentService.hasUserCommented(comment.getProductId())) {
 			this.commentService.insertComment(comment);
@@ -123,7 +131,7 @@ public class ProductService {
 	public void deleteComments(Integer productId) {
 		this.commentService.deleteCommentsByProductId(productId);
 	}
-	public void deleteComment(Comment comment) {
+	public void deleteComment(Comment comment) throws StoyanovGamesValidationException {
 		this.commentService.deleteComment(comment);
 	}
 	public List<Comment> getComments(Product product) {

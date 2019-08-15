@@ -13,9 +13,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.gorchovski.stoyanovgames.model.ChangePasswordRequest;
-import com.gorchovski.stoyanovgames.model.StoyanovGamesResponse;
+import com.gorchovski.stoyanovgames.excetion.StoyanovGamesValidationException;
 import com.gorchovski.stoyanovgames.model.User;
+import com.gorchovski.stoyanovgames.model.requests.ChangePasswordRequest;
+import com.gorchovski.stoyanovgames.model.response.StoyanovGamesResponse;
 import com.gorchovski.stoyanovgames.service.UserService;
 
 @CrossOrigin(origins = "http://localhost:4200", allowedHeaders = "*")
@@ -35,13 +36,13 @@ public class UserController {
 	}
 
 	@RequestMapping(method = RequestMethod.POST, value = "/register", consumes = "application/json")
-	public ResponseEntity<?> registerUser(@RequestBody User user) throws UnsupportedEncodingException {
+	public ResponseEntity<?> registerUser(@RequestBody User user) throws UnsupportedEncodingException, StoyanovGamesValidationException {
 		this.userService.register(user);
 		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 	}
 
 	@RequestMapping(method = RequestMethod.POST, value = "/update", consumes = "application/json")
-	public ResponseEntity<?> updateUser(@RequestBody User user) {
+	public ResponseEntity<?> updateUser(@RequestBody User user) throws StoyanovGamesValidationException {
 		this.userService.update(user);
 		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 	}
@@ -73,14 +74,14 @@ public class UserController {
 
 	@RequestMapping(method = RequestMethod.POST, value = "/change-password", consumes = "application/json")
 	public ResponseEntity<?> changePassword(@RequestBody ChangePasswordRequest data)
-			throws UnsupportedEncodingException {
+			throws UnsupportedEncodingException, StoyanovGamesValidationException {
 
 		this.userService.changePassword(data.getUser(), data.getnPassword());
 		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 	}
 
 	@RequestMapping(method = RequestMethod.POST, value = "/user-settings/save", consumes = "application/json")
-	public ResponseEntity<?> userSettingsSave(@RequestBody User user) throws UnsupportedEncodingException {
+	public ResponseEntity<?> userSettingsSave(@RequestBody User user) throws UnsupportedEncodingException, StoyanovGamesValidationException {
 		this.userService.saveUserSettings(user);
 		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 	}

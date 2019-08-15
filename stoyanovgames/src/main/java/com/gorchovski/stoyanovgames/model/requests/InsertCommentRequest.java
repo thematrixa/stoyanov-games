@@ -1,4 +1,4 @@
-package com.gorchovski.stoyanovgames.model;
+package com.gorchovski.stoyanovgames.model.requests;
 
 import java.util.Date;
 

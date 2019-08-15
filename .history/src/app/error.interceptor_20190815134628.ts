@@ -19,7 +19,6 @@ export class ErrorInterceptor implements HttpInterceptor {
             }
             if (err.status === 400 && err.error.error[0]) {
                 this.toastrService.error(err.error.error[0].defaultMessage);
-                return throwError(err.error.error[0]);
             }
             return throwError(err.status);
         }))

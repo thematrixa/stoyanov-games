@@ -12,8 +12,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.gorchovski.stoyanovgames.excetion.StoyanovGamesValidationException;
 import com.gorchovski.stoyanovgames.model.Category;
-import com.gorchovski.stoyanovgames.model.StoyanovGamesResponse;
+import com.gorchovski.stoyanovgames.model.response.StoyanovGamesResponse;
 import com.gorchovski.stoyanovgames.service.CategoryService;
 
 @CrossOrigin(origins = "http://localhost:4200", allowedHeaders = "*")
@@ -36,7 +37,7 @@ public class CategoryController {
     @PreAuthorize("hasAuthority('ADMIN')")
 	@RequestMapping(method = RequestMethod.POST, value = "/update", consumes="application/json")
 	public ResponseEntity<?> uploadCategories(
-			@RequestBody List<Category> list) {
+			@RequestBody List<Category> list) throws StoyanovGamesValidationException {
 		this.categoryService.batchInsertUpdate(list);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 	}

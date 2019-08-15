@@ -7,9 +7,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.gorchovski.stoyanovgames.excetion.StoyanovGamesValidationException;
 import com.gorchovski.stoyanovgames.model.Comment;
 import com.gorchovski.stoyanovgames.repository.CommentRepository;
 import com.gorchovski.stoyanovgames.repository.UserRepository;
+import com.gorchovski.stoyanovgames.validator.CommentValidator;
 
 @Transactional
 @Service
@@ -17,12 +19,12 @@ public class CommentService {
 
 	@Autowired
 	private CommentRepository commentRepository;
-	
-	@Autowired
-	private UserRepository userRepository;
-	
+
 	@Autowired
 	private SecurityService securityService;
+	
+	@Autowired
+	private CommentValidator commentValidator;
 
 	public List<Comment> selectAll() {
 		return commentRepository.findAll();
@@ -36,12 +38,14 @@ public class CommentService {
 		return commentRepository.findByUsername(username);
 	}
 	
-	public void insertComment(Comment comment) {
+	public void insertComment(Comment comment) throws StoyanovGamesValidationException {
+		this.commentValidator.validateComment(comment);
 		comment.setDate(new Date());
 		this.commentRepository.save(comment);
 	}
 	
-	public void deleteComment(Comment comment) {
+	public void deleteComment(Comment comment) throws StoyanovGamesValidationException {
+		this.commentValidator.validateComment(comment);
 		this.commentRepository.delete(comment);
 	}
 	public void deleteCommentsByProductId(Integer productId) {
