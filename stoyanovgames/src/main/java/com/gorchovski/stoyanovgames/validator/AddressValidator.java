@@ -39,13 +39,13 @@ public class AddressValidator extends BasicValidator {
 
 
 	public Boolean isAddressNameMAXLenghtValid(String name) {
-		if (name.length() < ADDRESS_NAME_MAX_LENGHT) {
+		if (name != null && name.length() < ADDRESS_NAME_MAX_LENGHT) {
 			return true;
 		}
 		return false;
 	}
 	public Boolean isAddressNameMINLengthValid(String name) {
-		if (name.length() > ADDRESS_NAME_MIN_LENGHT) {
+		if (name != null && name.length() > ADDRESS_NAME_MIN_LENGHT) {
 			return true;
 		}
 		return false;

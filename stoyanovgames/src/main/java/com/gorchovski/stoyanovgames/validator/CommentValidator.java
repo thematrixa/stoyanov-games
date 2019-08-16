@@ -51,29 +51,29 @@ public class CommentValidator extends BasicValidator {
 		throwInvalidException(errors, validationMsg);
 	}
 
-	public Boolean isContentMINLenghtValid(String password) {
-		if (password.length() > CONTENT_MIN_LENGHT) {
+	public Boolean isContentMINLenghtValid(String content) {
+		if (content != null && content.length() > CONTENT_MIN_LENGHT) {
 			return true;
 		}
 		return false;
 	}
 
-	public Boolean isContentMAXLengthValid(String password) {
-		if (password.length() < CONTENT_MAX_LENGHT) {
+	public Boolean isContentMAXLengthValid(String content) {
+		if (content != null && content.length() < CONTENT_MAX_LENGHT) {
 			return true;
 		}
 		return false;
 	}
 
 	public Boolean isUsernameMINLenghtValid(String username) {
-		if (username.length() > USERNAME_MIN_LENGHT) {
+		if (username != null && username.length() > USERNAME_MIN_LENGHT) {
 			return true;
 		}
 		return false;
 	}
 
 	public Boolean isUsernameMAXLengthValid(String username) {
-		if (username.length() < USERNAME_MAX_LENGHT) {
+		if (username != null && username.length() < USERNAME_MAX_LENGHT) {
 			return true;
 		}
 		return false;

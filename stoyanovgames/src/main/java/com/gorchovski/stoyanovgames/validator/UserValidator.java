@@ -68,36 +68,39 @@ public class UserValidator extends BasicValidator {
 		throwInvalidException(errors, validationMsg);
 	}
 	public Boolean isUsernameMINLengthValid(String username) {
-		if (username.length() > USERNAME_MIN_LENGHT) {
+		if (username != null && username.length() > USERNAME_MIN_LENGHT) {
 			return true;
 		}
 		return false;
 	}
 
 	public Boolean isPasswordMINLenghtValid(String password) {
-		if (password.length() > PASSWORD_MIN_LENGHT) {
+		if (password != null && password.length() > PASSWORD_MIN_LENGHT) {
 			return true;
 		}
 		return false;
 	}
 
 	public Boolean isUsernameMAXLengthValid(String username) {
-		if (username.length() < USERNAME_MAX_LENGHT) {
+		if (username != null && username.length() < USERNAME_MAX_LENGHT) {
 			return true;
 		}
 		return false;
 	}
 
 	public Boolean isPasswordMAXLengthValid(String password) {
-		if (password.length() < PASSWORD_MAX_LENGHT) {
+		if (password != null && password.length() < PASSWORD_MAX_LENGHT) {
 			return true;
 		}
 		return false;
 	}
 
 	public Boolean isEmailValid(String email) {
-		Matcher matcher = Pattern.compile(EMAIL_REGEX, Pattern.CASE_INSENSITIVE).matcher(email);
-        return matcher.find();
+		if (email != null && email.length() > 0) {
+			Matcher matcher = Pattern.compile(EMAIL_REGEX, Pattern.CASE_INSENSITIVE).matcher(email.toUpperCase());
+	        return matcher.find();
+		}
+		return false;
 	}
 	
 

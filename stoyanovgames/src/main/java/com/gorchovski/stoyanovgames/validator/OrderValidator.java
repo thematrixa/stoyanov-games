@@ -71,42 +71,42 @@ public class OrderValidator extends BasicValidator {
 	}
 
 	public Boolean isOrderNameMAXLenghtValid(String name) {
-		if (name.length() < ORDER_NAME_MAX_LENGHT) {
+		if (name != null && name.length() < ORDER_NAME_MAX_LENGHT) {
 			return true;
 		}
 		return false;
 	}
 
 	public Boolean isOrderNameMINLengthValid(String name) {
-		if (name.length() > ORDER_NAME_MIN_LENGHT) {
+		if (name != null && name.length() > ORDER_NAME_MIN_LENGHT) {
 			return true;
 		}
 		return false;
 	}
 
 	public Boolean isOrderAddressMAXLenghtValid(String address) {
-		if (address.length() < ORDER_ADDRESS_MAX_LENGHT) {
+		if (address != null && address.length() < ORDER_ADDRESS_MAX_LENGHT) {
 			return true;
 		}
 		return false;
 	}
 
 	public Boolean isOrderAddressMINLengthValid(String address) {
-		if (address.length() > ORDER_ADDRESS_MIN_LENGHT) {
+		if (address != null && address.length() > ORDER_ADDRESS_MIN_LENGHT) {
 			return true;
 		}
 		return false;
 	}
 
 	public Boolean isOrderPhoneMAXLenghtValid(String phone) {
-		if (phone.length() < ORDER_ADDRESS_MAX_LENGHT) {
+		if (phone != null && phone.length() < ORDER_ADDRESS_MAX_LENGHT) {
 			return true;
 		}
 		return false;
 	}
 
 	public Boolean isOrderPhoneMINLengthValid(String phone) {
-		if (phone.length() > ORDER_ADDRESS_MIN_LENGHT) {
+		if (phone != null && phone.length() > ORDER_ADDRESS_MIN_LENGHT) {
 			return true;
 		}
 		return false;

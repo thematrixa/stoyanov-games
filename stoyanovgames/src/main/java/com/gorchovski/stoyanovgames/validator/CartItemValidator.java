@@ -43,7 +43,7 @@ public class CartItemValidator extends BasicValidator {
 	}
 
 	public Boolean isCartItemQuantityValid(Integer quantity) {
-		if (quantity > QUANTITY_MIN_VALUE) {
+		if (quantity != null && quantity > QUANTITY_MIN_VALUE) {
 			return true;
 		}
 		return false;

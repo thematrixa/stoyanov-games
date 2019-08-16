@@ -26,48 +26,48 @@ public class NewsValidator extends BasicValidator {
 		News news = (News) target;
 		Errors errors = new BeanPropertyBindingResult(news, "news");
 		if (!this.isTitleMINLengthValid(news.getTitle())) {
-			errors.rejectValue("", "userUsername" + DELIMITER + news.getId(),
-					"Дължината на потребителското име,трябва да е над " + TITLE_MIN_LENGHT + " символа.");
+			errors.rejectValue("", "newsTitle" + DELIMITER + news.getId(),
+					"Дължината на заглавието,трябва да е над " + TITLE_MIN_LENGHT + " символа.");
 		}
 		if (!this.isContentMINLenghtValid(news.getContent())) {
-			errors.rejectValue("", "userPassword" + DELIMITER + news.getId(),
-					"Дължината на паролата,трябва да е над " + CONTENT_MIN_LENGHT + " символа.");
+			errors.rejectValue("", "newsContent" + DELIMITER + news.getId(),
+					"Дължината на съдържанието,трябва да е над " + CONTENT_MIN_LENGHT + " символа.");
 		}
 		if (!this.isTitleMAXLengthValid(news.getTitle())) {
-			errors.rejectValue("", "userUsername" + DELIMITER + news.getId(),
-					"Дължината на потребителското име,трябва да е под " + TITLE_MAX_LENGHT + " символа.");
+			errors.rejectValue("", "newsTitle" + DELIMITER + news.getId(),
+					"Дължината на заглавието, трябва да е под " + TITLE_MAX_LENGHT + " символа.");
 		}
 		if (!this.isContentMAXLengthValid(news.getContent())) {
-			errors.rejectValue("", "userPassword" + DELIMITER + news.getId(),
-					"Дължината на паролата,трябва да е под " + CONTENT_MAX_LENGHT + " символа.");
+			errors.rejectValue("", "newsContent" + DELIMITER + news.getId(),
+					"Дължината на съдържанието, трябва да е под " + CONTENT_MAX_LENGHT + " символа.");
 		}
 		String validationMsg = "user exception";
 		throwInvalidException(errors, validationMsg);
 	}
 
-	public Boolean isTitleMINLengthValid(String username) {
-		if (username.length() > TITLE_MIN_LENGHT) {
+	public Boolean isTitleMINLengthValid(String title) {
+		if (title != null && title.length() > TITLE_MIN_LENGHT) {
 			return true;
 		}
 		return false;
 	}
 
-	public Boolean isContentMINLenghtValid(String password) {
-		if (password.length() > CONTENT_MIN_LENGHT) {
+	public Boolean isContentMINLenghtValid(String content) {
+		if (content != null && content.length() > CONTENT_MIN_LENGHT) {
 			return true;
 		}
 		return false;
 	}
 
-	public Boolean isTitleMAXLengthValid(String username) {
-		if (username.length() < TITLE_MAX_LENGHT) {
+	public Boolean isTitleMAXLengthValid(String title) {
+		if (title != null && title.length() < TITLE_MAX_LENGHT) {
 			return true;
 		}
 		return false;
 	}
 
-	public Boolean isContentMAXLengthValid(String password) {
-		if (password.length() < CONTENT_MAX_LENGHT) {
+	public Boolean isContentMAXLengthValid(String content) {
+		if (content != null && content.length() < CONTENT_MAX_LENGHT) {
 			return true;
 		}
 		return false;

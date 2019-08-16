@@ -42,13 +42,13 @@ public class VotesValidator extends BasicValidator{
 
 
 	public Boolean isUsernameМINLengthValid(String name) {
-		if (name.length() > USERNAME_MIN_LENGHT) {
+		if (name != null && name.length() > USERNAME_MIN_LENGHT) {
 			return true;
 		}
 		return false;
 	}
 	public Boolean isUsernameMAXLengthValid(String name) {
-		if (name.length() < USERNAME_MAX_LENGHT) {
+		if (name != null && name.length() < USERNAME_MAX_LENGHT) {
 			return true;
 		}
 		return false;

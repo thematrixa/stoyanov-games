@@ -37,14 +37,14 @@ public class CategoryValidator extends BasicValidator{
 
 
 	public Boolean isCategoryNameMINLenghtValid(String name) {
-		if (name.length() > CATEGORY_NAME_MIN_LENGHT) {
+		if (name != null && name.length() > CATEGORY_NAME_MIN_LENGHT) {
 			return true;
 		}
 		return false;
 	}
 
 	public Boolean isCategoryNameMAXLenghtValid(String name) {
-		if (name.length() < CATEGORY_NAME_MAX_LENGHT) {
+		if (name != null && name.length() < CATEGORY_NAME_MAX_LENGHT) {
 			return true;
 		}
 		return false;

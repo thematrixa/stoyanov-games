@@ -60,6 +60,11 @@ public class ProductValidator extends BasicValidator {
 					"Quantity трябва да е по - голямо от 0");
 		}
 
+		if (!this.isProductOnSalePercentValid(product.getOnSalePercent())) {
+			errors.rejectValue("", "productQuantity" + DELIMITER + product.getId(),
+					"Процент на промоция, трябва да е между 0 и 100");
+		}
+
 		this.categoryValidator.validateCategory(product.getCategory());
 
 		String validationMsg = "product exception";
@@ -68,28 +73,28 @@ public class ProductValidator extends BasicValidator {
 	}
 
 	public Boolean isProductNameMINLenghtValid(String name) {
-		if (name.length() > PRODUCT_NAME_MIN_LENGHT) {
+		if (name != null && name.length() > PRODUCT_NAME_MIN_LENGHT) {
 			return true;
 		}
 		return false;
 	}
 
 	public Boolean isProductDescMINLenghtValid(String desc) {
-		if (desc.length() > PRODUCT_DESC_MIN_LENGHT) {
+		if (desc != null && desc.length() > PRODUCT_DESC_MIN_LENGHT) {
 			return true;
 		}
 		return false;
 	}
 
 	public Boolean isProductNameMAXLengthValid(String name) {
-		if (name.length() < PRODUCT_NAME_MAX_LENGHT) {
+		if (name != null && name.length() < PRODUCT_NAME_MAX_LENGHT) {
 			return true;
 		}
 		return false;
 	}
 
 	public Boolean isProductDescMAXLengthValid(String desc) {
-		if (desc.length() < PRODUCT_DESC_MAX_LENGHT) {
+		if (desc != null && desc.length() < PRODUCT_DESC_MAX_LENGHT) {
 			return true;
 		}
 		return false;
@@ -110,7 +115,13 @@ public class ProductValidator extends BasicValidator {
 	}
 
 	public Boolean isProductQuantityValid(Integer quantity) {
-		if (quantity > 0) {
+		if (quantity != null && quantity > 0) {
+			return true;
+		}
+		return false;
+	}
+	public Boolean isProductOnSalePercentValid(Integer onSalePercent) {
+		if (onSalePercent != null && onSalePercent >= 0 && onSalePercent < 101) {
 			return true;
 		}
 		return false;
