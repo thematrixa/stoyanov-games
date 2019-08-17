@@ -48,26 +48,49 @@ export class AddEditProductComponent implements OnInit {
 
   ngOnInit() {
     this.addProductForm = this.formBuilder.group({
-      name: ["", Validators.required],
-      description: ["", Validators.required],
-      price: ["", Validators.required],
-      tournamentStoreLaunchDate: ["", Validators.required],
-      launchDate: ["", Validators.required],
-      konamiTournamentLegalDate: ["", Validators.required],
-      cardsPerPack: ["", Validators.required],
-      size: ["", Validators.required],
-      isActive: ["", Validators.required],
-      categoryId: ["", Validators.required],
-      shortDescription: ["", Validators.required],
+      name: [""],
+      description: [""],
+      price: [""],
+      tournamentStoreLaunchDate: [""],
+      launchDate: [""],
+      konamiTournamentLegalDate: [""],
+      cardsPerPack: [""],
+      size: [""],
+      isActive: [""],
+      category: [""],
+      shortDescription: [""],
       photo1: [""],
       photo2: [""],
       photo3: [""],
       photo4: [""],
       photo5: [""],
-      inStock: ["", Validators.required],
-      onSalePercent: ["", Validators.required],
-      quantity: ["", Validators.required]
+      inStock: [""],
+      onSalePercent: [""],
+      quantity: [""]
     });
+
+
+    // this.addProductForm = this.formBuilder.group({
+    //   name: ["", Validators.required],
+    //   description: ["", Validators.required],
+    //   price: ["", Validators.required],
+    //   tournamentStoreLaunchDate: ["", Validators.required],
+    //   launchDate: ["", Validators.required],
+    //   konamiTournamentLegalDate: ["", Validators.required],
+    //   cardsPerPack: ["", Validators.required],
+    //   size: ["", Validators.required],
+    //   isActive: ["", Validators.required],
+    //   category: ["", Validators.required],
+    //   shortDescription: ["", Validators.required],
+    //   photo1: [""],
+    //   photo2: [""],
+    //   photo3: [""],
+    //   photo4: [""],
+    //   photo5: [""],
+    //   inStock: ["", Validators.required],
+    //   onSalePercent: ["", Validators.required],
+    //   quantity: ["", Validators.required]
+    // });
     if(this.product.name){
       this.addProductForm.patchValue({ name: this.product.name }, {});
       this.addProductForm.patchValue({ description: this.product.description });
@@ -79,13 +102,9 @@ export class AddEditProductComponent implements OnInit {
         konamiTournamentLegalDate: this.product.konamiTournamentLegalDate
       });
       this.addProductForm.patchValue({ cardsPerPack: this.product.cardsPerPack });
-      this.addProductForm.patchValue({ size: this.product.size });
       this.addProductForm.patchValue({ isActive: this.product.isActive });
-      this.addProductForm.patchValue({ categoryId: this.product.categoryId });
+      this.addProductForm.patchValue({ category: this.product.category.id });
       this.addProductForm.patchValue({ isActive: this.product.isActive });
-      this.addProductForm.patchValue({
-        shortDescription: this.product.shortDescription
-      });
       this.addProductForm.patchValue({ photo1: this.product.photo1Base64 });
       this.addProductForm.patchValue({ photo2: this.product.photo2Base64 });
       this.addProductForm.patchValue({ photo3: this.product.photo3Base64 });
@@ -132,7 +151,6 @@ export class AddEditProductComponent implements OnInit {
         this.toastr.success('Great', 'Upload successfull!');},
       (err: HttpErrorResponse) => {
         console.log(err);
-        this.toastr.error('Error', 'Upload failed.Check logs or call administrator!');
       }
     );
   }

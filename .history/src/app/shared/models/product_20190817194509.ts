@@ -11,6 +11,7 @@ export class Product {
     cardsPerPack: number;
     isActive: boolean = false;
     category: Category;
+    shortDescription: string;
     inStock: boolean = false;
     quantity: number;
     onSalePercent: number;

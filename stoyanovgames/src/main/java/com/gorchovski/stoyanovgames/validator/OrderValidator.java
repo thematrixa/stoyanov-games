@@ -129,7 +129,7 @@ public class OrderValidator extends BasicValidator {
 	public Boolean isStatusValid(OrdersEnum status) {
 		if (status != null) {
 			for (OrdersEnum temp : OrdersEnum.values()) {
-		        if (temp.name().equals(status)) {
+		        if (temp.name().equals(status.name())) {
 		            return true;
 		        }
 		    }

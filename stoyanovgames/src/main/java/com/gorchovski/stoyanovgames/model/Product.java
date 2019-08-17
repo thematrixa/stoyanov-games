@@ -36,12 +36,10 @@ public class Product {
 	private Date konamiTournamentLegalDate;
 	@JsonProperty("cardsPerPack")
 	private Integer cardsPerPack;
-	private String size;
 	private Boolean isActive;
 	@ManyToOne
 	@NotNull
 	private Category category;
-	private String shortDescription;
 	@NotNull
 	private Boolean inStock;
 	@NotNull
@@ -132,28 +130,12 @@ public class Product {
 		this.cardsPerPack = cardsPerPack;
 	}
 
-	public String getSize() {
-		return size;
-	}
-
-	public void setSize(String size) {
-		this.size = size;
-	}
-
 	public Boolean getIsActive() {
 		return isActive;
 	}
 
 	public void setIsActive(Boolean isActive) {
 		this.isActive = isActive;
-	}
-
-	public String getShortDescription() {
-		return shortDescription;
-	}
-
-	public void setShortDescription(String shortDescription) {
-		this.shortDescription = shortDescription;
 	}
 
 	public Boolean getInStock() {

@@ -41,8 +41,8 @@ export class ProductService {
     product.price = parseFloat(formData.price);
     product.quantity = parseInt(formData.quantity);
     product.description = formData.description;
-    product.inStock = formData.inStock && formData.inStock != "" ? true : false;
-    product.isActive = formData.isActive && formData.isActive != "" ? true : false;
+    product.inStock = formData.inStock;
+    product.isActive = formData.isActive;
     product.konamiTournamentLegalDate = formData.konamiTournamentLegalDate;
     product.launchDate = formData.launchDate;
     product.name = formData.name;
@@ -56,6 +56,7 @@ export class ProductService {
     product.photo3Base64 = formData.photo3;
     product.photo4Base64 = formData.photo4;
     product.photo5Base64 = formData.photo5;
+    product.shortDescription = formData.shortDescription;
     product.tournamentStoreLaunchDate = formData.tournamentStoreLaunchDate;
     product.dateAdded = this.dateFormatter.transform(new Date());
     return product;

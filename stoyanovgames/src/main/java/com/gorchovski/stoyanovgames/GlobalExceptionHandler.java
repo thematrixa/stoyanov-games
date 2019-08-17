@@ -61,7 +61,7 @@ public class GlobalExceptionHandler {
     @ResponseBody
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     public ErrorResponse handleGeneralException(Exception exception) {
-        logger.error("[handleGeneralException]", exception.getMessage());
+        logger.error("[handleGeneralException]", exception);
         return ErrorResponse.buildFromException(exception);
     }
 }

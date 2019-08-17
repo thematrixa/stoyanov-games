@@ -9,9 +9,10 @@ export class Product {
     launchDate: Date;
     konamiTournamentLegalDate: Date;
     cardsPerPack: number;
-    isActive: boolean = false;
+    isActive: number;
     category: Category;
-    inStock: boolean = false;
+    shortDescription: string;
+    inStock: number;
     quantity: number;
     onSalePercent: number;
     dateAdded: Date;

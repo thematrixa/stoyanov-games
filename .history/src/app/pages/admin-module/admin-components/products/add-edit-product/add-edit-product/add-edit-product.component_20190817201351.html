@@ -100,7 +100,7 @@
                 </div>
                 <div [formGroup]="addProductForm" class="form-group">
                     <div class="d-inline">
-                        <input style="width:auto"  type="checkbox" formControlName="isActive" class="form-control d-inline"
+                        <input type="checkbox" formControlName="isActive" class="form-control d-inline"
                             [ngClass]="{ 'is-invalid': submitted && f.isActive.errors }" /> <label>Active</label>
                     </div>
                     <div *ngIf="submitted && f.isActive.errors" class="invalid-feedback">

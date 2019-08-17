@@ -102,9 +102,13 @@ export class AddEditProductComponent implements OnInit {
         konamiTournamentLegalDate: this.product.konamiTournamentLegalDate
       });
       this.addProductForm.patchValue({ cardsPerPack: this.product.cardsPerPack });
+      this.addProductForm.patchValue({ size: this.product.size });
       this.addProductForm.patchValue({ isActive: this.product.isActive });
       this.addProductForm.patchValue({ category: this.product.category.id });
       this.addProductForm.patchValue({ isActive: this.product.isActive });
+      this.addProductForm.patchValue({
+        shortDescription: this.product.shortDescription
+      });
       this.addProductForm.patchValue({ photo1: this.product.photo1Base64 });
       this.addProductForm.patchValue({ photo2: this.product.photo2Base64 });
       this.addProductForm.patchValue({ photo3: this.product.photo3Base64 });
@@ -151,6 +155,7 @@ export class AddEditProductComponent implements OnInit {
         this.toastr.success('Great', 'Upload successfull!');},
       (err: HttpErrorResponse) => {
         console.log(err);
+        this.toastr.error('Error', 'Upload failed.Check logs or call administrator!');
       }
     );
   }

@@ -3,58 +3,46 @@
         <div class="row">
             <div class="col-6 col-centered">
                 <div [formGroup]="addProductForm" class="form-group">
-                    <input placeholder="Product name" type="text" formControlName="name" class="form-control"
-                        [ngClass]="{ 'is-invalid': submitted && f.name.errors }" />
+                    <input placeholder="Product name" type="text" formControlName="name" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.name.errors }" />
                     <div *ngIf="submitted && f.name.errors" class="invalid-feedback" role="alert">
                         <div *ngIf="f.name.errors.required">name is required</div>
                     </div>
                 </div>
                 <div [formGroup]="addProductForm" class="form-group">
-                    <input placeholder="Description" formControlName="description" class="form-control"
-                        [ngClass]="{ 'is-invalid': submitted && f.description.errors }" />
+                    <input placeholder="Description" formControlName="description" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.description.errors }" />
                     <div *ngIf="submitted && f.description.errors" class="invalid-feedback">
                         <div *ngIf="f.description.errors.required">Description is required</div>
                         <div *ngIf="f.description.errors.minlength">Description must be more than 6 characters</div>
                     </div>
                 </div>
                 <div [formGroup]="addProductForm" class="form-group">
-                    <input placeholder="Price" formControlName="price" class="form-control"
-                        [ngClass]="{ 'is-invalid': submitted && f.price.errors }" />
+                    <input placeholder="Price" formControlName="price" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.price.errors }" />
                     <div *ngIf="submitted && f.price.errors" class="invalid-feedback">
                         <div *ngIf="f.price.errors.required">Price is required</div>
                     </div>
                 </div>
                 <div [formGroup]="addProductForm" class="form-group">
-                    <input bsDatepicker [bsConfig]="{ dateInputFormat: 'DD.MM.YYYY' }" placement="right"
-                        placeholder="Launch Date" formControlName="launchDate" class="form-control"
-                        [ngClass]="{ 'is-invalid': submitted && f.launchDate.errors }" />
+                    <input bsDatepicker [bsConfig]="{ dateInputFormat: 'DD.MM.YYYY' }" placement="right" placeholder="Launch Date" formControlName="launchDate" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.launchDate.errors }" />
                     <div *ngIf="submitted && f.launchDate.errors" class="invalid-feedback">
                         <div *ngIf="f.launchDate.errors.required">Launch Date is required</div>
                     </div>
                 </div>
                 <div [formGroup]="addProductForm" class="form-group">
-                    <input bsDatepicker [bsConfig]="{ dateInputFormat: 'DD.MM.YYYY' }" placement="right"
-                        placeholder="Tournament Store Launch" formControlName="tournamentStoreLaunchDate"
-                        class="form-control"
-                        [ngClass]="{ 'is-invalid': submitted && f.tournamentStoreLaunchDate.errors }" />
+                    <input bsDatepicker [bsConfig]="{ dateInputFormat: 'DD.MM.YYYY' }" placement="right" placeholder="Tournament Store Launch" formControlName="tournamentStoreLaunchDate" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.tournamentStoreLaunchDate.errors }"
+                    />
                     <div *ngIf="submitted && f.tournamentStoreLaunchDate.errors" class="invalid-feedback">
-                        <div *ngIf="f.tournamentStoreLaunchDate.errors.required">Tournament Store Launch Date is
-                            required</div>
+                        <div *ngIf="f.tournamentStoreLaunchDate.errors.required">Tournament Store Launch Date is required</div>
                     </div>
                 </div>
                 <div [formGroup]="addProductForm" class="form-group">
-                    <input bsDatepicker [bsConfig]="{ dateInputFormat: 'DD.MM.YYYY' }" placement="right"
-                        placeholder="Konami Tournament Legal Date" formControlName="konamiTournamentLegalDate"
-                        class="form-control"
-                        [ngClass]="{ 'is-invalid': submitted && f.konamiTournamentLegalDate.errors }" />
+                    <input bsDatepicker [bsConfig]="{ dateInputFormat: 'DD.MM.YYYY' }" placement="right" placeholder="Konami Tournament Legal Date" formControlName="konamiTournamentLegalDate" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.konamiTournamentLegalDate.errors }"
+                    />
                     <div *ngIf="submitted && f.konamiTournamentLegalDate.errors" class="invalid-feedback">
-                        <div *ngIf="f.konamiTournamentLegalDate.errors.required">Konami Tournament Legal Date is
-                            required</div>
+                        <div *ngIf="f.konamiTournamentLegalDate.errors.required">Konami Tournament Legal Date is required</div>
                     </div>
                 </div>
                 <div [formGroup]="addProductForm" class="form-group">
-                    <input placeholder="Cards per pack" formControlName="cardsPerPack" class="form-control"
-                        [ngClass]="{ 'is-invalid': submitted && f.cardsPerPack.errors }" />
+                    <input placeholder="Cards per pack" formControlName="cardsPerPack" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.cardsPerPack.errors }" />
                     <div *ngIf="submitted && f.cardsPerPack.errors" class="invalid-feedback">
                         <div *ngIf="f.cardsPerPack.errors.required">Cards per pack is required</div>
                     </div>
@@ -62,47 +50,40 @@
             </div>
             <div class="col-6 col-centered">
                 <div [formGroup]="addProductForm" class="form-group">
-                    <input placeholder="Quantity" formControlName="quantity" class="form-control"
-                        [ngClass]="{ 'is-invalid': submitted && f.quantity.errors }" />
+                    <input placeholder="Quantity" formControlName="quantity" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.quantity.errors }" />
                     <div *ngIf="submitted && f.quantity.errors" class="invalid-feedback">
                         <div *ngIf="f.quantity.errors.required">Quantity is required</div>
                     </div>
                 </div>
                 <div [formGroup]="addProductForm" class="form-group">
-                    <input placeholder="On sale percent" formControlName="onSalePercent" class="form-control"
-                        [ngClass]="{ 'is-invalid': submitted && f.onSalePercent.errors }" />
+                    <input placeholder="On sale percent" formControlName="onSalePercent" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.onSalePercent.errors }" />
                     <div *ngIf="submitted && f.onSalePercent.errors" class="invalid-feedback">
                         <div *ngIf="f.onSalePercent.errors.required">On sale percent is required</div>
                     </div>
                 </div>
                 <div [formGroup]="addProductForm" class="form-group">
-                    <select formControlName="category" class="form-control"
-                        [ngClass]="{ 'is-invalid': submitted && f.category.errors }">
-                        <option [selected]="category === product.category" *ngFor="let category of categores"
-                            [value]="category.id">{{category.name}}</option>
-                    </select>
+                    <select formControlName="category" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.category.errors }">
+            <option [selected]="category === product.category" *ngFor="let category of categores"
+              [value]="category.id">{{category.name}}</option>
+          </select>
                     <div *ngIf="submitted && f.category.errors" class="invalid-feedback">
                         <div *ngIf="f.category.errors.required">Category is required</div>
                     </div>
                 </div>
                 <div [formGroup]="addProductForm" class="form-group">
-                    <div class="d-inline">
-                        <input style="width:auto" type="checkbox" formControlName="inStock"
-                            class="form-control d-inline" [ngClass]="{ 'is-invalid': submitted && f.inStock.errors }" />
+                    <div>
+                        <input style="width:auto" type="checkbox" formControlName="inStock" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.inStock.errors }" /> 
                         <label>
                             In Stock
                         </label>
                     </div>
-
+                    
                     <div *ngIf="submitted && f.inStock.errors" class="invalid-feedback">
                         <div *ngIf="f.inStock.errors.required">inStock is required</div>
                     </div>
                 </div>
                 <div [formGroup]="addProductForm" class="form-group">
-                    <div class="d-inline">
-                        <input style="width:auto"  type="checkbox" formControlName="isActive" class="form-control d-inline"
-                            [ngClass]="{ 'is-invalid': submitted && f.isActive.errors }" /> <label>Active</label>
-                    </div>
+                    <input type="checkbox" formControlName="isActive" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.isActive.errors }" /> Active
                     <div *ngIf="submitted && f.isActive.errors" class="invalid-feedback">
                         <div *ngIf="f.isActive.errors.required">isActive is required</div>
                     </div>

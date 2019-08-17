@@ -2,15 +2,18 @@ package com.gorchovski.stoyanovgames.service;
 
 import java.util.Iterator;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.gorchovski.stoyanovgames.excetion.StoyanovGamesValidationException;
+import com.gorchovski.stoyanovgames.model.Category;
 import com.gorchovski.stoyanovgames.model.Comment;
 import com.gorchovski.stoyanovgames.model.Product;
 import com.gorchovski.stoyanovgames.model.Votes;
+import com.gorchovski.stoyanovgames.repository.CategoryRepository;
 import com.gorchovski.stoyanovgames.repository.ProductRepository;
 import com.gorchovski.stoyanovgames.validator.ProductValidator;
 
@@ -25,9 +28,12 @@ public class ProductService {
 
 	@Autowired
 	private VotesService votesService;
-	
+
 	@Autowired
 	private CommentService commentService;
+
+	@Autowired
+	private CategoryRepository categoryRepository;
 	
 	@Autowired
 	private SecurityService securityService;
@@ -71,6 +77,8 @@ public class ProductService {
 	}
 
 	public void update(Product product) throws StoyanovGamesValidationException {
+		Category category = this.categoryRepository.findById(product.getCategory().getId());
+		product.setCategory(category);
 		this.productValidator.validateProduct(product);
 		this.productRepository.save(product);
 	}

@@ -105,6 +105,9 @@ export class AddEditProductComponent implements OnInit {
       this.addProductForm.patchValue({ isActive: this.product.isActive });
       this.addProductForm.patchValue({ category: this.product.category.id });
       this.addProductForm.patchValue({ isActive: this.product.isActive });
+      this.addProductForm.patchValue({
+        shortDescription: this.product.shortDescription
+      });
       this.addProductForm.patchValue({ photo1: this.product.photo1Base64 });
       this.addProductForm.patchValue({ photo2: this.product.photo2Base64 });
       this.addProductForm.patchValue({ photo3: this.product.photo3Base64 });

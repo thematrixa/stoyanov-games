@@ -22,14 +22,14 @@ public class CategoryValidator extends BasicValidator{
 
 	public void validateCategory(Object target) throws StoyanovGamesValidationException {
 		Category category = (Category) target;
-		Errors errors = new BeanPropertyBindingResult(category, "category");
+ 		Errors errors = new BeanPropertyBindingResult(category, "category");
 		if (!this.isCategoryNameMINLenghtValid(category.getName())) {
 			errors.rejectValue("", "name" + DELIMITER + category.getId(),
-					"Името,трябва да е над " + CATEGORY_NAME_MIN_LENGHT + " символа.");
+					"Името на категорията, трябва да е над " + CATEGORY_NAME_MIN_LENGHT + " символа.");
 		}
 		if (!this.isCategoryNameMAXLenghtValid(category.getName())) {
 			errors.rejectValue("", "name" + DELIMITER + category.getId(),
-					"Името,трябва да е под " + CATEGORY_NAME_MAX_LENGHT + " символа.");
+					"Името на категорията, трябва да е под " + CATEGORY_NAME_MAX_LENGHT + " символа.");
 		}
 		String validationMsg = "category name exception";
 		throwInvalidException(errors, validationMsg);
