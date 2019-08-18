@@ -73,18 +73,20 @@ public class ProductController {
 	public StoyanovGamesResponse<?> changeRating(@RequestBody UpdateRatingRequest data)
 			throws UnsupportedEncodingException {
 
-		Float rate = this.productService.updateRating(data.getNumberOfStars(), data.getUsername(), data.getProductId());
+		Float rate = this.productService.updateRating(data.getNumberOfStars(), data.getProductId());
 		return new StoyanovGamesResponse<>(rate);
 	}
 
 	@RequestMapping(method = RequestMethod.POST, value = "/comment/insert", consumes = "application/json")
-	public ResponseEntity<?> insertComment(@RequestBody Comment comment) throws UnsupportedEncodingException, StoyanovGamesValidationException {
+	public ResponseEntity<?> insertComment(@RequestBody Comment comment)
+			throws UnsupportedEncodingException, StoyanovGamesValidationException {
 		this.productService.insertComment(comment);
 		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 	}
 
 	@RequestMapping(method = RequestMethod.POST, value = "/comment/delete", consumes = "application/json")
-	public ResponseEntity<?> deleteComment(@RequestBody Comment comment) throws UnsupportedEncodingException, StoyanovGamesValidationException {
+	public ResponseEntity<?> deleteComment(@RequestBody Comment comment)
+			throws UnsupportedEncodingException, StoyanovGamesValidationException {
 		this.productService.deleteComment(comment);
 		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 	}
@@ -97,6 +99,12 @@ public class ProductController {
 	@RequestMapping(method = RequestMethod.POST, value = "/rating/has-voted", consumes = "application/json")
 	public StoyanovGamesResponse<?> getHasUserVoted(@RequestBody HasUserVotedRequest data)
 			throws UnsupportedEncodingException {
-		return new StoyanovGamesResponse<>(this.productService.hasUserVoted(data.getUsername(), data.getProductId()));
+		return new StoyanovGamesResponse<>(this.productService.hasUserVoted(data.getProductId()));
+	}
+
+	@RequestMapping(method = RequestMethod.POST, value = "/comment/has-commented", consumes = "application/json")
+	public StoyanovGamesResponse<?> getHasUserCommented(@RequestBody HasUserVotedRequest data)
+			throws UnsupportedEncodingException {
+		return new StoyanovGamesResponse<>(this.productService.hasUserCommented(data.getProductId()));
 	}
 }

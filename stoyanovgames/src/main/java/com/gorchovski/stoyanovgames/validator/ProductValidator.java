@@ -1,5 +1,8 @@
 package com.gorchovski.stoyanovgames.validator;
 
+import java.util.Calendar;
+import java.util.Date;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -64,22 +67,38 @@ public class ProductValidator extends BasicValidator {
 			errors.rejectValue("", "productQuantity" + DELIMITER + product.getId(),
 					"Процент на промоция, трябва да е между 0 и 100");
 		}
-		
+
 		if (!this.isProductCategoryValid(product.getCategory())) {
-			errors.rejectValue("", "productCategory" + DELIMITER + product.getId(),
-					"Категорията, е задължителна.");
+			errors.rejectValue("", "productCategory" + DELIMITER + product.getId(), "Категорията, е задължителна.");
 		}
 
 		if (!this.isProductPriceValid(product.getPrice())) {
-			errors.rejectValue("", "productPrice" + DELIMITER + product.getId(),
-					"Цената, е задължителна.");
+			errors.rejectValue("", "productPrice" + DELIMITER + product.getId(), "Цената, е задължителна.");
 		}
 
 		if (!this.isProductCardsPerPackValid(product.getCardsPerPack())) {
-			errors.rejectValue("", "productCardsPerPack" + DELIMITER + product.getId(),
-					"Брой карти, е задължително.");
+			errors.rejectValue("", "productCardsPerPack" + DELIMITER + product.getId(), "Брой карти, е задължително.");
 		}
-		
+		if (!this.isProductDateValid(product.getLaunchDate())) {
+			errors.rejectValue("", "productLaunchDate" + DELIMITER + product.getId(),
+					"Дата на излизане, е задължително.");
+		}
+
+		if (!this.isProductDateValid(product.getKonamiTournamentLegalDate())) {
+			errors.rejectValue("", "productKonamiTournamentLegalDate" + DELIMITER + product.getId(),
+					"Дата за турнири, е задължително.");
+		}
+
+		if (!this.isProductDateValid(product.getTournamentStoreLaunchDate())) {
+			errors.rejectValue("", "productTournamentStoreLaunchDate" + DELIMITER + product.getId(),
+					"Дата за продаване в магазин, е задължително.");
+		}
+
+		/*if (!this.isProductImageValid(product.getPhoto1Base64())) {
+			errors.rejectValue("", "productPhoto1" + DELIMITER + product.getId(),
+					"Първата снимка, е задължителна.");
+		}*/
+
 		this.categoryValidator.validateCategory(product.getCategory());
 
 		String validationMsg = "product exception";
@@ -142,18 +161,41 @@ public class ProductValidator extends BasicValidator {
 		}
 		return false;
 	}
-	
+
 	public Boolean isProductCardsPerPackValid(Integer cardsPerPack) {
 		if (cardsPerPack != null && cardsPerPack > 0) {
 			return true;
 		}
 		return false;
 	}
-	
+
+	public Boolean isProductDateValid(Date date) {
+		if (date != null) {
+			Calendar cal = Calendar.getInstance();
+			cal.setLenient(false);
+			cal.setTime(date);
+			try {
+				cal.getTime();
+			} catch (Exception e) {
+				return false;
+			}
+			return true;
+		}
+		return false;
+	}
+
 	public Boolean isProductPriceValid(Float price) {
 		if (price != null && price >= 0) {
 			return true;
 		}
 		return false;
 	}
+
+	public Boolean isProductImageValid(String imageSrc) {
+		if (imageSrc != null && imageSrc.length() > 0) {
+			return true;
+		}
+		return false;
+	}
+	
 }

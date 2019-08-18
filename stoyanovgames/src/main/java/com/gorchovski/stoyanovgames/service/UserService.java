@@ -12,8 +12,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.gorchovski.stoyanovgames.excetion.StoyanovGamesValidationException;
+import com.gorchovski.stoyanovgames.model.Address;
 import com.gorchovski.stoyanovgames.model.User;
+import com.gorchovski.stoyanovgames.repository.AddressRepository;
 import com.gorchovski.stoyanovgames.repository.UserRepository;
+import com.gorchovski.stoyanovgames.validator.AddressValidator;
 import com.gorchovski.stoyanovgames.validator.UserValidator;
 
 @Transactional
@@ -25,6 +28,8 @@ public class UserService {
 	@Autowired
 	private UserRepository userRepository;
 	@Autowired
+	private AddressRepository addressRepository;
+	@Autowired
 	private BCryptPasswordEncoder bCryptPasswordEncoder;
 	@Autowired
 	private SecurityService securityService;
@@ -32,6 +37,8 @@ public class UserService {
 	private EmailingService emailService;
 	@Autowired
 	private UserValidator userValidator;
+	@Autowired
+	private AddressValidator addressValidator;
 	@Value("${server.port}")
 	private String serverPort;
 	@Value("${server.serverPath}")
@@ -65,6 +72,17 @@ public class UserService {
 		this.userRepository.save(user);
 	}
 
+	public void updateUserAddress(User feUser) throws StoyanovGamesValidationException {
+		// this.userValidator.validateUser(feUser);
+		for (Address address : feUser.getAddresses()) {
+			this.addressValidator.validateAddress(address);
+		}
+		User loggedUser = this.securityService.findLoggedInUser();
+		User dbUser = this.userRepository.findByUsername(loggedUser.getUsername());
+		dbUser.setAddresses(feUser.getAddresses());
+		this.userRepository.save(dbUser);
+	}
+
 	public User getUser(String username) {
 		return this.userRepository.findByUsername(username);
 	}
@@ -92,7 +110,8 @@ public class UserService {
 		}
 	}
 
-	public void changePassword(User feUser, String newPassword) throws UnsupportedEncodingException, StoyanovGamesValidationException {
+	public void changePassword(User feUser, String newPassword)
+			throws UnsupportedEncodingException, StoyanovGamesValidationException {
 		this.userValidator.validateUser(feUser);
 		User dbUser = this.userRepository.findByUsername(feUser.getUsername());
 		if (bCryptPasswordEncoder.matches(feUser.getPassword(), dbUser.getPassword())) {

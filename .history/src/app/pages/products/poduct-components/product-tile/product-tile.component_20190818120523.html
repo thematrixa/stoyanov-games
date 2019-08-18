@@ -1,0 +1,27 @@
+<div class="container-fluid" (click)="showDetails();">
+      <div>
+            <span class="row">
+                  <!-- <img src="product.photo1"/> -->
+                  <img class='product-image' src="{{product.photo1Base64}}" />
+            </span>
+      </div>
+      <div>
+            <span class="row d-flex">
+                  <p class='product-name' style="word-wrap:break-word;">{{product.name}}</p>
+                  <img (click)="addToCart($event);$event.stopPropagation()" class="cart-icon"
+                        src="assets/Icons/shopping-cart-icon.svg" />
+            </span>
+      </div>
+      <div>
+            <span class="row">
+
+                  <b><span *ngIf="product.onSalePercent>0" class='product-price'>{{(product.price * product.onSalePercent / 100) + "лв."}}</span><span class='product-price'>{{product.price + "лв."}}</span></b>
+                  <span class='product-rating'>
+                        <form>
+                              <bar-rating [rate]="rate" name="rating" disabled [max]="5">
+                              </bar-rating>
+                        </form>
+                  </span>
+            </span>
+      </div>
+</div>

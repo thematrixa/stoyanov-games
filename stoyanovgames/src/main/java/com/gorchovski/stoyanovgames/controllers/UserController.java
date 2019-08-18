@@ -46,6 +46,11 @@ public class UserController {
 		this.userService.update(user);
 		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 	}
+	@RequestMapping(method = RequestMethod.POST, value = "/update/address", consumes = "application/json")
+	public ResponseEntity<?> updateUserAddress(@RequestBody User user) throws StoyanovGamesValidationException {
+		this.userService.updateUserAddress(user);
+		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+	}
 
 	@RequestMapping(produces = "application/json", method = RequestMethod.GET, value = "/login")
 	public StoyanovGamesResponse<?> loginUser(@RequestParam String username) {

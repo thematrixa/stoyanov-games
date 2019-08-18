@@ -13,7 +13,7 @@ import org.slf4j.LoggerFactory;
 @Component
 public class AddressValidator extends BasicValidator {
 
-	private final Integer ADDRESS_NAME_MIN_LENGHT = 0;
+	private final Integer ADDRESS_NAME_MIN_LENGHT = 10;
 	private final Integer ADDRESS_NAME_MAX_LENGHT = 50;
 	private final char DELIMITER = '.';
 	private final Logger logger = LoggerFactory.getLogger(AddressValidator.class);
@@ -31,7 +31,7 @@ public class AddressValidator extends BasicValidator {
 		}
 		if (!this.isAddressNameMAXLenghtValid(address.getName())) {
 			errors.rejectValue("", "addressName" + DELIMITER + address.getId(),
-					"Дължината на адресът,трябва да е над " + ADDRESS_NAME_MAX_LENGHT);
+					"Дължината на адресът,трябва да е под " + ADDRESS_NAME_MAX_LENGHT);
 		}
 		String validationMsg = "address name exception";
 		throwInvalidException(errors, validationMsg);

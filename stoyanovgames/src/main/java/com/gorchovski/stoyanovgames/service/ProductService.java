@@ -12,6 +12,7 @@ import com.gorchovski.stoyanovgames.excetion.StoyanovGamesValidationException;
 import com.gorchovski.stoyanovgames.model.Category;
 import com.gorchovski.stoyanovgames.model.Comment;
 import com.gorchovski.stoyanovgames.model.Product;
+import com.gorchovski.stoyanovgames.model.User;
 import com.gorchovski.stoyanovgames.model.Votes;
 import com.gorchovski.stoyanovgames.repository.CategoryRepository;
 import com.gorchovski.stoyanovgames.repository.ProductRepository;
@@ -83,8 +84,9 @@ public class ProductService {
 		this.productRepository.save(product);
 	}
 
-	public Float updateRating(Integer numberOfStars, String username, Integer productId) {
-		boolean hasUserVoted = this.votesService.hasUserVoted(username, productId);
+	public Float updateRating(Integer numberOfStars, Integer productId) {
+		User user = this.securityService.findLoggedInUser();
+		boolean hasUserVoted = this.votesService.hasUserVoted(user.getUsername(), productId);
 			Product product = this.productRepository.findById(productId);
 		if (hasUserVoted) {
 			return product.getRating();
@@ -93,15 +95,21 @@ public class ProductService {
 			Float rating = this.calculateRating(product);
 			product.setRating(rating);
 			this.productRepository.save(product);
-			Votes vote = new Votes(productId, username);
+			Votes vote = new Votes(productId, user.getUsername());
 			this.votesService.insertVote(vote);
 			return rating;
 		}
 
 	}
 	
-	public Boolean hasUserVoted(String username, Integer productId) {
-		return this.votesService.hasUserVoted(username, productId);
+	public Boolean hasUserVoted(Integer productId) {
+		User user = this.securityService.findLoggedInUser();
+		return this.votesService.hasUserVoted(user.getUsername(), productId);
+	}
+
+	public Boolean hasUserCommented(Integer productId) {
+		User user = this.securityService.findLoggedInUser();
+		return this.commentService.hasUserCommented(user.getUsername(), productId);
 	}
 
 	public void updateStars(Product product, Integer numberOfStars) {
@@ -129,8 +137,8 @@ public class ProductService {
 	}
 	
 	public void insertComment(Comment comment) throws StoyanovGamesValidationException {
-		String username = this.securityService.findLoggedInUsername();
-		if(this.votesService.hasUserVoted(username, comment.getProductId()) && !this.commentService.hasUserCommented(comment.getProductId())) {
+		User user = this.securityService.findLoggedInUser();
+		if(this.votesService.hasUserVoted(user.getUsername(), comment.getProductId()) && !this.commentService.hasUserCommented(user.getUsername(), comment.getProductId())) {
 			this.commentService.insertComment(comment);
 		}else {
 			

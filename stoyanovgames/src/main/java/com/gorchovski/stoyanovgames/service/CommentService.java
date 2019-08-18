@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.gorchovski.stoyanovgames.excetion.StoyanovGamesValidationException;
 import com.gorchovski.stoyanovgames.model.Comment;
+import com.gorchovski.stoyanovgames.model.User;
 import com.gorchovski.stoyanovgames.repository.CommentRepository;
 import com.gorchovski.stoyanovgames.repository.UserRepository;
 import com.gorchovski.stoyanovgames.validator.CommentValidator;
@@ -40,7 +41,9 @@ public class CommentService {
 	
 	public void insertComment(Comment comment) throws StoyanovGamesValidationException {
 		this.commentValidator.validateComment(comment);
+		User user = this.securityService.findLoggedInUser();
 		comment.setDate(new Date());
+		comment.setUsername(user.getUsername());
 		this.commentRepository.save(comment);
 	}
 	
@@ -58,9 +61,8 @@ public class CommentService {
 		this.commentRepository.deleteAll(comments);
 	}
 	
-	public Boolean hasUserCommented(Integer productId) {
-		String loggedUser = this.securityService.findLoggedInUsername();
-		List<Comment> comments = this.commentRepository.findByProductIdAndUsername(productId, loggedUser);
+	public Boolean hasUserCommented(String username, Integer productId) {
+		List<Comment> comments = this.commentRepository.findByProductIdAndUsername(productId, username);
 		if(comments.size()>0) {
 			return true;
 		}else {

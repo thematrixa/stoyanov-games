@@ -14,6 +14,7 @@ import com.gorchovski.stoyanovgames.model.OrdersEnum;
 import com.gorchovski.stoyanovgames.model.Product;
 import com.gorchovski.stoyanovgames.repository.OrderRepository;
 import com.gorchovski.stoyanovgames.repository.ProductRepository;
+import com.gorchovski.stoyanovgames.utils.RoundUpFloatsUtil;
 import com.gorchovski.stoyanovgames.validator.OrderValidator;
 
 @Transactional
@@ -75,6 +76,7 @@ public class OrderService {
 	public void update(Order order) throws StoyanovGamesValidationException {
 		orderValidator.validateOrder(order);
 		this.refreshProductQuantities(order.getCartItems());
+		order.setTotal(this.calculateOrderTotal(order.getCartItems()));
 		this.orderRepository.save(order);
 	}
 
@@ -88,5 +90,13 @@ public class OrderService {
 			product.setQuantity(product.getQuantity()-ci.getQuantity());
 			this.productRepository.save(product);
 		}
+	}
+	
+	public Float calculateOrderTotal(List<CartItem> cartItems) {
+		Float totalPrice = new Float(0);
+		for(CartItem ci : cartItems) {
+			totalPrice += ci.getProduct().getPrice() * ci.getQuantity();
+		}
+		return RoundUpFloatsUtil.round(totalPrice, 2);
 	}
 }

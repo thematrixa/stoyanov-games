@@ -12,8 +12,11 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+import org.springframework.format.annotation.DateTimeFormat;
+import com.gorchovski.stoyanovgames.utils.DateParser;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 @Entity
 @Table(name = "products")
@@ -28,11 +31,15 @@ public class Product {
 	private String description;
 	@NotNull
 	private Float price;
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd.MM.yyyy")
+	@JsonDeserialize(using = DateParser.class)
+	// @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd.MM.yyyy")
 	private Date tournamentStoreLaunchDate;
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd.MM.yyyy")
+	// @DateTimeFormat(pattern = "dd.MM.yyyy")
+	@JsonDeserialize(using = DateParser.class)
+	// @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd.MM.yyyy")
 	private Date launchDate;
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd.MM.yyyy")
+	@JsonDeserialize(using = DateParser.class)
+	// @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd.MM.yyyy")
 	private Date konamiTournamentLegalDate;
 	@JsonProperty("cardsPerPack")
 	private Integer cardsPerPack;
@@ -46,7 +53,7 @@ public class Product {
 	private Integer quantity;
 	private Float rating;
 	@NotNull
-    @Column(columnDefinition = "integer default 0")
+	@Column(columnDefinition = "integer default 0")
 	private Integer onSalePercent;
 	private Integer five_stars;
 	private Integer four_stars;

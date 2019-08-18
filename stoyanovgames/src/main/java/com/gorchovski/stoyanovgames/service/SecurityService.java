@@ -9,6 +9,9 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Service;
 
+import com.gorchovski.stoyanovgames.model.User;
+import com.gorchovski.stoyanovgames.repository.UserRepository;
+
 @Service
 public class SecurityService {
     @Autowired
@@ -16,6 +19,8 @@ public class SecurityService {
 
     @Autowired
     private UserDetailsService userDetailsService;
+    @Autowired
+    private UserRepository userRepository;
 
     private static final Logger logger = LoggerFactory.getLogger(SecurityService.class);
 
@@ -26,6 +31,10 @@ public class SecurityService {
         }
 
         return null;
+    }
+    public User findLoggedInUser() {
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+            return this.userRepository.findByUsername(username);
     }
 
     public void autoLogin(String username, String password) {
