@@ -1,0 +1,77 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~ngx-bar-rating/themes/br-default-theme";
+
+.table-header-td-sortable {
+  background-color: #cedcd4;
+  cursor: pointer;
+}
+
+html {
+  overflow-y: scroll;
+}
+
+table,
+th,
+td {
+  text-align: center;
+  font-size: 14px;
+}
+
+.table-cell-clickable:hover {
+  background-color: #cedcd4;
+  cursor: pointer;
+}
+/*
+th:hover {
+  background-color: #cedcd4;
+  cursor: pointer;
+}
+
+tr:hover {
+  background-color: #cedcd4;
+  cursor: pointer;
+}
+/*
+.form-control {
+  font-size: auto !important;
+}
+
+.icon {
+  width: 25px !important;
+  height: 25px !important;
+}
+.add-image-button-loader {
+  position: absolute;
+}
+
+.add-image-button:hover {
+  opacity: 0.5;
+}
+
+.delete-image-button:hover {
+  opacity: 0.5;
+}
+
+.add-button:hover {
+  filter: opacity(80%);
+}
+
+.sticky-margin-filter {
+  margin-top: 100px;
+}
+
+.sticky-margin-navbar {
+  margin-bottom: 50px;
+}
+.has-errors {
+  box-shadow: 0px 0px 10px 1px #ff3333;
+}
+
+div[class*="invalid-feedback"] {
+  font-size: 100%;
+}
+.col-centered {
+  float: none;
+  margin: 0 auto;
+  margin-top: 1%;
+}

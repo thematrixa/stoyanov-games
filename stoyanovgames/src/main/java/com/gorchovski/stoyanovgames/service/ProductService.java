@@ -42,10 +42,16 @@ public class ProductService {
 	@Autowired
 	private ProductValidator productValidator;
 
-	public List<Product> list() {
-		return productRepository.findAll();
+	public List<Product> getAllProducts() {
+		return productRepository.findByIsDeleted(false);
 	}
 
+	public List<Product> getActiveProducts() {
+		return productRepository.findByIsActiveAndIsDeleted(true, false);
+	}
+	public List<Product> getOnSaleProducts() {
+		return productRepository.findByOnSalePercentGreaterThan(0);
+	}
 	public void batchInsertUpdate(List<Product> feProducts) throws StoyanovGamesValidationException {
 		List<Product> dbProducts = productRepository.findAll();
 		boolean productExists = false;
@@ -74,13 +80,15 @@ public class ProductService {
 		this.productValidator.validateProduct(product);
 		this.deleteComments(product.getId());
 		this.votesService.deleteVotes(product.getId());
-		this.productRepository.delete(product);
+		product.setIsDeleted(false);
+		this.productRepository.save(product);
 	}
 
 	public void update(Product product) throws StoyanovGamesValidationException {
 		Category category = this.categoryRepository.findById(product.getCategory().getId());
 		product.setCategory(category);
 		this.productValidator.validateProduct(product);
+		product.setIsDeleted(false);
 		this.productRepository.save(product);
 	}
 

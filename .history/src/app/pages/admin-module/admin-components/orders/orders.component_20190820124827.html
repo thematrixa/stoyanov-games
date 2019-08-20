@@ -1,0 +1,383 @@
+<div class="card mb-3">
+    <h4 class="card-header text-center font-weight-bold text-uppercase py-4">Поръчки</h4>
+</div>
+<igx-tabs tabsType="fixed">
+    <igx-tabs-group label="Непотвърдени">
+        <div id="table" class="table-editable">
+            <table class="table table-bordered table-responsive-md text-center"
+                *ngFor="let order of unconfirmedOrders; let id = index">
+                <tr *ngIf="id === 0">
+                    <th class="text-center column-1" (click)="sort('Id', unconfirmedOrders);">#</th>
+                    <th class="text-center column-2" (click)="sort('Name', unconfirmedOrders);">Имена</th>
+                    <th class="text-center column-3" (click)="sort('Address', unconfirmedOrders);">Адрес</th>
+                    <th class="text-center column-4" (click)="sort('Date', unconfirmedOrders);">Дата</th>
+                    <th class="text-center column-5" (click)="sort('Phone', unconfirmedOrders);">Телефон</th>
+                    <th class="text-center column-6" (click)="sort('Total', unconfirmedOrders);">Общо</th>
+                    <th class="text-center column-7">Опции</td>
+                </tr>
+                <tr (click)="toggleProducts(order);" class="order-table-row">
+                    <td class="text-center column-1">
+                        <span>{{order.id}}</span>
+                    </td>
+                    <td class="text-center column-2">
+                        <span>{{order.name}}</span>
+                    </td>
+                    <td class="text-center column-3">
+                        <span>{{order.address}}</span>
+                    </td>
+                    <td class="text-center column-4">
+                        <span>{{order.date}}</span>
+                    </td>
+                    <td class="text-center column-5">
+                        <span>{{order.phone}}</span>
+                    </td>
+                    <td class="text-center column-6">
+                        <span>{{order.total}}</span>
+                    </td>
+                    <td class="text-center column-7">
+                        <span class="table-confirmOrder">
+                            <img class="icon delete-image-button" (click)="confirmOrder(id)"
+                                src="assets/Icons/forward-button.png">
+                            <img class="icon delete-image-button" (click)="discardOrder(id,unconfirmedOrders)"
+                                src="assets/Icons/delete-icon.svg">
+                        </span>
+                    </td>
+                </tr>
+                <tr *ngIf='order.cartItems' [ngClass]="{'d-none': !order.showProducts}">
+                    <td colspan="7" style="background-color: #d6d6d63b">
+                        <table style="margin-left: auto;margin-right: auto">
+                            <tr>
+                                <th class="text-center">#Nо</th>
+                                <th class="text-center">Продукт</th>
+                                <th class="text-center">Брой</th>
+                                <th class="text-center">Цена</th>
+                                <th class="text-center">Общо</th>
+                            </tr>
+                            <tr *ngFor="let cartItem of order.cartItems; let id = index">
+                                <td>
+                                    <span>{{cartItem.product.id}}</span>
+                                </td>
+                                <td>
+                                    <span>{{cartItem.product.name}}</span>
+                                </td>
+                                <td>
+                                    <span>{{cartItem.product.quantity}}</span>
+                                </td>
+                                <td>
+                                    <span>{{cartItem.product.price}}</span>
+                                </td>
+                                <td>
+                                    <span
+                                        *ngIf="cartItem.product.onSalePercent > 0">{{cartItem.product.price * cartItem.quantity / 100 * cartItem.product.onSalePercent}}</span>
+                                    <span *ngIf="cartItem.product.onSalePercent == 0">{{cartItem.product.price * cartItem.quantity}}</span>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </igx-tabs-group>
+    <igx-tabs-group label="Потвърдени">
+        <div id="table" class="table-editable">
+            <table class="table table-bordered table-responsive-md text-center"
+                *ngFor="let order of confirmedOrders; let id = index">
+                <tr *ngIf="id === 0">
+                    <th class="text-center column-1" (click)="sort('Id', confirmedOrders);">#</th>
+                    <th class="text-center column-2" (click)="sort('Name', confirmedOrders);">Имена</th>
+                    <th class="text-center column-3" (click)="sort('Address', confirmedOrders);">Адрес</th>
+                    <th class="text-center column-4" (click)="sort('Date', confirmedOrders);">Дата</th>
+                    <th class="text-center column-5" (click)="sort('Phone', confirmedOrders);">Телефон</th>
+                    <th class="text-center column-6" (click)="sort('Total', confirmedOrders);">Общо</th>
+                    <th class="text-center column-7">Опции</th>
+                </tr>
+                <tr (click)="toggleProducts(order);">
+                    <td class="text-center column-1">
+                        <span>{{order.id}}</span>
+                    </td>
+                    <td class="text-center column-2">
+                        <span>{{order.name}}</span>
+                    </td>
+                    <td class="text-center column-3">
+                        <span>{{order.address}}</span>
+                    </td>
+                    <td class="text-center column-4">
+                        <span>{{order.date}}</span>
+                    </td>
+                    <td class="text-center column-5">
+                        <span>{{order.phone}}</span>
+                    </td>
+                    <td class="text-center column-6">
+                        <span>{{order.total}}</span>
+                    </td>
+                    <td class="text-center column-7">
+                        <span class="table-removeOrder">
+                            <img class="icon delete-image-button" (click)="unconfirmOrder(id)"
+                                src="assets/Icons/backward-button.png">
+                            <img class="icon delete-image-button" (click)="shipOrder(id)"
+                                src="assets/Icons/forward-button.png">
+                            <img class="icon delete-image-button" (click)="discardOrder(id,confirmedOrders)"
+                                src="assets/Icons/delete-icon.svg">
+                        </span>
+                    </td>
+                </tr>
+                <tr *ngIf='order.cartItems' [ngClass]="{'d-none': !order.showProducts}">
+                    <td colspan="7" style="background-color: #d6d6d63b">
+                        <table style="margin-left: auto;margin-right: auto">
+                            <tr>
+                                <th class="text-center">#Nо</th>
+                                <th class="text-center">Продукт</th>
+                                <th class="text-center">Брой</th>
+                                <th class="text-center">Цена</th>
+                                <th class="text-center">Общо</th>
+                            </tr>
+                            <tr *ngFor="let cartItem of order.cartItems; let id = index">
+                                <td>
+                                    <span>{{cartItem.product.id}}</span>
+                                </td>
+                                <td>
+                                    <span>{{cartItem.product.name}}</span>
+                                </td>
+                                <td>
+                                    <span>{{cartItem.product.quantity}}</span>
+                                </td>
+                                <td>
+                                    <span>{{cartItem.product.price}}</span>
+                                </td>
+                                <td><span
+                                        *ngIf="cartItem.product.onSalePercent > 0">{{cartItem.product.price * cartItem.quantity / 100 * cartItem.product.onSalePercent}}</span>
+                                    <span *ngIf="cartItem.product.onSalePercent == 0">{{cartItem.product.price * cartItem.quantity}}</span>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </igx-tabs-group>
+    <igx-tabs-group label="Изпратени">
+        <div id="table" class="table-editable">
+            <table class="table table-bordered table-responsive-md text-center"
+                *ngFor="let order of shippedOrders; let id = index">
+                <tr *ngIf="id === 0">
+                    <th class="text-center column-1" (click)="sort('Id', shippedOrders);">#</th>
+                    <th class="text-center column-2" (click)="sort('Name', shippedOrders);">Имена</th>
+                    <th class="text-center column-3" (click)="sort('Address', shippedOrders);">Адрес</th>
+                    <th class="text-center column-4" (click)="sort('Date', shippedOrders);">Дата</th>
+                    <th class="text-center column-5" (click)="sort('Phone', shippedOrders);">Телефон</th>
+                    <th class="text-center column-6" (click)="sort('Total', shippedOrders);">Общо</th>
+                    <th class="text-center column-7">Опции</th>
+                </tr>
+                <tr (click)="toggleProducts(order);">
+                    <td class="text-center column-1">
+                        <span>{{order.id}}</span>
+                    </td>
+                    <td class="text-center column-2">
+                        <span>{{order.name}}</span>
+                    </td>
+                    <td class="text-center column-3">
+                        <span>{{order.address}}</span>
+                    </td>
+                    <td class="text-center column-4">
+                        <span>{{order.date}}</span>
+                    </td>
+                    <td class="text-center column-5">
+                        <span>{{order.phone}}</span>
+                    </td>
+                    <td class="text-center column-6">
+                        <span>{{order.total}}</span>
+                    </td>
+                    <td class="text-center column-7">
+                        <span class="table-removeOrder">
+                            <img class="icon delete-image-button" (click)="deshipOrder(id)"
+                                src="assets/Icons/backward-button.png">
+                            <img class="icon delete-image-button" (click)="completeOrder(id)"
+                                src="assets/Icons/forward-button.png">
+                            <img class="icon delete-image-button" (click)="discardOrder(id,shippedOrders)"
+                                src="assets/Icons/delete-icon.svg">
+                        </span>
+                    </td>
+                </tr>
+                <tr *ngIf='order.cartItems' [ngClass]="{'d-none': !order.showProducts}">
+                    <td colspan="7" style="background-color: #d6d6d63b">
+                        <table style="margin-left: auto;margin-right: auto">
+                            <tr>
+                                <th class="text-center">#Nо</th>
+                                <th class="text-center">Продукт</th>
+                                <th class="text-center">Брой</th>
+                                <th class="text-center">Цена</th>
+                                <th class="text-center">Общо</th>
+                            </tr>
+                            <tr *ngFor="let cartItem of order.cartItems; let id = index">
+                                <td>
+                                    <span>{{cartItem.product.id}}</span>
+                                </td>
+                                <td>
+                                    <span>{{cartItem.product.name}}</span>
+                                </td>
+                                <td>
+                                    <span>{{cartItem.product.quantity}}</span>
+                                </td>
+                                <td>
+                                    <span>{{cartItem.product.price}}</span>
+                                </td>
+                                <td><span
+                                        *ngIf="cartItem.product.onSalePercent > 0">{{cartItem.product.price * cartItem.quantity / 100 * cartItem.product.onSalePercent}}</span>
+                                    <span *ngIf="cartItem.product.onSalePercent == 0">{{cartItem.product.price * cartItem.quantity}}</span>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </igx-tabs-group>
+    <igx-tabs-group label="Завършени">
+        <div id="table" class="table-editable">
+            <table class="table table-bordered table-responsive-md text-center"
+                *ngFor="let order of completedOrders; let id = index">
+                <tr *ngIf="id === 0">
+                    <th class="text-center column-1" (click)="sort('Id', completedOrders);">#</th>
+                    <th class="text-center column-2" (click)="sort('Name', completedOrders);">Имена</th>
+                    <th class="text-center column-3" (click)="sort('Address', completedOrders);">Адрес</th>
+                    <th class="text-center column-4" (click)="sort('Date', completedOrders);">Дата</th>
+                    <th class="text-center column-5" (click)="sort('Phone', completedOrders);">Телефон</th>
+                    <th class="text-center column-6" (click)="sort('Total', completedOrders);">Общо</th>
+                    <th class="text-center column-7"></th>
+                </tr>
+                <tr (click)="toggleProducts(order);">
+                    <td class="text-center column-1">
+                        <span>{{order.id}}</span>
+                    </td>
+                    <td class="text-center column-2">
+                        <span>{{order.name}}</span>
+                    </td>
+                    <td class="text-center column-3">
+                        <span>{{order.address}}</span>
+                    </td>
+                    <td class="text-center column-4">
+                        <span>{{order.date}}</span>
+                    </td>
+                    <td class="text-center column-5">
+                        <span>{{order.phone}}</span>
+                    </td>
+                    <td class="text-center column-6">
+                        <span>{{order.total}}</span>
+                    </td>
+                    <td class="text-center column-7">
+                        <span class="table-removeOrder">
+                            <img class="icon delete-image-button" (click)="decompleteOrder(id)"
+                                src="assets/Icons/backward-button.png">
+                            <img class="icon delete-image-button" (click)="discardOrder(id,completedOrders)"
+                                src="assets/Icons/delete-icon.svg">
+                        </span>
+                    </td>
+                </tr>
+                <tr *ngIf='order.cartItems' [ngClass]="{'d-none': !order.showProducts}">
+                    <td colspan="7" style="background-color: #d6d6d63b">
+                        <table class="table-striped" style="margin-left: auto;margin-right: auto">
+                            <tr>
+                                <th class="text-center">#Nо</th>
+                                <th class="text-center">Продукт</th>
+                                <th class="text-center">Брой</th>
+                                <th class="text-center">Цена</th>
+                                <th class="text-center">Общо</th>
+                            </tr>
+                            <tr *ngFor="let cartItem of order.cartItems; let id = index">
+                                <td>
+                                    <span>{{cartItem.product.id}}</span>
+                                </td>
+                                <td>
+                                    <span>{{cartItem.product.name}}</span>
+                                </td>
+                                <td>
+                                    <span>{{cartItem.product.quantity}}</span>
+                                </td>
+                                <td>
+                                    <span>{{cartItem.product.price}}</span>
+                                </td>
+                                <td><span
+                                        *ngIf="cartItem.product.onSalePercent > 0">{{cartItem.product.price * cartItem.quantity / 100 * cartItem.product.onSalePercent}}</span>
+                                    <span *ngIf="cartItem.product.onSalePercent == 0">{{cartItem.product.price * cartItem.quantity}}</span>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </igx-tabs-group>
+    <igx-tabs-group label="Отхвърлени">
+        <div id="table" class="table-editable">
+            <table class="table table-bordered table-responsive-md text-center"
+                *ngFor="let order of discardedOrders; let id = index">
+                <tr *ngIf="id === 0">
+                    <th class="text-center column-1" (click)="sort('Id', discardedOrders);">#</th>
+                    <th class="text-center column-2" (click)="sort('Name', discardedOrders);">Имена</th>
+                    <th class="text-center column-3" (click)="sort('Address', discardedOrders);">Адрес</th>
+                    <th class="text-center column-4" (click)="sort('Date', discardedOrders);">Дата</th>
+                    <th class="text-center column-5" (click)="sort('Phone', discardedOrders);">Телефон</th>
+                    <th class="text-center column-6" (click)="sort('Total', discardedOrders);">Общо</th>
+                    <th class="text-center column-7">Опции</th>
+                </tr>
+                <tr (click)="toggleProducts(order);">
+                    <td class="text-center column-1">
+                        <span>{{order.id}}</span>
+                    </td>
+                    <td class="text-center column-2">
+                        <span>{{order.name}}</span>
+                    </td>
+                    <td class="text-center column-3">
+                        <span>{{order.address}}</span>
+                    </td>
+                    <td class="text-center column-4">
+                        <span>{{order.date}}</span>
+                    </td>
+                    <td class="text-center column-5">
+                        <span>{{order.phone}}</span>
+                    </td>
+                    <td class="text-center column-6">
+                        <span>{{order.total}}</span>
+                    </td>
+                    <td class="text-center column-8">
+                        <span class="table-remove">
+                            <img class="icon delete-image-button" (click)="undiscardOrder(id)"
+                                src="assets/Icons/delete-icon.svg">
+                        </span>
+                    </td>
+                </tr>
+                <tr *ngIf='order.cartItems' [ngClass]="{'d-none': !order.showProducts}">
+                    <td colspan="7" style="background-color: #d6d6d63b">
+                        <table class="table-striped" style="margin-left: auto;margin-right: auto">
+                            <tr>
+                                <th class="text-center">#Nо</th>
+                                <th class="text-center">Продукт</th>
+                                <th class="text-center">Брой</th>
+                                <th class="text-center">Цена</th>
+                                <th class="text-center">Общо</th>
+                            </tr>
+                            <tr *ngFor="let cartItem of order.cartItems; let id = index">
+                                <td>
+                                    <span>{{cartItem.product.id}}</span>
+                                </td>
+                                <td>
+                                    <span>{{cartItem.product.name}}</span>
+                                </td>
+                                <td>
+                                    <span>{{cartItem.product.quantity}}</span>
+                                </td>
+                                <td>
+                                    <span>{{cartItem.product.price}}</span>
+                                </td>
+                                <td><span
+                                        *ngIf="cartItem.product.onSalePercent > 0">{{cartItem.product.price * cartItem.quantity / 100 * cartItem.product.onSalePercent}}</span>
+                                    <span *ngIf="cartItem.product.onSalePercent == 0">{{cartItem.product.price * cartItem.quantity}}</span>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </igx-tabs-group>
+</igx-tabs>

@@ -10,8 +10,8 @@ import org.springframework.transaction.annotation.Transactional;
 import com.gorchovski.stoyanovgames.excetion.StoyanovGamesValidationException;
 import com.gorchovski.stoyanovgames.model.CartItem;
 import com.gorchovski.stoyanovgames.model.Order;
-import com.gorchovski.stoyanovgames.model.OrdersEnum;
 import com.gorchovski.stoyanovgames.model.Product;
+import com.gorchovski.stoyanovgames.model.enums.OrdersEnum;
 import com.gorchovski.stoyanovgames.repository.OrderRepository;
 import com.gorchovski.stoyanovgames.repository.ProductRepository;
 import com.gorchovski.stoyanovgames.utils.RoundUpFloatsUtil;
@@ -47,9 +47,13 @@ public class OrderService {
 	public List<Order> listShipped() {
 		return orderRepository.getOrderByStatus(OrdersEnum.SHIPPED);
 	}
-	
+
 	public List<Order> listCompleted() {
 		return orderRepository.getOrderByStatus(OrdersEnum.COMPLETED);
+	}
+
+	public List<Order> listDiscarded() {
+		return orderRepository.getOrderByStatus(OrdersEnum.DISCARDED);
 	}
 
 	public void batchInsertUpdate(List<Order> feOrders) throws StoyanovGamesValidationException {
@@ -75,8 +79,20 @@ public class OrderService {
 	
 	public void update(Order order) throws StoyanovGamesValidationException {
 		orderValidator.validateOrder(order);
+		order.setTotal(this.calculateOrderTotal(order.getCartItems()));
+		this.orderRepository.save(order);
+	}
+	
+	
+	public void insert(Order order) throws StoyanovGamesValidationException {
+		orderValidator.validateOrder(order);
 		this.refreshProductQuantities(order.getCartItems());
 		order.setTotal(this.calculateOrderTotal(order.getCartItems()));
+		this.orderRepository.save(order);
+	}
+
+	public void updateOrderStatus(Order order) throws StoyanovGamesValidationException {
+		orderValidator.validateOrder(order);
 		this.orderRepository.save(order);
 	}
 
@@ -95,7 +111,13 @@ public class OrderService {
 	public Float calculateOrderTotal(List<CartItem> cartItems) {
 		Float totalPrice = new Float(0);
 		for(CartItem ci : cartItems) {
-			totalPrice += ci.getProduct().getPrice() * ci.getQuantity();
+			Product p = ci.getProduct();
+			if(p.getOnSalePercent() > 0) {
+				totalPrice += RoundUpFloatsUtil.round((p.getPrice() * p.getOnSalePercent() / 100),2)* ci.getQuantity();
+			}else {
+				totalPrice += p.getPrice() * ci.getQuantity();
+			}
+			
 		}
 		return RoundUpFloatsUtil.round(totalPrice, 2);
 	}

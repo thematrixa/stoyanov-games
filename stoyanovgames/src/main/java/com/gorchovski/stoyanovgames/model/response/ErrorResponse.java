@@ -8,8 +8,8 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.gorchovski.stoyanovgames.excetion.StoyanovGamesValidationException;
-import com.gorchovski.stoyanovgames.model.StatusEnum;
 import com.gorchovski.stoyanovgames.model.ValidationErrorField;
+import com.gorchovski.stoyanovgames.model.enums.StatusEnum;
 
 @JsonIgnoreProperties({ "httpCode" })
 public class ErrorResponse{

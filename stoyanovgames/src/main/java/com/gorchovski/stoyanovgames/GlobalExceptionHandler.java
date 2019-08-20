@@ -40,7 +40,7 @@ public class GlobalExceptionHandler {
     @ResponseBody
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ErrorResponse handleJPANotFoundException(Exception exception) {
-        logger.error("[handleNotFoundException]", exception.getMessage());
+        logger.error("[handleNotFoundException]", exception);
         return ErrorResponse.buildFromException(exception);
     }
     @ExceptionHandler(org.springframework.dao.DataIntegrityViolationException.class)

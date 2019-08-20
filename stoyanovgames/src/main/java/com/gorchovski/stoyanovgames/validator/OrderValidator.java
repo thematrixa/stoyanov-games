@@ -1,5 +1,7 @@
 package com.gorchovski.stoyanovgames.validator;
 
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -7,8 +9,9 @@ import org.springframework.validation.BeanPropertyBindingResult;
 import org.springframework.validation.Errors;
 
 import com.gorchovski.stoyanovgames.excetion.StoyanovGamesValidationException;
+import com.gorchovski.stoyanovgames.model.CartItem;
 import com.gorchovski.stoyanovgames.model.Order;
-import com.gorchovski.stoyanovgames.model.OrdersEnum;
+import com.gorchovski.stoyanovgames.model.enums.OrdersEnum;
 
 @SuppressWarnings("unused")
 @Component
@@ -59,13 +62,16 @@ public class OrderValidator extends BasicValidator {
 		}
 
 		if (!this.isTotalValid(order.getTotal())) {
-			errors.rejectValue("", "orderUserId" + DELIMITER + order.getId(), "Total e задължително");
+			errors.rejectValue("", "orderTotal" + DELIMITER + order.getId(), "Total e задължително");
 		}
 
 		if (!this.isStatusValid(order.getStatus())) {
-			errors.rejectValue("", "orderUserId" + DELIMITER + order.getId(), "Status e невалиден");
+			errors.rejectValue("", "orderStatus" + DELIMITER + order.getId(), "Status e невалиден");
 		}
-
+		if (!this.isCartItemsValid(order.getCartItems())) {
+			errors.rejectValue("", "orderCartItems" + DELIMITER + order.getId(), "Поръчката е празна.");
+		}
+		
 		String validationMsg = "address name exception";
 		throwInvalidException(errors, validationMsg);
 	}
@@ -125,7 +131,14 @@ public class OrderValidator extends BasicValidator {
 		return false;
 		
 	}
-	@SuppressWarnings("unlikely-arg-type")
+
+	public Boolean isCartItemsValid(List<CartItem> cartItems) {
+		if (cartItems != null && cartItems.size() > 0) {
+			return true;
+		}
+		return false;
+	}
+	
 	public Boolean isStatusValid(OrdersEnum status) {
 		if (status != null) {
 			for (OrdersEnum temp : OrdersEnum.values()) {

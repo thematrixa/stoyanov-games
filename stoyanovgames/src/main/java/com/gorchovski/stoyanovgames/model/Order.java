@@ -16,6 +16,7 @@ import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.gorchovski.stoyanovgames.model.enums.OrdersEnum;
 
 @Entity
 @Table(name = "orders")

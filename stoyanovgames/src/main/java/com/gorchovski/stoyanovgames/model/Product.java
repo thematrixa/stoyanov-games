@@ -12,11 +12,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
-import org.springframework.format.annotation.DateTimeFormat;
-import com.gorchovski.stoyanovgames.utils.DateParser;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 @Entity
 @Table(name = "products")
@@ -31,14 +27,14 @@ public class Product {
 	private String description;
 	@NotNull
 	private Float price;
-	@JsonDeserialize(using = DateParser.class)
+	// @JsonDeserialize(using = DateParser.class)
 	// @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd.MM.yyyy")
 	private Date tournamentStoreLaunchDate;
 	// @DateTimeFormat(pattern = "dd.MM.yyyy")
-	@JsonDeserialize(using = DateParser.class)
+	// @JsonDeserialize(using = DateParser.class)
 	// @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd.MM.yyyy")
 	private Date launchDate;
-	@JsonDeserialize(using = DateParser.class)
+	// @JsonDeserialize(using = DateParser.class)
 	// @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd.MM.yyyy")
 	private Date konamiTournamentLegalDate;
 	@JsonProperty("cardsPerPack")
@@ -49,6 +45,9 @@ public class Product {
 	private Category category;
 	@NotNull
 	private Boolean inStock;
+	@Column(columnDefinition = "integer default 0")
+	private Boolean isDeleted;
+
 	@NotNull
 	private Integer quantity;
 	private Float rating;
@@ -60,7 +59,7 @@ public class Product {
 	private Integer three_stars;
 	private Integer two_stars;
 	private Integer one_stars;
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd.MM.yyyy")
+	// @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd.MM.yyyy")
 	private Date dateAdded;
 	@Lob
 	private String photo1Base64;
@@ -273,4 +272,11 @@ public class Product {
 		this.rating = rating;
 	}
 
+	public Boolean getIsDeleted() {
+		return isDeleted;
+	}
+
+	public void setIsDeleted(Boolean isDeleted) {
+		this.isDeleted = isDeleted;
+	}
 }

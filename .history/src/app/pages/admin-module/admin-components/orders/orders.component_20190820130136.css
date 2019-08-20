@@ -1,0 +1,34 @@
+.igx-tabs__item-label {
+  font-size: 12px;
+}
+
+.column-1 {
+  width: 5%;
+}
+.column-2 {
+  width: 15%;
+  word-break: break-all;
+}
+.column-3 {
+  width: 25%;
+  word-break: break-all;
+}
+.column-4 {
+  width: 20%;
+}
+.column-5 {
+  width: 15%;
+}
+.column-6 {
+  width: 10%;
+}
+.column-7 {
+  width: 10%;
+}
+
+table {
+  margin: auto;
+}
+.table-bordered td {
+  word-break: break-word;
+}

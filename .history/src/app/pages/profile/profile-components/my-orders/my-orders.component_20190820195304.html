@@ -1,0 +1,68 @@
+<div class="card mb-3">
+  <h4 class="card-header text-center font-weight-bold text-uppercase py-4">Поръчки</h4>
+</div>
+<div id="table" class="table-editable">
+  <table class="table table-bordered table-responsive-md text-center" *ngFor="let order of orders; let id = index">
+    <tr *ngIf="id === 0">
+      <th class="text-center column-1">#</th>
+      <th class="text-center column-2">Имена</th>
+      <th class="text-center column-3">Адрес</th>
+      <th class="text-center column-4">Дата</th>
+      <th class="text-center column-5">Общо</th>
+      <th class="text-center column-6">Статус</th>
+    </tr>
+    <tr table-row-clickable (click)="toggleProducts(order);">
+      <td class="text-center column-1">
+        <span>{{order.id}}</span>
+      </td>
+      <td class="text-center column-2">
+        <span>{{order.name}}</span>
+      </td>
+      <td class="text-center column-3">
+        <span>{{order.address}}</span>
+      </td>
+      <td class="text-center column-4">
+        <span>{{order.date}}</span>
+      </td>
+      <td class="text-center column-5">
+        <span>{{order.total}}лв.</span>
+      </td>
+      <td class="text-center column-6">
+        <span>{{order.status}}лв.</span>
+      </td>
+    </tr>
+    <tr *ngIf='order.cartItems' [ngClass]="{'d-none': !order.showProducts}">
+      <td colspan="7" style="background-color: #d6d6d63b">
+        <table style="margin-left: auto;margin-right: auto">
+          <tr>
+            <th class="text-center">#Nо</th>
+            <th class="text-center">Продукт</th>
+            <th class="text-center">Брой</th>
+            <th class="text-center">Цена</th>
+            <th class="text-center">Общо</th>
+          </tr>
+          <tr *ngFor="let cartItem of order.cartItems; let id = index">
+            <td>
+              <span>{{cartItem.product.id}}</span>
+            </td>
+            <td>
+              <span>{{cartItem.product.name}}</span>
+            </td>
+            <td>
+              <span>{{cartItem.quantity}}</span>
+            </td>
+            <td>
+              <span
+                *ngIf="cartItem.product.onSalePercent > 0">{{cartItem.product.price / 100 * cartItem.product.onSalePercent}}лв.</span>
+              <span *ngIf="cartItem.product.onSalePercent == 0">{{cartItem.product.price}}лв.</span>
+            </td>
+            <td><span
+                *ngIf="cartItem.product.onSalePercent > 0">{{cartItem.product.price * cartItem.quantity / 100 * cartItem.product.onSalePercent}}лв.</span>
+              <span *ngIf="cartItem.product.onSalePercent == 0">{{cartItem.product.price * cartItem.quantity}}лв.</span>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</div>

@@ -17,6 +17,7 @@ import com.gorchovski.stoyanovgames.model.User;
 import com.gorchovski.stoyanovgames.repository.AddressRepository;
 import com.gorchovski.stoyanovgames.repository.UserRepository;
 import com.gorchovski.stoyanovgames.validator.AddressValidator;
+import com.gorchovski.stoyanovgames.validator.UserSettingsValidator;
 import com.gorchovski.stoyanovgames.validator.UserValidator;
 
 @Transactional
@@ -37,6 +38,8 @@ public class UserService {
 	private EmailingService emailService;
 	@Autowired
 	private UserValidator userValidator;
+	@Autowired
+	private UserSettingsValidator userSettingsValidator;
 	@Autowired
 	private AddressValidator addressValidator;
 	@Value("${server.port}")
@@ -123,8 +126,9 @@ public class UserService {
 	}
 
 	public void saveUserSettings(User feUser) throws UnsupportedEncodingException, StoyanovGamesValidationException {
-		this.userValidator.validateUser(feUser);
-		User dbUser = this.userRepository.findByUsername(feUser.getUsername());
+		this.userSettingsValidator.validateUserSettings(feUser);
+		User user = this.securityService.findLoggedInUser();
+		User dbUser = this.userRepository.findByUsername(user.getUsername());
 		dbUser.setName(feUser.getName());
 		dbUser.setPhone(feUser.getPhone());
 		this.userRepository.save(dbUser);

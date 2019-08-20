@@ -35,17 +35,17 @@ public class ProductController {
 
 	@RequestMapping(produces = "application/json", method = RequestMethod.GET, value = "/get")
 	public StoyanovGamesResponse<?> getProducts() {
-		return new StoyanovGamesResponse<>(this.productService.list());
+		return new StoyanovGamesResponse<>(this.productService.getAllProducts());
+	}
+
+	@RequestMapping(produces = "application/json", method = RequestMethod.GET, value = "/get/active")
+	public StoyanovGamesResponse<?> getActiveProducts() {
+		return new StoyanovGamesResponse<>(this.productService.getActiveProducts());
 	}
 
 	@RequestMapping(produces = "application/json", method = RequestMethod.GET, value = "/on-sale")
 	public StoyanovGamesResponse<?> getOnSaleProducts() {
-		return new StoyanovGamesResponse<>(this.productService.list());
-	}
-
-	@RequestMapping(produces = "application/json", method = RequestMethod.GET, value = "/on-sale/update")
-	public StoyanovGamesResponse<?> updateProducts() {
-		return new StoyanovGamesResponse<>(this.productService.list());
+		return new StoyanovGamesResponse<>(this.productService.getOnSaleProducts());
 	}
 
 	@PreAuthorize("hasAuthority('ADMIN')")

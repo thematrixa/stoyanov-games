@@ -94,10 +94,10 @@ public class ProductValidator extends BasicValidator {
 					"Дата за продаване в магазин, е задължително.");
 		}
 
-		/*if (!this.isProductImageValid(product.getPhoto1Base64())) {
+		if (!this.isProductImageValid(product.getPhoto1Base64())) {
 			errors.rejectValue("", "productPhoto1" + DELIMITER + product.getId(),
-					"Първата снимка, е задължителна.");
-		}*/
+					"Първото изображение е задължително.");
+		}
 
 		this.categoryValidator.validateCategory(product.getCategory());
 

@@ -46,7 +46,6 @@ export class UserService {
   generateUserSettingsFromForm(form: FormGroup): any {
     let formData = form.getRawValue();
     let user:any = {};
-    debugger;
     user.email = formData.email;
     user.phone = formData.phone ? formData.phone : "";
     user.name = formData.name;

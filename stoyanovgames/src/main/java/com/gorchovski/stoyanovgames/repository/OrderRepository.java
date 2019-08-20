@@ -8,7 +8,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import com.gorchovski.stoyanovgames.model.Order;
-import com.gorchovski.stoyanovgames.model.OrdersEnum;
+import com.gorchovski.stoyanovgames.model.enums.OrdersEnum;
 
 @Repository
 public interface OrderRepository extends JpaRepository<Order, Long>   {

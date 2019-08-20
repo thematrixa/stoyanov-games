@@ -1,0 +1,93 @@
+<div class="card mb-3">
+    <h3 class="card-header text-center font-weight-bold text-uppercase py-4">Продукти</h3>
+</div>
+<igx-tabs tabsType="fixed">
+    <igx-tabs-group label="Добави">
+        <app-add-edit-product [product]='newProduct'></app-add-edit-product>
+    </igx-tabs-group>
+    <igx-tabs-group label="Изтрии">
+        <div class="input-group md-form form-sm form-1 m-2 pl-0 ">
+            <div class="input-group-prepend">
+                <span class="input-group-text cyan lighten-2" id="basic-text1"><i class="fas fa-search"
+            aria-hidden="true">Име</i></span>
+            </div>
+            <input (input)="filterProductsByName($event);" class="form-control my-0 py-1" type="text" placeholder="Search by name" aria-label="Search">
+        </div>
+        <div class="card-body">
+            <div id="table" class="table-editable">
+                <table class="table table-bordered table-responsive-md text-center">
+                    <tr>
+                        <th class="text-center" (click)="sort('Id');">#</th>
+                        <th class="text-center" (click)="sort('Name');">Продукт</th>
+                        <th class="text-center" (click)="sort('Category');">Категория</th>
+                        <th class="text-center" (click)="sort('DateAdded');">Дата</th>
+                        <th class="text-center">Премахване</th>
+                    </tr>
+                    <tr *ngFor="let product of productList; let id = index">
+                        <td>
+                            <span>{{product.id}}</span>
+                        </td>
+                        <td>
+                            <span>{{product.name}}</span>
+                        </td>
+                        <td>
+                            <span>{{product.category.name}}</span>
+                        </td>
+                        <td>
+                            <span>{{product.dateAdded}}</span>
+                        </td>
+                        <td>
+                            <span class="table-removeOrder">
+                                <img class="icon delete-image-button" (click)="remove(id)"
+                                    src="assets/Icons/delete-icon.svg">
+                            </span>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </igx-tabs-group>
+    <igx-tabs-group label="Промени">
+        <div class="input-group md-form form-sm form-1 m-2 pl-0 ">
+            <div class="input-group-prepend">
+                <span class="input-group-text cyan lighten-2" id="basic-text1"><i class="fas fa-search"
+            aria-hidden="true">Име</i></span>
+            </div>
+            <input (input)="filterProductsByName($event);" class="form-control my-0 py-1" type="text" placeholder="Search by name" aria-label="Search">
+        </div>
+        <app-add-edit-product *ngIf="isSelectedProduct" [product]='selectedProduct' (deselectProductEmitter)="deselectProduct($event);"></app-add-edit-product>
+        <div *ngIf="!isSelectedProduct" class="card-body">
+            <div id="table" class="table-editable">
+                <table class="table table-bordered table-responsive-md text-center">
+                    <tr>
+                        <th class="text-center" (click)="sort('Id');">#</th>
+                        <th class="text-center" (click)="sort('Name');">Продукт</th>
+                        <th class="text-center" (click)="sort('Category');">Категория</th>
+                        <th class="text-center" (click)="sort('DateAdded');">Дата</th>
+                        <th class="text-center">Промяна</th>
+                    </tr>
+                    <tr *ngFor="let product of productList; let id = index">
+                        <td>
+                            <span>{{product.id}}</span>
+                        </td>
+                        <td>
+                            <span>{{product.name}}</span>
+                        </td>
+                        <td>
+                            <span>{{product.category.name}}</span>
+                        </td>
+                        <td>
+                            <span>{{product.dateAdded}}</span>
+                        </td>
+                        <td>
+                            <span class="table-removeOrder">
+                                <img class="icon delete-image-button" (click)="selectProduct(product)"
+                                    src="assets/Icons/change-button.png">
+                            </span>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </igx-tabs-group>
+</igx-tabs>

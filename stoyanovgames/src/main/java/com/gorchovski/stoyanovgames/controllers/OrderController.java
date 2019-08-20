@@ -59,6 +59,13 @@ public class OrderController {
 		this.orderService.update(order);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 	}
+
+	@RequestMapping(method = RequestMethod.POST, value = "/update/status", consumes="application/json")
+	public ResponseEntity<?> updateOrder(
+			@RequestBody Order order) throws StoyanovGamesValidationException {
+		this.orderService.updateOrderStatus(order);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+	}
 	
 	@RequestMapping(method = RequestMethod.POST, value = "/batch-update", consumes="application/json")
 	public ResponseEntity<?> uploadOrders(
