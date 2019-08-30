@@ -1,0 +1,28 @@
+<div class="container">
+        <form>
+    <div class="row">
+        <div id="table" class="table-editable">
+            <table class="table table-bordered table-responsive-md text-center"
+                *ngFor="let image of images; let id = index">
+                <tr *ngIf="id === 0">
+                    <th class="text-center column-1">Изображение</th>
+                    <th class="text-center column-2">Позиция</th>
+                </tr>
+                <tr>
+                    <td [formGroup]="imageForm" class="form-group" class="text-center column-2">
+                            <add-image class="form-control position-relative" formControlName="'photo' + id + 1" (imageLoaded)="getImage($event, id + 1)"></add-image>
+                    </td>
+                    <td class="text-center column-1">
+                        <span>{{image.imagePlacement}}</span>
+                    </td>
+                </tr>
+            </table>
+            <div class="row">
+                <div class="col-12 col-centered">
+                    <button (click)="saveImages();" class="btn btn-block btn-success float-right">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    </form>
+</div>

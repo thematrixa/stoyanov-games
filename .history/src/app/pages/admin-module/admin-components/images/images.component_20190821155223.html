@@ -1,0 +1,31 @@
+<div class="container">
+    <div class="row">
+        <div id="table" class="table-editable">
+            <table class="table table-bordered table-responsive-md text-center"
+                *ngFor="let image of images; let id = index">
+                <tr *ngIf="id === 0">
+                    <td class="text-center column-1">Изображение</td>
+                    <td class="text-center column-2">Позиция</td>
+                    <td class="text-center column-3">Опции</td>
+                </tr>
+                <tr>
+                    <td class="text-center column-2">
+                        <span *ngIf="item.product.onSalePercent > 0"
+                            class='product-price'>{{(item.product.price * item.product.onSalePercent / 100)}}лв.</span><span
+                            *ngIf="item.product.onSalePercent == 0">{{item.product.price}}лв.</span>
+                    </td>
+                    <td class="text-center column-1">
+                        <span><img class="cart-image" src="{{item.product.photo1Base64}}" /></span>
+                        <span>{{item.product.name}}</span>
+                    </td>
+                    <td class="text-center column-5">
+                        <span>
+                            <img class="icon delete-image-button" (click)="removeFromCart(item);"
+                                src="assets/Icons/delete-icon.svg">
+                        </span>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>

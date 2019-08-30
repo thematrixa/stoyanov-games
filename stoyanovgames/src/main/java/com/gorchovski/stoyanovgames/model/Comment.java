@@ -10,22 +10,28 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Entity
 @Table(name = "comments")
 public class Comment {
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+	@JsonProperty("id")
 	private Integer id;
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd.MM.yyyy")
+	@JsonProperty("date")
 	private Date date;
 	@NotNull
+	@JsonProperty("content")
 	private String content;
 	@NotNull
+	@JsonProperty("productId")
 	private Integer productId;
 	@NotNull
+	@JsonProperty("username")
 	private String username;
 	@NotNull
+	@JsonProperty("rating")
 	private Integer rating;
 	
 	public Integer getId() {

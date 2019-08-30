@@ -47,6 +47,10 @@ public class ProductController {
 	public StoyanovGamesResponse<?> getOnSaleProducts() {
 		return new StoyanovGamesResponse<>(this.productService.getOnSaleProducts());
 	}
+	@RequestMapping(produces = "application/json", method = RequestMethod.GET, value = "/new")
+	public StoyanovGamesResponse<?> getNewProducts() {
+		return new StoyanovGamesResponse<>(this.productService.getNewProducts());
+	}
 
 	@PreAuthorize("hasAuthority('ADMIN')")
 	@RequestMapping(method = RequestMethod.POST, value = "/batch-update", consumes = "application/json")

@@ -1,5 +1,7 @@
 package com.gorchovski.stoyanovgames.controllers;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -28,7 +30,7 @@ public class ImageController {
 	}
 
 	@RequestMapping(produces = "application/json", method = RequestMethod.GET, value = "/get")
-	public StoyanovGamesResponse<?> getCategories() {
+	public StoyanovGamesResponse<?> getImages() {
 		return new StoyanovGamesResponse<>(this.imageService.selectAll());
 	}
 
@@ -39,5 +41,30 @@ public class ImageController {
 		this.imageService.update(image);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 	}
+    @PreAuthorize("hasAuthority('ADMIN')")
+	@RequestMapping(method = RequestMethod.POST, value = "/set", consumes="application/json")
+	public ResponseEntity<?> uploadImages(
+			@RequestBody List<Image> images) throws StoyanovGamesValidationException {
+		this.imageService.batchInsertUpdate(images);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+	}
+	@RequestMapping(produces = "application/json", method = RequestMethod.GET, value = "/get/header")
+	public StoyanovGamesResponse<?> getHeaderImage() {
+		return new StoyanovGamesResponse<>(this.imageService.getHeaderImage());
+	}
 
+	@RequestMapping(produces = "application/json", method = RequestMethod.GET, value = "/get/background")
+	public StoyanovGamesResponse<?> getBackgroundImage() {
+		return new StoyanovGamesResponse<>(this.imageService.getBackgroundImage());
+	}
+	
+	@RequestMapping(produces = "application/json", method = RequestMethod.GET, value = "/get/left-image")
+	public StoyanovGamesResponse<?> getLeftImage() {
+		return new StoyanovGamesResponse<>(this.imageService.getLeftImage());
+	}
+	
+	@RequestMapping(produces = "application/json", method = RequestMethod.GET, value = "/get/right-image")
+	public StoyanovGamesResponse<?> getRightImage() {
+		return new StoyanovGamesResponse<>(this.imageService.getRightImage());
+	}
 }

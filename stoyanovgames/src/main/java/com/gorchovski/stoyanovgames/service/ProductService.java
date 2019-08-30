@@ -1,8 +1,9 @@
 package com.gorchovski.stoyanovgames.service;
 
+import java.util.Calendar;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,6 +17,7 @@ import com.gorchovski.stoyanovgames.model.User;
 import com.gorchovski.stoyanovgames.model.Votes;
 import com.gorchovski.stoyanovgames.repository.CategoryRepository;
 import com.gorchovski.stoyanovgames.repository.ProductRepository;
+import com.gorchovski.stoyanovgames.utils.Constants;
 import com.gorchovski.stoyanovgames.validator.ProductValidator;
 
 @Transactional
@@ -35,10 +37,10 @@ public class ProductService {
 
 	@Autowired
 	private CategoryRepository categoryRepository;
-	
+
 	@Autowired
 	private SecurityService securityService;
-	
+
 	@Autowired
 	private ProductValidator productValidator;
 
@@ -49,9 +51,18 @@ public class ProductService {
 	public List<Product> getActiveProducts() {
 		return productRepository.findByIsActiveAndIsDeleted(true, false);
 	}
+
 	public List<Product> getOnSaleProducts() {
-		return productRepository.findByOnSalePercentGreaterThan(0);
+		return productRepository.getOnSaleProducts();
 	}
+
+	public List<Product> getNewProducts() {
+		Calendar cal = Calendar.getInstance();
+		cal.add(Calendar.MONTH, -Constants.NEW_PRODUCT_MONTHS_BACK);
+		Date oneMonthBack = cal.getTime();
+		return productRepository.getNewProducts(oneMonthBack);
+	}
+
 	public void batchInsertUpdate(List<Product> feProducts) throws StoyanovGamesValidationException {
 		List<Product> dbProducts = productRepository.findAll();
 		boolean productExists = false;
@@ -80,7 +91,8 @@ public class ProductService {
 		this.productValidator.validateProduct(product);
 		this.deleteComments(product.getId());
 		this.votesService.deleteVotes(product.getId());
-		product.setIsDeleted(false);
+		product.setIsDeleted(true);
+		product.setIsActive(false);
 		this.productRepository.save(product);
 	}
 
@@ -95,7 +107,7 @@ public class ProductService {
 	public Float updateRating(Integer numberOfStars, Integer productId) {
 		User user = this.securityService.findLoggedInUser();
 		boolean hasUserVoted = this.votesService.hasUserVoted(user.getUsername(), productId);
-			Product product = this.productRepository.findById(productId);
+		Product product = this.productRepository.findById(productId);
 		if (hasUserVoted) {
 			return product.getRating();
 		} else {
@@ -109,7 +121,7 @@ public class ProductService {
 		}
 
 	}
-	
+
 	public Boolean hasUserVoted(Integer productId) {
 		User user = this.securityService.findLoggedInUser();
 		return this.votesService.hasUserVoted(user.getUsername(), productId);
@@ -143,21 +155,27 @@ public class ProductService {
 
 		return (float) ((5 * five + 4 * four + 3 * three + 2 * two + 1 * one) / (five + four + three + two + one));
 	}
-	
+
 	public void insertComment(Comment comment) throws StoyanovGamesValidationException {
 		User user = this.securityService.findLoggedInUser();
-		if(this.votesService.hasUserVoted(user.getUsername(), comment.getProductId()) && !this.commentService.hasUserCommented(user.getUsername(), comment.getProductId())) {
+		comment.setDate(new Date());
+		comment.setUsername(user.getUsername());
+		if (this.votesService.hasUserVoted(user.getUsername(), comment.getProductId())
+				&& !this.commentService.hasUserCommented(user.getUsername(), comment.getProductId())) {
 			this.commentService.insertComment(comment);
-		}else {
-			
+		} else {
+
 		}
 	}
+
 	public void deleteComments(Integer productId) {
 		this.commentService.deleteCommentsByProductId(productId);
 	}
+
 	public void deleteComment(Comment comment) throws StoyanovGamesValidationException {
 		this.commentService.deleteComment(comment);
 	}
+
 	public List<Comment> getComments(Product product) {
 		return this.commentService.selectAllByProductId(product.getId());
 	}

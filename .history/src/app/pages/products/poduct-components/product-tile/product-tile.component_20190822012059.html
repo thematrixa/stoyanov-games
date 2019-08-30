@@ -1,0 +1,30 @@
+<div class="container-fluid" (click)="showDetails();">
+      <div>
+            <span class="row">
+                  <!-- <img src="product.photo1"/> -->
+                  <img *ngIf="product.quantity == 0" class='product-image product-sold-out-image' src="assets/Images/sold-out-image.png" />
+                  <img class='product-image' src="{{product.photo1Base64}}" />
+            </span>
+      </div>
+      <div>
+            <span class="row d-flex">
+                  <p class='product-name' style="word-wrap:break-word;">{{product.name}}</p>
+                  <img *ngIf="product.quantity == 0" class="cart-icon-inactive"(click)="$event.stopPropagation()"
+                        src="assets/Icons/shopping-cart-icon.svg" />
+                  <img *ngIf="product.quantity != 0" (click)="addToCart($event);$event.stopPropagation()" class="cart-icon"
+                        src="assets/Icons/shopping-cart-icon.svg" />
+            </span>
+      </div>
+      <div>
+            <span class="row">
+
+                  <b><span *ngIf="product.onSalePercent>0" class='product-price'>{{(product.price * product.onSalePercent / 100)}}лв.</span><span class='product-price' [ngStyle]="{'text-decoration': product.onSalePercent>0 ? 'line-through' : 'none' }">{{product.price}}лв.</span></b>
+                  <span class='product-rating'>
+                        <form>
+                              <bar-rating [rate]="rate" name="rating" [disabled]="true" [max]="5">
+                              </bar-rating>
+                        </form>
+                  </span>
+            </span>
+      </div>
+</div>

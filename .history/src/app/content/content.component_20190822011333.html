@@ -1,0 +1,15 @@
+<div class="container">
+    <div class="row">
+        <div id="left-image">
+            <img [src]="leftImage.imageBase64Src" />
+        </div>
+
+        <div id="right-image">
+            <img [src]="rightImage.imageBase64Src" />
+        </div>
+
+        <div id="content-background" class="col-10 content-background col-centered">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+</div>
