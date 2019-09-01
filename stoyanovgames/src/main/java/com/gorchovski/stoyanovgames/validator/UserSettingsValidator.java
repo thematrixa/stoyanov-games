@@ -3,8 +3,6 @@ package com.gorchovski.stoyanovgames.validator;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.BeanPropertyBindingResult;
@@ -21,7 +19,6 @@ public class UserSettingsValidator extends BasicValidator {
 	private final Integer NAME_MAX_LENGHT = 50;
 	private final String EMAIL_REGEX = "^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\\\.[A-Z]{2,6}$";
 	private final char DELIMITER = '.';
-	private final Logger logger = LoggerFactory.getLogger(AddressValidator.class);
 
 	public UserSettingsValidator() {
 

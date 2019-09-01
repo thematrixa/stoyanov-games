@@ -13,6 +13,7 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.gorchovski.stoyanovgames.utils.Constants;
 
 @Entity
 @Table(name = "products")
@@ -181,6 +182,9 @@ public class Product {
 	}
 
 	public void setPhoto1Base64(String photo1Base64) {
+		if(photo1Base64 == null) {
+			photo1Base64 = Constants.EMPTY_IMAGE;
+		}
 		this.photo1Base64 = photo1Base64;
 	}
 
@@ -197,6 +201,9 @@ public class Product {
 	}
 
 	public void setPhoto2Base64(String photo2Base64) {
+		if(photo2Base64 == null) {
+			photo2Base64 = Constants.EMPTY_IMAGE;
+		}
 		this.photo2Base64 = photo2Base64;
 	}
 
@@ -205,6 +212,9 @@ public class Product {
 	}
 
 	public void setPhoto3Base64(String photo3Base64) {
+		if(photo3Base64 == null) {
+			photo3Base64 = Constants.EMPTY_IMAGE;
+		}
 		this.photo3Base64 = photo3Base64;
 	}
 
@@ -213,6 +223,9 @@ public class Product {
 	}
 
 	public void setPhoto4Base64(String photo4Base64) {
+		if(photo4Base64 == null) {
+			photo4Base64 = Constants.EMPTY_IMAGE;
+		}
 		this.photo4Base64 = photo4Base64;
 	}
 
@@ -221,6 +234,9 @@ public class Product {
 	}
 
 	public void setPhoto5Base64(String photo5Base64) {
+		if(photo5Base64 == null) {
+			photo5Base64 = Constants.EMPTY_IMAGE;
+		}
 		this.photo5Base64 = photo5Base64;
 	}
 

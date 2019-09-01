@@ -3,8 +3,6 @@ package com.gorchovski.stoyanovgames.validator;
 import java.util.Calendar;
 import java.util.Date;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.BeanPropertyBindingResult;
@@ -22,7 +20,6 @@ public class ProductValidator extends BasicValidator {
 	private final Integer PRODUCT_NAME_MAX_LENGHT = 50;
 	private final Integer PRODUCT_DESC_MAX_LENGHT = 250;
 	private final char DELIMITER = '.';
-	private final Logger logger = LoggerFactory.getLogger(ProductValidator.class);
 
 	@Autowired
 	CategoryValidator categoryValidator;

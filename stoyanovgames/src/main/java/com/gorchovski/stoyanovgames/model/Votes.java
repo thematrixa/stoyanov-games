@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
@@ -17,15 +18,16 @@ public class Votes {
 	@NotNull
 	private Integer productId;
 	@NotNull
-	private String username;
+	@OneToOne
+	private User user;
 
 	public Votes() {
 	}
 
-	public Votes(Integer productId, String username) {
+	public Votes(Integer productId, User user) {
 		super();
 		this.productId = productId;
-		this.username = username;
+		this.user = user;
 	}
 
 	public Integer getId() {
@@ -44,12 +46,12 @@ public class Votes {
 		this.productId = productId;
 	}
 
-	public String getUsername() {
-		return username;
+	public User getUser() {
+		return user;
 	}
 
-	public void setUsername(String username) {
-		this.username = username;
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 }

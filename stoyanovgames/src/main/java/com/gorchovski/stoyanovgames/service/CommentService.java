@@ -11,7 +11,6 @@ import com.gorchovski.stoyanovgames.excetion.StoyanovGamesValidationException;
 import com.gorchovski.stoyanovgames.model.Comment;
 import com.gorchovski.stoyanovgames.model.User;
 import com.gorchovski.stoyanovgames.repository.CommentRepository;
-import com.gorchovski.stoyanovgames.repository.UserRepository;
 import com.gorchovski.stoyanovgames.validator.CommentValidator;
 
 @Transactional
@@ -35,15 +34,15 @@ public class CommentService {
 		return commentRepository.findByProductId(productId);
 	}
 
-	public List<Comment> selectAllByUsername(String username) {
-		return commentRepository.findByUsername(username);
+	public List<Comment> selectAllByUser(User user) {
+		return commentRepository.findByUseer(user);
 	}
 	
 	public void insertComment(Comment comment) throws StoyanovGamesValidationException {
 		this.commentValidator.validateComment(comment);
 		User user = this.securityService.findLoggedInUser();
 		comment.setDate(new Date());
-		comment.setUsername(user.getUsername());
+		comment.setUseer(user);
 		this.commentRepository.save(comment);
 	}
 	
@@ -56,13 +55,13 @@ public class CommentService {
 		this.commentRepository.deleteAll(comments);
 	}
 
-	public void deleteCommentsByUsername(String username) {
-		List<Comment> comments = this.selectAllByUsername(username);
+	public void deleteCommentsByUsername(User user) {
+		List<Comment> comments = this.selectAllByUser(user);
 		this.commentRepository.deleteAll(comments);
 	}
 	
-	public Boolean hasUserCommented(String username, Integer productId) {
-		List<Comment> comments = this.commentRepository.findByProductIdAndUsername(productId, username);
+	public Boolean hasUserCommented(User user, Integer productId) {
+		List<Comment> comments = this.commentRepository.findByProductIdAndUseer(productId, user);
 		if(comments.size()>0) {
 			return true;
 		}else {

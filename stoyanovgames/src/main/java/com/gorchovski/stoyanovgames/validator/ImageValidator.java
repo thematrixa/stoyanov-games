@@ -1,12 +1,5 @@
 package com.gorchovski.stoyanovgames.validator;
 
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.Lob;
-import javax.validation.constraints.NotNull;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.BeanPropertyBindingResult;
 import org.springframework.validation.Errors;
@@ -21,7 +14,6 @@ public class ImageValidator extends BasicValidator {
 	private final Integer ADDRESS_NAME_MIN_LENGHT = 10;
 	private final Integer ADDRESS_NAME_MAX_LENGHT = 50;
 	private final char DELIMITER = '.';
-	private final Logger logger = LoggerFactory.getLogger(ImageValidator.class);
 
 	public ImageValidator() {
 
@@ -85,11 +77,5 @@ public class ImageValidator extends BasicValidator {
 		}
 		return false;
 	}
-	private Integer id;
-	@Enumerated(EnumType.ORDINAL)
-	@NotNull
-	private ImagePlacementEnum imagePlacement;
-	@Lob
-	private String imageBase64Src;
 	
 }

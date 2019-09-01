@@ -1,0 +1,30 @@
+<div class="container">
+    <div class="row">
+        <div class="col-6 col-centered">
+            <h2>Login</h2>
+        </div>
+    </div>
+    <div class="row">
+        <form (ngSubmit)="onSubmit()" class="col-6 col-centered">
+            <div [formGroup]="loginForm" class="form-group">
+                <input placeholder="Потребителско име" type="text" formControlName="username" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.username.errors }" />
+                <div *ngIf="submitted && f.username.errors" class="invalid-feedback" role="alert">
+                    <div *ngIf="f.username.errors.required">Потребителско име е задължително.</div>
+                </div>
+            </div>
+            <div [formGroup]="loginForm" class="form-group">
+                <input placeholder="Парола" type="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+                <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                    <div *ngIf="f.password.errors.required">Парола е задължотелно.
+                    </div>
+                </div>
+            </div>
+            <div>
+                <button (click)="forgottenPassword();" class="btn btn-link float-left">Забравена парола?</button>
+            </div>
+            <div [formGroup]="loginForm" class="form-group">
+                <button type="submit" class="btn btn-primary float-right">Влизане</button>
+            </div>
+        </form>
+    </div>
+</div>

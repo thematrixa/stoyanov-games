@@ -1,7 +1,5 @@
 package com.gorchovski.stoyanovgames.validator;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.BeanPropertyBindingResult;
 import org.springframework.validation.Errors;
@@ -14,7 +12,6 @@ public class CategoryValidator extends BasicValidator{
 	private final Integer CATEGORY_NAME_MIN_LENGHT = 0;
 	private final Integer CATEGORY_NAME_MAX_LENGHT = 20;
 	private final char DELIMITER = '.';
-	private final Logger logger = LoggerFactory.getLogger(CategoryValidator.class);
 
 	public CategoryValidator() {
 

@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.BeanPropertyBindingResult;
 import org.springframework.validation.Errors;
@@ -11,11 +12,16 @@ import org.springframework.validation.Errors;
 import com.gorchovski.stoyanovgames.excetion.StoyanovGamesValidationException;
 import com.gorchovski.stoyanovgames.model.CartItem;
 import com.gorchovski.stoyanovgames.model.Order;
+import com.gorchovski.stoyanovgames.model.User;
 import com.gorchovski.stoyanovgames.model.enums.OrdersEnum;
 
 @SuppressWarnings("unused")
 @Component
 public class OrderValidator extends BasicValidator {
+	
+	@Autowired
+	UserValidator userValidator;
+	
 	private final Integer ORDER_NAME_MIN_LENGHT = 0;
 	private final Integer ORDER_NAME_MAX_LENGHT = 50;
 	private final Integer ORDER_ADDRESS_MIN_LENGHT = 0;
@@ -57,8 +63,8 @@ public class OrderValidator extends BasicValidator {
 					"Дължината на телефон,трябва да е под " + ORDER_PHONE_MAX_LENGHT + " символа.");
 		}
 
-		if (!this.isUserIdValid(order.getUserId())) {
-			errors.rejectValue("", "orderUserId" + DELIMITER + order.getId(), "UserId e задължително");
+		if (!this.isUserValid(order.getUser())) {
+			errors.rejectValue("", "orderUser" + DELIMITER + order.getId(), "User e невалиден");
 		}
 
 		if (!this.isTotalValid(order.getTotal())) {
@@ -118,8 +124,9 @@ public class OrderValidator extends BasicValidator {
 		return false;
 	}
 
-	public Boolean isUserIdValid(Integer userId) {
-		if (userId != null) {
+	public Boolean isUserValid(User user) throws StoyanovGamesValidationException {
+		if (user != null) {
+			this.userValidator.validateUser(user);
 			return true;
 		}
 		return false;

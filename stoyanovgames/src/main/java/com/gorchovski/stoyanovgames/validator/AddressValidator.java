@@ -7,16 +7,12 @@ import org.springframework.validation.Errors;
 import com.gorchovski.stoyanovgames.excetion.StoyanovGamesValidationException;
 import com.gorchovski.stoyanovgames.model.Address;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 @Component
 public class AddressValidator extends BasicValidator {
 
 	private final Integer ADDRESS_NAME_MIN_LENGHT = 10;
 	private final Integer ADDRESS_NAME_MAX_LENGHT = 50;
 	private final char DELIMITER = '.';
-	private final Logger logger = LoggerFactory.getLogger(AddressValidator.class);
 
 	public AddressValidator() {
 

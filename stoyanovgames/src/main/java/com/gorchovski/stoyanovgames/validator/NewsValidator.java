@@ -1,7 +1,5 @@
 package com.gorchovski.stoyanovgames.validator;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.BeanPropertyBindingResult;
 import org.springframework.validation.Errors;
@@ -16,7 +14,6 @@ public class NewsValidator extends BasicValidator {
 	private final Integer TITLE_MAX_LENGHT = 25;
 	private final Integer CONTENT_MAX_LENGHT = 255;
 	private final char DELIMITER = '.';
-	private final Logger logger = LoggerFactory.getLogger(AddressValidator.class);
 
 	public NewsValidator() {
 

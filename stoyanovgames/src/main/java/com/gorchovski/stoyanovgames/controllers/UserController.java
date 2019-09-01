@@ -53,7 +53,7 @@ public class UserController {
 	}
 
 	@RequestMapping(produces = "application/json", method = RequestMethod.GET, value = "/login")
-	public StoyanovGamesResponse<?> loginUser(@RequestParam String username) {
+	public StoyanovGamesResponse<?> loginUser(@RequestParam String username) throws StoyanovGamesValidationException {
 		return new StoyanovGamesResponse<>(this.userService.getUser(username));
 	}
 

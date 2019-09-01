@@ -1,7 +1,5 @@
 package com.gorchovski.stoyanovgames.validator;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.BeanPropertyBindingResult;
@@ -15,7 +13,6 @@ import com.gorchovski.stoyanovgames.model.Product;
 public class CartItemValidator extends BasicValidator {
 	private final Integer QUANTITY_MIN_VALUE = 0;
 	private final char DELIMITER = '.';
-	private final Logger logger = LoggerFactory.getLogger(AddressValidator.class);
 
 	@Autowired
 	private ProductValidator productValidator;

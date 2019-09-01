@@ -106,7 +106,7 @@ public class ProductService {
 
 	public Float updateRating(Integer numberOfStars, Integer productId) {
 		User user = this.securityService.findLoggedInUser();
-		boolean hasUserVoted = this.votesService.hasUserVoted(user.getUsername(), productId);
+		boolean hasUserVoted = this.votesService.hasUserVoted(user, productId);
 		Product product = this.productRepository.findById(productId);
 		if (hasUserVoted) {
 			return product.getRating();
@@ -115,7 +115,7 @@ public class ProductService {
 			Float rating = this.calculateRating(product);
 			product.setRating(rating);
 			this.productRepository.save(product);
-			Votes vote = new Votes(productId, user.getUsername());
+			Votes vote = new Votes(productId, user);
 			this.votesService.insertVote(vote);
 			return rating;
 		}
@@ -124,12 +124,12 @@ public class ProductService {
 
 	public Boolean hasUserVoted(Integer productId) {
 		User user = this.securityService.findLoggedInUser();
-		return this.votesService.hasUserVoted(user.getUsername(), productId);
+		return this.votesService.hasUserVoted(user, productId);
 	}
 
 	public Boolean hasUserCommented(Integer productId) {
 		User user = this.securityService.findLoggedInUser();
-		return this.commentService.hasUserCommented(user.getUsername(), productId);
+		return this.commentService.hasUserCommented(user, productId);
 	}
 
 	public void updateStars(Product product, Integer numberOfStars) {
@@ -159,9 +159,9 @@ public class ProductService {
 	public void insertComment(Comment comment) throws StoyanovGamesValidationException {
 		User user = this.securityService.findLoggedInUser();
 		comment.setDate(new Date());
-		comment.setUsername(user.getUsername());
-		if (this.votesService.hasUserVoted(user.getUsername(), comment.getProductId())
-				&& !this.commentService.hasUserCommented(user.getUsername(), comment.getProductId())) {
+		comment.setUseer(user);
+		if (this.votesService.hasUserVoted(user, comment.getProductId())
+				&& !this.commentService.hasUserCommented(user, comment.getProductId())) {
 			this.commentService.insertComment(comment);
 		} else {
 

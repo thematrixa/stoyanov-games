@@ -11,6 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
@@ -26,7 +27,8 @@ public class Order {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	@NotNull
-	private Integer userId;
+	@OneToOne
+	private User user;
 	@NotNull
 	private String name;
 	@NotNull
@@ -50,11 +52,11 @@ public class Order {
 	public void setId(Integer id) {
 		this.id = id;
 	}
-	public Integer getUserId() {
-		return userId;
+	public User getUser() {
+		return user;
 	}
-	public void setUserId(Integer userId) {
-		this.userId = userId;
+	public void setUser(User user) {
+		this.user = user;
 	}
 	public String getName() {
 		return name;

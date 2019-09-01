@@ -1,0 +1,8 @@
+<div>
+    <ng-container *ngFor="let address of addresses; let id = index">
+        <input (click)="reset();setValue($event);" (change)="change($event);" type="radio" value="{{address.name}}"
+            #radio />{{address.name}}
+    </ng-container>
+    <input (click)="reset();setValue($event);" type="radio" value="{{customAddress}}">
+    <input class="form-control" type="text" [(ngModel)]="customAddress" />
+</div>

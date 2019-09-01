@@ -14,7 +14,6 @@ import org.springframework.transaction.annotation.Transactional;
 import com.gorchovski.stoyanovgames.excetion.StoyanovGamesValidationException;
 import com.gorchovski.stoyanovgames.model.Address;
 import com.gorchovski.stoyanovgames.model.User;
-import com.gorchovski.stoyanovgames.repository.AddressRepository;
 import com.gorchovski.stoyanovgames.repository.UserRepository;
 import com.gorchovski.stoyanovgames.validator.AddressValidator;
 import com.gorchovski.stoyanovgames.validator.UserSettingsValidator;
@@ -28,8 +27,6 @@ public class UserService {
 	// private String eTlogKeystoreName;
 	@Autowired
 	private UserRepository userRepository;
-	@Autowired
-	private AddressRepository addressRepository;
 	@Autowired
 	private BCryptPasswordEncoder bCryptPasswordEncoder;
 	@Autowired
@@ -86,8 +83,10 @@ public class UserService {
 		this.userRepository.save(dbUser);
 	}
 
-	public User getUser(String username) {
-		return this.userRepository.findByUsername(username);
+	public User getUser(String username) throws StoyanovGamesValidationException {
+		User user = this.userRepository.findByUsername(username);
+		this.userValidator.validateUser(user);
+		return user;
 	}
 
 	public void forgottenPassword(String username) throws UnsupportedEncodingException {

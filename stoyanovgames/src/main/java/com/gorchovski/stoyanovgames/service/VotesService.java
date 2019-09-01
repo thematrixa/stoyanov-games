@@ -17,8 +17,8 @@ public class VotesService {
 	@Autowired
 	private VotesRepository votesRepository;
 	
-	public boolean hasUserVoted(String username, Integer productId) {
-		List<Votes> userVotes = this.votesRepository.findByUsernameAndProductId(username, productId);
+	public boolean hasUserVoted(User user, Integer productId) {
+		List<Votes> userVotes = this.votesRepository.findByUserAndProductId(user, productId);
 		if(userVotes != null && userVotes.size()>0) {
 			return true;
 		}
@@ -30,8 +30,8 @@ public class VotesService {
 		this.votesRepository.save(vote);
 	}
 
-	public void deleteVotes(String username) {
-		this.votesRepository.deleteByUsername(username);
+	public void deleteVotes(User user) {
+		this.votesRepository.deleteByUser(user);
 	}
 	public void deleteVotes(Integer productId) {
 		this.votesRepository.deleteByProductId(productId);

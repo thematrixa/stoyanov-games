@@ -1,22 +1,18 @@
 package com.gorchovski.stoyanovgames.validator;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.BeanPropertyBindingResult;
 import org.springframework.validation.Errors;
 
 import com.gorchovski.stoyanovgames.excetion.StoyanovGamesValidationException;
 import com.gorchovski.stoyanovgames.model.Comment;
+import com.gorchovski.stoyanovgames.model.User;
 
 @Component
 public class CommentValidator extends BasicValidator {
 	private final Integer CONTENT_MIN_LENGHT = 0;
 	private final Integer CONTENT_MAX_LENGHT = 255;
-	private final Integer USERNAME_MIN_LENGHT = 0;
-	private final Integer USERNAME_MAX_LENGHT = 25;
 	private final char DELIMITER = '.';
-	private final Logger logger = LoggerFactory.getLogger(AddressValidator.class);
 
 	public CommentValidator() {
 
@@ -33,13 +29,9 @@ public class CommentValidator extends BasicValidator {
 			errors.rejectValue("", "commentContent" + DELIMITER + comment.getId(),
 					"Дължината на съдържанието, трябва да е под " + CONTENT_MAX_LENGHT + " символа.");
 		}
-		if (!this.isContentMINLenghtValid(comment.getUsername())) {
-			errors.rejectValue("", "commentUsername" + DELIMITER + comment.getId(),
-					"Дължината на потребителското име, трябва да е над " + USERNAME_MIN_LENGHT + " символа.");
-		}
-		if (!this.isContentMAXLengthValid(comment.getUsername())) {
-			errors.rejectValue("", "commentUsername" + DELIMITER + comment.getId(),
-					"Дължината на потребителското име, трябва да е под " + USERNAME_MAX_LENGHT + " символа.");
+		if (!this.isUserValid(comment.getUseer())) {
+			errors.rejectValue("", "commentUser" + DELIMITER + comment.getId(),
+					"Невалиден потребител.");
 		}
 		if (!this.isProductIdValid(comment.getProductId())) {
 			errors.rejectValue("", "commentProductId" + DELIMITER + comment.getId(), "ProductId е задължително.");
@@ -65,15 +57,8 @@ public class CommentValidator extends BasicValidator {
 		return false;
 	}
 
-	public Boolean isUsernameMINLenghtValid(String username) {
-		if (username != null && username.length() > USERNAME_MIN_LENGHT) {
-			return true;
-		}
-		return false;
-	}
-
-	public Boolean isUsernameMAXLengthValid(String username) {
-		if (username != null && username.length() < USERNAME_MAX_LENGHT) {
+	public Boolean isUserValid(User user) {
+		if (user != null) {
 			return true;
 		}
 		return false;

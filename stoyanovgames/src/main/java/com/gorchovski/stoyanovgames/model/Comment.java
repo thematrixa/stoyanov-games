@@ -6,10 +6,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Entity
@@ -28,8 +28,9 @@ public class Comment {
 	@JsonProperty("productId")
 	private Integer productId;
 	@NotNull
-	@JsonProperty("username")
-	private String username;
+	@JsonProperty("user")
+	@OneToOne
+	private User useer;
 	@NotNull
 	@JsonProperty("rating")
 	private Integer rating;
@@ -58,11 +59,11 @@ public class Comment {
 	public void setProductId(Integer productId) {
 		this.productId = productId;
 	}
-	public String getUsername() {
-		return username;
+	public User getUseer() {
+		return useer;
 	}
-	public void setUsername(String username) {
-		this.username = username;
+	public void setUseer(User user) {
+		this.useer = user;
 	}
 	public Integer getRating() {
 		return rating;
